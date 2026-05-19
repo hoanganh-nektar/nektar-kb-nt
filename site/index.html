@@ -1,298 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nektar Knowledge Base</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nektar Knowledge Base</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Hamburger (mobile) -->
+    <div id="nav-placeholder"></div>
 
-<!-- Hamburger (mobile) -->
-<button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
-<div class="sidebar-overlay" id="sidebar-overlay"></div>
-
-<!-- ─── Sidebar ──────────────────────────────────────────────────── -->
-<aside id="sidebar">
-  <div class="sidebar-header">
-    <a href="index.html" class="logo-link">Nektar</a>
-    <div class="sidebar-search">
-      <span class="search-icon">&#128269;</span>
-      <input type="text" id="sidebar-search-input" placeholder="Search docs…" aria-label="Search" />
-    </div>
-  </div>
-
-  <nav class="sidebar-nav">
-
-    <!-- Getting started -->
-    <div class="nav-section" data-section="getting-started">
-      <div class="nav-section-toggle">
-        <span>Getting started</span>
-        <span class="chevron">&#9650;</span>
+    <!-- ─── Main ──────────────────────────────────────────────────────── -->
+    <div id="main-wrapper">
+      <!-- Home Hero -->
+      <div class="home-hero">
+        <p class="home-title">
+          <span>Explore </span><span class="yellow">Nektar</span>
+        </p>
+        <div class="home-hero-right">
+          <span>If you haven't yet</span>
+          <a class="btn-dark" href="getting-started/setup-guide.html"
+            >Get Nektar for your team</a
+          >
+        </div>
       </div>
-      <div class="nav-section-items">
-        <a class="nav-item" href="getting-started/setup-guide.html" data-path="/getting-started/setup-guide.html">Setup guide</a>
-      </div>
-    </div>
 
-    <!-- Understand -->
-    <div class="nav-section" data-section="understand">
-      <div class="nav-section-toggle">
-        <span>Understand</span>
-        <span class="chevron">&#9650;</span>
-      </div>
-      <div class="nav-section-items">
-        <a class="nav-item" href="understand/index.html" data-path="/understand/">Overview</a>
-        <a class="nav-item" href="understand/index.html#graph-inference" data-path="">Graph inference</a>
-        <a class="nav-item" href="understand/index.html#self-healing" data-path="">Self healing</a>
-        <a class="nav-item" href="understand/index.html#security" data-path="">Security</a>
-        <a class="nav-item" href="understand/index.html#sync-latency" data-path="">Sync latency</a>
-        <a class="nav-item" href="understand/index.html#data-transform" data-path="">Data transform</a>
-        <a class="nav-item" href="understand/index.html#use-cases" data-path="">Use cases</a>
-        <a class="nav-item" href="understand/index.html#faqs" data-path="">FAQs</a>
-      </div>
-    </div>
-
-    <!-- Connectors -->
-    <div class="nav-section" data-section="connectors">
-      <div class="nav-section-toggle">
-        <span>Connectors</span>
-        <span class="chevron">&#9650;</span>
-      </div>
-      <div class="nav-section-items">
-
-        <!-- Salesforce subgroup -->
-        <div class="nav-subgroup" data-section="salesforce">
-          <div class="nav-subgroup-toggle">
-            <span>Salesforce</span>
-            <span class="chevron-sub">&#9650;</span>
-          </div>
-          <div class="nav-subgroup-items">
-            <a class="nav-subitem" href="connectors/salesforce/integration-user.html" data-path="/connectors/salesforce/integration-user.html">Integration user</a>
-            <a class="nav-subitem" href="connectors/salesforce/connection.html" data-path="/connectors/salesforce/connection.html">Connection</a>
-            <a class="nav-subitem" href="connectors/salesforce/sync.html" data-path="/connectors/salesforce/sync.html">Sync</a>
-            <a class="nav-subitem" href="connectors/salesforce/api-used.html" data-path="/connectors/salesforce/api-used.html">APIs used</a>
-          </div>
-        </div>
-
-        <a class="nav-item" href="connectors/google-workspace/index.html" data-path="/connectors/google-workspace/">Google Workspace</a>
-        <a class="nav-item" href="connectors/microsoft-365/index.html" data-path="/connectors/microsoft-365/">Microsoft 365</a>
-        <a class="nav-item" href="connectors/zoom/index.html" data-path="/connectors/zoom/">Zoom</a>
-      </div>
-    </div>
-
-    <!-- Administration -->
-    <div class="nav-section" data-section="administration">
-      <div class="nav-section-toggle">
-        <span>Administration</span>
-        <span class="chevron">&#9650;</span>
-      </div>
-      <div class="nav-section-items">
-        <a class="nav-item" href="administration/index.html#dashboard" data-path="">Dashboard</a>
-        <a class="nav-item" href="administration/index.html#users" data-path="">Users</a>
-        <a class="nav-item" href="administration/index.html#data-controls" data-path="">Data controls</a>
-        <a class="nav-item" href="administration/index.html#tracker" data-path="">Tracker</a>
-        <a class="nav-item" href="administration/index.html#revenue-signals" data-path="">Revenue signals</a>
-      </div>
-    </div>
-
-  </nav>
-</aside>
-
-<!-- ─── Main ──────────────────────────────────────────────────────── -->
-<div id="main-wrapper">
-
-  <!-- Hero -->
-  <section class="home-hero">
-    <h1>Explore Nektar</h1>
-    <p>If you haven't yet, <a href="getting-started/setup-guide.html">Get Nektar for your team</a></p>
-  </section>
-
-  <!-- Most visited + Recently updated -->
-  <div class="home-sections">
-
-    <p class="home-section-title">Most visited</p>
-    <div class="card-grid-2">
-
-      <a href="getting-started/setup-guide.html" class="mini-card">
-        <div class="mini-card-icon yellow">&#9881;</div>
-        <div class="mini-card-text">
-          <strong>Setup guide</strong>
-          <span>Connect your tools and get syncing</span>
-        </div>
-      </a>
-
-      <a href="administration/index.html#revenue-signals" class="mini-card">
-        <div class="mini-card-icon teal">&#128200;</div>
-        <div class="mini-card-text">
-          <strong>Revenue signals</strong>
-          <span>Configure and track revenue signals</span>
-        </div>
-      </a>
-
-      <a href="connectors/salesforce/index.html" class="mini-card">
-        <div class="mini-card-icon blue">&#9729;</div>
-        <div class="mini-card-text">
-          <strong>Salesforce</strong>
-          <span>Integration user, connection, sync</span>
-        </div>
-      </a>
-
-      <a href="administration/index.html#tracker" class="mini-card">
-        <div class="mini-card-icon green">&#128203;</div>
-        <div class="mini-card-text">
-          <strong>Tracker</strong>
-          <span>Monitor activity and data completeness</span>
-        </div>
-      </a>
-
-    </div>
-
-    <p class="home-section-title">Recently updated</p>
-    <div class="card-grid-2">
-
-      <a href="understand/index.html#faqs" class="mini-card">
-        <div class="mini-card-icon purple">&#10067;</div>
-        <div class="mini-card-text">
-          <strong>FAQs</strong>
-          <span>Answers to common questions</span>
-        </div>
-      </a>
-
-      <a href="connectors/microsoft-365/index.html" class="mini-card">
-        <div class="mini-card-icon orange">&#128424;</div>
-        <div class="mini-card-text">
-          <strong>Microsoft 365</strong>
-          <span>Connect Outlook and Teams</span>
-        </div>
-      </a>
-
-      <a href="connectors/google-workspace/index.html" class="mini-card">
-        <div class="mini-card-icon yellow">&#128139;</div>
-        <div class="mini-card-text">
-          <strong>Google Workspace</strong>
-          <span>Connect Gmail and Google Calendar</span>
-        </div>
-      </a>
-
-      <a href="connectors/zoom/index.html" class="mini-card">
-        <div class="mini-card-icon blue">&#127909;</div>
-        <div class="mini-card-text">
-          <strong>Zoom</strong>
-          <span>Capture meeting data from Zoom</span>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- Topics -->
-    <p class="home-section-title">Topics</p>
-    <div class="topics-grid">
-
-      <a href="getting-started/index.html" class="topic-card">
-        <div class="topic-card-illus yellow">&#128640;</div>
-        <div>
-          <h3>Getting started</h3>
-          <p>The essentials for getting Nektar up and running across your connected tools.</p>
-        </div>
-      </a>
-
-      <a href="understand/index.html" class="topic-card">
-        <div class="topic-card-illus blue">&#128270;</div>
-        <div>
-          <h3>Understand</h3>
-          <p>How Nektar works, from sync behavior and security to key concepts and use cases.</p>
-        </div>
-      </a>
-
-      <a href="connectors/index.html" class="topic-card">
-        <div class="topic-card-illus teal">&#128268;</div>
-        <div>
-          <h3>Connectors</h3>
-          <p>How to set up and manage Nektar's integrations with your connected tools.</p>
-        </div>
-      </a>
-
-      <a href="administration/index.html" class="topic-card">
-        <div class="topic-card-illus purple">&#9881;</div>
-        <div>
-          <h3>Administration</h3>
-          <p>How to manage Nektar settings, users, data controls, tracking, and revenue config.</p>
-        </div>
-      </a>
-
-    </div>
-
-  </div><!-- /home-sections -->
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo-link">Nektar</a>
-        <div class="footer-social">
-          <a href="#" aria-label="X / Twitter" title="X">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <!-- Most visited + Recently updated + Topics -->
+      <div class="home-sections">
+        <p class="home-section-title">Most visited</p>
+        <div class="card-grid-2">
+          <a href="getting-started/setup-guide.html" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/setup-guide.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Setup guide</strong>
+              <span>Connect your tools and get syncing</span>
+            </div>
           </a>
-          <a href="#" aria-label="YouTube" title="YouTube">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+
+          <a href="administration/index.html#revenue-signals" class="mini-card">
+            <div class="mini-card-icon">
+              <img
+                src="assets/images/page-avatars/revenue-signals.svg"
+                alt=""
+              />
+            </div>
+            <div class="mini-card-text">
+              <strong>Revenue signals</strong>
+              <span>Configure and track revenue signals</span>
+            </div>
           </a>
-          <a href="#" aria-label="LinkedIn" title="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+          <a href="connectors/salesforce/index.html" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/sf.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Salesforce</strong>
+              <span>Integration user, connection, sync</span>
+            </div>
+          </a>
+
+          <a href="administration/index.html#tracker" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/tracker.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Tracker</strong>
+              <span>Monitor activity and data completeness</span>
+            </div>
+          </a>
+        </div>
+
+        <p class="home-section-title">Recently updated</p>
+        <div class="card-grid-2">
+          <a href="understand/index.html#faqs" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/faqs.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>FAQs</strong>
+              <span>Answers to common questions</span>
+            </div>
+          </a>
+
+          <a href="connectors/microsoft-365/index.html" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/ms.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Microsoft 365</strong>
+              <span>Connect Outlook and Teams</span>
+            </div>
+          </a>
+
+          <a href="connectors/google-workspace/index.html" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/gg.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Google Workspace</strong>
+              <span>Connect Gmail and Google Calendar</span>
+            </div>
+          </a>
+
+          <a href="connectors/zoom/index.html" class="mini-card">
+            <div class="mini-card-icon">
+              <img src="assets/images/page-avatars/zoom.svg" alt="" />
+            </div>
+            <div class="mini-card-text">
+              <strong>Zoom</strong>
+              <span>Capture meeting data from Zoom</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Topics -->
+        <p class="home-section-title">Topics</p>
+        <div class="topics-grid">
+          <a href="getting-started/index.html" class="topic-card">
+            <div class="topic-card-img">
+              <img
+                src="assets/images/v3-topic-getting-started.png"
+                alt="Getting started"
+              />
+            </div>
+            <div class="topic-card-text">
+              <h3>Getting started</h3>
+              <p>
+                The essentials for getting Nektar up and running across your
+                connected tools.
+              </p>
+            </div>
+          </a>
+
+          <a href="understand/index.html" class="topic-card">
+            <div class="topic-card-img">
+              <img
+                src="assets/images/v3-topic-understand.png"
+                alt="Understand"
+              />
+            </div>
+            <div class="topic-card-text">
+              <h3>Understand</h3>
+              <p>
+                How Nektar works, from sync behavior and security to key
+                concepts and use cases.
+              </p>
+            </div>
+          </a>
+
+          <a href="connectors/index.html" class="topic-card">
+            <div class="topic-card-img">
+              <img
+                src="assets/images/v3-topic-connectors.png"
+                alt="Connectors"
+              />
+            </div>
+            <div class="topic-card-text">
+              <h3>Connectors</h3>
+              <p>
+                How to set up and manage Nektar's integrations with your
+                connected tools.
+              </p>
+            </div>
+          </a>
+
+          <a href="administration/index.html" class="topic-card">
+            <div class="topic-card-img">
+              <img
+                src="assets/images/v3-topic-administration.png"
+                alt="Administration"
+              />
+            </div>
+            <div class="topic-card-text">
+              <h3>Administration</h3>
+              <p>
+                How to manage Nektar settings, users, data controls, tracking,
+                and revenue config.
+              </p>
+            </div>
           </a>
         </div>
       </div>
-
-      <div class="footer-col">
-        <h4>Getting started</h4>
-        <ul>
-          <li><a href="getting-started/setup-guide.html">Setup guide</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Understand</h4>
-        <ul>
-          <li><a href="understand/index.html">Overview</a></li>
-          <li><a href="understand/index.html#graph-inference">Graph inference</a></li>
-          <li><a href="understand/index.html#self-healing">Self healing</a></li>
-          <li><a href="understand/index.html#security">Security</a></li>
-          <li><a href="understand/index.html#sync-latency">Sync latency</a></li>
-          <li><a href="understand/index.html#data-transform">Data transform</a></li>
-          <li><a href="understand/index.html#use-cases">Use cases</a></li>
-          <li><a href="understand/index.html#faqs">FAQs</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Connectors</h4>
-        <ul>
-          <li><a href="connectors/salesforce/index.html">Salesforce</a></li>
-          <li><a href="connectors/google-workspace/index.html">Google Workspace</a></li>
-          <li><a href="connectors/microsoft-365/index.html">Microsoft 365</a></li>
-          <li><a href="connectors/zoom/index.html">Zoom</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Administration</h4>
-        <ul>
-          <li><a href="administration/index.html#dashboard">Dashboard</a></li>
-          <li><a href="administration/index.html#users">Users</a></li>
-          <li><a href="administration/index.html#data-controls">Data controls</a></li>
-          <li><a href="administration/index.html#tracker">Tracker</a></li>
-          <li><a href="administration/index.html#revenue-signals">Revenue signals</a></li>
-        </ul>
-      </div>
+      <!-- /home-sections -->
+      <div id="footer-placeholder"></div>
     </div>
+    <!-- /main-wrapper -->
 
-    <div class="footer-bottom">
-      &copy; 2025 Nektar.ai &mdash; All rights reserved.
-    </div>
-  </footer>
-
-</div><!-- /main-wrapper -->
-
-<script src="assets/js/nav.js"></script>
-</body>
+    <script src="assets/js/components.js"></script>
+  </body>
 </html>
