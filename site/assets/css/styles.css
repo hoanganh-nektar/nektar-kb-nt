@@ -29,7 +29,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 ul {
@@ -74,8 +74,11 @@ h6 {
   align-items: center;
   height: 54px;
   border-radius: 9999px;
-  background: rgba(11, 184, 218, 0.15);
   padding: 16px;
+}
+
+.sidebar-logo a.active {
+  background: rgba(11, 184, 218, 0.15);
 }
 
 .sidebar-logo img {
@@ -110,7 +113,8 @@ h6 {
 }
 
 .sidebar-search input:focus {
-  border-color: rgba(11, 184, 218, 0.6);
+  border: 2px solid;
+  border-color: rgba(11, 184, 218);
 }
 
 .sidebar-search .search-icon-img {
@@ -148,14 +152,15 @@ h6 {
   transition: background 0.1s;
 }
 
-.nav-section-toggle:hover {
-  background: rgba(11, 184, 218, 0.15);
-  border-radius: 9999px;
-}
-
 .nav-section.open .nav-section-toggle {
   background: none;
   border-radius: 8px;
+}
+
+.nav-section-toggle.active,
+.nav-section.open .nav-section-toggle.active {
+  border-radius: 9999px;
+  background: rgba(11, 184, 218, 0.15);
 }
 
 .nav-section-label {
@@ -168,7 +173,10 @@ h6 {
   width: 16px;
   height: 16px;
   transition: transform 0.2s;
-  opacity: 0.6;
+}
+
+.nav-section-toggle .chevron-img:hover {
+  opacity: 0.5;
 }
 
 .nav-section.open .chevron-img {
@@ -198,12 +206,6 @@ h6 {
   cursor: pointer;
   border-radius: 8px;
   transition: background 0.1s;
-}
-
-.nav-item:hover {
-  background: rgba(11, 184, 218, 0.15);
-  border-radius: 9999px;
-  opacity: 1;
 }
 
 .nav-item.active {
@@ -237,12 +239,6 @@ h6 {
   transition: background 0.1s;
 }
 
-.nav-subgroup-toggle:hover {
-  background: rgba(11, 184, 218, 0.15);
-  border-radius: 9999px;
-  opacity: 1;
-}
-
 .nav-subgroup.open .nav-subgroup-toggle {
   background: none;
   border-radius: 8px;
@@ -260,9 +256,12 @@ h6 {
 }
 
 .nav-subgroup-toggle .chevron-sub-img {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   transition: transform 0.2s;
+}
+
+.nav-subgroup-toggle .chevron-sub-img:hover {
   opacity: 0.5;
 }
 
@@ -293,14 +292,28 @@ h6 {
 }
 
 .nav-subitem:hover {
-  background: rgba(11, 184, 218, 0.15);
-  border-radius: 9999px;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .nav-subitem.active {
   border-radius: 9999px;
   background: rgba(11, 184, 218, 0.15);
+}
+
+.nav-subgroup-toggle.active,
+.nav-subgroup.open .nav-subgroup-toggle.active {
+  border-radius: 9999px;
+  background: rgba(11, 184, 218, 0.15);
+}
+
+/* No hover effect when active */
+.sidebar-logo a.active:hover,
+.sidebar-logo a.active:hover img,
+.nav-section-label.active:hover,
+.nav-item.active:hover,
+.nav-subitem.active:hover,
+.subgroup-label.active:hover {
+  opacity: 1;
 }
 
 /* ─── Main Wrapper ──────────────────────────────────────────────── */
@@ -381,7 +394,7 @@ h6 {
   font-size: 32px;
   line-height: 1.2;
   color: #000;
-  margin-bottom: 20px;
+  margin-bottom: 48px;
 }
 
 /* ─── Home Sections ─────────────────────────────────────────────── */
@@ -394,7 +407,7 @@ h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
 }
 
 /* Mini cards (Most visited / Recently updated) */
@@ -454,7 +467,7 @@ h6 {
 .topics-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 48px;
 }
 
 .topic-card {
@@ -476,7 +489,7 @@ h6 {
 }
 
 .topic-card-img {
-  height: 275px;
+  aspect-ratio: 5 / 3;
   overflow: hidden;
   background: rgba(11, 184, 218, 0.15);
   flex-shrink: 0;
@@ -525,12 +538,10 @@ h6 {
 .hero-text .breadcrumb {
   font-family: "Lora", serif;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.5);
   margin-bottom: 12px;
 }
 
 .hero-text .breadcrumb a {
-  color: rgba(0, 0, 0, 0.5);
 }
 
 .hero-text h1 {
@@ -560,6 +571,7 @@ h6 {
 }
 
 .hero-illustration img {
+  background: rgba(11, 184, 218, 0.15);
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -569,7 +581,6 @@ h6 {
 .breadcrumb {
   font-family: "Lora", serif;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -577,11 +588,9 @@ h6 {
 }
 
 .breadcrumb a {
-  color: rgba(0, 0, 0, 0.5);
 }
 
 .breadcrumb .sep {
-  color: rgba(0, 0, 0, 0.3);
 }
 
 /* ─── Article Hero (legacy, used on some pages) ─────────────────── */
@@ -637,7 +646,7 @@ h6 {
 .article-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 48px;
   margin-top: 32px;
 }
 
@@ -659,6 +668,10 @@ h6 {
   opacity: 1;
 }
 
+.article-card:only-child {
+  grid-column: 1 / -1;
+}
+
 .card-icon {
   border-radius: 24px 0 0 24px;
   overflow: hidden;
@@ -675,25 +688,19 @@ h6 {
 }
 
 .card-icon.yellow-bg img {
-  width: 112px;
-  height: 112px;
   object-fit: contain;
 }
 
 .card-icon.teal-bg {
   background: #004455;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
 }
 
 .card-icon.teal-bg img {
-  width: 92px;
-  height: 92px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
-}
-
-.card-icon.teal-bg.connection img {
-  transform: rotate(165deg);
 }
 
 .card-body {
@@ -716,6 +723,15 @@ h6 {
   letter-spacing: 0.32px;
   color: #000;
   margin: 0;
+}
+
+.desc-short { display: none; }
+.use-short .desc-full { display: none; }
+.use-short .desc-short { display: inline; }
+
+@media (max-width: 1200px) {
+  .desc-full { display: none; }
+  .desc-short { display: inline; }
 }
 
 /* ─── Article Layout with ToC ───────────────────────────────────── */

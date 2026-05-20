@@ -14,48 +14,48 @@
 
   // ─── Nav HTML ─────────────────────────────────────────────────────────
   function navHTML() {
-    var c = R + 'assets/images/v3-icon-chevron.svg';
+    var c = R + 'assets/images/icons/chevron.svg';
     return (
       '<button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>\n' +
       '<div class="sidebar-overlay" id="sidebar-overlay"></div>\n' +
       '<aside id="sidebar">\n' +
       '  <div class="sidebar-logo">\n' +
-      '    <a href="' + R + 'index.html"><img src="' + R + 'assets/images/v3-logo.svg" alt="Nektar" /></a>\n' +
+      '    <a class="home-nav-link" href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n' +
       '  </div>\n' +
       '  <div class="sidebar-search">\n' +
       '    <input type="text" id="sidebar-search-input" placeholder="Search docs…" aria-label="Search" />\n' +
-      '    <img class="search-icon-img" src="' + R + 'assets/images/v3-icon-search.svg" alt="" />\n' +
+      '    <img class="search-icon-img" src="' + R + 'assets/images/icons/search.svg" alt="" />\n' +
       '  </div>\n' +
       '  <nav class="sidebar-nav">\n' +
 
       '    <div class="nav-section" data-section="getting-started">\n' +
-      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'getting-started/index.html">Getting started</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'getting-started/index.html" data-path="/getting-started/index.html">Getting started</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'getting-started/setup-guide.html" data-path="/getting-started/setup-guide.html">Setup guide</a>\n' +
+      '        <a class="nav-item" href="' + R + 'getting-started/setup-guide.html" data-path="/getting-started/setup-guide.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/setup-guide.svg" alt="" />Setup guide</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="understand">\n' +
-      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'understand/index.html">Understand</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'understand/index.html" data-path="/understand/index.html">Understand</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'understand/overview.html" data-path="/understand/overview.html">Overview</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/graph-inference.html" data-path="/understand/graph-inference.html">Graph inference</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/self-healing.html" data-path="/understand/self-healing.html">Self healing</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/security.html" data-path="/understand/security.html">Security</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/sync-latency.html" data-path="/understand/sync-latency.html">Sync latency</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/data-transform.html" data-path="/understand/data-transform.html">Data transform</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/use-cases.html" data-path="/understand/use-cases.html">Use cases</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/faqs.html" data-path="/understand/faqs.html">FAQs</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/overview.html" data-path="/understand/overview.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/overview.png" alt="" />Overview</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/graph-inference.html" data-path="/understand/graph-inference.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/graph-inference.svg" alt="" />Graph inference</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/self-healing.html" data-path="/understand/self-healing.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/self-healing.svg" alt="" />Self healing</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/security.html" data-path="/understand/security.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/security.svg" alt="" />Security</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/sync-latency.html" data-path="/understand/sync-latency.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/sync-latency.svg" alt="" />Sync latency</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/data-transform.html" data-path="/understand/data-transform.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/data-transform.svg" alt="" />Data transform</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/use-cases.html" data-path="/understand/use-cases.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/use-cases.svg" alt="" />Use cases</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/faqs.html" data-path="/understand/faqs.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/faqs.svg" alt="" />FAQs</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="connectors">\n' +
-      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'connectors/index.html">Connectors</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'connectors/index.html" data-path="/connectors/index.html">Connectors</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
       '        <div class="nav-subgroup" data-section="salesforce">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
-      '            <img class="nav-icon" src="' + R + 'assets/images/v3-sf-header.png" alt="" />\n' +
-      '            <span class="subgroup-label">Salesforce</span>\n' +
+      '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/salesforce.svg" alt="" />\n' +
+      '            <a class="subgroup-label" href="' + R + 'connectors/salesforce/index.html" data-path="/connectors/salesforce/index.html">Salesforce</a>\n' +
       '            <img class="chevron-sub-img" src="' + c + '" alt="" />\n' +
       '          </div>\n' +
       '          <div class="nav-subgroup-items">\n' +
@@ -67,19 +67,19 @@
       '        </div>\n' +
       '        <div class="nav-subgroup">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
-      '            <img class="nav-icon" src="' + R + 'assets/images/v3-nav-google.png" alt="" />\n' +
+      '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/google-workspace.svg" alt="" />\n' +
       '            <a class="subgroup-label" href="' + R + 'connectors/google-workspace/index.html" data-path="/connectors/google-workspace/">Google Workspace</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
       '        <div class="nav-subgroup">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
-      '            <img class="nav-icon" src="' + R + 'assets/images/v3-nav-ms365.png" alt="" />\n' +
+      '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/microsoft-365.svg" alt="" />\n' +
       '            <a class="subgroup-label" href="' + R + 'connectors/microsoft-365/index.html" data-path="/connectors/microsoft-365/">Microsoft 365</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
       '        <div class="nav-subgroup">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
-      '            <img class="nav-icon" src="' + R + 'assets/images/v3-nav-zoom.png" alt="" />\n' +
+      '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/zoom.svg" alt="" />\n' +
       '            <a class="subgroup-label" href="' + R + 'connectors/zoom/index.html" data-path="/connectors/zoom/">Zoom</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
@@ -87,13 +87,13 @@
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="administration">\n' +
-      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'administration/index.html">Administration</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'administration/index.html" data-path="/administration/index.html">Administration</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'administration/dashboard.html" data-path="/administration/dashboard.html">Dashboard</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/users.html" data-path="/administration/users.html">Users</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/data-controls.html" data-path="/administration/data-controls.html">Data controls</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/tracker.html" data-path="/administration/tracker.html">Tracker</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/revenue-signals.html" data-path="/administration/revenue-signals.html">Revenue signals</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/dashboard.html" data-path="/administration/dashboard.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/dashboard.svg" alt="" />Dashboard</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/users.html" data-path="/administration/users.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/users.svg" alt="" />Users</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/data-controls.html" data-path="/administration/data-controls.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/data-controls.svg" alt="" />Data controls</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/tracker.html" data-path="/administration/tracker.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/tracker.svg" alt="" />Tracker</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/revenue-signals.html" data-path="/administration/revenue-signals.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/revenue-signals.svg" alt="" />Revenue signals</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
@@ -109,12 +109,12 @@
       '  <div class="footer-inner">\n' +
       '    <div class="footer-brand">\n' +
       '      <div class="footer-logo">\n' +
-      '        <a href="' + R + 'index.html"><img src="' + R + 'assets/images/v3-logo.svg" alt="Nektar" /></a>\n' +
+      '        <a href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n' +
       '      </div>\n' +
       '      <div class="footer-social">\n' +
-      '        <a href="#" aria-label="X / Twitter"><img src="' + R + 'assets/images/v3-icon-x.svg" width="24" height="24" alt="X" /></a>\n' +
-      '        <a href="#" aria-label="YouTube"><img src="' + R + 'assets/images/v3-icon-youtube.svg" width="24" height="24" alt="YouTube" /></a>\n' +
-      '        <a href="#" aria-label="LinkedIn"><img src="' + R + 'assets/images/v3-icon-linkedin.svg" width="24" height="24" alt="LinkedIn" /></a>\n' +
+      '        <a href="#" aria-label="X / Twitter"><img src="' + R + 'assets/images/icons/x.svg" width="24" height="24" alt="X" /></a>\n' +
+      '        <a href="#" aria-label="YouTube"><img src="' + R + 'assets/images/icons/youtube.svg" width="24" height="24" alt="YouTube" /></a>\n' +
+      '        <a href="#" aria-label="LinkedIn"><img src="' + R + 'assets/images/icons/linkedin.svg" width="24" height="24" alt="LinkedIn" /></a>\n' +
       '      </div>\n' +
       '    </div>\n' +
       '    <div class="footer-col"><h4>Getting started</h4><ul>\n' +
@@ -178,6 +178,7 @@
 
     document.querySelectorAll('.nav-subgroup-toggle').forEach(function (toggle) {
       toggle.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
         e.stopPropagation();
         toggle.closest('.nav-subgroup').classList.toggle('open');
       });
@@ -188,10 +189,20 @@
   function initActiveState() {
     var current = getCurrentPath();
 
-    document.querySelectorAll('.nav-item[data-path], .nav-subitem[data-path]').forEach(function (el) {
+    // Home page (R is '' only when at the site root index.html)
+    if (R === '') {
+      var homeLink = document.querySelector('.home-nav-link');
+      if (homeLink) homeLink.classList.add('active');
+    }
+
+    document.querySelectorAll('.nav-item[data-path], .nav-subitem[data-path], .subgroup-label[data-path], .nav-section-label[data-path]').forEach(function (el) {
       var p = normPath(el.getAttribute('data-path') || '');
       if (p && current.endsWith(p)) {
         el.classList.add('active');
+        var subgroupToggle = el.closest('.nav-subgroup-toggle');
+        if (subgroupToggle) subgroupToggle.classList.add('active');
+        var sectionToggle = el.closest('.nav-section-toggle');
+        if (sectionToggle) sectionToggle.classList.add('active');
         var section = el.closest('.nav-section');
         if (section) section.classList.add('open');
         var subgroup = el.closest('.nav-subgroup');
@@ -199,7 +210,7 @@
       }
     });
 
-    if (!document.querySelector('.nav-item.active, .nav-subitem.active')) {
+    if (R !== '' && !document.querySelector('.nav-item.active, .nav-subitem.active, .subgroup-label.active, .nav-section-label.active')) {
       document.querySelectorAll('.nav-section').forEach(function (section) {
         var sp = section.getAttribute('data-section') || '';
         if (sp && current.includes(sp)) section.classList.add('open');
@@ -284,6 +295,16 @@
     });
   }
 
+  function checkCardHeights() {
+    document.querySelectorAll('.article-card').forEach(function (card) {
+      if (card.offsetHeight > 150) {
+        card.classList.add('use-short');
+      } else {
+        card.classList.remove('use-short');
+      }
+    });
+  }
+
   // ─── Boot ─────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     inject();
@@ -292,6 +313,8 @@
     initTocHighlight();
     initMobile();
     initSearch();
+    checkCardHeights();
+    window.addEventListener('resize', checkCardHeights);
   });
 
 })();
