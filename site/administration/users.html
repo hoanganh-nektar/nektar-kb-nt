@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Administration</a>
+          <span class="sep">›</span>
+          <span>Users</span>
+        </div>
+        <h1>Users</h1>
+        <p class="hero-desc">Add, remove, and manage users, link them to their connected service accounts, and control per-user sync.</p>
+      </div>
+      <div class="hero-illustration" style="background: #1f3a5f;"></div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>User management lets you add and remove users, monitor license consumption, link each user to their accounts on integrated services, and monitor and control user-level sync.</p>
+          <p>The users list can be filtered by name and email address, and sorted by name or created date. Click a user's name or row to view and update details.</p>
+
+          <h2 id="editing-users">Editing users</h2>
+          <p>In the user editing form, you can update:</p>
+          <ul>
+            <li>The name displayed in user management</li>
+            <li>This user's Salesforce, MS365, Google, and/or Zoom user accounts</li>
+            <li>This user's email addresses</li>
+          </ul>
+          <p>Nektar uses these linked external user accounts and email addresses to determine which user participated in a particular external communication.</p>
+
+          <h3>Connectors</h3>
+          <p>You can add the email address of a user under each connector you wish Nektar to read data from.</p>
+
+          <h3>Sync toggles</h3>
+          <p>These toggles let you control what data Nektar should sync for a user under a specific connector.</p>
+
+          <h3>Admin</h3>
+          <p>This toggle lets you add and remove Nektar administrators. Nektar administrators have full access to the console — they can add or remove users, manage connectors, and start or stop sync. All admins can add or remove other admins. Admins must have a Salesforce account.</p>
+
+          <h2 id="integration-icons">Integration icons</h2>
+          <p>These icons indicate a user's status within each connector. For connectors without user-level sync (such as Salesforce), a check mark is shown if the user is linked to a user account on that service.</p>
+          <p>For connectors with user-level sync (Google, Microsoft, Zoom), a sync health icon is shown for every object (emails, events). Click the icon for more information and to toggle sync on or off. Icons indicate the following states:</p>
+          <ul>
+            <li><strong>Disabled</strong> — can be enabled on the same screen</li>
+            <li><strong>Not started</strong> — disabled globally, or pending approval</li>
+            <li><strong>In progress</strong> — actively syncing; some data is remaining</li>
+            <li><strong>Completed</strong> — everything synced; watching for new data</li>
+            <li><strong>Delayed</strong> — sync has not run in the last 30 minutes</li>
+            <li><strong>Stalled</strong> — stopped due to error or hasn't run in 2 hours</li>
+          </ul>
+
+          <h2 id="add-user">Add a user</h2>
+          <p>There are two ways to add users — individually or in bulk.</p>
+
+          <h3>Add individually</h3>
+          <p>Click <strong>Add New User</strong> to open the user setup form. In the form:</p>
+          <ol>
+            <li>Select the user from the dropdown under each connector (Google, Microsoft, Zoom, etc.).</li>
+            <li>Enable or disable the relevant syncs for that user.</li>
+            <li>Turn on the Admin toggle to grant admin privileges if needed.</li>
+            <li>Click Save. The new user will appear in your user list.</li>
+          </ol>
+
+          <h3>Import in bulk</h3>
+          <p>Click <strong>Import Users</strong> to upload a CSV file. Download the CSV template and fill in:</p>
+          <ul>
+            <li>User name</li>
+            <li>Email addresses for each connector you want to enable</li>
+            <li>Whether the user should have admin access</li>
+          </ul>
+          <p>Upload the completed file. If there are errors, a pop-up will highlight them so you can correct and re-upload. Once successful, new users appear under the Users page.</p>
+
+          <h2 id="export-users">Export Users</h2>
+          <p>Click <strong>Export Users</strong> to download a CSV of all users, including connector information, sync preferences, and admin access levels.</p>
+
+          <h2 id="bulk-actions">Bulk actions</h2>
+          <p>Select one or more users with the checkboxes at the start of each row to display bulk action buttons — enabling or disabling a particular sync, or deleting the selected users.</p>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#editing-users">Editing users</a>
+          <a href="#integration-icons">Integration icons</a>
+          <a href="#add-user">Add a user</a>
+          <a href="#export-users">Export Users</a>
+          <a href="#bulk-actions">Bulk actions</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

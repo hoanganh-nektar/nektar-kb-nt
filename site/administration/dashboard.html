@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Administration</a>
+          <span class="sep">›</span>
+          <span>Dashboard</span>
+        </div>
+        <h1>Dashboard</h1>
+        <p class="hero-desc">Monitor the quality and volume of data Nektar has synced into your CRM — contacts, emails, events, and contact roles.</p>
+      </div>
+      <div class="hero-illustration" style="background: #1f3a5f;"></div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>The dashboard displays reports and charts on the data that Nektar has added to your CRM. All boards are refreshed every 24 hours.</p>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>These metrics are not intended to be business insights; their purpose is to monitor the quality and quantity of data synced by Nektar into your CRM.</p>
+          </div>
+
+          <h2 id="summary">Summary</h2>
+          <p>This section shows "all-time" and "last 14 days" aggregations for the three key objects Nektar captures: Contacts, Activities, and Contact Roles (links between Contacts and Opportunities). Each section shows:</p>
+          <ul>
+            <li>The total volume of data created or updated</li>
+            <li>A breakdown into different key categories, based on the object type</li>
+            <li>The percentage of the total CRM data volume due to Nektar</li>
+            <li>An estimate of the manual data entry time saved by Nektar (1 minute per contact; 30 seconds per contact role and activity)</li>
+            <li>The trend in the metric, comparing the latest 14-day period with the one before</li>
+          </ul>
+
+          <h2 id="contacts">Contacts</h2>
+          <p>The Contacts board provides insights into contacts created by Nektar, both all-time and within the last 14 days. Key metrics include:</p>
+          <ul>
+            <li>Time saved (in hours), calculated at 60 seconds per contact</li>
+            <li>Left Job — number of contacts with disabled email addresses (likely due to job change)</li>
+            <li>Number of contacts with and without a title</li>
+            <li>Number of contacts with and without a phone number</li>
+          </ul>
+
+          <h2 id="contact-roles">Contact Roles</h2>
+          <p>Provides insights into contacts associated to opportunities by Nektar, both all-time and within the last 14 days. Key metrics include:</p>
+          <ul>
+            <li>All-time top 5 roles added</li>
+            <li>New contact roles added in the last 13 weeks</li>
+            <li>Top 15 opportunities where contact roles are added in the last 14 days</li>
+          </ul>
+
+          <h2 id="emails">Emails</h2>
+          <p>Insights into sales-related emails captured by Nektar from users' inboxes, both all-time and within the last 14 days. Key metrics include:</p>
+          <ul>
+            <li>Breakdown by sender: Us (outbound) vs. Them (inbound)</li>
+            <li>Breakdown by associated Salesforce object: Account, Opportunity, Lead</li>
+            <li>Time saved, calculated at 30 seconds per email</li>
+          </ul>
+
+          <h2 id="events">Events</h2>
+          <p>Insights into sales-related events captured by Nektar from users' calendars, both all-time and within the last 14 days. Key metrics include:</p>
+          <ul>
+            <li>Breakdown by organizer: Us (outbound) vs. Them (inbound)</li>
+            <li>Breakdown by associated Salesforce object: Account, Opportunity, Lead</li>
+            <li>Breakdown by Nektar Status:
+              <ul>
+                <li><em>Event scheduled</em>: event has not taken place yet</li>
+                <li><em>Event deleted</em>: the event was deleted from user's calendar</li>
+                <li><em>Event passed (no call info)</em>: start and end time has passed; no Zoom/Teams data available</li>
+                <li><em>Call did not start</em>¹: no one joined the call</li>
+                <li><em>Call &lt; 10 mins</em>¹: some people joined but the call lasted less than 10 minutes</li>
+                <li><em>Completed</em>¹: several people joined and the call lasted more than 10 minutes</li>
+              </ul>
+              <small>¹ Requires Zoom or Microsoft Teams integration</small>
+            </li>
+            <li>Time saved, calculated at 30 seconds per event</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#summary">Summary</a>
+          <a href="#contacts">Contacts</a>
+          <a href="#contact-roles">Contact Roles</a>
+          <a href="#emails">Emails</a>
+          <a href="#events">Events</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

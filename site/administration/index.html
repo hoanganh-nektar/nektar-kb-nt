@@ -20,234 +20,61 @@
           <span>Administration</span>
         </div>
         <h1>Administration</h1>
-        <p class="hero-desc">Manage Nektar settings, users, data controls, activity tracking, and revenue signal configuration — everything your RevOps team needs to keep Nektar running cleanly.</p>
+        <p class="hero-desc">Manage Nektar settings, users, data controls, activity tracking, and revenue signal configuration.</p>
       </div>
       <div class="hero-illustration">
         <img src="../assets/images/v3-topic-administration.png" alt="Administration" />
       </div>
     </div>
 
-    <div class="article-layout">
-      <div class="article-body">
-        <div class="article-content">
+    <hr class="divider" />
 
-          <h2 id="dashboard">Dashboard</h2>
-          <p>The dashboard displays reports and charts on the data that Nektar has added to your CRM. All boards are refreshed every 24 hours.</p>
-          <div class="callout callout-info">
-            <div class="callout-label">Note</div>
-            <p>These metrics are not intended to be business insights; their purpose is to monitor the quality and quantity of data synced by Nektar into your CRM.</p>
-          </div>
+    <div class="article-cards">
 
-          <h3>Summary</h3>
-          <p>This section shows "all-time" and "last 14 days" aggregations for the three key objects Nektar captures: Contacts, Activities, and Contact Roles (links between Contacts and Opportunities). Each section shows:</p>
-          <ul>
-            <li>The total volume of data created or updated</li>
-            <li>A breakdown into different key categories, based on the object type</li>
-            <li>The percentage of the total CRM data volume due to Nektar</li>
-            <li>An estimate of the manual data entry time saved by Nektar (1 minute per contact; 30 seconds per contact role and activity)</li>
-            <li>The trend in the metric, comparing the latest 14-day period with the one before</li>
-          </ul>
-
-          <h3>Contacts</h3>
-          <p>The Contacts board provides insights into contacts created by Nektar, both all-time and within the last 14 days. Key metrics include:</p>
-          <ul>
-            <li>Time saved (in hours), calculated at 60 seconds per contact</li>
-            <li>Left Job — number of contacts with disabled email addresses (likely due to job change)</li>
-            <li>Number of contacts with and without a title</li>
-            <li>Number of contacts with and without a phone number</li>
-          </ul>
-
-          <h3>Contact Roles</h3>
-          <p>Provides insights into contacts associated to opportunities by Nektar, both all-time and within the last 14 days. Key metrics include:</p>
-          <ul>
-            <li>All-time top 5 roles added</li>
-            <li>New contact roles added in the last 13 weeks</li>
-            <li>Top 15 opportunities where contact roles are added in the last 14 days</li>
-          </ul>
-
-          <h3>Emails</h3>
-          <p>Insights into sales-related emails captured by Nektar from users' inboxes, both all-time and within the last 14 days. Key metrics include:</p>
-          <ul>
-            <li>Breakdown by sender: Us (outbound) vs. Them (inbound)</li>
-            <li>Breakdown by associated Salesforce object: Account, Opportunity, Lead</li>
-            <li>Time saved, calculated at 30 seconds per email</li>
-          </ul>
-
-          <h3>Events</h3>
-          <p>Insights into sales-related events captured by Nektar from users' calendars, both all-time and within the last 14 days. Key metrics include:</p>
-          <ul>
-            <li>Breakdown by organizer: Us (outbound) vs. Them (inbound)</li>
-            <li>Breakdown by associated Salesforce object: Account, Opportunity, Lead</li>
-            <li>Breakdown by Nektar Status:
-              <ul>
-                <li><em>Event scheduled</em>: event has not taken place yet</li>
-                <li><em>Event deleted</em>: the event was deleted from user's calendar</li>
-                <li><em>Event passed (no call info)</em>: start and end time has passed; no Zoom/Teams integration or data available</li>
-                <li><em>Call did not start</em>¹: no one joined the call</li>
-                <li><em>Call &lt; 10 mins</em>¹: some people joined but the call lasted less than 10 minutes</li>
-                <li><em>Completed</em>¹: several people joined and the call lasted more than 10 minutes</li>
-              </ul>
-              <small>¹ Requires Zoom or Microsoft Teams integration</small>
-            </li>
-            <li>Time saved, calculated at 30 seconds per event</li>
-          </ul>
-
-          <h2 id="users">Users</h2>
-          <p>User management lets you add and remove users, monitor license consumption, link each user to their accounts on integrated services, and monitor and control user-level sync.</p>
-          <p>The users list can be filtered by name and email address, and sorted by name or created date. Click a user's name or row to view and update details.</p>
-
-          <h3>Editing users</h3>
-          <p>In the user editing form, you can update:</p>
-          <ul>
-            <li>The name displayed in user management</li>
-            <li>This user's Salesforce, MS365, Google, and/or Zoom user accounts</li>
-            <li>This user's email addresses</li>
-          </ul>
-          <p>Nektar uses these linked external user accounts and email addresses to determine which user participated in a particular external communication.</p>
-
-          <h3>Connectors</h3>
-          <p>You can add the email address of a user under each connector you wish Nektar to read data from.</p>
-
-          <h3>Sync toggles</h3>
-          <p>These toggles let you control what data Nektar should sync for a user under a specific connector.</p>
-
-          <h3>Admin</h3>
-          <p>This toggle lets you add and remove Nektar administrators. Nektar administrators have full access to the console — they can add or remove users, manage connectors, and start or stop sync. All admins can add or remove other admins. Admins must have a Salesforce account.</p>
-
-          <h3>Integration icons</h3>
-          <p>These icons indicate a user's status within each connector. For connectors without user-level sync (such as Salesforce), a check mark is shown if the user is linked to a user account on that service. For connectors with user-level sync (Google, Microsoft, Zoom), a sync health icon is shown for every object (emails, events). Click the icon for more information and to toggle sync on or off.</p>
-
-          <h3>Add a user</h3>
-          <p>There are two ways to add users — individually or in bulk.</p>
-          <p>Click <strong>Add New User</strong> to add a single user. In the setup form, select the user from the dropdown under each connector, enable or disable relevant syncs, and optionally grant admin privileges. Click Save when done.</p>
-          <p>To add multiple users at once, click <strong>Import Users</strong> to upload a CSV file. Download the CSV template and fill in the user name, email addresses for each connector, and admin access level. After uploading, any errors are highlighted so you can correct and re-upload. Once successful, new users appear in the Users page.</p>
-
-          <h3>Export Users</h3>
-          <p>Click <strong>Export Users</strong> to download a CSV of all users including connector information, sync preferences, and admin access levels.</p>
-
-          <h3>Bulk actions</h3>
-          <p>Select one or more users with the checkboxes at the start of each row to display bulk action buttons, such as enabling or disabling a particular sync, or deleting the selected users.</p>
-
-          <h2 id="data-controls">Data controls</h2>
-          <p>Data controls let you restrict which of your organization's emails and events are processed by Nektar. There are three kinds of controls.</p>
-
-          <h3>Screening rules</h3>
-          <p>Nektar automatically screens out emails sent by automated systems and non-personal email addresses (such as <code>support@…</code> and <code>sales@…</code>). You may additionally block emails and events under the following categories:</p>
-          <ul>
-            <li><strong>Block until date</strong> — all events with a start date and emails sent until this date will be blocked</li>
-            <li><strong>Private calendar events</strong> — when toggled on, these events will not be read by Nektar</li>
-            <li><strong>Email addresses</strong> — activity will not be captured if <em>any</em> participant matches these addresses</li>
-            <li><strong>Email domains</strong> — activity will not be captured if <em>any</em> participant matches these domains</li>
-            <li><strong>Subject line keywords</strong> — emails or events whose subject line contains <em>any</em> of these words will not be captured</li>
-            <li><strong>Body pattern keywords</strong> — emails whose body contains <em>any</em> of these words will not be captured</li>
-          </ul>
-          <p>Matching rules: case insensitive; multi-word patterns are treated as exact phrases; special characters are matched literally; line breaks, spaces, underscores, and numbers are accepted as valid prefixes or suffixes to blocked words.</p>
-
-          <h3>Special domains and email addresses</h3>
-          <p>Nektar screens out emails or events where all participants are internal to your company, tools (e.g. notifications, conference rooms), distribution lists, or personal email addresses. You may configure additional email addresses and domains as <em>ignored</em> — i.e. treated as internal for activity screening purposes.</p>
-          <div class="callout callout-info">
-            <div class="callout-label">Note</div>
-            <p>If an activity passes screening, all its participants are stored and processed in Nektar — including ignored and internal ones.</p>
-          </div>
-
-          <h3>Write rules</h3>
-          <p>Nektar only creates records that can be linked to existing Salesforce records:</p>
-          <ul>
-            <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
-            <li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
-            <li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
-          </ul>
-          <div class="callout callout-info">
-            <div class="callout-label">Note</div>
-            <p>Write rules are in beta; contact us to implement them.</p>
-          </div>
-
-          <h2 id="tracker">Tracker</h2>
-          <p>Found at <em>Settings &gt; Track activities</em>, Tracker lets you look up the path of a specific activity through Nektar's data processing pipeline. It helps understand why Nektar might have excluded a certain activity from Salesforce.</p>
-          <p>Search for an event or email by keywords in its subject line and/or the email addresses of participants.</p>
-
-          <h3>No results?</h3>
-          <p>An activity that was read by Nektar might not appear in the tracker for two reasons:</p>
-          <ul>
-            <li>It is outside the time window: the tracker only displays activities read by Nektar more than 2 hours ago but less than 30 days ago.</li>
-            <li>The activity was filtered out by a read rule.</li>
-          </ul>
-
-          <h3>Result details</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Field</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source user</td>
-                <td>The person from whose mailbox or calendar the activity was read</td>
-              </tr>
-              <tr>
-                <td>From, To, Cc / Organizer, Attendees / Body</td>
-                <td>Activity information</td>
-              </tr>
-              <tr>
-                <td>Send time</td>
-                <td>When the email or event invitation was sent or received at Google Workspace / Microsoft 365</td>
-              </tr>
-              <tr>
-                <td>Nektar read time</td>
-                <td>When Nektar fetched this activity from Google Workspace or Microsoft 365</td>
-              </tr>
-              <tr>
-                <td>Nektar write time</td>
-                <td>When Nektar wrote this activity to Salesforce</td>
-              </tr>
-              <tr>
-                <td>Status</td>
-                <td>Whether the activity was written to Salesforce, and if not, why</td>
-              </tr>
-              <tr>
-                <td>Salesforce activity, account and opportunity</td>
-                <td>Deep links into Salesforce to view the activity and the records it's linked to</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h2 id="revenue-signals">Revenue signals</h2>
-          <p>Revenue signals let you auto-update fields on your Salesforce. You can place a request to set up a signal for any Salesforce object — Opportunity, Contact, Event, Task, Lead, Account, or Opportunity Contact Role.</p>
-
-          <h3>Request a new signal</h3>
-          <p>When you select an object, you see the list of currently available signals with their status, description, and created date. To add more, click <strong>Request for new signals</strong>. You can choose from available templates or click <strong>Start from scratch</strong>.</p>
-          <p>Once requested, a support ticket is raised and the Nektar customer team works on your request, confirms the desired outcome, and publishes it to start auto-populating fields on your Salesforce.</p>
-
-          <h4>Signal from template</h4>
-          <p>You can request to add a template as-is or request edits to it. Editing an existing template will not change the template but creates a new signal request from it.</p>
-
-          <h4>Signal from scratch</h4>
-          <ol>
-            <li>Choose either an existing Salesforce field or create a new field.</li>
-            <li>Field type will be automatically populated if you select an existing Salesforce field.</li>
-            <li>Define your rule in simple sentences. Include as many details as you wish.</li>
-            <li>Submit request.</li>
-          </ol>
-          <p>Track your pending requests on the signal list view.</p>
-
-          <h3>Bulk actions</h3>
-          <p>Select one or more signals with the checkboxes at the start of each row to display bulk action buttons — publish, un-publish, or delete.</p>
-
+      <a href="dashboard.html" class="article-card">
+        <div class="card-icon yellow-bg"></div>
+        <div class="card-body">
+          <h3>Dashboard</h3>
+          <p>Monitor the quality and volume of data Nektar has synced into your CRM — contacts, emails, events, and contact roles.</p>
         </div>
-      </div>
+      </a>
 
-      <aside class="article-toc">
-        <p class="toc-title">On this page</p>
-        <div class="toc-list">
-          <a href="#dashboard">Dashboard</a>
-          <a href="#users">Users</a>
-          <a href="#data-controls">Data controls</a>
-          <a href="#tracker">Tracker</a>
-          <a href="#revenue-signals">Revenue signals</a>
+      <a href="users.html" class="article-card">
+        <div class="card-icon yellow-bg"></div>
+        <div class="card-body">
+          <h3>Users</h3>
+          <p>Add, remove, and manage users, link them to their connected service accounts, and control per-user sync.</p>
         </div>
-      </aside>
+      </a>
+
+      <a href="data-controls.html" class="article-card">
+        <div class="card-icon yellow-bg"></div>
+        <div class="card-body">
+          <h3>Data controls</h3>
+          <p>Configure screening rules, special domains, and write rules to precisely control what Nektar captures and syncs.</p>
+        </div>
+      </a>
+
+      <a href="tracker.html" class="article-card">
+        <div class="card-icon yellow-bg">
+          <img src="../assets/images/page-avatars/tracker.svg" alt="Tracker" />
+        </div>
+        <div class="card-body">
+          <h3>Tracker</h3>
+          <p>Look up the journey of a specific email or calendar event through Nektar's pipeline to understand why it was or wasn't synced.</p>
+        </div>
+      </a>
+
+      <a href="revenue-signals.html" class="article-card">
+        <div class="card-icon yellow-bg">
+          <img src="../assets/images/page-avatars/revenue-signals.svg" alt="Revenue signals" />
+        </div>
+        <div class="card-body">
+          <h3>Revenue signals</h3>
+          <p>Configure auto-updating Salesforce fields using Nektar's signal templates or custom rules.</p>
+        </div>
+      </a>
+
     </div>
 
   </div>

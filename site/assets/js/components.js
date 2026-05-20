@@ -38,14 +38,14 @@
       '    <div class="nav-section" data-section="understand">\n' +
       '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'understand/index.html">Understand</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html" data-path="/understand/">Overview</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#graph-inference">Graph inference</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#self-healing">Self healing</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#security">Security</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#sync-latency">Sync latency</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#data-transform">Data transform</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#use-cases">Use cases</a>\n' +
-      '        <a class="nav-item" href="' + R + 'understand/index.html#faqs">FAQs</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/overview.html" data-path="/understand/overview.html">Overview</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/graph-inference.html" data-path="/understand/graph-inference.html">Graph inference</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/self-healing.html" data-path="/understand/self-healing.html">Self healing</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/security.html" data-path="/understand/security.html">Security</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/sync-latency.html" data-path="/understand/sync-latency.html">Sync latency</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/data-transform.html" data-path="/understand/data-transform.html">Data transform</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/use-cases.html" data-path="/understand/use-cases.html">Use cases</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/faqs.html" data-path="/understand/faqs.html">FAQs</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
@@ -89,11 +89,11 @@
       '    <div class="nav-section" data-section="administration">\n' +
       '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'administration/index.html">Administration</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'administration/index.html#dashboard">Dashboard</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/index.html#users">Users</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/index.html#data-controls">Data controls</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/index.html#tracker">Tracker</a>\n' +
-      '        <a class="nav-item" href="' + R + 'administration/index.html#revenue-signals">Revenue signals</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/dashboard.html" data-path="/administration/dashboard.html">Dashboard</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/users.html" data-path="/administration/users.html">Users</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/data-controls.html" data-path="/administration/data-controls.html">Data controls</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/tracker.html" data-path="/administration/tracker.html">Tracker</a>\n' +
+      '        <a class="nav-item" href="' + R + 'administration/revenue-signals.html" data-path="/administration/revenue-signals.html">Revenue signals</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 

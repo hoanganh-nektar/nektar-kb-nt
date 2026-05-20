@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sync latency – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Understand</a>
+          <span class="sep">›</span>
+          <span>Sync latency</span>
+        </div>
+        <h1>Sync latency</h1>
+        <p class="hero-desc">Typical end-to-end latency for syncing contacts, activities, and opportunity-contact roles — and what causes delays.</p>
+      </div>
+      <div class="hero-illustration" style="background: #003d5c;">
+        <img src="../assets/images/page-avatars/sync.svg" alt="Sync latency" style="object-fit: contain; width: 100%; height: 100%;" />
+      </div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>Nektar's design strikes a balance between efficiency and accuracy, tuned to meet real-world CRM data latency requirements without being wasteful of API quotas or compute resources.</p>
+
+          <h2 id="typical-latency">Typical end-to-end latency</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Operation</th>
+                <th>Average</th>
+                <th>Worst-case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Creating or updating contacts on Salesforce</td>
+                <td>1 hour</td>
+                <td>9 hours</td>
+              </tr>
+              <tr>
+                <td>Creating or updating activities with participants already on Salesforce</td>
+                <td>1 hour</td>
+                <td>9 hours</td>
+              </tr>
+              <tr>
+                <td>Creating activities with contacts that need to be created by Nektar</td>
+                <td>2 hours</td>
+                <td>18 hours</td>
+              </tr>
+              <tr>
+                <td>Creating Opportunity-Contact relations with contacts already on Salesforce</td>
+                <td>1 hour</td>
+                <td>9 hours</td>
+              </tr>
+              <tr>
+                <td>Creating Opportunity-Contact relations with contacts that need to be created by Nektar</td>
+                <td>2 hours</td>
+                <td>18 hours</td>
+              </tr>
+              <tr>
+                <td>Merging Nektar-created contacts with manually created duplicates</td>
+                <td>25 hours</td>
+                <td>33 hours</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>The clock starts when an email is sent or received, an event is added or edited, or a manual Salesforce change is made (for self-healing). It stops when Nektar makes the corresponding change on Salesforce.</p>
+
+          <h2 id="longer-than-expected">Something appears to have taken longer</h2>
+          <p>This could happen because:</p>
+          <ul>
+            <li>Nektar sync was disabled or stopped due to an error at the time of the event.</li>
+            <li>Nektar sync was only recently enabled for this user or object; these latencies apply to ongoing operations, not during bulk sync. The sync status icon is blue during bulk sync and green during ongoing operations.</li>
+            <li>Events more than 3 months in the future are only processed when they come within the 3-month window.</li>
+            <li>Auto-recall: if there was no matching account at the time of an email but an account was created later, the account creation is the start-clock event — not the email itself.</li>
+            <li>An event was originally filtered out by a screening rule but a subsequent edit made it pass. The edit is the appropriate start-clock event.</li>
+            <li>Salesforce API errors may prevent Nektar writing data for prolonged periods, often caused by poorly performing Apex triggers or other tools consuming too many API calls.</li>
+            <li>In rare circumstances, Nektar, the communication tool's API service, or Salesforce may have encountered a technical incident. Nektar's uptime status for the past 30 days is available at the Nektar status page.</li>
+          </ul>
+
+          <h2 id="sources-of-latency">Sources of latency</h2>
+          <p>There are three main sources of latency:</p>
+          <ol>
+            <li>Nektar fetches emails and calendar events periodically from each inbox and calendar, striking a balance at 10–15 minutes to avoid exhausting Google / Microsoft API quotas. <em>(Average delay: 7 minutes; Maximum delay: 15 minutes)</em></li>
+            <li>Nektar processes the data: constructing, de-duplicating and linking new activities, contacts and contact roles, as well as re-evaluating all related past data. <em>(Average delay: 15 minutes; Maximum delay: 4 hours in congested conditions)</em></li>
+            <li>An intentional 30-minute wait before creates and updates ensures all related records have been independently fetched and unified. Contact merges wait 24 hours. <em>(Wait time: 30 minutes for creates/updates; 24 hours for contact merges)</em></li>
+            <li>Nektar writes new data into Salesforce every 10–15 minutes. A fraction of writes fail due to Salesforce congestion and are retried for up to 4 hours. <em>(Average delay: 8 minutes; Maximum delay: 4 hours 15 minutes)</em></li>
+          </ol>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#typical-latency">Typical end-to-end latency</a>
+          <a href="#longer-than-expected">Something took longer</a>
+          <a href="#sources-of-latency">Sources of latency</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

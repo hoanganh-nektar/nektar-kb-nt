@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data controls – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Administration</a>
+          <span class="sep">›</span>
+          <span>Data controls</span>
+        </div>
+        <h1>Data controls</h1>
+        <p class="hero-desc">Configure screening rules, special domains, and write rules to precisely control what Nektar captures and syncs to Salesforce.</p>
+      </div>
+      <div class="hero-illustration" style="background: #1f3a5f;"></div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>Data controls let you restrict which of your organization's emails and events are processed by Nektar. There are three kinds of controls.</p>
+
+          <h2 id="screening-rules">Screening rules</h2>
+          <p>Nektar automatically screens out emails sent by automated systems and non-personal email addresses (such as <code>support@…</code> and <code>sales@…</code>). You may additionally block emails and events under the following categories:</p>
+          <ul>
+            <li><strong>Block until date</strong> — all events with a start date and emails sent until this date will be blocked</li>
+            <li><strong>Private calendar events</strong> — when toggled on, these events will not be read by Nektar</li>
+            <li><strong>Email addresses</strong> — activity will not be captured if <em>any</em> participant matches these addresses</li>
+            <li><strong>Email domains</strong> — activity will not be captured if <em>any</em> participant matches these domains</li>
+            <li><strong>Subject line keywords</strong> — emails or events whose subject line contains <em>any</em> of these words will not be captured</li>
+            <li><strong>Body pattern keywords</strong> — emails whose body contains <em>any</em> of these words will not be captured</li>
+          </ul>
+
+          <h3>Rule matching behavior</h3>
+          <ul>
+            <li><strong>Case insensitive</strong> — if <code>confidential</code> is blocked, Nektar also blocks <code>Confidential</code> and <code>CONFIDENTIAL</code></li>
+            <li><strong>Exact phrase matching</strong> for multi-word patterns — <code>Do not write</code> only blocks messages where that entire phrase appears together</li>
+            <li><strong>Special characters are treated literally</strong> — <code>Accepted:</code> blocks <code>accepted:</code> but not <code>Accepted</code> without the colon</li>
+            <li><strong>Line breaks, spaces, underscores, and numbers</strong> are accepted as valid prefixes or suffixes — blocking <code>NDA</code> also blocks <code>NDA2</code>, <code>NDA-attached</code>, and <code>NDA_attached</code></li>
+          </ul>
+
+          <details>
+            <summary>Suggestions for what to screen</summary>
+            <ul>
+              <li>Block human resources and legal staff and vendors</li>
+              <li>Block senior leadership, board members and investors</li>
+              <li>Block tools that send payslips and performance appraisals</li>
+            </ul>
+          </details>
+
+          <h2 id="special-domains">Special domains and email addresses</h2>
+          <p>Nektar screens out emails or events where all participants are internal to your company, tools (e.g. notifications, conference rooms), distribution lists, or personal email addresses. You may configure additional email addresses and domains as <em>ignored</em> — i.e. treated as internal for activity screening purposes.</p>
+
+          <details>
+            <summary>Suggestions for what to add here</summary>
+            <ul>
+              <li>Ignore partners and resellers that participate in sales conversations</li>
+            </ul>
+          </details>
+
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>If an activity passes screening, all its participants are stored and processed in Nektar — including ignored and internal ones.</p>
+          </div>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>This section describes read rules. Activities and contacts must also pass write rules to be written to Salesforce.</p>
+          </div>
+
+          <h2 id="write-rules">Write rules</h2>
+          <p>Nektar only creates records that can be linked to existing Salesforce records:</p>
+          <ul>
+            <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
+            <li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
+            <li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
+          </ul>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>Write rules are in beta; contact us to implement them.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#screening-rules">Screening rules</a>
+          <a href="#special-domains">Special domains and email addresses</a>
+          <a href="#write-rules">Write rules</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

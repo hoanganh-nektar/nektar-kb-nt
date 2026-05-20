@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self healing – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Understand</a>
+          <span class="sep">›</span>
+          <span>Self healing</span>
+        </div>
+        <h1>Self healing</h1>
+        <p class="hero-desc">How Nektar automatically corrects its past decisions as new data arrives — keeping your CRM accurate without manual intervention.</p>
+      </div>
+      <div class="hero-illustration" style="background: #003d5c;"></div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>Whenever Nektar gets new data from any connector, it re-evaluates <em>all</em> its past data capture decisions in light of the new information, correcting any errors with the benefit of hindsight.</p>
+
+          <h2 id="example-scenarios">Example scenarios</h2>
+          <ul>
+            <li><strong>The first contact is added to a Salesforce account.</strong> Nektar might find old conversations with that contact and add them to Salesforce. Nektar might also find old conversations with others in the same company, and add those contacts and their activities to the account.</li>
+            <li><strong>A lead is added to Salesforce.</strong> If Nektar had previously created a contact for this person, its details and activities are merged into the lead and the Nektar-created contact deleted.</li>
+            <li><strong>A contact is added to a Salesforce opportunity.</strong> Nektar might reassign the past activities with this contact to this opportunity, and might also add the participants in those activities as opportunity contacts.</li>
+            <li><strong>A preexisting contact is added to an ongoing conversation.</strong> Nektar might reassign related emails and events to an opportunity this contact is in.</li>
+          </ul>
+          <p>These are not special cases Nektar is programmed to handle, but emergent behaviors of the data processing architecture.</p>
+
+          <h2 id="important-notes">Important notes</h2>
+          <ol>
+            <li>For self-healing to work correctly, Nektar might need to undo any of its data capture decisions, including record creation. This is why Nektar requires permission to delete records it created.</li>
+            <li>One may edit a Salesforce record to <em>correct</em> something (where the previous value was always wrong) or to <em>update</em> something that changed (where the previous value was correct on an earlier date). Nektar assumes that all changes are corrections, never updates. While Nektar's built-in features work correctly under this assumption, it's something to keep in mind when building custom <a href="data-transform.html">transform rules</a>.</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#example-scenarios">Example scenarios</a>
+          <a href="#important-notes">Important notes</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracker – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Administration</a>
+          <span class="sep">›</span>
+          <span>Tracker</span>
+        </div>
+        <h1>Tracker</h1>
+        <p class="hero-desc">Look up the journey of a specific email or calendar event through Nektar's pipeline — understand why it was or wasn't synced to Salesforce.</p>
+      </div>
+      <div class="hero-illustration" style="background: #1f3a5f;">
+        <img src="../assets/images/page-avatars/tracker.svg" alt="Tracker" style="object-fit: contain; width: 100%; height: 100%;" />
+      </div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>Found at <em>Settings &gt; Track activities</em>, Tracker lets you look up the path of a specific activity through Nektar's data processing pipeline. It helps understand why Nektar might have excluded a certain activity from Salesforce.</p>
+          <p>Search for an event or email by keywords in its subject line and/or the email addresses of participants.</p>
+
+          <h2 id="no-results">No results?</h2>
+          <p>An activity that was read by Nektar might not appear in the tracker for two reasons:</p>
+          <ul>
+            <li>It is outside the time window: the tracker only displays activities read by Nektar more than 2 hours ago but less than 30 days ago.</li>
+            <li>The activity was filtered out by a <a href="data-controls.html">read rule</a>.</li>
+          </ul>
+
+          <h2 id="result-details">Result details</h2>
+          <p>Click an item in the results to see detailed information about its journey:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Source user</td>
+                <td>The person from whose mailbox or calendar the activity was read</td>
+              </tr>
+              <tr>
+                <td>From, To, Cc / Organizer, Attendees / Body</td>
+                <td>Activity information</td>
+              </tr>
+              <tr>
+                <td>Send time</td>
+                <td>When the email or event invitation was sent or received at Google Workspace / Microsoft 365</td>
+              </tr>
+              <tr>
+                <td>Nektar read time</td>
+                <td>When Nektar fetched this activity from Google Workspace or Microsoft 365</td>
+              </tr>
+              <tr>
+                <td>Nektar write time</td>
+                <td>When Nektar wrote this activity to Salesforce</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>Whether the activity was written to Salesforce, and if not, why</td>
+              </tr>
+              <tr>
+                <td>Salesforce activity, account and opportunity</td>
+                <td>Deep links into Salesforce to view the activity and the records it's linked to</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#no-results">No results?</a>
+          <a href="#result-details">Result details</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

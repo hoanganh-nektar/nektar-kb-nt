@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graph inference – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div id="main-wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="index.html">Understand</a>
+          <span class="sep">›</span>
+          <span>Graph inference</span>
+        </div>
+        <h1>Graph inference</h1>
+        <p class="hero-desc">How Nektar's ML models identify missing relationships, de-duplicate records, and connect activities to the right opportunities.</p>
+      </div>
+      <div class="hero-illustration" style="background: #003d5c;"></div>
+    </div>
+
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+
+          <p>Nektar's <strong>graph inference</strong> models identify relationships ("edges") in the Nektar Graph that probably should exist, but don't. This is our core approach: we found a way to reduce all your data problems into missing edges, so edge inference is (very nearly) all we need.</p>
+
+          <h2 id="what-it-does">What it does</h2>
+          <ul>
+            <li><strong>De-duplication</strong> of contacts, leads, email messages and calendar events</li>
+            <li><strong>Affinity AI</strong>, to identify relationships between data points (such as which opportunity an activity is related to)</li>
+            <li><strong>Edit protection</strong>: if a manual Salesforce edit reverts a change that Nektar made, remember the mistake to avoid making it again</li>
+          </ul>
+
+          <h2 id="how-it-works">How it works</h2>
+          <p>There are many different kinds of edges, so there are many different edge inference models. The ones most commonly asked about cover Activity-Opportunity, Person-Opportunity, and Person-Account pairs. They all follow a common approach:</p>
+          <ol>
+            <li>Nektar identifies candidate object pairs that might have an edge between them, but do not at present. It does this by exploring the neighborhood of each object by "hopping" along existing edges. Depending on the model, it may search up to 3 or 4 hops away from each object.</li>
+            <li>Nektar uses a model to get the likelihood of each candidate edge. Inputs include features of the objects themselves (such as timestamps and common text keywords), the number of paths between them, and the number and type of the objects and edges along those paths.</li>
+            <li>Based on the specific edge type, it creates edges: either for all candidates where the likelihood exceeds a threshold, or only for the highest likelihood candidates.</li>
+          </ol>
+
+          <h2 id="why-it-works">Why it works</h2>
+          <p>Nearly all your data problems can be modeled as missing edges:</p>
+          <ul>
+            <li><strong>Duplicate records</strong> are just missing "is the same as" relations between pairs of records.</li>
+            <li><strong>Missing contacts</strong> are just missing "belongs to" relations between Salesforce accounts and opportunities and the people your sellers are in touch with.</li>
+          </ul>
+          <p>Nektar comes with edge inference models to solve a whole host of other data issues beyond these two examples.</p>
+
+        </div>
+      </div>
+
+      <aside class="article-toc">
+        <p class="toc-title">On this page</p>
+        <div class="toc-list">
+          <a href="#what-it-does">What it does</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#why-it-works">Why it works</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+</body>
+</html>
