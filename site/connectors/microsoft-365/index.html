@@ -33,33 +33,132 @@
       <div class="article-body">
         <div class="article-content">
 
-          <h2 id="overview">Overview</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Microsoft 365 overview".</p></div>
+          <h2 id="connection">Connection</h2>
+          <p>Your Microsoft 365 administrator should authorise the Nektar app for your organization. Provide the email address of your Microsoft 365 administrator to start the authorization process.</p>
+          <p>The administrator may also follow the steps below to restrict Nektar to specific users.</p>
 
-          <h2 id="prerequisites">Prerequisites</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Prerequisites".</p></div>
-
+          <h3>Restrict Nektar to specific users</h3>
           <div class="callout callout-info">
             <div class="callout-label">Note</div>
-            <p>Connecting Microsoft 365 requires a Global Administrator or an Application Administrator in your Azure AD tenant to grant consent for Nektar's registered Azure app.</p>
+            <p>You must have admin privileges to your Microsoft 365 organization to do this.</p>
           </div>
+          <ol>
+            <li>Create a "Mail-enabled security" group in <a href="https://admin.exchange.microsoft.com/#/groups">Microsoft Admin Centre</a>. Note the group's email address.</li>
+            <li>Add the users you want Nektar to access as the members of that group. Ensure that the admin is different from all the members.</li>
+            <li>On your Windows PC, launch PowerShell.</li>
+            <li>Login to ExchangeOnline with your admin credentials:
+              <pre><code>Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
+            </li>
+            <li>Add an access policy restricting the Nektar app to the group you created:
+              <pre><code>New-ApplicationAccessPolicy -AppId 5ec97ac5-1665-4dff-8357-43d284a0b3a5 -PolicyScopeGroupId &lt;group-email-address&gt; -AccessRight RestrictAccess -Description "Nektar access policy"</code></pre>
+            </li>
+          </ol>
 
-          <h2 id="connect">Connecting Microsoft 365</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Connecting Microsoft 365".</p></div>
+          <h3>Access to Teams</h3>
+          <ol>
+            <li>On your Windows PC, launch PowerShell.</li>
+            <li>Login to ExchangeOnline with your admin credentials:
+              <pre><code>Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
+            </li>
+            <li>Connect to Teams:
+              <pre><code>Connect-MicrosoftTeams</code></pre>
+            </li>
+            <li>Add an access policy to grant Nektar access to Teams:
+              <pre><code>New-CsApplicationAccessPolicy -Identity Policy-To-Access-Meetings-Application-Access -AppIds "5ec97ac5-1665-4dff-8357-43d284a0b3a5" -Description "Access meeting on behalf of user"
+Grant-CsApplicationAccessPolicy -PolicyName Policy-To-Access-Meetings-Application-Access -Global</code></pre>
+            </li>
+          </ol>
 
-          <h2 id="permissions">Permissions and consent</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Permissions and consent".</p></div>
-
-          <h2 id="user-selection">Selecting users for sync</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Selecting users for sync".</p></div>
-
-          <h2 id="teams">Microsoft Teams support</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Microsoft Teams support".</p></div>
-
-          <div class="callout callout-warning">
-            <div class="callout-label">Warning</div>
-            <p>Microsoft 365 conditional access policies may block Nektar's service account. Work with your IT team to ensure Nektar's Azure app is excluded from any MFA or location-based conditional access rules.</p>
+          <h2 id="oauth-scopes">OAuth scopes</h2>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
           </div>
+          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Scope</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Read user mail</td>
+                <td>Allows the app to read email in user mailboxes</td>
+              </tr>
+              <tr>
+                <td>Maintain access to data you have given it access to</td>
+                <td>Gives the app access to refresh tokens</td>
+              </tr>
+              <tr>
+                <td>Read user and shared calendars</td>
+                <td>Allows the app to read events in all calendars that the user can access, including delegate and shared calendars</td>
+              </tr>
+              <tr>
+                <td>Read user and shared mail</td>
+                <td>Allows the app to read mail that the user can access, including the user's own and shared mail</td>
+              </tr>
+              <tr>
+                <td>Sign in and read user profile</td>
+                <td>Allows users to sign-in to the app, and allows the app to read the profile of signed-in users</td>
+              </tr>
+              <tr>
+                <td>Read user calendars</td>
+                <td>Allows the app to read events in user calendars</td>
+              </tr>
+              <tr>
+                <td>Read all users' basic profiles</td>
+                <td>Allows the app to read a basic set of profile properties of other users in your organization on behalf of the signed-in user</td>
+              </tr>
+              <tr>
+                <td>Read basic mail in all mailboxes</td>
+                <td>Allows the app to read basic mail properties in all mailboxes without a signed-in user</td>
+              </tr>
+              <tr>
+                <td>Read all users' full profiles</td>
+                <td>Allows the app to read the full set of profile properties, reports, and managers of other users in your organization</td>
+              </tr>
+              <tr>
+                <td>Read mail in all mailboxes</td>
+                <td>Allows the app to read mail in all mailboxes without a signed-in user</td>
+              </tr>
+              <tr>
+                <td>Read calendars in all mailboxes</td>
+                <td>Allows the app to read events of all calendars without a signed-in user</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 id="sync">Sync</h2>
+          <p>Nektar's Microsoft 365 sync system reads email messages and calendar events every 10–15 minutes, and the list of users on your workspace every 24 hours. You must enable sync for individual MS365 users in the <a href="../../administration/index.html#users">Users</a> section.</p>
+
+          <h2 id="properties-synced">Properties synced</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Email messages</th>
+                <th>Calendar events</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Subject line<br>Body (including quoted messages and signatures)<br>From, To, Cc<br>Date and time sent<br>All email headers</td>
+                <td>Subject line<br>Description, including dial-in information<br>Organizer, participants<br>Date and time of scheduling the meeting<br>Meeting start and end time<br>Venue and meeting details</td>
+              </tr>
+              <tr>
+                <td>Attachments are not synced</td>
+                <td>Attachments are not synced</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 id="apis-used">APIs used</h2>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+          </div>
+          <p>Nektar uses the Microsoft Graph API.</p>
 
         </div>
       </div>
@@ -67,20 +166,18 @@
       <aside class="article-toc">
         <p class="toc-title">On this page</p>
         <div class="toc-list">
-          <a href="#overview">Overview</a>
-          <a href="#prerequisites">Prerequisites</a>
-          <a href="#connect">Connecting Microsoft 365</a>
-          <a href="#permissions">Permissions and consent</a>
-          <a href="#user-selection">Selecting users</a>
-          <a href="#teams">Microsoft Teams support</a>
+          <a href="#connection">Connection</a>
+          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#sync">Sync</a>
+          <a href="#properties-synced">Properties synced</a>
+          <a href="#apis-used">APIs used</a>
         </div>
       </aside>
     </div>
 
   </div>
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
-
 
 <script src="../../assets/js/components.js"></script>
 </body>

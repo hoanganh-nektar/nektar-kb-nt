@@ -33,33 +33,88 @@
       <div class="article-body">
         <div class="article-content">
 
-          <h2 id="overview">Overview</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Google Workspace overview".</p></div>
+          <h2 id="connection">Connection</h2>
+          <p>Your Google Workspace administrator should install <a href="https://workspace.google.com/u/0/marketplace/app/nektar_for_gmail_and_google_calendar/313936287231">Nektar</a> from Google Marketplace.</p>
+          <p>Once the installation is completed, type your Google Workspace administrator's email address and click "Connect" to enable the connection within Nektar.</p>
 
-          <h2 id="prerequisites">Prerequisites</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Prerequisites".</p></div>
-
+          <h2 id="oauth-scopes">OAuth scopes</h2>
           <div class="callout callout-info">
             <div class="callout-label">Note</div>
-            <p>Connecting Google Workspace requires a Google Workspace Super Admin to authorize Nektar's OAuth application for your domain.</p>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
           </div>
+          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Scope</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/calendar.events</code></td>
+                <td>Sync calendar events</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/gmail.readonly</code></td>
+                <td>Sync email messages</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/meetings.space.readonly</code></td>
+                <td>Sync Google Meet information</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/userinfo.email</code></td>
+                <td>Get users' email addresses</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/userinfo.profile</code></td>
+                <td>Get users' names</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/admin.directory.user.readonly</code></td>
+                <td>Get the list of users</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/contacts.readonly</code></td>
+                <td>Get users' contacts</td>
+              </tr>
+              <tr>
+                <td><code>https://www.googleapis.com/auth/contacts.other.readonly</code></td>
+                <td>Get users' other contacts</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Nektar will only read Gmail messages, Google Calendar events and Google Meet meeting information (including transcripts) of users you select.</p>
 
-          <h2 id="connect">Connecting Google Workspace</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Connecting Google Workspace".</p></div>
+          <h2 id="sync">Sync</h2>
+          <p>Nektar's Google Workspace sync system reads Gmail messages, Google Calendar events and Google Meet meeting information for the users for whom this has been enabled.</p>
+          <ul>
+            <li>Gmail messages and Google Calendar events are read every 10–15 minutes.</li>
+            <li>Google Meet meeting information and transcripts are read every 10–15 minutes. Note: when first enabled, Google Meet can read data only for the last 30 days.</li>
+            <li>The list of users on your workspace is read every 24 hours.</li>
+          </ul>
+          <p>You must enable sync for individual Google users in the <a href="../../administration/index.html#users">Users</a> section.</p>
 
-          <h2 id="scopes">OAuth scopes requested</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "OAuth scopes requested".</p></div>
-
-          <h2 id="user-selection">Selecting users for sync</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Selecting users for sync".</p></div>
-
-          <h2 id="data-captured">What data is captured</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "What data is captured".</p></div>
-
-          <div class="callout callout-warning">
-            <div class="callout-label">Warning</div>
-            <p>Nektar does not capture email body content. Only metadata — sender, recipients, timestamp, and subject line — is processed and written to Salesforce.</p>
-          </div>
+          <h2 id="properties-synced">Properties synced</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Email messages</th>
+                <th>Calendar events</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Subject line<br>Body (including quoted messages and signatures)<br>From, To, Cc<br>Date and time sent<br>All email headers</td>
+                <td>Subject line<br>Description, including dial-in information<br>Organizer, participants<br>Date and time of scheduling the meeting<br>Meeting start and end time<br>Venue and meeting details</td>
+              </tr>
+              <tr>
+                <td>Attachments are not synced</td>
+                <td>Attachments are not synced</td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
       </div>
@@ -67,20 +122,17 @@
       <aside class="article-toc">
         <p class="toc-title">On this page</p>
         <div class="toc-list">
-          <a href="#overview">Overview</a>
-          <a href="#prerequisites">Prerequisites</a>
-          <a href="#connect">Connecting Google Workspace</a>
-          <a href="#scopes">OAuth scopes</a>
-          <a href="#user-selection">Selecting users</a>
-          <a href="#data-captured">What data is captured</a>
+          <a href="#connection">Connection</a>
+          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#sync">Sync</a>
+          <a href="#properties-synced">Properties synced</a>
         </div>
       </aside>
     </div>
 
   </div>
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
-
 
 <script src="../../assets/js/components.js"></script>
 </body>

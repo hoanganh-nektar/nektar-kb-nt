@@ -33,33 +33,63 @@
       <div class="article-body">
         <div class="article-content">
 
-          <h2 id="overview">Overview</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Zoom overview".</p></div>
+          <h2 id="connection">Connection</h2>
+          <p>Your Zoom administrator should sign into the Nektar app for Zoom.</p>
+          <p>If you are an administrator, click "Connect" and follow the instructions. If not, copy the link and send it to the administrator.</p>
 
-          <h2 id="prerequisites">Prerequisites</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Prerequisites".</p></div>
-
+          <h2 id="oauth-scopes">OAuth scopes</h2>
           <div class="callout callout-info">
             <div class="callout-label">Note</div>
-            <p>Zoom integration requires a Zoom account owner or admin to install the Nektar app from the Zoom Marketplace and authorize the required scopes.</p>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
           </div>
+          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Scope</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>meeting:read:admin</code></td>
+                <td>To get past meetings' participants</td>
+              </tr>
+              <tr>
+                <td><code>report:read:admin</code></td>
+                <td>To list past meetings details</td>
+              </tr>
+              <tr>
+                <td><code>user:read:admin</code></td>
+                <td>To know the user's id, email, and name</td>
+              </tr>
+            </tbody>
+          </table>
 
-          <h2 id="connect">Connecting Zoom</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Connecting Zoom".</p></div>
+          <h2 id="sync">Sync</h2>
+          <p>Nektar's Zoom sync system reads meeting details every 10–15 minutes, and the list of users in your Zoom organization every 24 hours. You must enable meeting sync for individual Zoom users in the <a href="../../administration/index.html#users">Users</a> section. Note that only the details of meetings in the past 6 months can be synced.</p>
 
-          <h2 id="data-captured">What data is captured</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "What data is captured".</p></div>
+          <h2 id="properties-synced">Properties synced</h2>
+          <ul>
+            <li>Meeting ID, title, date and time, duration</li>
+            <li>Names and email addresses of meeting participants and the duration they spent in the call. Note that email addresses are only available for participants who were invitees on the original calendar event and were signed into Zoom for the call (i.e. did not join as guests).</li>
+            <li>Meeting transcript</li>
+          </ul>
 
-          <h2 id="meeting-matching">Meeting-to-CRM matching</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Meeting-to-CRM matching".</p></div>
+          <h2 id="limitations">Limitations</h2>
+          <p>Zoom limits the information it provides through its API. In particular, information about a participant in a Zoom meeting is only available if all three of these conditions are satisfied:</p>
+          <ol>
+            <li>The meeting is linked to a Google or MS365 calendar event</li>
+            <li>The participant is an invitee on the calendar event</li>
+            <li>The participant is signed into Zoom when they join the meeting</li>
+          </ol>
 
-          <div class="callout callout-warning">
-            <div class="callout-label">Warning</div>
-            <p>Zoom meeting data is only captured for users who have been enabled for sync in the Nektar admin panel. Meetings hosted by non-enabled users will not be processed.</p>
+          <h2 id="apis-used">APIs used</h2>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
           </div>
-
-          <h2 id="troubleshooting">Troubleshooting</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Troubleshooting".</p></div>
+          <p>Nektar uses the Zoom Reports and Meeting APIs.</p>
 
         </div>
       </div>
@@ -67,20 +97,19 @@
       <aside class="article-toc">
         <p class="toc-title">On this page</p>
         <div class="toc-list">
-          <a href="#overview">Overview</a>
-          <a href="#prerequisites">Prerequisites</a>
-          <a href="#connect">Connecting Zoom</a>
-          <a href="#data-captured">What data is captured</a>
-          <a href="#meeting-matching">Meeting-to-CRM matching</a>
-          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#connection">Connection</a>
+          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#sync">Sync</a>
+          <a href="#properties-synced">Properties synced</a>
+          <a href="#limitations">Limitations</a>
+          <a href="#apis-used">APIs used</a>
         </div>
       </aside>
     </div>
 
   </div>
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
-
 
 <script src="../../assets/js/components.js"></script>
 </body>

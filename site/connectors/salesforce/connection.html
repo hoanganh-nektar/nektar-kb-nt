@@ -24,7 +24,7 @@
           <span>Connection</span>
         </div>
         <h1>Connection</h1>
-        <p class="hero-desc">Authorize Nektar to connect to your Salesforce org via OAuth and verify the connection is working correctly before enabling sync.</p>
+        <p class="hero-desc">Authorize Nektar to connect to your Salesforce org via OAuth and manage the integration user credentials.</p>
       </div>
       <div class="hero-illustration" style="background: #004455;">
         <img src="../../assets/images/page-avatars/connection.svg" alt="Connection" style="object-fit: contain; width: 100%; height: 100%;" />
@@ -35,27 +35,39 @@
       <div class="article-body">
         <div class="article-content">
 
-          <h2 id="prerequisites">Prerequisites</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Prerequisites".</p></div>
+          <h2 id="connecting">Connecting to Salesforce</h2>
+          <p>The Salesforce account you sign into while creating your Nektar organization automatically becomes your connected integration user.</p>
+          <p>You may connect a different integration user in the Connection section of Salesforce integration settings:</p>
+          <ul>
+            <li>If another integration user is already connected, click <strong>Disconnect</strong> and then <strong>Confirm</strong>.</li>
+            <li>If you have access to the integration user's Salesforce credentials, click <strong>Connect</strong> and then <strong>Confirm</strong>. Sign into Salesforce as the integration user (if required), and allow access (if prompted). This connects the new integration user.<br><strong>Note:</strong> If you are signed in as a different Salesforce user, you should sign out of Salesforce before clicking Connect.</li>
+            <li>If you do not have the integration user's Salesforce credentials, send the link below the Connect button to the person who does. They should click this link, sign in as the integration user, and allow access. Once they complete this, you can refresh the page to verify that the new integration user has been connected.</li>
+          </ul>
 
-          <h2 id="authorize">Authorizing the connection</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Authorizing the connection".</p></div>
-
+          <h2 id="oauth-scopes">OAuth scopes</h2>
           <div class="callout callout-info">
-            <div class="callout-label">Troubleshooting</div>
-            <p>If the OAuth flow fails, ensure the integration user's password has not expired and that the connected app's callback URL matches exactly what is configured in Nektar.</p>
+            <div class="callout-label">Note</div>
+            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
           </div>
-
-          <h2 id="verify-connection">Verifying the connection</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Verifying the connection".</p></div>
-
-          <h2 id="reconnect">Reconnecting after credential changes</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Reconnecting after credential changes".</p></div>
-
-          <div class="callout callout-warning">
-            <div class="callout-label">Warning</div>
-            <p>If the integration user's password or security token is rotated, you must reconnect Nektar to Salesforce immediately to prevent sync interruptions.</p>
-          </div>
+          <p>Scopes control what actions Nektar may take on behalf of the integration user. Nektar requires the following scopes to operate correctly.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Scope</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>full</code></td>
+                <td>Read and write Salesforce data and metadata</td>
+              </tr>
+              <tr>
+                <td><code>refresh_token</code></td>
+                <td>Operate as a background service</td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
       </div>
@@ -63,18 +75,15 @@
       <aside class="article-toc">
         <p class="toc-title">On this page</p>
         <div class="toc-list">
-          <a href="#prerequisites">Prerequisites</a>
-          <a href="#authorize">Authorizing the connection</a>
-          <a href="#verify-connection">Verifying the connection</a>
-          <a href="#reconnect">Reconnecting after changes</a>
+          <a href="#connecting">Connecting to Salesforce</a>
+          <a href="#oauth-scopes">OAuth scopes</a>
         </div>
       </aside>
     </div>
 
   </div>
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
-
 
 <script src="../../assets/js/components.js"></script>
 </body>

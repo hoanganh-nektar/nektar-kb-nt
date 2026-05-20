@@ -24,7 +24,7 @@
           <span>Sync</span>
         </div>
         <h1>Sync</h1>
-        <p class="hero-desc">Understand how Nektar writes engagement data into Salesforce objects, how sync frequency works, and how to control the scope of what gets written.</p>
+        <p class="hero-desc">Understand how Nektar writes engagement data into Salesforce — which objects are synced, what fields are updated, and how to monitor sync health.</p>
       </div>
       <div class="hero-illustration" style="background: #004455;">
         <img src="../../assets/images/page-avatars/sync.svg" alt="Sync" style="object-fit: contain; width: 100%; height: 100%;" />
@@ -36,29 +36,191 @@
         <div class="article-content">
 
           <h2 id="how-sync-works">How sync works</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "How sync works".</p></div>
-
-          <h2 id="objects-written">Objects written to Salesforce</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Objects written to Salesforce".</p></div>
-
+          <p>Nektar's Salesforce sync system reads and writes <em>data objects</em> such as Accounts and Contacts, and reads <em>settings objects</em> such as Users and Salesforce metadata. Each read or write operation runs independently every 10–15 minutes, except Salesforce metadata which is read every 24 hours.</p>
+          <p>The sync table displays:</p>
+          <ul>
+            <li>The time the most recent record was synced to or from Salesforce</li>
+            <li>A sync health icon that can be clicked for more information</li>
+            <li>Toggles to enable or disable Salesforce reads or writes</li>
+          </ul>
           <div class="callout callout-info">
             <div class="callout-label">Note</div>
-            <p>Nektar writes only to custom fields it creates during setup. It never modifies standard Salesforce fields or records created by your reps.</p>
+            <p>It's normal for the read or write time to be several hours ago while the health icon remains green: this indicates that the sync job is running correctly but found nothing new to read or write recently.</p>
           </div>
 
-          <h2 id="sync-frequency">Sync frequency</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Sync frequency".</p></div>
+          <h2 id="objects-synced">Objects synced</h2>
+          <p>Nektar reads, updates, creates and deletes records under the following Salesforce objects.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Object</th>
+                <th>Read</th>
+                <th>Update</th>
+                <th>Create</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Account</td><td>✔</td><td>✔</td><td></td><td></td></tr>
+              <tr><td>Contact</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+              <tr><td>Lead</td><td>✔</td><td>✔</td><td></td><td></td></tr>
+              <tr><td>Opportunity</td><td>✔</td><td>✔</td><td></td><td></td></tr>
+              <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Opportunity Contact Role</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+              <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Opportunity History</td><td>✔</td><td></td><td></td><td></td></tr>
+              <tr><td>Event</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+              <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Event Relation</td><td>✔</td><td></td><td>✔</td><td>✔</td></tr>
+              <tr><td>Task</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+              <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Task Relation</td><td>✔</td><td></td><td>✔</td><td>✔</td></tr>
+              <tr><td>User</td><td>✔</td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <p>By default, all fields and records accessible to the integration user are read. If required, we can configure it to read only a subset.</p>
+          <p>Only records that were previously created by Nektar and never updated manually are deleted.</p>
 
-          <h2 id="initial-sync">Initial historical sync</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Initial historical sync".</p></div>
+          <h2 id="standard-fields">Standard fields updated</h2>
+          <p>In the default configuration, Nektar updates the following fields if they are (a) empty, or (b) contain a value previously written by Nektar.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Contact</th>
+                <th>Lead</th>
+                <th>Opportunity Contact Role</th>
+                <th>Event</th>
+                <th>Task</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>First Name<br>Last Name<br>Title<br>Phone<br>Email<br>Owner<br>Account</td>
+                <td>First Name<br>Last Name<br>Title<br>Phone<br>Email</td>
+                <td>Role<br>Is Primary</td>
+                <td>Subject<br>Description<br>What¹ (Related)<br>Who² (Name)<br>Owner<br>Start Date Time<br>End Date Time<br>Event Relations<br>Attendees</td>
+                <td>Subject<br>Description<br>What¹ (Related)<br>Who² (Name)<br>Owner<br>Status<br>Task Sub-type<br>Activity Date<br>Task Relations</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><small>¹ "What" refers to the Opportunity or Account an activity is related to, and is labelled "Related"<br>² "Who" refers to the primary Contact or Lead an activity is related to, and is labelled "Name"</small></p>
+          <p>Custom data transform rules may also update these or other fields of the Account and Opportunity objects.</p>
 
-          <div class="callout callout-warning">
-            <div class="callout-label">Warning</div>
-            <p>The initial historical sync can take 24–72 hours depending on the volume of historical email and calendar data. Do not disconnect the integration during this period.</p>
+          <h2 id="owner">Owner</h2>
+          <p>The <strong>"Owner"</strong> field of Nektar-created Contacts, Events and Tasks will contain the most appropriate seller(s) responsible for that record:</p>
+          <ul>
+            <li>For Contacts: the owner of the Account with which the Contact was associated</li>
+            <li>For Tasks (emails): the sender of the email, if they are a seller; otherwise, the primary among sellers in "To"; if there are none, the primary seller in "Cc"</li>
+            <li>For Events: the organizer of the calendar event, if they are a seller; otherwise, the primary seller from the invitee list</li>
+          </ul>
+          <p>The primary seller in a list is the owner of the Opportunity or Account with which the activity was associated, if present in the list; otherwise the first one in the list.</p>
+          <p>If no appropriate sellers were found, or if the most appropriate seller is not a Salesforce user, the Nektar Salesforce integration user is assigned as the owner.</p>
+
+          <h2 id="name-field">Name ("Who")</h2>
+          <p>The <strong>"Name"</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled Shared Activities, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer:</p>
+          <ul>
+            <li>For Tasks (emails): the first buyer found in the email's From, To or Cc headers (in that order)</li>
+            <li>For Events: the organizer of the calendar event, if they are a buyer, or the first buyer in the invitee list</li>
+          </ul>
+
+          <h2 id="attendees">Attendees</h2>
+          <p>The <strong>"Attendees"</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled Shared Activities.</p>
+
+          <h2 id="custom-fields">Nektar custom fields</h2>
+          <p>Nektar creates several custom fields in your Salesforce organization. Nektar does not automatically add them to any views, layouts, reports etc. but you may do so.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>API Name</th>
+                <th>Type</th>
+                <th>Object(s)</th>
+                <th>Values</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nektar Actions</td>
+                <td><code>NektarActions__c</code></td>
+                <td>Multi-select picklist</td>
+                <td>Contact</td>
+                <td>Created, Phone added, Title added, Name added</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Lead</td>
+                <td>Phone added, Title added</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Opportunity Contact Role</td>
+                <td>Created, Role added</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Event, Task</td>
+                <td>Created</td>
+              </tr>
+              <tr>
+                <td>Nektar Sender</td>
+                <td><code>NektarSender__c</code></td>
+                <td>Picklist</td>
+                <td>Event, Task</td>
+                <td>Us, Them</td>
+              </tr>
+              <tr>
+                <td>Nektar Location</td>
+                <td><code>NektarLocation__c</code></td>
+                <td>Text</td>
+                <td>Event</td>
+                <td>Link or physical address from calendar</td>
+              </tr>
+              <tr>
+                <td>Nektar Location Type</td>
+                <td><code>NektarLocationType__c</code></td>
+                <td>Multi-select picklist</td>
+                <td>Event</td>
+                <td>Physical, Virtual</td>
+              </tr>
+              <tr>
+                <td>Nektar Status</td>
+                <td><code>NektarStatus__c</code></td>
+                <td>Picklist</td>
+                <td>Event</td>
+                <td>Event scheduled, Event deleted, Event passed (no call info), Call did not start¹, Call &lt; 10 mins¹, Completed¹</td>
+              </tr>
+              <tr>
+                <td>Nektar Attendees</td>
+                <td><code>NektarAttendees__c</code></td>
+                <td>Text</td>
+                <td>Event</td>
+                <td>Email addresses that joined the call, semicolon-delimited</td>
+              </tr>
+              <tr>
+                <td>Nektar Job Change</td>
+                <td><code>NektarJobChange__c</code></td>
+                <td>Checkbox</td>
+                <td>Contact, Lead</td>
+                <td>True if their work email is no longer valid</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><small>¹ Requires Zoom or MS Teams integration</small></p>
+
+          <h2 id="output-screening">Output screening</h2>
+          <p>Nektar only creates records that can be linked to existing Salesforce records.</p>
+          <ul>
+            <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Consequently, Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
+            <li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
+            <li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
+          </ul>
+          <p>Additionally, write rules can be configured to further restrict which Activities, Contacts and Opportunity Contact Roles are created.</p>
+          <div class="callout callout-info">
+            <div class="callout-label">Note</div>
+            <p>Write rules are in beta; contact us to implement them.</p>
           </div>
-
-          <h2 id="pausing-sync">Pausing and resuming sync</h2>
-          <div class="content-placeholder"><p>&#128221; <strong>[CONTENT PLACEHOLDER]</strong> — Replace this with actual content for "Pausing and resuming sync".</p></div>
 
         </div>
       </div>
@@ -67,18 +229,20 @@
         <p class="toc-title">On this page</p>
         <div class="toc-list">
           <a href="#how-sync-works">How sync works</a>
-          <a href="#objects-written">Objects written</a>
-          <a href="#sync-frequency">Sync frequency</a>
-          <a href="#initial-sync">Initial historical sync</a>
-          <a href="#pausing-sync">Pausing and resuming</a>
+          <a href="#objects-synced">Objects synced</a>
+          <a href="#standard-fields">Standard fields updated</a>
+          <a href="#owner">Owner</a>
+          <a href="#name-field">Name ("Who")</a>
+          <a href="#attendees">Attendees</a>
+          <a href="#custom-fields">Nektar custom fields</a>
+          <a href="#output-screening">Output screening</a>
         </div>
       </aside>
     </div>
 
   </div>
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
-
 
 <script src="../../assets/js/components.js"></script>
 </body>
