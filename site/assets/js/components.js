@@ -29,14 +29,14 @@
       '  <nav class="sidebar-nav">\n' +
 
       '    <div class="nav-section" data-section="getting-started">\n' +
-      '      <div class="nav-section-toggle"><span>Getting started</span><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'getting-started/index.html">Getting started</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
       '        <a class="nav-item" href="' + R + 'getting-started/setup-guide.html" data-path="/getting-started/setup-guide.html">Setup guide</a>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="understand">\n' +
-      '      <div class="nav-section-toggle"><span>Understand</span><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'understand/index.html">Understand</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
       '        <a class="nav-item" href="' + R + 'understand/index.html" data-path="/understand/">Overview</a>\n' +
       '        <a class="nav-item" href="' + R + 'understand/index.html#graph-inference">Graph inference</a>\n' +
@@ -50,7 +50,7 @@
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="connectors">\n' +
-      '      <div class="nav-section-toggle"><span>Connectors</span><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'connectors/index.html">Connectors</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
       '        <div class="nav-subgroup" data-section="salesforce">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
@@ -87,7 +87,7 @@
       '    </div>\n' +
 
       '    <div class="nav-section" data-section="administration">\n' +
-      '      <div class="nav-section-toggle"><span>Administration</span><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
+      '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'administration/index.html">Administration</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
       '        <a class="nav-item" href="' + R + 'administration/index.html#dashboard">Dashboard</a>\n' +
       '        <a class="nav-item" href="' + R + 'administration/index.html#users">Users</a>\n' +
@@ -170,7 +170,8 @@
   // ─── Section toggles ──────────────────────────────────────────────────
   function initToggles() {
     document.querySelectorAll('.nav-section-toggle').forEach(function (toggle) {
-      toggle.addEventListener('click', function () {
+      toggle.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
         toggle.closest('.nav-section').classList.toggle('open');
       });
     });

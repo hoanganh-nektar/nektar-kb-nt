@@ -158,6 +158,12 @@ h6 {
   border-radius: 8px;
 }
 
+.nav-section-label {
+  color: inherit;
+  text-decoration: none;
+  flex: 1;
+}
+
 .nav-section-toggle .chevron-img {
   width: 16px;
   height: 16px;
