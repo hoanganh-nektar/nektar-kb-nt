@@ -223,7 +223,11 @@
     var tocLinks = document.querySelectorAll('.toc-list a[href^="#"]');
     if (!tocLinks.length) return;
 
+    var clicking = false;
+    var clickTimer = null;
+
     var observer = new IntersectionObserver(function (entries) {
+      if (clicking) return;
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var id = entry.target.getAttribute('id');
@@ -234,10 +238,21 @@
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
 
+    // Activate first item on load
+    tocLinks[0].classList.add('active');
+
     tocLinks.forEach(function (a) {
       var id = a.getAttribute('href').slice(1);
       var target = document.getElementById(id);
       if (target) observer.observe(target);
+
+      a.addEventListener('click', function () {
+        tocLinks.forEach(function (l) { l.classList.remove('active'); });
+        a.classList.add('active');
+        clicking = true;
+        if (clickTimer) clearTimeout(clickTimer);
+        clickTimer = setTimeout(function () { clicking = false; }, 1000);
+      });
     });
   }
 
@@ -295,16 +310,6 @@
     });
   }
 
-  function checkCardHeights() {
-    document.querySelectorAll('.article-card').forEach(function (card) {
-      if (card.offsetHeight > 150) {
-        card.classList.add('use-short');
-      } else {
-        card.classList.remove('use-short');
-      }
-    });
-  }
-
   // ─── Boot ─────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     inject();
@@ -313,8 +318,6 @@
     initTocHighlight();
     initMobile();
     initSearch();
-    checkCardHeights();
-    window.addEventListener('resize', checkCardHeights);
   });
 
 })();
