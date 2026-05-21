@@ -109,7 +109,7 @@
       '  <div class="footer-inner">\n' +
       '    <div class="footer-brand">\n' +
       '      <div class="footer-logo">\n' +
-      '        <a href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n' +
+      '        <a href="https://nektar.ai/" target="_blank" rel="noopener"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n' +
       '      </div>\n' +
       '      <div class="footer-social">\n' +
       '        <a href="#" aria-label="X / Twitter"><img src="' + R + 'assets/images/icons/x.svg" width="24" height="24" alt="X" /></a>\n' +
@@ -117,31 +117,31 @@
       '        <a href="#" aria-label="LinkedIn"><img src="' + R + 'assets/images/icons/linkedin.svg" width="24" height="24" alt="LinkedIn" /></a>\n' +
       '      </div>\n' +
       '    </div>\n' +
-      '    <div class="footer-col"><h4>Getting started</h4><ul>\n' +
+      '    <div class="footer-col"><h4><a href="' + R + 'getting-started/index.html">Getting started</a></h4><ul>\n' +
       '      <li><a href="' + R + 'getting-started/setup-guide.html">Setup guide</a></li>\n' +
       '    </ul></div>\n' +
-      '    <div class="footer-col"><h4>Understand</h4><ul>\n' +
-      '      <li><a href="' + R + 'understand/index.html">Overview</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#graph-inference">Graph inference</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#self-healing">Self healing</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#security">Security</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#sync-latency">Sync latency</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#data-transform">Data transform</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#use-cases">Use cases</a></li>\n' +
-      '      <li><a href="' + R + 'understand/index.html#faqs">FAQs</a></li>\n' +
+      '    <div class="footer-col"><h4><a href="' + R + 'understand/index.html">Understand</a></h4><ul>\n' +
+      '      <li><a href="' + R + 'understand/overview.html">Overview</a></li>\n' +
+      '      <li><a href="' + R + 'understand/graph-inference.html">Graph inference</a></li>\n' +
+      '      <li><a href="' + R + 'understand/self-healing.html">Self healing</a></li>\n' +
+      '      <li><a href="' + R + 'understand/security.html">Security</a></li>\n' +
+      '      <li><a href="' + R + 'understand/sync-latency.html">Sync latency</a></li>\n' +
+      '      <li><a href="' + R + 'understand/data-transform.html">Data transform</a></li>\n' +
+      '      <li><a href="' + R + 'understand/use-cases.html">Use cases</a></li>\n' +
+      '      <li><a href="' + R + 'understand/faqs.html">FAQs</a></li>\n' +
       '    </ul></div>\n' +
-      '    <div class="footer-col"><h4>Connectors</h4><ul>\n' +
+      '    <div class="footer-col"><h4><a href="' + R + 'connectors/index.html">Connectors</a></h4><ul>\n' +
       '      <li><a href="' + R + 'connectors/salesforce/index.html">Salesforce</a></li>\n' +
       '      <li><a href="' + R + 'connectors/google-workspace/index.html">Google Workspace</a></li>\n' +
       '      <li><a href="' + R + 'connectors/microsoft-365/index.html">Microsoft 365</a></li>\n' +
       '      <li><a href="' + R + 'connectors/zoom/index.html">Zoom</a></li>\n' +
       '    </ul></div>\n' +
-      '    <div class="footer-col"><h4>Administration</h4><ul>\n' +
-      '      <li><a href="' + R + 'administration/index.html#dashboard">Dashboard</a></li>\n' +
-      '      <li><a href="' + R + 'administration/index.html#users">Users</a></li>\n' +
-      '      <li><a href="' + R + 'administration/index.html#data-controls">Data controls</a></li>\n' +
-      '      <li><a href="' + R + 'administration/index.html#tracker">Tracker</a></li>\n' +
-      '      <li><a href="' + R + 'administration/index.html#revenue-signals">Revenue signals</a></li>\n' +
+      '    <div class="footer-col"><h4><a href="' + R + 'administration/index.html">Administration</a></h4><ul>\n' +
+      '      <li><a href="' + R + 'administration/dashboard.html">Dashboard</a></li>\n' +
+      '      <li><a href="' + R + 'administration/users.html">Users</a></li>\n' +
+      '      <li><a href="' + R + 'administration/data-controls.html">Data controls</a></li>\n' +
+      '      <li><a href="' + R + 'administration/tracker.html">Tracker</a></li>\n' +
+      '      <li><a href="' + R + 'administration/revenue-signals.html">Revenue signals</a></li>\n' +
       '    </ul></div>\n' +
       '  </div>\n' +
       '  <div class="footer-bottom">&copy; 2025 Nektar.ai &mdash; All rights reserved.</div>\n' +
