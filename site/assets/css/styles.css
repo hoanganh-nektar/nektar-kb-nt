@@ -814,28 +814,32 @@ h6 {
 .callout {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 16px 20px;
+  gap: 15px;
+  padding: 20px;
   border-radius: 24px;
   border: 1px solid;
   margin: 24px 0;
 }
 
+.callout.callout-single-line {
+  align-items: center;
+}
+
 .callout::before {
   content: '';
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: 2px;
 }
 
 .callout p {
   font-family: "Lora", serif;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.32px;
   color: #000;
   margin: 0;
 }
@@ -843,13 +847,13 @@ h6 {
 .callout-neutral-technical,
 .callout-neutral-info,
 .callout-neutral-beta {
-  background: #EAF0FB;
-  border-color: #C8D5EE;
+  background: rgba(0, 102, 255, 0.05);
+  border-color: rgba(0, 102, 255, 0.15);
 }
 
 .callout-warning {
-  background: #FFF8E8;
-  border-color: #F0DFA3;
+  background: rgba(255, 153, 0, 0.05);
+  border-color: rgba(255, 153, 0, 0.15);
 }
 
 .callout-neutral-technical::before {

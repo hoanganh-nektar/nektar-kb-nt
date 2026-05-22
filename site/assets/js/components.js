@@ -310,6 +310,36 @@
     });
   }
 
+  function initCalloutAlignment() {
+    var callouts = document.querySelectorAll('.callout');
+    if (!callouts.length) return;
+    function update() {
+      callouts.forEach(function (c) {
+        var p = c.querySelector('p');
+        if (!p) return;
+        var range = document.createRange();
+        range.selectNodeContents(p);
+        var lines = range.getClientRects().length;
+        range.detach && range.detach();
+        if (lines <= 1) {
+          c.classList.add('callout-single-line');
+        } else {
+          c.classList.remove('callout-single-line');
+        }
+      });
+    }
+    // Run after fonts settle so measurement is accurate
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(update);
+    }
+    update();
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(update, 100);
+    });
+  }
+
   // ─── Boot ─────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     inject();
@@ -318,6 +348,7 @@
     initTocHighlight();
     initMobile();
     initSearch();
+    initCalloutAlignment();
   });
 
 })();
