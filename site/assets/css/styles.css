@@ -816,7 +816,7 @@ h6 {
   align-items: flex-start;
   gap: 14px;
   padding: 16px 20px;
-  border-radius: 12px;
+  border-radius: 24px;
   border: 1px solid;
   margin: 24px 0;
 }
@@ -853,15 +853,15 @@ h6 {
 }
 
 .callout-neutral-technical::before {
-  background-image: url('../images/icons/callout-technical.svg');
+  background-image: url('../images/icons/callout-neutral-technical.svg');
 }
 
 .callout-neutral-info::before {
-  background-image: url('../images/icons/callout-info.svg');
+  background-image: url('../images/icons/callout-neutral-info.svg');
 }
 
 .callout-neutral-beta::before {
-  background-image: url('../images/icons/callout-beta.svg');
+  background-image: url('../images/icons/callout-neutral-beta.svg');
 }
 
 .callout-warning::before {
