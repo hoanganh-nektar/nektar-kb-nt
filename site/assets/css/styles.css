@@ -812,56 +812,60 @@ h6 {
 
 /* Callouts */
 .callout {
-  border-left: 4px solid;
-  padding: 14px 18px;
-  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid;
   margin: 24px 0;
+}
+
+.callout::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 2px;
+}
+
+.callout p {
+  font-family: "Lora", serif;
   font-size: 15px;
+  line-height: 1.6;
+  color: #000;
+  margin: 0;
 }
 
-.callout-info {
-  border-color: #3b82f6;
-  background: #eff6ff;
-}
-
-.callout-info .callout-label {
-  font-family: "Sora", sans-serif;
-  font-weight: 700;
-  color: #1d4ed8;
-  margin-bottom: 4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.callout-neutral-technical,
+.callout-neutral-info,
+.callout-neutral-beta {
+  background: #EAF0FB;
+  border-color: #C8D5EE;
 }
 
 .callout-warning {
-  border-color: #f59e0b;
-  background: #fffbeb;
+  background: #FFF8E8;
+  border-color: #F0DFA3;
 }
 
-.callout-warning .callout-label {
-  font-family: "Sora", sans-serif;
-  font-weight: 700;
-  color: #d97706;
-  margin-bottom: 4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.callout-neutral-technical::before {
+  background-image: url('../images/icons/callout-technical.svg');
 }
 
-.callout-danger {
-  border-color: #ef4444;
-  background: #fef2f2;
+.callout-neutral-info::before {
+  background-image: url('../images/icons/callout-info.svg');
 }
 
-.callout-danger .callout-label {
-  font-family: "Sora", sans-serif;
-  font-weight: 700;
-  color: #dc2626;
-  margin-bottom: 4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.callout-neutral-beta::before {
+  background-image: url('../images/icons/callout-beta.svg');
+}
+
+.callout-warning::before {
+  background-image: url('../images/icons/callout-warning.svg');
 }
 
 /* Content placeholder */
