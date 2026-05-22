@@ -44,29 +44,31 @@
             <li>If you do not have the integration user's Salesforce credentials, send the link below the Connect button to the person who does. They should click this link, sign in as the integration user, and allow access. Once they complete this, you can refresh the page to verify that the new integration user has been connected.</li>
           </ul>
 
-          <h2 id="oauth-scopes">OAuth scopes</h2>
-          <div class="callout callout-neutral-technical">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
-          </div>
-          <p>Scopes control what actions Nektar may take on behalf of the integration user. Nektar requires the following scopes to operate correctly.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Scope</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>full</code></td>
-                <td>Read and write Salesforce data and metadata</td>
-              </tr>
-              <tr>
-                <td><code>refresh_token</code></td>
-                <td>Operate as a background service</td>
-              </tr>
-            </tbody>
-          </table>
+          <details id="oauth-scopes" class="details-section">
+            <summary>OAuth scopes</summary>
+            <div class="callout callout-neutral-technical">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Scopes control what actions Nektar may take on behalf of the integration user. Nektar requires the following scopes to operate correctly.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Scope</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>full</code></td>
+                  <td>Read and write Salesforce data and metadata</td>
+                </tr>
+                <tr>
+                  <td><code>refresh_token</code></td>
+                  <td>Operate as a background service</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
 
         </div>
       </div>

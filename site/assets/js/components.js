@@ -310,6 +310,19 @@
     });
   }
 
+  function initDetailsWrap() {
+    document.querySelectorAll('details:not(.callout-error)').forEach(function (d) {
+      var nonSummary = Array.from(d.children).filter(function (c) {
+        return c.tagName.toLowerCase() !== 'summary' && !c.classList.contains('troubleshoot-content');
+      });
+      if (!nonSummary.length) return;
+      var wrapper = document.createElement('div');
+      wrapper.className = 'troubleshoot-content';
+      nonSummary.forEach(function (c) { wrapper.appendChild(c); });
+      d.appendChild(wrapper);
+    });
+  }
+
   function initCalloutAlignment() {
     var callouts = document.querySelectorAll('.callout');
     if (!callouts.length) return;
@@ -348,6 +361,7 @@
     initTocHighlight();
     initMobile();
     initSearch();
+    initDetailsWrap();
     initCalloutAlignment();
   });
 

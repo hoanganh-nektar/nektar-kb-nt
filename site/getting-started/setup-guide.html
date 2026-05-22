@@ -41,12 +41,14 @@
           <div class="callout callout-neutral-info">
             <p>After sign in, you're redirected to the Nektar console. The checklist on the bottom-right corner will guide you through the rest of the onboarding. Clicking a checklist item will take you to the part of the console where it can be completed.</p>
           </div>
-          <details>
+          <details class="troubleshoot">
             <summary>Something went wrong</summary>
-            <details>
-              <summary><strong>I connected the wrong integration user</strong></summary>
-              <p>You may change the integration user by clicking "Disconnect" and connecting again.</p>
-            </details>
+            <div class="troubleshoot-content">
+              <details class="callout-error" open>
+                <summary><strong>I connected the wrong integration user</strong></summary>
+                <p>You may change the integration user by clicking "Disconnect" and connecting again.</p>
+              </details>
+            </div>
           </details>
 
           <h2 id="nektar-fields">Nektar fields creation</h2>
@@ -54,12 +56,14 @@
             <p>This step is not shown if you're signing up for a read-only trial of Nektar.</p>
           </div>
           <p>Nektar will automatically create some <a href="../connectors/salesforce/sync.html#custom-fields">custom fields</a> in your Salesforce organization. No action from you is required.</p>
-          <details>
+          <details class="troubleshoot">
             <summary>Something went wrong</summary>
-            <details>
-              <summary><strong>Error: Missing permission to create and modify custom fields</strong></summary>
-              <p>Verify that the integration user belongs to a Salesforce profile that has the <a href="../connectors/salesforce/integration-user.html">required permissions</a>, and retry.</p>
-            </details>
+            <div class="troubleshoot-content">
+              <details class="callout-error" open>
+                <summary><strong>Error: Missing permission to create and modify custom fields</strong></summary>
+                <p>Verify that the integration user belongs to a Salesforce profile that has the <a href="../connectors/salesforce/integration-user.html">required permissions</a>, and retry.</p>
+              </details>
+            </div>
           </details>
 
           <h2 id="confirm-domain">Confirm your domain(s)</h2>
@@ -74,12 +78,14 @@
             <p>This step is only shown if your organization uses Google Workspace.</p>
           </div>
           <p>Your Google Workspace administrator should have set up domain-wide delegation using the Google Workspace Administration Portal. Enter the administrator's email address and click "Check connection". <a href="../connectors/google-workspace/index.html">Learn more</a></p>
-          <details>
+          <details class="troubleshoot">
             <summary>Something went wrong</summary>
-            <details>
-              <summary><strong>Error: Scope permissions are not correct</strong></summary>
-              <p>Double-check the administrator's email address, and that domain-wide delegation has been set up with the correct service account ID and scopes.</p>
-            </details>
+            <div class="troubleshoot-content">
+              <details class="callout-error" open>
+                <summary><strong>Error: Scope permissions are not correct</strong></summary>
+                <p>Double-check the administrator's email address, and that domain-wide delegation has been set up with the correct service account ID and scopes.</p>
+              </details>
+            </div>
           </details>
 
           <h2 id="connect-ms365">Connect to MS365</h2>
@@ -97,16 +103,18 @@
           <p>Google and MS365 sync must be separately enabled for each user. Click "Manage sync for individual users" to go to the <a href="../administration/index.html#users">user management</a> screen.</p>
           <p>Click "Existing users" on the top left and switch to the "Discovered users" view. Select users using the check-boxes next to their names and click "Add Nektar users" on the top right.</p>
           <p>Switch back to the "Existing users" view, select the users for whom you'd like to enable sync, and click the relevant "Enable" buttons on the top right.</p>
-          <details>
+          <details class="troubleshoot">
             <summary>Something went wrong</summary>
-            <details>
-              <summary><strong>Users are missing from the discovered users view</strong></summary>
-              <p>Return to the Integration settings screen and verify that Google / MS365 user sync has completed.</p>
-            </details>
-            <details>
-              <summary><strong>User appears multiple times in the discovered users view</strong></summary>
-              <p>This happens when a user's email address on Salesforce differs from that on Google / MS365. Click on a user to open the details view and select the Salesforce, Google and/or MS365 user accounts associated with this user, then add them.</p>
-            </details>
+            <div class="troubleshoot-content">
+              <details class="callout-error" open>
+                <summary><strong>Users are missing from the discovered users view</strong></summary>
+                <p>Return to the Integration settings screen and verify that Google / MS365 user sync has completed.</p>
+              </details>
+              <details class="callout-error" open>
+                <summary><strong>User appears multiple times in the discovered users view</strong></summary>
+                <p>This happens when a user's email address on Salesforce differs from that on Google / MS365. Click on a user to open the details view and select the Salesforce, Google and/or MS365 user accounts associated with this user, then add them.</p>
+              </details>
+            </div>
           </details>
 
           <h2 id="google-ms365-ready">Mark Google / MS365 as ready to sync</h2>

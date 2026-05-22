@@ -74,27 +74,29 @@
             </tbody>
           </table>
 
-          <h2 id="reduced-privilege">Reduced privilege alternatives</h2>
-          <p>These allow operating Nektar with a less privileged integration user.</p>
-          <div class="callout callout-warning">
-            <p>These alternatives involve setting up and maintaining complex Salesforce configurations manually, and require considerable Salesforce administration expertise.</p>
-          </div>
+          <details id="reduced-privilege" class="details-section">
+            <summary>Reduced privilege alternatives</summary>
+            <p>These allow operating Nektar with a less privileged integration user.</p>
+            <div class="callout callout-warning">
+              <p>These alternatives involve setting up and maintaining complex Salesforce configurations manually, and require considerable Salesforce administration expertise.</p>
+            </div>
 
-          <h3>Alternatives to "Modify all data"</h3>
-          <p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to read, update, create and delete records under the specific objects that Nektar requires. Optionally, you may also:</p>
-          <ul>
-            <li>Restrict the delete permission to ensure that Nektar only deletes records it created.<br><strong>Important:</strong> Use the <code>CreatedById</code> field and not the <code>OwnerId</code> to implement this restriction.</li>
-            <li>Restrict the update permission to the specific fields updated by Nektar.<br><strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
-            <li>Restrict access to the sub-set of records (e.g. Accounts, Contacts, Opportunities, Leads) relevant to the teams adopting Nektar.<br><strong>Important:</strong> Relevant records not being visible to Nektar may result in duplicate contacts, activities being associated with the wrong opportunities, or other inaccuracies.</li>
-          </ul>
+            <h3>Alternatives to "Modify all data"</h3>
+            <p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to read, update, create and delete records under the specific objects that Nektar requires. Optionally, you may also:</p>
+            <ul>
+              <li>Restrict the delete permission to ensure that Nektar only deletes records it created.<br><strong>Important:</strong> Use the <code>CreatedById</code> field and not the <code>OwnerId</code> to implement this restriction.</li>
+              <li>Restrict the update permission to the specific fields updated by Nektar.<br><strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
+              <li>Restrict access to the sub-set of records (e.g. Accounts, Contacts, Opportunities, Leads) relevant to the teams adopting Nektar.<br><strong>Important:</strong> Relevant records not being visible to Nektar may result in duplicate contacts, activities being associated with the wrong opportunities, or other inaccuracies.</li>
+            </ul>
 
-          <h3>Alternatives to metadata and profile permissions</h3>
-          <p>Instead of providing the "Modify Metadata through API Functions", "Customize Application", and "Manage Profiles and Permission Sets" permissions, you may set up the relevant Nektar custom fields manually. Ensure that:</p>
-          <ul>
-            <li>The field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
-            <li>Read and write access to these custom fields are provided to the Nektar integration user</li>
-            <li>Read access to these custom fields are provided to all normal user profiles as required</li>
-          </ul>
+            <h3>Alternatives to metadata and profile permissions</h3>
+            <p>Instead of providing the "Modify Metadata through API Functions", "Customize Application", and "Manage Profiles and Permission Sets" permissions, you may set up the relevant Nektar custom fields manually. Ensure that:</p>
+            <ul>
+              <li>The field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
+              <li>Read and write access to these custom fields are provided to the Nektar integration user</li>
+              <li>Read access to these custom fields are provided to all normal user profiles as required</li>
+            </ul>
+          </details>
 
         </div>
       </div>
