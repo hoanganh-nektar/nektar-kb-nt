@@ -1,85 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security – Nektar</title>
-  <link rel="stylesheet" href="../assets/css/styles.css" />
-</head>
-<body>
-<div id="nav-placeholder"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security – Nektar</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <div id="nav-placeholder"></div>
 
-<div id="main-wrapper">
-  <div class="page-content">
-
-    <div class="page-hero">
-      <div class="hero-text">
-        <div class="breadcrumb">
-          <a href="../index.html">Home</a>
-          <span class="sep">›</span>
-          <a href="index.html">Understand</a>
-          <span class="sep">›</span>
-          <span>Security</span>
+    <div id="main-wrapper">
+      <div class="page-content">
+        <div class="page-hero">
+          <div class="hero-text">
+            <div class="breadcrumb">
+              <a href="../index.html">Home</a>
+              <span class="sep">›</span>
+              <a href="index.html">Understand</a>
+              <span class="sep">›</span>
+              <span>Security</span>
+            </div>
+            <h1>Security</h1>
+            <p class="hero-desc">
+              Infrastructure, data handling, encryption, and compliance — how
+              Nektar keeps your data secure and meets international standards.
+            </p>
+          </div>
+          <div class="hero-illustration" style="background: #003d5c">
+            <img
+              src="../assets/images/articles/security.svg"
+              alt="security"
+              style="object-fit: contain; width: 100%; height: 100%"
+            />
+          </div>
         </div>
-        <h1>Security</h1>
-        <p class="hero-desc">Infrastructure, data handling, encryption, and compliance — how Nektar keeps your data secure and meets international standards.</p>
+
+        <div class="article-layout">
+          <div class="article-body">
+            <div class="article-content">
+              <p>
+                Nektar is a revenue data integration platform. It extracts
+                customer contact and interaction data from the communication
+                tools used by your revenue teams and unifies and links this data
+                to your CRM records.
+              </p>
+
+              <h2 id="infrastructure">Infrastructure</h2>
+              <p>
+                Nektar uses AWS infrastructure to host all applications and data
+                storage. Primary servers are in the USA. Amazon provides an
+                extensive list of compliance and regulatory assurances,
+                including SOC 1–3 and ISO 27001. See Amazon's compliance and
+                security documents for more detailed information.
+              </p>
+
+              <h2 id="data-retention">Data retention and deletion</h2>
+              <p>The default data retention period is 90 days.</p>
+              <ul>
+                <li>
+                  <strong>During normal operations.</strong> If a user deletes
+                  data from an integrated service (such as Salesforce), the
+                  periodic sync job will soft-delete the Nektar copy on its next
+                  run. This is the recommended workflow for GDPR deletion
+                  requests.
+                </li>
+                <li>
+                  <strong>On contract termination.</strong> An automated
+                  offboarding job disables your organization and users and
+                  soft-deletes all your data.
+                </li>
+                <li>
+                  <strong>Soft-deletion</strong> marks data as deleted but does
+                  not remove it from the database. It also causes the Nektar
+                  data fusion engine to remove any information derived or
+                  inferred from the deleted data. Soft-deleted data is removed
+                  from in-memory caches and is not accessed by the Nektar
+                  application.
+                </li>
+                <li>
+                  <strong>Hard-deletion</strong> removes data completely from
+                  databases, and happens automatically 60 days after
+                  soft-deletion. In urgent situations, hard-deletion may be
+                  performed manually sooner. Hard-deleted data will only be
+                  present in database snapshots made prior to the deletion,
+                  which are only accessed in disaster-recovery scenarios.
+                </li>
+                <li>
+                  <strong>Snapshot rotation.</strong> Database backups are
+                  automatically deleted 30 days after they are created.
+                </li>
+              </ul>
+
+              <h2 id="ai-training">Data usage for AI training</h2>
+              <p>
+                Nektar will not use any customer's data to train its AI and ML
+                models, unless there is a separate written agreement with the
+                customer to use their data for this purpose.
+              </p>
+
+              <h2 id="encryption">Encryption</h2>
+              <p>All customer data is encrypted at rest and in transit.</p>
+              <ul>
+                <li>
+                  Nektar encrypts data in transit using a variety of tools
+                  including:
+                  <ul>
+                    <li>HTTPS (minimum standard is TLS v1.2)</li>
+                    <li>
+                      Use security certificates provided by a known, trusted
+                      provider for all of Nektar's public-facing properties on
+                      the internet
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Nektar encrypts data at rest:
+                  <ul>
+                    <li>
+                      All data is stored in AWS RDS (Relational Database
+                      Service) with Encryption at Rest using AWS KMS (Key
+                      Management Service). The database has RBAC (via IAM) in
+                      place, and audit logs of queries run by any developer who
+                      has been given access to it.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h2 id="compliance">Compliance</h2>
+              <p>
+                Nektar follows strict international standards and is certified
+                in compliance with SOC 2 Type II, ISO 27001, and GDPR.
+              </p>
+              <p>
+                Our
+                <a href="https://nektar.ai/term-and-conditions/"
+                  >Terms and Conditions</a
+                >
+                , <a href="https://nektar.ai/legal/">Policy</a> , and
+                <a href="https://nektar.ai/data-processing-agreement/"
+                  >Data Processing Agreement</a
+                >
+                (DPA) reflect our security readiness.
+              </p>
+
+              <h2 id="data-flow-diagram">Data flow diagram</h2>
+              <figure class="article-image">
+                <img src="../assets/images/mockups/security.png" alt="Nektar data flow diagram" />
+              </figure>
+            </div>
+          </div>
+
+          <aside class="article-toc">
+            <p class="toc-title">Content</p>
+            <div class="toc-list">
+              <a href="#infrastructure">Infrastructure</a>
+              <a href="#data-retention">Data retention and deletion</a>
+              <a href="#ai-training">Data usage for AI training</a>
+              <a href="#encryption">Encryption</a>
+              <a href="#compliance">Compliance</a>
+              <a href="#data-flow-diagram">Data flow diagram</a>
+            </div>
+          </aside>
+        </div>
       </div>
-      <div class="hero-illustration" style="background: #003d5c;">
-        <img src="../assets/images/articles/security.svg" alt="security" style="object-fit: contain; width: 100%; height: 100%;" />
-      </div>
+      <div id="footer-placeholder"></div>
     </div>
 
-    <div class="article-layout">
-      <div class="article-body">
-        <div class="article-content">
-
-          <p>Nektar is a revenue data integration platform. It extracts customer contact and interaction data from the communication tools used by your revenue teams and unifies and links this data to your CRM records.</p>
-
-          <h2 id="infrastructure">Infrastructure</h2>
-          <p>Nektar uses AWS infrastructure to host all applications and data storage. Primary servers are in the USA. Amazon provides an extensive list of compliance and regulatory assurances, including SOC 1–3 and ISO 27001. See Amazon's compliance and security documents for more detailed information.</p>
-
-          <h2 id="data-retention">Data retention and deletion</h2>
-          <p>The default data retention period is 90 days.</p>
-          <ul>
-            <li><strong>During normal operations.</strong> If a user deletes data from an integrated service (such as Salesforce), the periodic sync job will soft-delete the Nektar copy on its next run. This is the recommended workflow for GDPR deletion requests.</li>
-            <li><strong>On contract termination.</strong> An automated offboarding job disables your organization and users and soft-deletes all your data.</li>
-            <li><strong>Soft-deletion</strong> marks data as deleted but does not remove it from the database. It also causes the Nektar data fusion engine to remove any information derived or inferred from the deleted data. Soft-deleted data is removed from in-memory caches and is not accessed by the Nektar application.</li>
-            <li><strong>Hard-deletion</strong> removes data completely from databases, and happens automatically 60 days after soft-deletion. In urgent situations, hard-deletion may be performed manually sooner. Hard-deleted data will only be present in database snapshots made prior to the deletion, which are only accessed in disaster-recovery scenarios.</li>
-            <li><strong>Snapshot rotation.</strong> Database backups are automatically deleted 30 days after they are created.</li>
-          </ul>
-
-          <h2 id="ai-training">Data usage for AI training</h2>
-          <p>Nektar will not use any customer's data to train its AI and ML models, unless there is a separate written agreement with the customer to use their data for this purpose.</p>
-
-          <h2 id="encryption">Encryption</h2>
-          <p>All customer data is encrypted at rest and in transit.</p>
-          <ul>
-            <li>Data in transit is encrypted using HTTPS with a minimum standard of TLS v1.2, with security certificates provided by a known, trusted provider.</li>
-            <li>Data at rest is stored in AWS RDS (Relational Database Service) with Encryption at Rest using AWS KMS (Key Management Service). The database has RBAC via IAM and audit logs of all developer queries.</li>
-          </ul>
-
-          <h2 id="compliance">Compliance</h2>
-          <p>Nektar follows strict international standards and is certified in compliance with SOC 2 Type II, ISO 27001, and GDPR. Our Terms and Conditions, Privacy Policy, and Data Processing Agreement (DPA) reflect our security readiness.</p>
-
-        </div>
-      </div>
-
-      <aside class="article-toc">
-        <p class="toc-title">Content</p>
-        <div class="toc-list">
-          <a href="#infrastructure">Infrastructure</a>
-          <a href="#data-retention">Data retention and deletion</a>
-          <a href="#ai-training">Data usage for AI training</a>
-          <a href="#encryption">Encryption</a>
-          <a href="#compliance">Compliance</a>
-        </div>
-      </aside>
-    </div>
-
-  </div>
-  <div id="footer-placeholder"></div>
-</div>
-
-<script src="../assets/js/components.js"></script>
-</body>
+    <script src="../assets/js/components.js"></script>
+  </body>
 </html>

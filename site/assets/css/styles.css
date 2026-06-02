@@ -770,13 +770,55 @@ h6 {
   opacity: 1;
 }
 
+/* ─── Article Image with Caption ───────────────────────────────── */
+figure.article-image {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+figure.article-image:has(figcaption) {
+  padding-bottom: 16px;
+}
+
+figure.article-image img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (min-width: 1400px) {
+  figure.article-image img {
+    max-height: 60vh;
+  }
+}
+
+figure.article-image:has(figcaption) img {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+figure.article-image figcaption {
+  font-family: "Lora", serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: #000;
+  text-align: left;
+  padding: 0 16px;
+}
+
 /* ─── Article Content Typography ───────────────────────────────── */
 .article-content h2 {
   font-family: "Sora", sans-serif;
   font-size: clamp(20px, calc(12px + 1.1vw), 28px);
   font-weight: 700;
-  margin-top: 40px;
-  margin-bottom: 12px;
+  margin-top: 48px;
+  margin-bottom: 16px;
   color: #000;
   letter-spacing: -0.3px;
 }
@@ -785,8 +827,17 @@ h6 {
   font-family: "Sora", sans-serif;
   font-size: clamp(15px, calc(9px + 0.77vw), 20px);
   font-weight: 700;
-  margin-top: 28px;
-  margin-bottom: 10px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.article-content h4 {
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 16px;
   color: #000;
 }
 
@@ -797,19 +848,79 @@ h6 {
   line-height: 1.5;
 }
 
-.article-content ul,
-.article-content ol {
+.article-content p a {
+  text-decoration: underline;
+}
+
+.article-content ul + p,
+.article-content ol + p {
+  margin-top: 16px;
+}
+
+.article-content ul {
   margin: 0 0 0 20px;
+  color: #000;
+  font-family: "Lora", serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.article-content li {
+  margin-bottom: 0;
+  list-style: disc;
+}
+
+.article-content ul ul {
+  margin: 16px 0 0 20px;
+}
+
+.article-content ul ul li {
+  list-style: circle;
+}
+
+.article-content li p {
+  margin-bottom: 0;
+}
+
+.article-content li p + p {
+  margin-top: 16px;
+}
+
+.article-content ol {
+  list-style: none;
+  counter-reset: ol-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
   color: #000;
   font-family: "Lora", serif;
 }
 
-.article-content li {
-  margin-bottom: 6px;
-  list-style: disc;
-}
 .article-content ol li {
-  list-style: decimal;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  counter-increment: ol-counter;
+  list-style: none;
+  margin-bottom: 0;
+  position: relative;
+}
+
+
+.article-content ol li::before {
+  content: counter(ol-counter);
+  flex-shrink: 0;
+  width: 22px;
+  background: #eee;
+  border-radius: 16px;
+  text-align: center;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* Callouts */
@@ -948,11 +1059,15 @@ details.details-section:not(.callout-error)[open] > summary {
   padding-left: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0;
 }
 
 .troubleshoot-content > * {
   margin: 0;
+}
+
+.troubleshoot-content > .callout-error:not(:last-child) {
+  margin-bottom: 24px;
 }
 
 /* Error callout (used inside .troubleshoot) */

@@ -34,7 +34,7 @@
         <div class="article-content">
 
           <h2 id="before-you-start">Before you start</h2>
-          <p>Create an <a href="../connectors/salesforce/integration-user.html">integration user</a> — a dedicated Salesforce user account through which Nektar will access your Salesforce data.</p>
+          <p>Create an <a href="../connectors/salesforce/integration-user.html">integration user</a>, a Salesforce user account through which Nektar will access your Salesforce data.</p>
 
           <h2 id="connect-salesforce">Connect to Salesforce</h2>
           <p>We will send you an invitation link to start the process. Click the link, sign into Salesforce as the integration user you created previously, and allow access.</p>
@@ -52,7 +52,7 @@
           </details>
 
           <h2 id="nektar-fields">Nektar fields creation</h2>
-          <div class="callout callout-neutral-info">
+          <div class="callout callout-neutral-info callout-single-line">
             <p>This step is not shown if you're signing up for a read-only trial of Nektar.</p>
           </div>
           <p>Nektar will automatically create some <a href="../connectors/salesforce/sync.html#custom-fields">custom fields</a> in your Salesforce organization. No action from you is required.</p>
@@ -74,10 +74,11 @@
           <p>Note that your first Salesforce sync may take up to a few days, depending on the amount of data you have.</p>
 
           <h2 id="connect-google">Connect to Google</h2>
-          <div class="callout callout-neutral-info">
+          <div class="callout callout-neutral-info callout-single-line">
             <p>This step is only shown if your organization uses Google Workspace.</p>
           </div>
-          <p>Your Google Workspace administrator should have set up domain-wide delegation using the Google Workspace Administration Portal. Enter the administrator's email address and click "Check connection". <a href="../connectors/google-workspace/index.html">Learn more</a></p>
+          <p>Your Google Workspace administrator should have set up domain-wide delegation using the Google Workspace Administration Portal.</p>
+          <p>Enter the administrator's email address and click "Check connection". <a href="../connectors/google-workspace/index.html">Learn more</a></p>
           <details class="troubleshoot">
             <summary>Something went wrong</summary>
             <div class="troubleshoot-content">
@@ -89,7 +90,7 @@
           </details>
 
           <h2 id="connect-ms365">Connect to MS365</h2>
-          <div class="callout callout-neutral-info">
+          <div class="callout callout-neutral-info callout-single-line">
             <p>This step is only shown if your organization uses Microsoft 365.</p>
           </div>
           <p>Your Microsoft 365 administrator should install the Nektar app for your organization.</p>
@@ -99,7 +100,7 @@
           <p>Enter rules for <a href="../administration/index.html#data-controls">screening out emails and events</a>. An activity is screened out if <em>any</em> of its participants matches a blocking rule, or if <em>all</em> its participants match ignore rules.</p>
           <p>To screen out internal emails and events, your organization's domains are automatically added to the ignore list.</p>
 
-          <h2 id="select-users">Select users to enable Google / MS365 sync</h2>
+          <h2 id="select-users">Select users to enable Google/MS365 sync</h2>
           <p>Google and MS365 sync must be separately enabled for each user. Click "Manage sync for individual users" to go to the <a href="../administration/index.html#users">user management</a> screen.</p>
           <p>Click "Existing users" on the top left and switch to the "Discovered users" view. Select users using the check-boxes next to their names and click "Add Nektar users" on the top right.</p>
           <p>Switch back to the "Existing users" view, select the users for whom you'd like to enable sync, and click the relevant "Enable" buttons on the top right.</p>
@@ -112,12 +113,12 @@
               </details>
               <details class="callout-error" open>
                 <summary><strong>User appears multiple times in the discovered users view</strong></summary>
-                <p>This happens when a user's email address on Salesforce differs from that on Google / MS365. Click on a user to open the details view and select the Salesforce, Google and/or MS365 user accounts associated with this user, then add them.</p>
+                <p>This happens when a user's email addresses on Salesforce differs from that on Google / MS365. Click on a user to open the details view and select the Salesforce, Google and/or MS365 user accounts associated with this user, then add them.</p>
               </details>
             </div>
           </details>
 
-          <h2 id="google-ms365-ready">Mark Google / MS365 as ready to sync</h2>
+          <h2 id="google-ms365-ready">Mark Google/MS365 as ready to sync</h2>
           <p>Click the "Ready to sync" button. Activity sync for your first batch of users will begin after we verify your settings. Afterwards, you may pause and resume sync yourself.</p>
 
         </div>
@@ -130,12 +131,12 @@
           <a href="#connect-salesforce">Connect to Salesforce</a>
           <a href="#nektar-fields">Nektar fields creation</a>
           <a href="#confirm-domain">Confirm your domain(s)</a>
-          <a href="#salesforce-ready">Mark Salesforce as ready</a>
+          <a href="#salesforce-ready">Mark Salesforce as ready to sync</a>
           <a href="#connect-google">Connect to Google</a>
           <a href="#connect-ms365">Connect to MS365</a>
-          <a href="#screening-rules">Confirm screening rules</a>
-          <a href="#select-users">Select users</a>
-          <a href="#google-ms365-ready">Mark Google / MS365 ready</a>
+          <a href="#screening-rules">Confirm your screening rules</a>
+          <a href="#select-users">Select users to enable Google/MS365 sync</a>
+          <a href="#google-ms365-ready">Mark Google/MS365 as ready to sync</a>
         </div>
       </aside>
     </div>

@@ -102,7 +102,12 @@
 
           <details>
             <summary><strong>Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</strong></summary>
-            <p>Nektar can only access the inboxes and calendars of Nektar users. However, it may assign emails or events to other Salesforce users if the algorithm determines they are a more appropriate owner. See the <a href="../connectors/salesforce/sync.html#owner">Owner</a> documentation for more information.</p>
+            <p>Nektar can only access the inboxes and calendars of Nektar users. However, it may assign emails or events to other Salesforce users if the algorithm determines they are a more appropriate owner. See the <a href="../connectors/salesforce/sync.html">Sync</a> page for more information.</p>
+          </details>
+
+          <details>
+            <summary><strong>How does Nektar decide who should be the activity owner?</strong></summary>
+            <p>See the <a href="../connectors/salesforce/sync.html">Sync</a> page for more information.</p>
           </details>
 
           <h2 id="contacts">Contacts</h2>
@@ -114,7 +119,13 @@
 
           <details>
             <summary><strong>Does Nektar create duplicate contacts on Salesforce?</strong></summary>
-            <p>Nektar will not create a contact when it knows of an existing contact or lead with the same email address. However, it may create a duplicate if it is unaware of the existing record — for example if the existing contact was created within the last 20 minutes, or if the integration user's permissions prevent Nektar from seeing it. As soon as Nektar becomes aware of a duplicate, it will resolve it by deleting the contact it created and transferring all activities and fields to the surviving record.</p>
+            <p>Nektar will not create a contact when it knows of an existing contact or lead with the same email address. However, it may create a duplicate if it is unaware of the existing record. This might happen when:</p>
+            <ol>
+              <li>The existing contact or lead was created within the last 20 minutes.</li>
+              <li>The integration user's permissions prevent Nektar from seeing the existing contact or lead.</li>
+              <li>A duplicate lead or contact was created manually after Nektar created a contact.</li>
+            </ol>
+            <p>In all these situations, as soon as Nektar becomes aware of the existence of a duplicate, it will resolve it by deleting the contact it created, and transferring all the activities and fields to the surviving contact or lead. See <a href="self-healing.html">Self-healing</a> for more information.</p>
           </details>
 
           <details>
@@ -168,7 +179,7 @@
 
           <details>
             <summary><strong>How does Nektar secure my data?</strong></summary>
-            <p>Nektar is compliant with SOC 2 Type II, ISO 27001, and GDPR. See <a href="security.html">Security</a> for details.</p>
+            <p>Nektar offers the highest level of security to all customers. Nektar is compliant with SOC2 Type II, ISO 27001, and with GDPR (General Data Protection Regulation). For more details, see <a href="security.html">Security</a>.</p>
           </details>
 
           <details>
@@ -178,7 +189,12 @@
 
           <details>
             <summary><strong>Why does Nektar need delete permissions on Salesforce?</strong></summary>
-            <p>Nektar's <a href="self-healing.html">self-healing</a> system re-evaluates past data capture decisions in light of new information, and where necessary reverts changes it made. For example, Nektar might add a contact to an opportunity, but later decide a different opportunity was a better fit — in which case it deletes the first opportunity-contact role and creates a new one. At no point does Nektar delete records it did not originally create, or records that were updated manually after creation.</p>
+            <p>Nektar's <a href="self-healing.html">self-healing</a> system re-evaluates past data capture decisions in light of new information, and where necessary reverts changes made by Nektar. Here are a couple of examples:</p>
+            <ol>
+              <li>Nektar might add a contact to a certain opportunity, but in light of later activities it may turn out that a different opportunity was a better fit for this person. In this case, Nektar will delete the first opportunity-contact role record and create a new one.</li>
+              <li>Nektar might create a contact, but a user or tool might manually create a lead with the same email address. In this case, Nektar will delete the contact it created and re-associate all its data and activities to the manually created lead.</li>
+            </ol>
+            <p>At no point does Nektar delete any records that it did not originally create. Nektar will also not delete any records that were updated manually (or by other tools) after they were created.</p>
           </details>
 
           <details>
@@ -197,6 +213,11 @@
           </details>
 
           <details>
+            <summary><strong>What is Nektar's read (Google/MS365) and write (Salesforce) frequency?</strong></summary>
+            <p>See <a href="sync-latency.html">Sync latency</a>.</p>
+          </details>
+
+          <details>
             <summary><strong>How many Salesforce APIs does Nektar consume every day?</strong></summary>
             <p>Nektar is very efficient in its Salesforce API consumption, and on an ongoing basis it consumes under 2,000 API calls (total) per day. For comparison, Salesforce's API quota is 100,000 + (number of licenses × calls per license type) + purchased API Call Add-Ons.</p>
           </details>
@@ -208,7 +229,7 @@
 
           <details>
             <summary><strong>How does Nektar's AI agent, Daisy, use and store customer data?</strong></summary>
-            <p>Your data is processed through OpenAI, Google Gemini, and AWS Bedrock APIs — all SOC 2 compliant. Enterprise agreements explicitly prohibit data storage or use for model training.</p>
+            <p>Nektar's AI agent follows enterprise-grade security standards to ensure your data remains protected. Your data is processed through OpenAI, Google Gemini and AWS Bedrock APIs. All of these are SOC 2 compliant. We have enterprise agreements in place that explicitly prohibit data storage or use for model training. Nektar prioritizes data security and compliance, ensuring that your information is handled with the highest level of protection.</p>
           </details>
 
         </div>
