@@ -44,7 +44,7 @@
             <summary><strong>An activity is missing in Salesforce. Why?</strong></summary>
             <ol>
               <li>Activities matching read screening rules are not stored or processed by Nektar, and any that match write screening rules are not written to Salesforce. Verify that no <a href="../administration/data-controls.html">screening rules</a> match the missing activity.</li>
-              <li>Nektar only captures activities where at least one participant is an existing Salesforce lead or contact, or whose email address has the same domain as an existing contact or account.</li>
+              <li>Nektar only captures activities where at least one participant is an existing Salesforce lead or contact, or whose email address has the same domain as an existing contact or account. Verify that the missing activity links to an existing Salesforce record.</li>
               <li>Calendar events more than 3 months into the future are not processed by Nektar until they come within the 3-month window.</li>
               <li>The activity might be in the processing pipeline. See <a href="sync-latency.html">Sync latency</a> for expected time durations. To look up what happened to a specific activity, use the <a href="../administration/tracker.html">Tracker</a>.</li>
             </ol>
@@ -52,22 +52,23 @@
 
           <details>
             <summary><strong>Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</strong></summary>
-            <p>Yes, Nektar treats Google/MS365 calendars as the main source of truth. Any changes to the meeting title, date, time, participants, or description will sync back to Salesforce. However, if an internal user has made updates to the event in Salesforce, Nektar will not override those changes. See <a href="self-healing.html">Self healing</a> for more details.</p>
+            <p>Yes, Nektar treats Google/MS365 calendars as the main source of truth. Any changes to the meeting title, date, time, participants, or description will sync back to Salesforce. However, if an internal user has made updates to the event in Salesforce, Nektar will not override those changes, respecting the user's decisions. See <a href="self-healing.html">Self healing</a> for more details.</p>
           </details>
 
           <details>
             <summary><strong>How does Nektar handle activities that occurred before the account was created in Salesforce?</strong></summary>
-            <p>When the account is created and gets a domain name (from the "website" field or a contact), all people with matching email addresses and their conversations will be created on Salesforce. This is part of Nektar's <a href="self-healing.html">self-healing</a> feature.</p>
+            <p>When the account is created and gets a domain name (from the "website" field or a contact), all the people with matching email addresses and their conversations will be created on Salesforce. This is part of Nektar's <a href="self-healing.html">self-healing</a> feature.</p>
           </details>
 
           <details>
             <summary><strong>The activity creation date has changed since it was originally created. Why?</strong></summary>
-            <p>Salesforce does not reliably handle certain updates to activities, such as re-associating from a contact to a lead. In rare situations, Nektar has to delete and recreate the activity because of new information it becomes aware of. See <a href="self-healing.html">Self healing</a> for more details.</p>
+            <p>Salesforce does not reliably handle certain updates to activities, such as re-associating it from a contact to a lead. In rare situations, Nektar has to delete and recreate the activity because of new information it becomes aware of. See <a href="self-healing.html">Self healing</a> for more details.</p>
           </details>
 
           <details>
             <summary><strong>Why is Nektar creating old activities now?</strong></summary>
-            <p>Nektar can be configured with a start date, and only activities after that date will be captured. However, Nektar captures activities when it becomes convinced of their relevance to your sales process, which may not be when they actually happened. For example, an old activity may be skipped initially and captured later when a Salesforce account is created with a matching domain name.</p>
+            <p>Nektar can be configured with a start date, and only activities that occurred after that date will be captured.</p>
+            <p>However, note that Nektar captures activities when it becomes convinced of its relevance to your sales process, which may not be when the activities actually happen. For example, an old activity may be skipped initially, and captured later when a Salesforce account is created with the same domain name as one of its participants' email addresses. For more details, see <a href="self-healing.html">Self healing</a>.</p>
           </details>
 
           <details>
@@ -87,17 +88,18 @@
 
           <details>
             <summary><strong>How long does it take for Nektar to write activities in Salesforce?</strong></summary>
-            <p>Nektar checks Google or MS365 every 10 minutes and connects with Salesforce APIs every 20 minutes, writing up to 200 records per API call. See <a href="sync-latency.html">Sync latency</a> for more information.</p>
+            <p>Nektar checks Google or MS365 every 10 minutes and connects with Salesforce APIs every 20 minutes, writing up to 200 records per API call. However, there may be occasional delays in fetching and writing activities. See <a href="sync-latency.html">Sync latency</a> for more information.</p>
           </details>
 
           <details>
             <summary><strong>Why do I see duplicate records when I pull activity reports on Salesforce?</strong></summary>
-            <p>This happens when Shared Activities is turned on in your Salesforce. When internal Salesforce users are added as participants, Salesforce creates a copy of the event for each internal user. To avoid inflated counts, all activity reports should set <strong>"Event invitations"</strong> to <strong>false</strong>, ensuring activities are not counted multiple times.</p>
+            <p>This is because shared activities has been turned on in your Salesforce. In shared activities, when internal Salesforce users are added as participants, Salesforce creates a copy of the event for each internal user. On the account or opportunity, you will see only the parent event. However, when pulling reports, all copies of the event will be visible. To avoid inflated counts, all past and future reports using activities should set <strong><em>"Event invitations"</em></strong> to <strong>false</strong>, ensuring activities are not counted multiple times.</p>
           </details>
 
           <details>
             <summary><strong>Why is an activity linked to an account even when there are open opportunities under that account?</strong></summary>
-            <p>Nektar's affinity models find the best opportunity or account for each activity. When there are multiple opportunities and there is ambiguity about which one the activity relates to, Nektar adds it to the account instead. If this is happening frequently, review your opportunity and opportunity-contact role creation policies to ensure each conversation has an unambiguous opportunity.</p>
+            <p>Nektar's affinity models find the best opportunity or account for each activity. When there are multiple opportunities and there is ambiguity about which one the activity relates to, Nektar adds it to the account instead.</p>
+            <p>If this is happening frequently, you may wish to review your policies around opportunity and opportunity-contact role creation policies to ensure that there is an unambiguous opportunity where each conversation belongs.</p>
           </details>
 
           <details>
@@ -114,7 +116,8 @@
 
           <details>
             <summary><strong>With which account and opportunities would a contact be linked?</strong></summary>
-            <p>Nektar creates contacts under the account with a domain name that matches the contact's email address. An account's domain name may come from its "Website" field, or be inferred from the email addresses of other contacts already in it. Nektar considers a person related to an opportunity if they have participated in an activity related to that opportunity. By default, all buyers related to an opportunity are linked to it using OCRs.</p>
+            <p>Nektar creates contacts under the account with a domain name that matches the contact's email address. An account's domain name may come from its "Website" field, or be inferred from the email addresses of other contacts already in it.</p>
+            <p>Nektar considers a person related to an opportunity if he/she has participated in an activity related to that opportunity. By default, all buyers related to an opportunity are linked to that opportunity using OCRs, but this can be overridden using <a href="../administration/data-controls.html">write rules</a>.</p>
           </details>
 
           <details>
@@ -130,7 +133,7 @@
 
           <details>
             <summary><strong>How does Nektar handle contacts whose conversations occurred before the account was created on Salesforce?</strong></summary>
-            <p>With Nektar's self-healing feature, once you have created the account and added a website, all people matching that domain will be created as contacts and conversations with them linked to the account.</p>
+            <p>With Nektar's time travel feature, once you have created account and added website, all the people matching to that domain will be created as contacts and conversations done with them will be linked to the account.</p>
           </details>
 
           <details>
@@ -219,17 +222,23 @@
 
           <details>
             <summary><strong>How many Salesforce APIs does Nektar consume every day?</strong></summary>
-            <p>Nektar is very efficient in its Salesforce API consumption, and on an ongoing basis it consumes under 2,000 API calls (total) per day. For comparison, Salesforce's API quota is 100,000 + (number of licenses × calls per license type) + purchased API Call Add-Ons.</p>
+            <p>Nektar is very efficient in its Salesforce API consumption, and on an ongoing basis it consumes under 2,000 API calls (total) per day. For comparison, the Salesforce's API quota is 100,000 + (number of licenses × calls per license type) + purchased API Call Add-Ons. For details, see <a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm">Salesforce API limits</a>.</p>
           </details>
 
           <details>
             <summary><strong>How many objects does Nektar write per API call?</strong></summary>
-            <p>Nektar writes data to Salesforce in batches of 200 objects at a time and continues until all objects have been processed. On average, writing 200 objects takes about 10–30 seconds.</p>
+            <p>Nektar writes data to Salesforce in batches of 200 objects at a time and continues writing until all the objects have been processed. On average, writing 200 objects takes about 10–30 seconds.</p>
+            <p>Salesforce provides generous API limits, which vary depending on the customer's Salesforce edition. You can review Salesforce API rate limits <a href="https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/implementation_considerations.htm">here</a>.</p>
           </details>
 
           <details>
             <summary><strong>How does Nektar's AI agent, Daisy, use and store customer data?</strong></summary>
-            <p>Nektar's AI agent follows enterprise-grade security standards to ensure your data remains protected. Your data is processed through OpenAI, Google Gemini and AWS Bedrock APIs. All of these are SOC 2 compliant. We have enterprise agreements in place that explicitly prohibit data storage or use for model training. Nektar prioritizes data security and compliance, ensuring that your information is handled with the highest level of protection.</p>
+            <p>Nektar's AI agent follows enterprise-grade security standards to ensure your data remains protected.</p>
+            <ul>
+              <li>Your data is processed through OpenAI, Google Gemini and AWS Bedrock APIs. All of these are SOC2 compliant.</li>
+              <li>We have enterprise agreements in place that explicitly prohibit data storage or use for model training. For more details, you can review their terms of service here: <a href="https://platform.openai.com/docs/guides/your-data">OpenAI</a>, <a href="https://ai.google.dev/gemini-api/terms">Google</a>, <a href="https://aws.amazon.com/service-terms/">AWS</a>.</li>
+            </ul>
+            <p>Nektar prioritizes data security and compliance, ensuring that your information is handled with the highest level of protection.</p>
           </details>
 
         </div>

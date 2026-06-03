@@ -35,7 +35,6 @@
       <div class="article-body">
         <div class="article-content">
 
-          <h2 id="overview">Overview</h2>
           <p>Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
           <p>We recommend creating a dedicated Salesforce user account (a <em>service account</em>) to serve as the Nektar integration user, as this gives fine control over what data Nektar can access. If this is not possible, you may use a shared user account for all tools to access Salesforce, or use your own Salesforce user account as the Nektar integration user.</p>
           <p>Your Salesforce administrator should provision an integration user on Salesforce before you can set Nektar up. It is also a good idea for the designated Nektar administrator in your organization to have the credentials for the integration user.</p>
@@ -43,36 +42,32 @@
           <h2 id="permissions">Permissions</h2>
           <p>The specific records and fields Nektar accesses may be controlled by configuring a Salesforce profile with access to only the appropriate records and assigning the Nektar integration user to that profile.</p>
           <p>The permissions required for this profile are:</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Permission</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Modify All Data</td>
-                <td>Create and modify all Salesforce records it can access (e.g. add and update contacts and activities)</td>
-              </tr>
-              <tr>
-                <td>Modify Metadata Through Metadata API Functions</td>
-                <td>Create and modify custom fields for storing useful Nektar data</td>
-              </tr>
-              <tr>
-                <td>Customize Application</td>
-                <td>Control field-level security for Nektar custom fields</td>
-              </tr>
-              <tr>
-                <td>Manage Profiles and Permission Sets</td>
-                <td>Grant other users visibility to the data in Nektar custom fields</td>
-              </tr>
-              <tr>
-                <td>API access</td>
-                <td>Allow programmatic access</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="data-table">
+            <div class="data-table-row data-table-header">
+              <div class="data-table-cell" style="flex: 2">Permission</div>
+              <div class="data-table-cell" style="flex: 3">Purpose</div>
+            </div>
+            <div class="data-table-row">
+              <div class="data-table-cell" style="flex: 2">Modify All Data</div>
+              <div class="data-table-cell" style="flex: 3">create and modify all Salesforce records it can access (e.g. add and update contacts and activities)</div>
+            </div>
+            <div class="data-table-row">
+              <div class="data-table-cell" style="flex: 2">Modify Metadata Through Metadata API Functions</div>
+              <div class="data-table-cell" style="flex: 3">create and modify custom fields for storing useful Nektar data</div>
+            </div>
+            <div class="data-table-row">
+              <div class="data-table-cell" style="flex: 2">Customize Application</div>
+              <div class="data-table-cell" style="flex: 3">control field-level security for Nektar custom fields</div>
+            </div>
+            <div class="data-table-row">
+              <div class="data-table-cell" style="flex: 2">Manage Profiles and Permission Sets</div>
+              <div class="data-table-cell" style="flex: 3">grant other users visibility to the data in Nektar custom fields</div>
+            </div>
+            <div class="data-table-row">
+              <div class="data-table-cell" style="flex: 2">API access</div>
+              <div class="data-table-cell" style="flex: 3">allow programmatic access</div>
+            </div>
+          </div>
 
           <details id="reduced-privilege" class="details-section">
             <summary>Reduced privilege alternatives</summary>
@@ -81,20 +76,20 @@
               <p>These alternatives involve setting up and maintaining complex Salesforce configurations manually, and require considerable Salesforce administration expertise.</p>
             </div>
 
-            <h3>Alternatives to "Modify all data"</h3>
-            <p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to read, update, create and delete records under the specific objects that Nektar requires. Optionally, you may also:</p>
+            <h3 id="alt-modify-all-data">Alternatives to "Modify all data"</h3>
+            <p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to <a href="sync.html#objects-synced">read, update, create and delete records under the specific objects</a> that Nektar requires. Optionally, you may also:</p>
             <ul>
               <li>Restrict the delete permission to ensure that Nektar only deletes records it created.<br><strong>Important:</strong> Use the <code>CreatedById</code> field and not the <code>OwnerId</code> to implement this restriction.</li>
-              <li>Restrict the update permission to the specific fields updated by Nektar.<br><strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
+              <li>Restrict the update permission to the specific <a href="sync.html#standard-fields">fields updated by Nektar</a>.<br><strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
               <li>Restrict access to the sub-set of records (e.g. Accounts, Contacts, Opportunities, Leads) relevant to the teams adopting Nektar.<br><strong>Important:</strong> Relevant records not being visible to Nektar may result in duplicate contacts, activities being associated with the wrong opportunities, or other inaccuracies.</li>
             </ul>
 
-            <h3>Alternatives to "Modify Metadata through API Functions", "Customize Application", "Manage Profiles and Permission Sets"</h3>
-            <p>Instead of providing the "Modify Metadata through API Functions", "Customize Application", and "Manage Profiles and Permission Sets" permissions, you may set up the relevant Nektar custom fields manually. Ensure that:</p>
+            <h3 id="alt-modify-metadata">Alternatives to "Modify Metadata through API Functions", "Customize Application", "Manage Profiles and Permission Sets"</h3>
+            <p>Instead of providing these permissions, you may set up the <a href="sync.html#custom-fields">relevant Nektar custom fields</a> manually. Ensure that:</p>
             <ul>
-              <li>The field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
-              <li>Read and write access to these custom fields are provided to the Nektar integration user</li>
-              <li>Read access to these custom fields are provided to all normal user profiles as required</li>
+              <li>the field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
+              <li>read and write access to these custom fields are provided to the Nektar integration user</li>
+              <li>read access to these custom fields are provided to all normal user profiles as required</li>
             </ul>
           </details>
 
@@ -104,8 +99,10 @@
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#overview">Overview</a>
           <a href="#permissions">Permissions</a>
+          <a href="#reduced-privilege">Reduced privilege alternatives</a>
+          <a href="#alt-modify-all-data" class="toc-h3">Alternatives to "Modify all data"</a>
+          <a href="#alt-modify-metadata" class="toc-h3">Alternatives to "Modify Metadata…"</a>
         </div>
       </aside>
     </div>

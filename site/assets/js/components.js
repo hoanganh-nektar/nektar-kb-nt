@@ -246,12 +246,31 @@
       var target = document.getElementById(id);
       if (target) observer.observe(target);
 
-      a.addEventListener('click', function () {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        var needsExpand = false;
+        if (target) {
+          var ancestor = target.parentElement;
+          while (ancestor) {
+            if (ancestor.tagName.toLowerCase() === 'details' && !ancestor.open) {
+              ancestor.open = true;
+              needsExpand = true;
+            }
+            ancestor = ancestor.parentElement;
+          }
+        }
         tocLinks.forEach(function (l) { l.classList.remove('active'); });
         a.classList.add('active');
         clicking = true;
         if (clickTimer) clearTimeout(clickTimer);
         clickTimer = setTimeout(function () { clicking = false; }, 1000);
+        if (needsExpand && target) {
+          e.preventDefault();
+          setTimeout(function () {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        }
       });
     });
   }
@@ -313,11 +332,11 @@
   function initDetailsWrap() {
     document.querySelectorAll('details:not(.callout-error)').forEach(function (d) {
       var nonSummary = Array.from(d.children).filter(function (c) {
-        return c.tagName.toLowerCase() !== 'summary' && !c.classList.contains('troubleshoot-content');
+        return c.tagName.toLowerCase() !== 'summary' && !c.classList.contains('details-content');
       });
       if (!nonSummary.length) return;
       var wrapper = document.createElement('div');
-      wrapper.className = 'troubleshoot-content';
+      wrapper.className = 'details-content';
       nonSummary.forEach(function (c) { wrapper.appendChild(c); });
       d.appendChild(wrapper);
     });

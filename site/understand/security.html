@@ -38,52 +38,61 @@
         <div class="article-layout">
           <div class="article-body">
             <div class="article-content">
+              <p>Nektar is a revenue data integration platform.</p>
               <p>
-                Nektar is a revenue data integration platform. It extracts
-                customer contact and interaction data from the communication
-                tools used by your revenue teams and unifies and links this data
-                to your CRM records.
+                It extracts customer contact and interaction data from the
+                communication tools used by your revenue teams (email, calendar,
+                videoconferencing etc.) and unifies and links this data to your
+                CRM records. This creates a complete and accurate picture of the
+                state of your go-to-market efforts. This unified data, and any
+                insights derived from it, are then pushed to your CRM.
               </p>
 
               <h2 id="infrastructure">Infrastructure</h2>
               <p>
-                Nektar uses AWS infrastructure to host all applications and data
-                storage. Primary servers are in the USA. Amazon provides an
-                extensive list of compliance and regulatory assurances,
-                including SOC 1–3 and ISO 27001. See Amazon's compliance and
-                security documents for more detailed information.
+                We use AWS infrastructure to host our applications and all data
+                storage. Our primary AWS servers are in the USA.
+              </p>
+              <p>
+                Amazon provides an extensive list of compliance and regulatory
+                assurances, including SOC 1–3 and ISO 27001. See Amazon's
+                <a href="https://aws.amazon.com/compliance/">compliance</a> and
+                <a href="https://aws.amazon.com/security/">security</a>
+                documents for more detailed information.
               </p>
 
               <h2 id="data-retention">Data retention and deletion</h2>
-              <p>The default data retention period is 90 days.</p>
+              <p>Our default data retention period is 90 days. This is the process we follow for data deletion from our systems.</p>
               <ul>
                 <li>
                   <strong>During normal operations.</strong> If a user deletes
-                  data from an integrated service (such as Salesforce), the
-                  periodic sync job will soft-delete the Nektar copy on its next
-                  run. This is the recommended workflow for GDPR deletion
-                  requests.
+                  data from a service that is integrated with Nektar (such as
+                  Salesforce), the periodic sync job will soft-delete the Nektar
+                  copy of this data on its next run. This is the recommended
+                  workflow for handling GDPR deletion requests.
                 </li>
                 <li>
-                  <strong>On contract termination.</strong> An automated
-                  offboarding job disables your organization and users and
-                  soft-deletes all your data.
+                  <strong>On contract termination.</strong> After verifying
+                  your contract with us and the state of your account, we invoke
+                  an automated offboarding job that disables your organization
+                  and users and soft-deletes all your data.
                 </li>
                 <li>
-                  <strong>Soft-deletion</strong> marks data as deleted but does
-                  not remove it from the database. It also causes the Nektar
-                  data fusion engine to remove any information derived or
-                  inferred from the deleted data. Soft-deleted data is removed
-                  from in-memory caches and is not accessed by the Nektar
-                  application.
+                  <strong>Soft-deletion</strong> marks data as deleted, but
+                  does not remove it from our database. It also causes the
+                  Nektar data fusion engine to remove any information that was
+                  derived or inferred from the deleted data. Soft-deleted data
+                  is also removed from in-memory caches and is not accessed by
+                  the Nektar application.
                 </li>
                 <li>
-                  <strong>Hard-deletion</strong> removes data completely from
-                  databases, and happens automatically 60 days after
-                  soft-deletion. In urgent situations, hard-deletion may be
-                  performed manually sooner. Hard-deleted data will only be
-                  present in database snapshots made prior to the deletion,
-                  which are only accessed in disaster-recovery scenarios.
+                  <strong>Hard-deletion</strong> removes the data completely
+                  from our databases, and happens automatically 60 days after
+                  data is soft-deleted. In urgent situations, hard-deletion may
+                  be manually performed sooner. Hard-deleted data will only be
+                  present in database snapshots (backups) made prior to the
+                  deletion, which are only accessed in disaster-recovery
+                  scenarios.
                 </li>
                 <li>
                   <strong>Snapshot rotation.</strong> Database backups are
@@ -129,18 +138,15 @@
 
               <h2 id="compliance">Compliance</h2>
               <p>
-                Nektar follows strict international standards and is certified
-                in compliance with SOC 2 Type II, ISO 27001, and GDPR.
+                Nektar follows strict international standards and regulations to
+                keep your information safe and is certified to be in compliance
+                with SOC 2 Type II, ISO 27001 and the GDPR.
               </p>
               <p>
                 Our
-                <a href="https://nektar.ai/term-and-conditions/"
-                  >Terms and Conditions</a
-                >
-                , <a href="https://nektar.ai/legal/">Policy</a> , and
-                <a href="https://nektar.ai/data-processing-agreement/"
-                  >Data Processing Agreement</a
-                >
+                <a href="https://nektar.ai/term-and-conditions/">Terms and Conditions</a>,
+                <a href="https://nektar.ai/legal/">Privacy Policy</a>, and
+                <a href="https://nektar.ai/data-processing-agreement/">Data Processing Agreement</a>
                 (DPA) reflect our security readiness.
               </p>
 

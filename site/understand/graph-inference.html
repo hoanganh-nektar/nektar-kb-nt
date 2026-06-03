@@ -50,16 +50,16 @@
               <h2 id="what-it-does">What it does</h2>
               <ul>
                 <li>
-                  <strong>De-duplication</strong> of contacts, leads, email
+                  <strong>de-duplication</strong> of contacts, leads, email
                   messages and calendar events
                 </li>
                 <li>
-                  <strong>Affinity AI</strong>, to identify relationships
+                  <strong>affinity AI</strong>, to identify relationships
                   between data points (such as which opportunity an activity is
                   related to.)
                 </li>
                 <li>
-                  <strong>Edit protection</strong>: if a manual Salesforce edit
+                  <strong>edit protection</strong>: if a manual Salesforce edit
                   reverts a change that Nektar made, remember the mistake to
                   avoid making it again.
                 </li>
@@ -74,7 +74,7 @@
               </p>
               <ol>
                 <li>
-                  Nektar identifies candidate object pairs that might have an
+                  First, Nektar identifies candidate object pairs that might have an
                   edge between them, but do not at present. It does this by
                   exploring the neighborhood of each object by "hopping" along
                   existing edges. Depending on the model, it may search up to 3
@@ -82,8 +82,8 @@
                 </li>
                 <li>
                   <div>
-                    <p>Nektar uses a model to get the likelihood of each candidate
-                    edge. Inputs include features of the objects themselves (such
+                    <p>Nektar then uses a model to get the likelihood of each candidate
+                    edge. Inputs to this model include features of the objects themselves (such
                     as timestamps and common text keywords), the number of paths
                     between them, and the number and type of the objects and edges
                     along those paths.</p>
@@ -94,23 +94,23 @@
                 </li>
                 <li>
                   Based on the specific edge type, it creates edges: either for
-                  all candidates where the likelihood exceeds a threshold, or
+                  all candidates where the likelihood exceeds a threshold or
                   only for the highest likelihood candidates.
                 </li>
               </ol>
 
-              <h2 id="why-it-works">Why it works</h2>
+              <h2 id="why-it-works"><em>Why</em> it works</h2>
               <p>
-                We mentioned how nearly all your data problems are modeled as
+                We mentioned how nearly <em>all</em> your data problems are modeled as
                 missing edges. Here's a couple of examples:
               </p>
               <ul>
                 <li>
-                  Duplicate records are just missing "is the same as" relations
+                  <strong>Duplicate records</strong> are just missing "is the same as" relations
                   between the pairs of records.
                 </li>
                 <li>
-                  Missing contacts are just missing "belongs to" relations
+                  <strong>Missing contacts</strong> are just missing "belongs to" relations
                   between Salesforce accounts and opportunities and people your
                   sellers are in touch with.
                 </li>
