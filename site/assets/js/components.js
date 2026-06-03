@@ -372,6 +372,25 @@
     });
   }
 
+  function initTableScroll() {
+    var selectors = [
+      '.article-content .sync-status-table',
+      '.article-content .objects-table',
+      '.article-content .std-fields-table',
+      '.article-content .cft',
+      '.article-content .data-table',
+      '.article-content .fields-table',
+      '.article-content table'
+    ].join(', ');
+    document.querySelectorAll(selectors).forEach(function (t) {
+      if (t.closest('.table-clip')) return;
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-clip';
+      t.parentNode.insertBefore(wrapper, t);
+      wrapper.appendChild(t);
+    });
+  }
+
   // ─── Boot ─────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     inject();
@@ -382,6 +401,7 @@
     initSearch();
     initDetailsWrap();
     initCalloutAlignment();
+    initTableScroll();
   });
 
 })();

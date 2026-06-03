@@ -28,6 +28,7 @@ body {
   background: #fff;
   display: flex;
   min-height: 100vh;
+  min-width: 360px;
 }
 
 a {
@@ -328,6 +329,7 @@ h6 {
 #main-wrapper {
   margin-left: 280px;
   flex: 1;
+  min-width: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -564,6 +566,7 @@ h6 {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -728,6 +731,10 @@ h6 {
   min-width: 0;
 }
 
+.article-content {
+  overflow: hidden;
+}
+
 .article-toc {
   position: fixed;
   top: 0;
@@ -827,6 +834,8 @@ figure.article-image figcaption {
 /* ─── Sync Status Table ─────────────────────────────────────────── */
 
 .sync-status-table {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
@@ -876,6 +885,8 @@ figure.article-image figcaption {
 /* ─── Data Table (generic 2-column) ─────────────────────────────── */
 
 .data-table {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
@@ -915,9 +926,18 @@ figure.article-image figcaption {
   letter-spacing: 0;
 }
 
+/* ─── Table clip container ───────────────────────────────────────── */
+
+.table-clip {
+  overflow-x: auto;
+  width: 100%;
+}
+
 /* ─── Objects Table ──────────────────────────────────────────────── */
 
 .objects-table {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
@@ -973,6 +993,11 @@ figure.article-image figcaption {
   padding: 8px 16px;
 }
 
+.objects-table--text .objects-table-cell {
+  justify-content: flex-start;
+  width: 150px;
+}
+
 .objects-table-header .objects-table-cell {
   font-family: "Sora", sans-serif;
   font-weight: 700;
@@ -984,6 +1009,8 @@ figure.article-image figcaption {
 /* ─── Custom Fields Table ────────────────────────────────────────── */
 
 .cft {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
@@ -996,21 +1023,23 @@ figure.article-image figcaption {
   border-bottom: 2px solid #d9d9d9;
 }
 
-.cft-header-cell {
-  padding: 16px;
+.cft-header .cft-sub-row {
+  border-bottom: none;
+}
+
+.cft-header .cft-field,
+.cft-header .cft-object,
+.cft-header .cft-values,
+.cft-header .cft-api-values {
   font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 1.4;
-  color: #000;
-  flex: 1;
-  min-width: 0;
+  letter-spacing: 0;
+  font-style: normal;
 }
 
-.cft-header-cell.object-col {
-  width: 150px;
-  flex: none;
-  text-align: left;
+.cft-header .cft-field {
+  border-right: none;
 }
 
 .cft-row {
@@ -1024,7 +1053,7 @@ figure.article-image figcaption {
 }
 
 .cft-field {
-  flex: 1;
+  flex: 3;
   min-width: 0;
   padding: 16px;
   border-right: 1px solid #d9d9d9;
@@ -1066,7 +1095,7 @@ figure.article-image figcaption {
 }
 
 .cft-sub-rows {
-  flex: 3;
+  flex: 6;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1084,8 +1113,7 @@ figure.article-image figcaption {
 }
 
 .cft-object {
-  width: 150px;
-  flex-shrink: 0;
+  flex: 2;
   padding: 16px;
   font-family: "Lora", serif;
   font-size: 16px;
@@ -1095,7 +1123,7 @@ figure.article-image figcaption {
 }
 
 .cft-values {
-  flex: 1;
+  flex: 2;
   min-width: 0;
   padding: 16px;
   font-family: "Lora", serif;
@@ -1121,7 +1149,7 @@ figure.article-image figcaption {
 }
 
 .cft-api-values {
-  flex: 1;
+  flex: 2;
   min-width: 0;
   padding: 16px;
   display: flex;
@@ -1133,6 +1161,8 @@ figure.article-image figcaption {
 /* ─── Standard Fields Table ──────────────────────────────────────── */
 
 .std-fields-table {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
@@ -1184,6 +1214,8 @@ figure.article-image figcaption {
 /* ─── Fields Table ───────────────────────────────────────────────── */
 
 .fields-table {
+  min-width: 670px;
+  
   border: 1px solid #d9d9d9;
   border-radius: 16px;
   overflow: hidden;

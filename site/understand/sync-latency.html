@@ -47,62 +47,45 @@
 
               <h2 id="typical-latency">Typical end-to-end latency</h2>
               <p>This table shows the typical end-to-end latency for reading and processing new data and writing it to Salesforce.</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Average</th>
-                    <th>Worst-case</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Creating or updating contacts on Salesforce</td>
-                    <td>1 hour</td>
-                    <td>9 hours</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Creating or updating activities with participants already
-                      on Salesforce
-                    </td>
-                    <td>1 hour</td>
-                    <td>9 hours</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Creating activities with contacts that need to be created
-                      by Nektar
-                    </td>
-                    <td>2 hours</td>
-                    <td>18 hours</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Creating Opportunity-Contact relations with contacts
-                      already on Salesforce
-                    </td>
-                    <td>1 hour</td>
-                    <td>9 hours</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Creating Opportunity-Contact relations with contacts that
-                      need to be created by Nektar
-                    </td>
-                    <td>2 hours</td>
-                    <td>18 hours</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Merging Nektar-created contacts with manually created
-                      duplicates
-                    </td>
-                    <td>25 hours</td>
-                    <td>33 hours</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-clip">
+              <div class="objects-table objects-table--text" style="min-width: 670px">
+                <div class="objects-table-row objects-table-header">
+                  <div class="objects-table-object"></div>
+                  <div class="objects-table-cell">Average</div>
+                  <div class="objects-table-cell">Worst-case</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Creating or updating contacts on Salesforce</div>
+                  <div class="objects-table-cell">1 hour</div>
+                  <div class="objects-table-cell">9 hours</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Creating or updating activities with participants already on Salesforce</div>
+                  <div class="objects-table-cell">1 hour</div>
+                  <div class="objects-table-cell">9 hours</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Creating activities with contacts that need to be created by Nektar</div>
+                  <div class="objects-table-cell">2 hours</div>
+                  <div class="objects-table-cell">18 hours</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Creating Opportunity-Contact relations with contacts already on Salesforce</div>
+                  <div class="objects-table-cell">1 hour</div>
+                  <div class="objects-table-cell">9 hours</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Creating Opportunity-Contact relations with contacts that need to be created by Nektar</div>
+                  <div class="objects-table-cell">2 hours</div>
+                  <div class="objects-table-cell">18 hours</div>
+                </div>
+                <div class="objects-table-row">
+                  <div class="objects-table-object">Merging Nektar-created contacts with manually created duplicates</div>
+                  <div class="objects-table-cell">25 hours</div>
+                  <div class="objects-table-cell">33 hours</div>
+                </div>
+              </div>
+              </div>
               <h3>What does "end-to-end latency" mean?</h3>
               <ul>
                 <li>
