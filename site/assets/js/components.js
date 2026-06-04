@@ -65,10 +65,14 @@
       '            <a class="nav-subitem" href="' + R + 'connectors/salesforce/api-used.html" data-path="/connectors/salesforce/api-used.html">APIs used</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
-      '        <div class="nav-subgroup">\n' +
+      '        <div class="nav-subgroup" data-section="google-workspace">\n' +
       '          <div class="nav-subgroup-toggle">\n' +
       '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/google-workspace.svg" alt="" />\n' +
-      '            <a class="subgroup-label" href="' + R + 'connectors/google-workspace/index.html" data-path="/connectors/google-workspace/">Google Workspace</a>\n' +
+      '            <a class="subgroup-label" href="' + R + 'connectors/google-workspace/index.html" data-path="/connectors/google-workspace/index.html">Google Workspace</a>\n' +
+      '            <img class="chevron-sub-img" src="' + c + '" alt="" />\n' +
+      '          </div>\n' +
+      '          <div class="nav-subgroup-items">\n' +
+      '            <a class="nav-subitem" href="' + R + 'connectors/google-workspace/marketplace-install.html" data-path="/connectors/google-workspace/marketplace-install.html" data-contextual="true">Installing Nektar from Marketplace</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
       '        <div class="nav-subgroup">\n' +
@@ -207,6 +211,22 @@
         if (section) section.classList.add('open');
         var subgroup = el.closest('.nav-subgroup');
         if (subgroup) subgroup.classList.add('open');
+      }
+    });
+
+    // Hide contextual sub-items (and their subgroup chevron) unless on their page
+    document.querySelectorAll('.nav-subitem[data-path]').forEach(function (el) {
+      var p = normPath(el.getAttribute('data-path') || '');
+      if (el.dataset.contextual && !current.endsWith(p)) {
+        el.style.display = 'none';
+        var subgroup = el.closest('.nav-subgroup');
+        if (subgroup) {
+          var allHidden = Array.from(subgroup.querySelectorAll('.nav-subitem')).every(function (i) { return i.style.display === 'none'; });
+          if (allHidden) {
+            var chevron = subgroup.querySelector('.chevron-sub-img');
+            if (chevron) chevron.style.display = 'none';
+          }
+        }
       }
     });
 

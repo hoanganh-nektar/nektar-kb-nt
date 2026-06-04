@@ -35,85 +35,155 @@
 
           <h2 id="connection">Connection</h2>
           <p>Your Google Workspace administrator should install <a href="https://workspace.google.com/u/0/marketplace/app/nektar_for_gmail_and_google_calendar/313936287231">Nektar</a> from Google Marketplace.</p>
+          <a href="marketplace-install.html" class="callout-link">
+            <img class="callout-link-icon" src="../../assets/images/icons/callout-neutral-link.svg" alt="" />
+            <span class="callout-link-text">Admin guide for how to install Nektar from Marketplace</span>
+          </a>
           <p>Once the installation is completed, type your Google Workspace administrator's email address and click "Connect" to enable the connection within Nektar.</p>
 
-          <h2 id="oauth-scopes">OAuth scopes</h2>
-          <div class="callout callout-neutral-technical callout-single-line">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
-          </div>
-          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Scope</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/calendar.events</code></td>
-                <td>Sync calendar events</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/gmail.readonly</code></td>
-                <td>Sync email messages</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/meetings.space.readonly</code></td>
-                <td>Sync Google Meet information</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/userinfo.email</code></td>
-                <td>Get users' email addresses</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/userinfo.profile</code></td>
-                <td>Get users' names</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/admin.directory.user.readonly</code></td>
-                <td>Get the list of users</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/contacts.readonly</code></td>
-                <td>Get users' contacts</td>
-              </tr>
-              <tr>
-                <td><code>https://www.googleapis.com/auth/contacts.other.readonly</code></td>
-                <td>Get users' other contacts</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>Nektar will only read Gmail messages, Google Calendar events and Google Meet meeting information (including transcripts) of users you select.</p>
+          <details id="oauth-scopes" class="details-section details-section--h3">
+            <summary>OAuth scopes</summary>
+            <div class="callout callout-neutral-technical callout-single-line">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+            <div class="data-table">
+              <div class="data-table-row data-table-header">
+                <div class="data-table-cell">Scope</div>
+                <div class="data-table-cell">Purpose</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/calendar.events</code></div>
+                <div class="data-table-cell">Sync calendar events</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/gmail.readonly</code></div>
+                <div class="data-table-cell">Sync email messages</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/meetings.space.readonly</code></div>
+                <div class="data-table-cell">Sync Google Meet information</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/userinfo.email</code></div>
+                <div class="data-table-cell">Get users' email addresses</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/userinfo.profile</code></div>
+                <div class="data-table-cell">Get users' names</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/admin.directory.user.readonly</code></div>
+                <div class="data-table-cell">Get the list of users</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/contacts.readonly</code></div>
+                <div class="data-table-cell">Get users' contacts</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>https://www.googleapis.com/auth/contacts.other.readonly</code></div>
+                <div class="data-table-cell">Get users' other contacts</div>
+              </div>
+            </div>
+            <p>Nektar will only read Gmail messages, Google Calendar events and Google Meet meeting information (including transcripts) of users you select.</p>
+          </details>
 
           <h2 id="sync">Sync</h2>
           <p>Nektar's Google Workspace sync system reads Gmail messages, Google Calendar events and Google Meet meeting information for the users for whom this has been enabled.</p>
           <ul>
             <li>Gmail messages and Google Calendar events are read every 10–15 minutes.</li>
-            <li>Google Meet meeting information and transcripts are read every 10–15 minutes. Note: when first enabled, Google Meet can read data only for the last 30 days.</li>
+            <li>Google Meet meeting information and transcripts are read every 10–15 minutes.
+              <ul>
+                <li>Please note, when first enabled, Google Meet can read data only for the last 30 days.</li>
+              </ul>
+            </li>
             <li>The list of users on your workspace is read every 24 hours.</li>
           </ul>
           <p>You must enable sync for individual Google users in the <a href="../../administration/index.html#users">Users</a> section.</p>
+          <p>The sync table displays:</p>
+          <ul>
+            <li>the time the most recent message or event was synced</li>
+            <li>a sync health icon that can be clicked for more information</li>
+            <li>toggles to enable or disable sync globally</li>
+          </ul>
+          <p>Sync health icons may indicate the following states:</p>
+          <div class="sync-status-table">
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/disabled.svg" width="24" height="24" alt="Disabled" />
+              </div>
+              <div class="sync-status-label">Disabled</div>
+              <div class="sync-status-desc">Can be enabled on the same screen</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/Interface-Essential/Synchronize/synchronize-arrows-warning.svg" width="24" height="24" alt="Not started" />
+              </div>
+              <div class="sync-status-label">Not started</div>
+              <div class="sync-status-desc">Disabled globally, or pending approval</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/in-progress.svg" width="24" height="24" alt="In progress" />
+              </div>
+              <div class="sync-status-label">In progress</div>
+              <div class="sync-status-desc">Actively syncing; some data is remaining</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/completed.svg" width="24" height="24" alt="Completed" />
+              </div>
+              <div class="sync-status-label">Completed</div>
+              <div class="sync-status-desc">Everything synced; watching for new data</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/delayed.svg" width="24" height="24" alt="Delayed" />
+              </div>
+              <div class="sync-status-label">Delayed</div>
+              <div class="sync-status-desc">Sync has not run in the last 30 minutes</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/stalled.svg" width="24" height="24" alt="Stalled" />
+              </div>
+              <div class="sync-status-label">Stalled</div>
+              <div class="sync-status-desc">Stopped due to error or hasn't run in 2 hours</div>
+            </div>
+          </div>
 
-          <h2 id="properties-synced">Properties synced</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Email messages</th>
-                <th>Calendar events</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Subject line<br>Body (including quoted messages and signatures)<br>From, To, Cc<br>Date and time sent<br>All email headers</td>
-                <td>Subject line<br>Description, including dial-in information<br>Organizer, participants<br>Date and time of scheduling the meeting<br>Meeting start and end time<br>Venue and meeting details</td>
-              </tr>
-              <tr>
-                <td>Attachments are not synced</td>
-                <td>Attachments are not synced</td>
-              </tr>
-            </tbody>
-          </table>
+          <h3 id="properties-synced">Properties synced</h3>
+          <div class="fields-table">
+            <div class="fields-table-row fields-table-header">
+              <div class="fields-table-cell">Email messages</div>
+              <div class="fields-table-cell">Calendar events</div>
+            </div>
+            <div class="fields-table-row">
+              <div class="fields-table-cell">
+                <ul>
+                  <li>Subject line</li>
+                  <li>Body (including quoted messages and signatures)</li>
+                  <li>From, To, Cc</li>
+                  <li>Date and time sent</li>
+                  <li>All email headers</li>
+                </ul>
+              </div>
+              <div class="fields-table-cell">
+                <ul>
+                  <li>Subject line</li>
+                  <li>Description, including dial-in information</li>
+                  <li>Organizer, participants</li>
+                  <li>Date and time of scheduling the meeting</li>
+                  <li>Meeting start and end time</li>
+                  <li>Venue and meeting details</li>
+                </ul>
+              </div>
+            </div>
+            <div class="fields-table-row">
+              <div class="fields-table-cell">Attachments are not synced</div>
+              <div class="fields-table-cell">Attachments are not synced</div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -122,9 +192,9 @@
         <p class="toc-title">Content</p>
         <div class="toc-list">
           <a href="#connection">Connection</a>
-          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
           <a href="#sync">Sync</a>
-          <a href="#properties-synced">Properties synced</a>
+          <a href="#properties-synced" class="toc-h3">Properties synced</a>
         </div>
       </aside>
     </div>

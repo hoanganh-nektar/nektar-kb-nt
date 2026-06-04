@@ -81,7 +81,7 @@ h6 {
 .sidebar-logo a {
   display: flex;
   align-items: center;
-  height: 54px;
+  height: 48px;
   border-radius: 9999px;
   padding: 16px;
 }
@@ -105,7 +105,7 @@ h6 {
 
 .sidebar-search input {
   width: 100%;
-  height: 54px;
+  height: 48px;
   padding: 12px 44px 12px 16px;
   border: 1px solid #d9d9d9;
   border-radius: 9999px;
@@ -168,7 +168,7 @@ h6 {
 
 .nav-section-toggle.active,
 .nav-section.open .nav-section-toggle.active {
-  border-radius: 9999px;
+  border-radius: 24px;
   background: rgba(11, 184, 218, 0.15);
 }
 
@@ -206,8 +206,8 @@ h6 {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 54px;
-  padding: 0 16px;
+  min-height: 48px;
+  padding: 12px 16px;
   font-family: "Lora", serif;
   font-size: 16px;
   font-weight: 400;
@@ -218,7 +218,7 @@ h6 {
 }
 
 .nav-item.active {
-  border-radius: 9999px;
+  border-radius: 24px;
   background: rgba(11, 184, 218, 0.15);
 }
 
@@ -237,8 +237,8 @@ h6 {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 54px;
-  padding: 0 16px;
+  min-height: 48px;
+  padding: 12px 16px;
   font-family: "Lora", serif;
   font-size: 16px;
   font-weight: 400;
@@ -290,8 +290,8 @@ h6 {
 .nav-subitem {
   display: flex;
   align-items: center;
-  height: 54px;
-  padding: 0 16px 0 44px;
+  min-height: 48px;
+  padding: 12px 16px 12px 44px;
   font-family: "Lora", serif;
   font-size: 16px;
   font-weight: 400;
@@ -305,13 +305,13 @@ h6 {
 }
 
 .nav-subitem.active {
-  border-radius: 9999px;
+  border-radius: 24px;
   background: rgba(11, 184, 218, 0.15);
 }
 
 .nav-subgroup-toggle.active,
 .nav-subgroup.open .nav-subgroup-toggle.active {
-  border-radius: 9999px;
+  border-radius: 24px;
   background: rgba(11, 184, 218, 0.15);
 }
 
@@ -990,7 +990,7 @@ figure.article-image figcaption {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
+  padding: 12px 16px;
 }
 
 .objects-table--text .objects-table-cell {
@@ -1427,6 +1427,61 @@ figure.article-image figcaption {
   border-color: rgba(255, 153, 0, 0.15);
 }
 
+/* ─── Step layout (text + screenshot side by side) ──────────────── */
+
+.step-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.step-layout-image img {
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+  display: block;
+}
+
+/* ─── Callout Link ───────────────────────────────────────────────── */
+
+.callout-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 102, 255, 0.15);
+  background: rgba(0, 102, 255, 0.05);
+  margin: 24px 0;
+  color: #000;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.article-content a.callout-link {
+  text-decoration: none;
+}
+
+.callout-link:hover {
+  opacity: 0.6;
+}
+
+.callout-link-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.callout-link-text {
+  font-family: "Lora", serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.32px;
+}
+
 .callout-neutral-technical::before {
   background-image: url('../images/icons/callout-neutral-technical.svg');
 }
@@ -1514,6 +1569,16 @@ details.details-section:not(.callout-error) > summary::before {
 
 details.details-section:not(.callout-error)[open] > summary {
   padding-bottom: 24px;
+}
+
+details.details-section.details-section--h3:not(.callout-error) > summary {
+  font-size: clamp(18px, calc(9px + 0.77vw), 20px);
+  letter-spacing: 0;
+}
+
+details.details-section.details-section--h3:not(.callout-error) > summary::before {
+  width: 24px;
+  height: 24px;
 }
 
 .details-content {
