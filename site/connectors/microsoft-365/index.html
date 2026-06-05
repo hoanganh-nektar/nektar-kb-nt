@@ -34,128 +34,203 @@
         <div class="article-content">
 
           <h2 id="connection">Connection</h2>
-          <p>Your Microsoft 365 administrator should authorise the Nektar app for your organization. Provide the email address of your Microsoft 365 administrator to start the authorization process.</p>
-          <p>The administrator may also follow the steps below to restrict Nektar to specific users.</p>
+          <p>Your Microsoft 365 administrator should authorise the Nektar app for your organization. The administrator may also follow the steps below to <a href="#restrict-users">restrict Nektar to specific users</a>.</p>
+          <p>Provide the email address of your Microsoft 365 administrator to start the authorization process.</p>
 
-          <h3>Restrict Nektar to specific users</h3>
-          <div class="callout callout-neutral-info callout-single-line">
-            <p>You must have admin privileges to your Microsoft 365 organization to do this.</p>
-          </div>
-          <ol>
-            <li>Create a "Mail-enabled security" group in <a href="https://admin.exchange.microsoft.com/#/groups">Microsoft Admin Centre</a>. Note the group's email address.</li>
-            <li>Add the users you want Nektar to access as the members of that group. Ensure that the admin is different from all the members.</li>
-            <li>On your Windows PC, launch PowerShell.</li>
-            <li>Login to ExchangeOnline with your admin credentials:
-              <pre><code>Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
-            </li>
-            <li>Add an access policy restricting the Nektar app to the group you created:
-              <pre><code>New-ApplicationAccessPolicy -AppId 5ec97ac5-1665-4dff-8357-43d284a0b3a5 -PolicyScopeGroupId &lt;group-email-address&gt; -AccessRight RestrictAccess -Description "Nektar access policy"</code></pre>
-            </li>
-          </ol>
+          <details id="restrict-users" class="details-section details-section--h3">
+            <summary>Restrict Nektar to specific users</summary>
+            <div class="callout callout-neutral-info callout-single-line">
+              <p>You must have admin privileges to your Microsoft 365 organization to do this.</p>
+            </div>
+            <ol>
+              <li>
+                <div>
+                  <p>Create a "Mail-enabled security" group in <a href="https://admin.exchange.microsoft.com/#/groups">Microsoft Admin Centre</a>. Note the group's email address.</p>
+                  <figure class="article-image">
+                    <img src="https://lh4.googleusercontent.com/-T7AMna4s5tWWuNcLmjGu6ZfRVwoY4pxgeV6yt45eMys4FY3tPNtCUW6Gk_W7H0_-uI3x2JjfAo6fgdxLPfENAjpp49mfhk6mPLG90HFf8pldb5KZdukPhZq85HkDauKHJf8KDU_npNikfOZBT90d14" alt="Mail-enabled security group in Microsoft Admin Centre" />
+                  </figure>
+                </div>
+              </li>
+              <li>Add the users you want Nektar to access as the members of that group. Ensure that the admin is different from all the members.</li>
+              <li>On your Windows PC, launch PowerShell.</li>
+              <li>Login to ExchangeOnline with your admin credentials.
+                <pre><code class="language-powershell">Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
+              </li>
+              <li>Add an access policy restricting the Nektar app to the group you created.
+                <pre><code class="language-powershell">New-ApplicationAccessPolicy -AppId 5ec97ac5-1665-4dff-8357-43d284a0b3a5 -PolicyScopeGroupId &lt;group-email-address&gt; -AccessRight RestrictAccess -Description "Nektar access policy"</code></pre>
+              </li>
+            </ol>
+          </details>
 
-          <h3>Access to Teams</h3>
-          <ol>
-            <li>On your Windows PC, launch PowerShell.</li>
-            <li>Login to ExchangeOnline with your admin credentials:
-              <pre><code>Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
-            </li>
-            <li>Connect to Teams:
-              <pre><code>Connect-MicrosoftTeams</code></pre>
-            </li>
-            <li>Add an access policy to grant Nektar access to Teams:
-              <pre><code>New-CsApplicationAccessPolicy -Identity Policy-To-Access-Meetings-Application-Access -AppIds "5ec97ac5-1665-4dff-8357-43d284a0b3a5" -Description "Access meeting on behalf of user"
+          <details id="access-to-teams" class="details-section details-section--h3">
+            <summary>Access to Teams</summary>
+            <ol>
+              <li>On your Windows PC, launch PowerShell.</li>
+              <li>Login to ExchangeOnline with your admin credentials.
+                <pre><code class="language-powershell">Connect-ExchangeOnline -UserPrincipalName &lt;your-email-address&gt;</code></pre>
+              </li>
+              <li>Connect to Teams.
+                <pre><code class="language-powershell">Connect-MicrosoftTeams</code></pre>
+              </li>
+              <li>Add an access policy to grant Nektar access to Teams.
+                <pre><code class="language-powershell">New-CsApplicationAccessPolicy -Identity Policy-To-Access-Meetings-Application-Access -AppIds "5ec97ac5-1665-4dff-8357-43d284a0b3a5" -Description "Access meeting on behalf of user"
 Grant-CsApplicationAccessPolicy -PolicyName Policy-To-Access-Meetings-Application-Access -Global</code></pre>
-            </li>
-          </ol>
+              </li>
+            </ol>
+          </details>
 
-          <h2 id="oauth-scopes">OAuth scopes</h2>
-          <div class="callout callout-neutral-technical callout-single-line">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
-          </div>
-          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Scope</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Read user mail</td>
-                <td>Allows the app to read email in user mailboxes</td>
-              </tr>
-              <tr>
-                <td>Maintain access to data you have given it access to</td>
-                <td>Gives the app access to refresh tokens</td>
-              </tr>
-              <tr>
-                <td>Read user and shared calendars</td>
-                <td>Allows the app to read events in all calendars that the user can access, including delegate and shared calendars</td>
-              </tr>
-              <tr>
-                <td>Read user and shared mail</td>
-                <td>Allows the app to read mail that the user can access, including the user's own and shared mail</td>
-              </tr>
-              <tr>
-                <td>Sign in and read user profile</td>
-                <td>Allows users to sign-in to the app, and allows the app to read the profile of signed-in users</td>
-              </tr>
-              <tr>
-                <td>Read user calendars</td>
-                <td>Allows the app to read events in user calendars</td>
-              </tr>
-              <tr>
-                <td>Read all users' basic profiles</td>
-                <td>Allows the app to read a basic set of profile properties of other users in your organization on behalf of the signed-in user</td>
-              </tr>
-              <tr>
-                <td>Read basic mail in all mailboxes</td>
-                <td>Allows the app to read basic mail properties in all mailboxes without a signed-in user</td>
-              </tr>
-              <tr>
-                <td>Read all users' full profiles</td>
-                <td>Allows the app to read the full set of profile properties, reports, and managers of other users in your organization</td>
-              </tr>
-              <tr>
-                <td>Read mail in all mailboxes</td>
-                <td>Allows the app to read mail in all mailboxes without a signed-in user</td>
-              </tr>
-              <tr>
-                <td>Read calendars in all mailboxes</td>
-                <td>Allows the app to read events of all calendars without a signed-in user</td>
-              </tr>
-            </tbody>
-          </table>
+          <details id="oauth-scopes" class="details-section details-section--h3">
+            <summary>OAuth scopes</summary>
+            <div class="callout callout-neutral-technical callout-single-line">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+            <div class="data-table" style="grid-template-columns: 3fr 7fr">
+              <div class="data-table-row data-table-header">
+                <div class="data-table-cell">Scopes</div>
+                <div class="data-table-cell">Purpose</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read user mail</div>
+                <div class="data-table-cell">Allows the app to read email in user mailboxes</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Maintain access to data you have given it access to</div>
+                <div class="data-table-cell">Gives the app access to refresh tokens</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read user and shared calendars</div>
+                <div class="data-table-cell">Allows the app to read events in all calendars that the user can access, including delegate and shared calendars.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read user and shared mail</div>
+                <div class="data-table-cell">Allows the app to read mail that the user can access, including the user's own and shared mail.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Sign in and read user profile</div>
+                <div class="data-table-cell">Allows users to sign-in to the app, and allows the app to read the profile of signed-in users. It also allows the app to read basic company information of signed-in users.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read user calendars</div>
+                <div class="data-table-cell">Allows the app to read events in user calendars.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read all users' basic profiles</div>
+                <div class="data-table-cell">Allows the app to read a basic set of profile properties of other users in your organization on behalf of the signed-in user. This includes display name, first and last name, email address, open extensions and photo. Also allows the app to read the full profile of the signed-in user.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read basic mail in all mailboxes</div>
+                <div class="data-table-cell">Allows the app to read basic mail properties in all mailboxes without a signed-in user. Includes all properties except body, previewBody, attachments and any extended properties.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read all users' full profiles</div>
+                <div class="data-table-cell">Allows the app to read the full set of profile properties, reports, and managers of other users in your organization, on behalf of the signed-in user.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read mail in all mailboxes</div>
+                <div class="data-table-cell">Allows the app to read mail in all mailboxes without a signed-in user.</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell">Read calendars in all mailboxes</div>
+                <div class="data-table-cell">Allows the app to read events of all calendars without a signed-in user.</div>
+              </div>
+            </div>
+          </details>
 
           <h2 id="sync">Sync</h2>
           <p>Nektar's Microsoft 365 sync system reads email messages and calendar events every 10–15 minutes, and the list of users on your workspace every 24 hours. You must enable sync for individual MS365 users in the <a href="../../administration/index.html#users">Users</a> section.</p>
-
-          <h2 id="properties-synced">Properties synced</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Email messages</th>
-                <th>Calendar events</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Subject line<br>Body (including quoted messages and signatures)<br>From, To, Cc<br>Date and time sent<br>All email headers</td>
-                <td>Subject line<br>Description, including dial-in information<br>Organizer, participants<br>Date and time of scheduling the meeting<br>Meeting start and end time<br>Venue and meeting details</td>
-              </tr>
-              <tr>
-                <td>Attachments are not synced</td>
-                <td>Attachments are not synced</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h2 id="apis-used">APIs used</h2>
-          <div class="callout callout-neutral-technical callout-single-line">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+          <p>The sync table displays:</p>
+          <ul>
+            <li>the time the most recent message or event was synced</li>
+            <li>a sync health icon that can be clicked for more information</li>
+            <li>toggles to enable or disable sync globally</li>
+          </ul>
+          <p>Sync health icons may indicate the following states:</p>
+          <div class="sync-status-table">
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/disabled.svg" width="24" height="24" alt="Disabled" />
+              </div>
+              <div class="sync-status-label">Disabled</div>
+              <div class="sync-status-desc">Can be enabled on the same screen</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/Interface-Essential/Synchronize/synchronize-arrows-warning.svg" width="24" height="24" alt="Not started" />
+              </div>
+              <div class="sync-status-label">Not started</div>
+              <div class="sync-status-desc">Disabled globally, or pending approval</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/in-progress.svg" width="24" height="24" alt="In progress" />
+              </div>
+              <div class="sync-status-label">In progress</div>
+              <div class="sync-status-desc">Actively syncing; some data is remaining</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/completed.svg" width="24" height="24" alt="Completed" />
+              </div>
+              <div class="sync-status-label">Completed</div>
+              <div class="sync-status-desc">Everything synced; watching for new data</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/delayed.svg" width="24" height="24" alt="Delayed" />
+              </div>
+              <div class="sync-status-label">Delayed</div>
+              <div class="sync-status-desc">Sync has not run in the last 30 minutes</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/stalled.svg" width="24" height="24" alt="Stalled" />
+              </div>
+              <div class="sync-status-label">Stalled</div>
+              <div class="sync-status-desc">Stopped due to error or hasn't run in 2 hours</div>
+            </div>
           </div>
-          <p>Nektar uses the Microsoft Graph API.</p>
+
+          <h3 id="properties-synced">Properties synced</h3>
+          <div class="fields-table">
+            <div class="fields-table-row fields-table-header">
+              <div class="fields-table-cell">Email messages</div>
+              <div class="fields-table-cell">Calendar events</div>
+            </div>
+            <div class="fields-table-row">
+              <div class="fields-table-cell">
+                <ul>
+                  <li>Subject line</li>
+                  <li>Body (including quoted messages and signatures)</li>
+                  <li>From, To, Cc</li>
+                  <li>Date and time sent</li>
+                  <li>All email headers</li>
+                </ul>
+              </div>
+              <div class="fields-table-cell">
+                <ul>
+                  <li>Subject line</li>
+                  <li>Description, including dial-in information</li>
+                  <li>Organizer, participants</li>
+                  <li>Date and time of scheduling the meeting</li>
+                  <li>Meeting start and end time</li>
+                  <li>Venue and meeting details</li>
+                </ul>
+              </div>
+            </div>
+            <div class="fields-table-row">
+              <div class="fields-table-cell">Attachments are not synced</div>
+              <div class="fields-table-cell">Attachments are not synced</div>
+            </div>
+          </div>
+
+          <details id="apis-used" class="details-section">
+            <summary>APIs used</summary>
+            <div class="callout callout-neutral-technical callout-single-line">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Nektar uses the Microsoft Graph API.</p>
+          </details>
 
         </div>
       </div>
@@ -164,9 +239,11 @@ Grant-CsApplicationAccessPolicy -PolicyName Policy-To-Access-Meetings-Applicatio
         <p class="toc-title">Content</p>
         <div class="toc-list">
           <a href="#connection">Connection</a>
-          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#restrict-users" class="toc-h3">Restrict Nektar to specific users</a>
+          <a href="#access-to-teams" class="toc-h3">Access to Teams</a>
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
           <a href="#sync">Sync</a>
-          <a href="#properties-synced">Properties synced</a>
+          <a href="#properties-synced" class="toc-h3">Properties synced</a>
           <a href="#apis-used">APIs used</a>
         </div>
       </aside>

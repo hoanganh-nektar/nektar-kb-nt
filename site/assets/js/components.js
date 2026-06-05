@@ -411,6 +411,26 @@
     });
   }
 
+  function initSyntaxHighlight() {
+    if (!document.querySelector('pre code')) return;
+    // Inject Prism CSS
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css';
+    document.head.appendChild(link);
+    // Inject Prism core
+    var core = document.createElement('script');
+    core.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js';
+    core.onload = function () {
+      // Inject PowerShell component then highlight
+      var ps = document.createElement('script');
+      ps.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js';
+      ps.onload = function () { Prism.highlightAll(); };
+      document.head.appendChild(ps);
+    };
+    document.head.appendChild(core);
+  }
+
   // ─── Boot ─────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     inject();
@@ -422,6 +442,7 @@
     initDetailsWrap();
     initCalloutAlignment();
     initTableScroll();
+    initSyntaxHighlight();
   });
 
 })();

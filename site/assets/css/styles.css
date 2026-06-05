@@ -15,8 +15,45 @@ html {
 
 code {
   font-family: "Roboto Mono", monospace;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
+  background: #eee;
+  color: #000;
+  border-radius: 12px;
+  padding: 4px 8px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  background: #eee;
+  border-radius: 12px;
+  padding: 16px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 12px 0;
+}
+
+pre code {
+  background: none;
+  color: #000;
+  border-radius: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+pre code[class*="language-"],
+code[class*="language-"] {
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+}
+
+pre[class*="language-"],
+pre code[class*="language-"] {
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 body {
@@ -801,6 +838,10 @@ figure.article-image {
   margin: 32px 0;
 }
 
+.article-content li figure.article-image {
+  margin: 16px 0 0;
+}
+
 figure.article-image:has(figcaption) {
   padding-bottom: 16px;
 }
@@ -886,29 +927,19 @@ figure.article-image figcaption {
 
 .data-table {
   min-width: 670px;
-  
   border: 1px solid #d9d9d9;
   border-radius: 24px;
   overflow: hidden;
   margin: 24px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .data-table-row {
-  display: flex;
-  align-items: stretch;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-.data-table-row:last-child {
-  border-bottom: none;
-}
-
-.data-table-header {
-  border-bottom: 2px solid #d9d9d9;
+  display: contents;
 }
 
 .data-table-cell {
-  flex: 1;
   min-width: 0;
   padding: 16px;
   font-family: "Lora", serif;
@@ -918,12 +949,18 @@ figure.article-image figcaption {
   color: #000;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.data-table-row:last-child .data-table-cell {
+  border-bottom: none;
 }
 
 .data-table-header .data-table-cell {
   font-family: "Sora", sans-serif;
   font-weight: 700;
   letter-spacing: 0;
+  border-bottom: 2px solid #d9d9d9;
 }
 
 /* ─── Table clip container ───────────────────────────────────────── */
@@ -931,6 +968,11 @@ figure.article-image figcaption {
 .table-clip {
   overflow-x: auto;
   width: 100%;
+  margin: 24px 0;
+}
+
+.table-clip > * {
+  margin: 0 !important;
 }
 
 /* ─── Objects Table ──────────────────────────────────────────────── */
@@ -1083,13 +1125,13 @@ figure.article-image figcaption {
 .code-pill {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 0, 0, 0.1);
-  border-radius: 9999px;
-  padding: 0 6px;
+  background: #eee;
+  border-radius: 12px;
+  padding: 4px 8px;
   font-family: "Roboto Mono", monospace;
   font-size: 14px;
-  line-height: 1.6;
-  color: red;
+  line-height: 1.3;
+  color: #000;
   white-space: nowrap;
   align-self: flex-start;
 }
@@ -1371,12 +1413,13 @@ figure.article-image figcaption {
   left: 0;
   top: 1px;
   width: 22px;
+  height: 22px;
   background: #eee;
-  border-radius: 16px;
+  border-radius: 50%;
   text-align: center;
   font-family: "Lora", serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 22px;
   letter-spacing: 0.32px;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -1592,6 +1635,15 @@ details.details-section.details-section--h3:not(.callout-error) > summary::befor
 
 .details-content > * {
   margin: 0;
+}
+
+.details-content > .table-clip {
+  margin: 24px 0;
+}
+
+.details-content > .table-clip:last-child,
+.article-content li > .table-clip:last-child {
+  margin-bottom: 0;
 }
 
 .details-content > .callout-error:not(:last-child) {

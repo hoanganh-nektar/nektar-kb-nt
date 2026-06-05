@@ -37,57 +37,108 @@
           <p>Your Zoom administrator should sign into the Nektar app for Zoom.</p>
           <p>If you are an administrator, click "Connect" and follow the instructions. If not, copy the link and send it to the administrator.</p>
 
-          <h2 id="oauth-scopes">OAuth scopes</h2>
-          <div class="callout callout-neutral-technical callout-single-line">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
-          </div>
-          <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Scope</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>meeting:read:admin</code></td>
-                <td>To get past meetings' participants</td>
-              </tr>
-              <tr>
-                <td><code>report:read:admin</code></td>
-                <td>To list past meetings details</td>
-              </tr>
-              <tr>
-                <td><code>user:read:admin</code></td>
-                <td>To know the user's id, email, and name</td>
-              </tr>
-            </tbody>
-          </table>
+          <details id="oauth-scopes" class="details-section details-section--h3">
+            <summary>OAuth scopes</summary>
+            <div class="callout callout-neutral-technical callout-single-line">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+            <div class="data-table" style="grid-template-columns: 3fr 7fr">
+              <div class="data-table-row data-table-header">
+                <div class="data-table-cell">Scopes</div>
+                <div class="data-table-cell">Purpose</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>meeting:read:admin</code></div>
+                <div class="data-table-cell">To get past meetings' participants</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>report:read:admin</code></div>
+                <div class="data-table-cell">To list past meetings details</div>
+              </div>
+              <div class="data-table-row">
+                <div class="data-table-cell"><code>user:read:admin</code></div>
+                <div class="data-table-cell">To know the user's id, email, and name</div>
+              </div>
+            </div>
+          </details>
 
           <h2 id="sync">Sync</h2>
           <p>Nektar's Zoom sync system reads meeting details every 10–15 minutes, and the list of users in your Zoom organization every 24 hours. You must enable meeting sync for individual Zoom users in the <a href="../../administration/index.html#users">Users</a> section. Note that only the details of meetings in the past 6 months can be synced.</p>
+          <p>The sync table displays:</p>
+          <ul>
+            <li>the time the most recent meeting was synced</li>
+            <li>a sync health icon that can be clicked for more information</li>
+            <li>toggle to enable or disable sync globally</li>
+          </ul>
+          <p>Sync health icons may indicate the following states:</p>
+          <div class="sync-status-table">
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/disabled.svg" width="24" height="24" alt="Disabled" />
+              </div>
+              <div class="sync-status-label">Disabled</div>
+              <div class="sync-status-desc">Can be enabled on the same screen</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/Interface-Essential/Synchronize/synchronize-arrows-warning.svg" width="24" height="24" alt="Not started" />
+              </div>
+              <div class="sync-status-label">Not started</div>
+              <div class="sync-status-desc">Disabled globally, or pending approval</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/in-progress.svg" width="24" height="24" alt="In progress" />
+              </div>
+              <div class="sync-status-label">In progress</div>
+              <div class="sync-status-desc">Actively syncing; some data is remaining</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/completed.svg" width="24" height="24" alt="Completed" />
+              </div>
+              <div class="sync-status-label">Completed</div>
+              <div class="sync-status-desc">Everything synced; watching for new data</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/delayed.svg" width="24" height="24" alt="Delayed" />
+              </div>
+              <div class="sync-status-label">Delayed</div>
+              <div class="sync-status-desc">Sync has not run in the last 30 minutes</div>
+            </div>
+            <div class="sync-status-row">
+              <div class="sync-status-icon">
+                <img src="../../assets/images/icons/stalled.svg" width="24" height="24" alt="Stalled" />
+              </div>
+              <div class="sync-status-label">Stalled</div>
+              <div class="sync-status-desc">Stopped due to error or hasn't run in 2 hours</div>
+            </div>
+          </div>
 
-          <h2 id="properties-synced">Properties synced</h2>
+          <h3 id="properties-synced">Properties synced</h3>
           <ul>
             <li>Meeting ID, title, date and time, duration</li>
             <li>Names and email addresses of meeting participants and the duration they spent in the call. Note that email addresses are only available for participants who were invitees on the original calendar event and were signed into Zoom for the call (i.e. did not join as guests).</li>
             <li>Meeting transcript</li>
           </ul>
 
-          <h2 id="limitations">Limitations</h2>
+          <h3 id="limitations">Limitations</h3>
           <p>Zoom limits the information it provides through its API. In particular, information about a participant in a Zoom meeting is only available if all three of these conditions are satisfied:</p>
           <ol>
-            <li>The meeting is linked to a Google or MS365 calendar event</li>
-            <li>The participant is an invitee on the calendar event</li>
-            <li>The participant is signed into Zoom when they join the meeting</li>
+            <li>the meeting is linked to a Google or MS365 calendar event</li>
+            <li>the participant is an invitee on the calendar event</li>
+            <li>the participant is signed into Zoom when they join the meeting</li>
           </ol>
 
-          <h2 id="apis-used">APIs used</h2>
-          <div class="callout callout-neutral-technical callout-single-line">
-            <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
-          </div>
-          <p>Nektar uses the Zoom Reports and Meeting APIs.</p>
+          <details id="apis-used" class="details-section">
+            <summary>APIs used</summary>
+            <div class="callout callout-neutral-technical callout-single-line">
+              <p>This is under-the-hood technical detail that's not necessary for using Nektar.</p>
+            </div>
+            <p>Nektar uses the Zoom Reports and Meeting APIs.</p>
+          </details>
 
         </div>
       </div>
@@ -96,10 +147,10 @@
         <p class="toc-title">Content</p>
         <div class="toc-list">
           <a href="#connection">Connection</a>
-          <a href="#oauth-scopes">OAuth scopes</a>
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
           <a href="#sync">Sync</a>
-          <a href="#properties-synced">Properties synced</a>
-          <a href="#limitations">Limitations</a>
+          <a href="#properties-synced" class="toc-h3">Properties synced</a>
+          <a href="#limitations" class="toc-h3">Limitations</a>
           <a href="#apis-used">APIs used</a>
         </div>
       </aside>
