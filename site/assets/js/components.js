@@ -69,10 +69,10 @@
       '          <div class="nav-subgroup-toggle">\n' +
       '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/google-workspace.svg" alt="" />\n' +
       '            <a class="subgroup-label" href="' + R + 'connectors/google-workspace/index.html" data-path="/connectors/google-workspace/index.html">Google Workspace</a>\n' +
-      '            <img class="chevron-sub-img" src="' + c + '" alt="" />\n' +
+      '            <img class="chevron-sub-img" src="' + c + '" alt="" style="display:none" />\n' +
       '          </div>\n' +
       '          <div class="nav-subgroup-items">\n' +
-      '            <a class="nav-subitem" href="' + R + 'connectors/google-workspace/marketplace-install.html" data-path="/connectors/google-workspace/marketplace-install.html" data-contextual="true">Installing Nektar from Marketplace</a>\n' +
+      '            <a class="nav-subitem" href="' + R + 'connectors/google-workspace/marketplace-install.html" data-path="/connectors/google-workspace/marketplace-install.html" data-contextual="true" style="display:none">Installing Nektar from Marketplace</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
       '        <div class="nav-subgroup">\n' +
@@ -214,18 +214,15 @@
       }
     });
 
-    // Hide contextual sub-items (and their subgroup chevron) unless on their page
-    document.querySelectorAll('.nav-subitem[data-path]').forEach(function (el) {
+    // Reveal contextual sub-items only when on their page (hidden by default in HTML)
+    document.querySelectorAll('.nav-subitem[data-contextual]').forEach(function (el) {
       var p = normPath(el.getAttribute('data-path') || '');
-      if (el.dataset.contextual && !current.endsWith(p)) {
-        el.style.display = 'none';
+      if (current.endsWith(p)) {
+        el.style.display = '';
         var subgroup = el.closest('.nav-subgroup');
         if (subgroup) {
-          var allHidden = Array.from(subgroup.querySelectorAll('.nav-subitem')).every(function (i) { return i.style.display === 'none'; });
-          if (allHidden) {
-            var chevron = subgroup.querySelector('.chevron-sub-img');
-            if (chevron) chevron.style.display = 'none';
-          }
+          var chevron = subgroup.querySelector('.chevron-sub-img');
+          if (chevron) chevron.style.display = '';
         }
       }
     });
@@ -411,6 +408,68 @@
     });
   }
 
+  function initLightbox() {
+    var imgs = Array.from(document.querySelectorAll('figure.article-image img, .step-layout-image img'));
+    if (!imgs.length) return;
+    var current = 0;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+
+    var btnPrev = document.createElement('button');
+    btnPrev.className = 'lightbox-arrow lightbox-arrow--prev';
+    btnPrev.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18l-6-6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    btnPrev.setAttribute('aria-label', 'Previous image');
+
+    var btnNext = document.createElement('button');
+    btnNext.className = 'lightbox-arrow lightbox-arrow--next';
+    btnNext.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18l6-6-6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    btnNext.setAttribute('aria-label', 'Next image');
+
+    var lightImg = document.createElement('img');
+
+    overlay.appendChild(btnPrev);
+    overlay.appendChild(lightImg);
+    overlay.appendChild(btnNext);
+    document.body.appendChild(overlay);
+
+    function show(index) {
+      current = (index + imgs.length) % imgs.length;
+      lightImg.src = imgs[current].src;
+      lightImg.alt = imgs[current].alt;
+      btnPrev.style.display = imgs.length > 1 ? '' : 'none';
+      btnNext.style.display = imgs.length > 1 ? '' : 'none';
+    }
+
+    imgs.forEach(function (el, i) {
+      el.addEventListener('click', function () {
+        show(i);
+        overlay.classList.add('open');
+      });
+    });
+
+    btnPrev.addEventListener('click', function (e) {
+      e.stopPropagation();
+      show(current - 1);
+    });
+
+    btnNext.addEventListener('click', function (e) {
+      e.stopPropagation();
+      show(current + 1);
+    });
+
+    overlay.addEventListener('click', function () {
+      overlay.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') overlay.classList.remove('open');
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+  }
+
   function initSyntaxHighlight() {
     if (!document.querySelector('pre code')) return;
     // Inject Prism CSS
@@ -443,6 +502,7 @@
     initCalloutAlignment();
     initTableScroll();
     initSyntaxHighlight();
+    initLightbox();
   });
 
 })();

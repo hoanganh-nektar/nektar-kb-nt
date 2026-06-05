@@ -1,113 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data controls – Nektar</title>
-  <link rel="stylesheet" href="../assets/css/styles.css" />
-</head>
-<body>
-<div id="nav-placeholder"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data controls – Nektar</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <div id="nav-placeholder"></div>
 
-<div id="main-wrapper">
-  <div class="page-content">
-
-    <div class="page-hero">
-      <div class="hero-text">
-        <div class="breadcrumb">
-          <a href="../index.html">Home</a>
-          <span class="sep">›</span>
-          <a href="index.html">Administration</a>
-          <span class="sep">›</span>
-          <span>Data controls</span>
+    <div id="main-wrapper">
+      <div class="page-content">
+        <div class="page-hero">
+          <div class="hero-text">
+            <div class="breadcrumb">
+              <a href="../index.html">Home</a>
+              <span class="sep">›</span>
+              <a href="index.html">Administration</a>
+              <span class="sep">›</span>
+              <span>Data controls</span>
+            </div>
+            <h1>Data controls</h1>
+            <p class="hero-desc">
+              Configure screening rules, special domains, and write rules to
+              precisely control what Nektar captures and syncs to Salesforce.
+            </p>
+          </div>
+          <div class="hero-illustration" style="background: #1f3a5f">
+            <img
+              src="../assets/images/articles/data-controls.svg"
+              alt="data-controls"
+              style="object-fit: contain; width: 100%; height: 100%"
+            />
+          </div>
         </div>
-        <h1>Data controls</h1>
-        <p class="hero-desc">Configure screening rules, special domains, and write rules to precisely control what Nektar captures and syncs to Salesforce.</p>
+
+        <div class="article-layout">
+          <div class="article-body">
+            <div class="article-content">
+              <div class="image-row" style="display: flex; gap: 32px; margin-bottom: 32px;">
+                <figure class="article-image" style="flex: 1; margin: 0;">
+                  <img src="../assets/images/mockups/data-controls-1.jpg" alt="Data controls overview" />
+                </figure>
+                <figure class="article-image" style="flex: 1; margin: 0;">
+                  <img src="../assets/images/mockups/data-controls-2.jpg" alt="Data controls detail" />
+                </figure>
+              </div>
+
+              <p>
+                You can use these to restrict which of your organization's
+                emails and events are processed by Nektar. There are three kinds
+                of controls:
+              </p>
+
+              <h2 id="screening-rules">Screening rules</h2>
+              <p>
+                Nektar screens out emails sent by automated systems and email
+                addresses that don't belong to a specific person (such as
+                <code>support@…</code> and <code>sales@…</code>).
+              </p>
+              <p>
+                You may additionally block emails and events that you do not
+                wish Nektar to write in your Salesforce. You can do so under
+                these categories.
+              </p>
+              <ul>
+                <li>
+                  <strong>Block until date</strong> — all events with a start
+                  date and emails sent until this date will be blocked
+                </li>
+                <li>
+                  <strong>Private calendar events</strong> — when toggled on,
+                  these events will not be read by Nektar
+                </li>
+                <li>
+                  <strong>Email addresses</strong> — activity will not be
+                  captured by Nektar if <em>any</em> participant matches these
+                  email addresses
+                </li>
+                <li>
+                  <strong>Email domains</strong> — activity will not be captured
+                  by Nektar if <em>any</em> participant matches these email
+                  domains
+                </li>
+                <li>
+                  <strong>Subject line keywords</strong> — emails or events
+                  whose subject line contains <em>any</em> of these words will
+                  not be captured
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>Body pattern keywords</strong> — emails whose body
+                      contains <em>any</em> of these words will not be captured
+                    </p>
+                    <p>
+                      <strong
+                        >Rule Behaviour for Subject line and Body pattern
+                        keyword matching</strong
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        <p>Case insensitive matching</p>
+                        <p>
+                          Matching is not case sensitive. For example, if
+                          <code>confidential</code> is blocked, Nektar will also
+                          block <code>Confidential</code> and
+                          <code>CONFIDENTIAL</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>Exact phrase matching for multi-word patterns</p>
+                        <p>
+                          Multi-word patterns are treated as exact phrases, not
+                          as individual words.
+                        </p>
+                        <ul>
+                          <li>
+                            Example: If <code>Do not write</code> is blocked,
+                            the system will only block messages where this
+                            entire phrase appears together.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p>Special characters are treated literally</p>
+                        <p>
+                          Words containing special characters are matched
+                          exactly as written.
+                        </p>
+                        <ul>
+                          <li>
+                            Example: If <code>Accepted:</code> is blocked,
+                            Nektar will block <code>accepted:</code> and
+                            <code>Accepted:</code>, but not
+                            <code>Accepted</code> without the colon.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p>Line Breaks, Spaces, Underscores, and Numbers</p>
+                        <p>
+                          These are accepted as valid prefixes or suffixes to
+                          the blocked words.
+                        </p>
+                        <ul>
+                          <li>
+                            Example: If <code>NDA</code> is blocked, the system
+                            will also block <code>NDA2</code>,
+                            <code>NDA-attached</code>, and
+                            <code>NDA_attached</code>.
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+
+              <details>
+                <summary>
+                  Suggestion for what you should consider to screen
+                </summary>
+                <ul>
+                  <li>Block human resources and legal staff and vendors</li>
+                  <li>Block senior leadership, board members and investors</li>
+                  <li>
+                    Block tools that send payslips and performance appraisals
+                  </li>
+                </ul>
+              </details>
+
+              <h2 id="special-domains">Special domains and email addresses</h2>
+              <p>
+                Nektar screens out emails or events where all participants are
+                internal to your company, tools (e.g. notifications, conference
+                rooms, meeting recorders), distribution lists (e.g.
+                <code>sales@</code>, <code>support@</code>) or using personal
+                email addresses (e.g. <code>@gmail.com</code>).
+              </p>
+              <p>
+                You may configure additional email addresses and domains as
+                <em>ignored</em> — i.e. treated as internal for activity
+                screening purposes.
+              </p>
+
+              <details>
+                <summary>
+                  Suggestions for what you should consider to add here
+                </summary>
+                <ul>
+                  <li>
+                    Ignore partners and resellers that participate in sales
+                    conversations
+                  </li>
+                </ul>
+              </details>
+
+              <div class="callout callout-warning">
+                <p>
+                  Note: If an activity passes screening, all its participants
+                  are stored and processed in Nektar — including ignored and
+                  internal ones.
+                </p>
+              </div>
+              <div class="callout callout-neutral-info">
+                <p>
+                  Note: This section describes read rules. Activities and
+                  contacts must also pass write rules to be written to
+                  Salesforce.
+                </p>
+              </div>
+
+              <h2 id="write-rules">Write rules</h2>
+              <p>
+                Nektar only creates records that can be linked to existing
+                Salesforce records.
+              </p>
+              <ul>
+                <li>
+                  Contacts must link to an existing account or contact via a
+                  shared, non-public domain name. Consequently, Nektar will
+                  never create contacts with public domains (such as
+                  <code>@gmail.com</code>).
+                </li>
+                <li>
+                  Activities must link to valid contacts or leads. Contacts
+                  created from participants found in the same email or event
+                  qualify.
+                </li>
+                <li>
+                  Opportunity-Contact Roles are created for all contacts that
+                  have participated in activities linked to the opportunity.
+                </li>
+              </ul>
+              <p>
+                Additionally, write rules can be configured to further restrict
+                which Activities, Contacts and Opportunity Contact Roles are
+                created.
+              </p>
+              <div class="callout callout-neutral-beta callout-single-line">
+                <p>Write rules are in beta; contact us to implement them.</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="article-toc">
+            <p class="toc-title">Content</p>
+            <div class="toc-list">
+              <a href="#screening-rules">Screening rules</a>
+              <a href="#special-domains">Special domains and email addresses</a>
+              <a href="#write-rules">Write rules</a>
+            </div>
+          </aside>
+        </div>
       </div>
-      <div class="hero-illustration" style="background: #1f3a5f;">
-        <img src="../assets/images/articles/data-controls.svg" alt="data-controls" style="object-fit: contain; width: 100%; height: 100%;" />
-      </div>
+      <div id="footer-placeholder"></div>
     </div>
 
-    <div class="article-layout">
-      <div class="article-body">
-        <div class="article-content">
-
-          <p>Data controls let you restrict which of your organization's emails and events are processed by Nektar. There are three kinds of controls.</p>
-
-          <h2 id="screening-rules">Screening rules</h2>
-          <p>Nektar automatically screens out emails sent by automated systems and non-personal email addresses (such as <code>support@…</code> and <code>sales@…</code>). You may additionally block emails and events under the following categories:</p>
-          <ul>
-            <li><strong>Block until date</strong> — all events with a start date and emails sent until this date will be blocked</li>
-            <li><strong>Private calendar events</strong> — when toggled on, these events will not be read by Nektar</li>
-            <li><strong>Email addresses</strong> — activity will not be captured if <em>any</em> participant matches these addresses</li>
-            <li><strong>Email domains</strong> — activity will not be captured if <em>any</em> participant matches these domains</li>
-            <li><strong>Subject line keywords</strong> — emails or events whose subject line contains <em>any</em> of these words will not be captured</li>
-            <li><strong>Body pattern keywords</strong> — emails whose body contains <em>any</em> of these words will not be captured</li>
-          </ul>
-
-          <h3>Rule matching behavior</h3>
-          <ul>
-            <li><strong>Case insensitive</strong> — if <code>confidential</code> is blocked, Nektar also blocks <code>Confidential</code> and <code>CONFIDENTIAL</code></li>
-            <li><strong>Exact phrase matching</strong> for multi-word patterns — <code>Do not write</code> only blocks messages where that entire phrase appears together</li>
-            <li><strong>Special characters are treated literally</strong> — <code>Accepted:</code> blocks <code>accepted:</code> but not <code>Accepted</code> without the colon</li>
-            <li><strong>Line breaks, spaces, underscores, and numbers</strong> are accepted as valid prefixes or suffixes — blocking <code>NDA</code> also blocks <code>NDA2</code>, <code>NDA-attached</code>, and <code>NDA_attached</code></li>
-          </ul>
-
-          <details>
-            <summary>Suggestions for what to screen</summary>
-            <ul>
-              <li>Block human resources and legal staff and vendors</li>
-              <li>Block senior leadership, board members and investors</li>
-              <li>Block tools that send payslips and performance appraisals</li>
-            </ul>
-          </details>
-
-          <h2 id="special-domains">Special domains and email addresses</h2>
-          <p>Nektar screens out emails or events where all participants are internal to your company, tools (e.g. notifications, conference rooms), distribution lists, or personal email addresses. You may configure additional email addresses and domains as <em>ignored</em> — i.e. treated as internal for activity screening purposes.</p>
-
-          <details>
-            <summary>Suggestions for what to add here</summary>
-            <ul>
-              <li>Ignore partners and resellers that participate in sales conversations</li>
-            </ul>
-          </details>
-
-          <div class="callout callout-warning">
-            <p>Note: If an activity passes screening, all its participants are stored and processed in Nektar — including ignored and internal ones.</p>
-          </div>
-          <div class="callout callout-neutral-info">
-            <p>Note: This section describes read rules. Activities and contacts must also pass write rules to be written to Salesforce.</p>
-          </div>
-
-          <h2 id="write-rules">Write rules</h2>
-          <p>Nektar only creates records that can be linked to existing Salesforce records:</p>
-          <ul>
-            <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
-            <li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
-            <li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
-          </ul>
-          <div class="callout callout-neutral-beta callout-single-line">
-            <p>Write rules are in beta; contact us to implement them.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <aside class="article-toc">
-        <p class="toc-title">Content</p>
-        <div class="toc-list">
-          <a href="#screening-rules">Screening rules</a>
-          <a href="#special-domains">Special domains and email addresses</a>
-          <a href="#write-rules">Write rules</a>
-        </div>
-      </aside>
-    </div>
-
-  </div>
-  <div id="footer-placeholder"></div>
-</div>
-
-<script src="../assets/js/components.js"></script>
-</body>
+    <script src="../assets/js/components.js"></script>
+  </body>
 </html>
