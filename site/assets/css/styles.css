@@ -1325,9 +1325,20 @@ figure.article-image figcaption {
   display: flex;
 }
 
+.lightbox-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 16px);
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  cursor: default;
+}
+
 .lightbox-overlay img {
-  max-width: 90vw;
-  max-height: 90vh;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  max-height: calc(100vh - 48px);
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
@@ -1339,20 +1350,17 @@ figure.article-image img,
 }
 
 .lightbox-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.15);
   border: none;
-  width: 56px;
-  height: 56px;
+  width: clamp(24px, 6vw, 56px);
+  height: clamp(24px, 6vw, 56px);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.15s;
-  z-index: 1;
   padding: 0;
 }
 
@@ -1361,12 +1369,9 @@ figure.article-image img,
 }
 
 .lightbox-arrow svg {
-  width: 24px;
-  height: 24px;
+  width: clamp(12px, 2.5vw, 24px);
+  height: clamp(12px, 2.5vw, 24px);
 }
-
-.lightbox-arrow--prev { left: 24px; }
-.lightbox-arrow--next { right: 24px; }
 
 /* ─── Article Content Typography ───────────────────────────────── */
 
@@ -1965,11 +1970,6 @@ footer {
     padding: 0 48px 48px;
   }
 
-  .topics-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-
   .page-content {
     padding: 64px 48px 48px;
   }
@@ -2007,31 +2007,13 @@ footer {
 }
 
 /* ≤ 800px — compact padding, single-column, stacked footer */
-@media (max-width: 1400px) {
-  .image-row--3 {
-    flex-direction: column !important;
-  }
-}
-
 @media (max-width: 1200px) {
-  .image-row {
-    flex-direction: column !important;
-  }
-
   .home-hero {
     padding: 64px 32px 32px;
   }
 
   .home-sections {
     padding: 0 32px 32px;
-  }
-
-  .card-grid-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .topics-grid {
-    grid-template-columns: 1fr;
   }
 
   .article-cards {
@@ -2051,12 +2033,36 @@ footer {
     padding: 32px;
   }
 
+  .footer-col {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+/* ≤ 650px — single column, stacked footer */
+@media (max-width: 650px) {
+  .image-row,
+  .image-row--3 {
+    flex-direction: column !important;
+  }
+
+  .topics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
   .footer-inner {
     flex-direction: column;
     flex-wrap: nowrap;
   }
 
   .footer-brand {
+    flex: none;
+  }
+
+  .footer-col {
     flex: none;
   }
 }

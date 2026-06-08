@@ -428,10 +428,15 @@
 
     var lightImg = document.createElement('img');
 
-    overlay.appendChild(btnPrev);
-    overlay.appendChild(lightImg);
-    overlay.appendChild(btnNext);
+    var inner = document.createElement('div');
+    inner.className = 'lightbox-inner';
+    inner.appendChild(btnPrev);
+    inner.appendChild(lightImg);
+    inner.appendChild(btnNext);
+    overlay.appendChild(inner);
     document.body.appendChild(overlay);
+
+    inner.addEventListener('click', function (e) { e.stopPropagation(); });
 
     function show(index) {
       current = (index + imgs.length) % imgs.length;
