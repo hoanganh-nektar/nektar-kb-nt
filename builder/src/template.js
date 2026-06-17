@@ -130,7 +130,8 @@ export function sectionIndexTemplate({ node, heroDesc, children, tree }) {
     : '';
 
   const cardsHtml = children.map(child => {
-    const childMeta = pageMeta[child.id?.replace(/-/g, '')] || {};
+    const childKey = (child.id || child.blockId || '').replace(/-/g, '');
+    const childMeta = pageMeta[childKey] || {};
     // icon comes from Notion (article entry toggle image) or page-meta override
     const iconRaw = childMeta.cardIcon || child.cardIcon || '';
     // Local asset paths need R prefix; Notion S3/absolute URLs do not
