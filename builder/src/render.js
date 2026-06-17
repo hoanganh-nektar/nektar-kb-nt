@@ -8,10 +8,16 @@ export function toId(text) {
     .trim();
 }
 
-function calloutClass(icon) {
+function calloutClass(icon, color) {
   const emoji = icon?.emoji || '';
   if (['⚙️', '🔧', '🛠️', '🔩', '⚗️', '🔬'].includes(emoji)) return 'callout-neutral-technical';
   if (['⚠️', '🚨', '❗', '❌', '🔴', '🛑'].includes(emoji)) return 'callout-warning';
+  // Use Notion background color when the icon is a file (not an emoji)
+  if (color) {
+    if (color.includes('red') || color.includes('orange')) return 'callout-warning';
+    if (color.includes('yellow')) return 'callout-warning';
+    if (color.includes('gray') || color.includes('grey')) return 'callout-neutral-technical';
+  }
   return 'callout-neutral-info';
 }
 
@@ -89,10 +95,7 @@ function renderBlock(block, pathIndex, tocEntries) {
     }
 
     case 'callout': {
-      let cls = calloutClass(data.icon);
-      if (cls === 'callout-neutral-info' && plain.toLowerCase().startsWith('error')) {
-        cls = 'callout-warning';
-      }
+      const cls = calloutClass(data.icon, data.color);
       const singleLine = !block.has_children ? ' callout-single-line' : '';
       const extra = block._children
         ? '\n' + renderBlocks(block._children, pathIndex)
