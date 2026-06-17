@@ -38,7 +38,7 @@
       '    <div class="nav-section" data-section="understand">\n' +
       '      <div class="nav-section-toggle"><a class="nav-section-label" href="' + R + 'understand/index.html" data-path="/understand/index.html">Understand</a><img class="chevron-img" src="' + c + '" alt="" /></div>\n' +
       '      <div class="nav-section-items">\n' +
-      '        <a class="nav-item" href="' + R + 'understand/overview.html" data-path="/understand/overview.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/overview.png" alt="" />Overview</a>\n' +
+      '        <a class="nav-item" href="' + R + 'understand/overview.html" data-path="/understand/overview.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/overview.svg" alt="" />Overview</a>\n' +
       '        <a class="nav-item" href="' + R + 'understand/graph-inference.html" data-path="/understand/graph-inference.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/graph-inference.svg" alt="" />Graph inference</a>\n' +
       '        <a class="nav-item" href="' + R + 'understand/self-healing.html" data-path="/understand/self-healing.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/self-healing.svg" alt="" />Self healing</a>\n' +
       '        <a class="nav-item" href="' + R + 'understand/security.html" data-path="/understand/security.html"><img class="nav-icon" src="' + R + 'assets/images/nav-icons/security.svg" alt="" />Security</a>\n' +

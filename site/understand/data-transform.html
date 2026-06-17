@@ -1,161 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data transform – Nektar</title>
-    <link rel="stylesheet" href="../assets/css/styles.css" />
-  </head>
-  <body>
-    <div id="nav-placeholder"></div>
-
-    <div id="main-wrapper">
-      <div class="page-content">
-        <div class="page-hero">
-          <div class="hero-text">
-            <div class="breadcrumb">
-              <a href="../index.html">Home</a>
-              <span class="sep">›</span>
-              <a href="index.html">Understand</a>
-              <span class="sep">›</span>
-              <span>Data transform</span>
-            </div>
-            <h1>Data transform</h1>
-            <p class="hero-desc">
-              Configure how Nektar maps your engagement data into Salesforce
-              fields using transform rules and formulae.
-            </p>
-          </div>
-          <div class="hero-illustration" style="background: #003d5c">
-            <img
-              src="../assets/images/articles/data-transform.svg"
-              alt="data-transform"
-              style="object-fit: contain; width: 100%; height: 100%"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data transform – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div id="main-wrapper">
+  <div class="page-content">
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="../understand/index.html">Understand</a>
+          <span class="sep">›</span>
+          <span>Data transform</span>
         </div>
-
-        <div class="article-layout">
-          <div class="article-body">
-            <div class="article-content">
-              <div class="callout callout-neutral-beta callout-single-line">
-                <p>
-                  This feature cannot be configured from the console yet.
-                  Contact us to set it up.
-                </p>
-              </div>
-
-              <p>
-                To write Nektar Graph data to Salesforce, it must be transformed
-                to match your Salesforce data model. This is accomplished using
-                transform rules, which use formulae to calculate the values of
-                Salesforce fields.
-              </p>
-              <p>
-                When you set Nektar up, a few default transform rules are
-                configured for you. You can edit these, and also add new rules
-                to instruct Nektar to populate additional Salesforce custom or
-                standard fields.
-              </p>
-
-              <h2 id="transformable-objects">Transformable objects</h2>
-              <p>
-                All objects written by Nektar into Salesforce are transformable.
-                The transform system classifies objects into two kinds: Activity
-                objects and Record objects.
-              </p>
-
-              <h3 id="activity-objects">Activity objects</h3>
-              <p>
-                These consist of Events and Tasks. Activity transform formulae
-                can refer to:
-              </p>
-              <ul>
-                <li>
-                  fields of the Nektar Graph Activity node (e.g. date and time,
-                  subject and body etc.)
-                </li>
-                <li>
-                  the list of buyers and sellers associated with the activity,
-                  with basic information
-                </li>
-                <li>
-                  the record (account, opportunity, etc.) that the activity is
-                  associated with.
-                </li>
-              </ul>
-              <p>These formulae CANNOT access:</p>
-              <ul>
-                <li>
-                  the <strong>history of changes</strong> to the record that the
-                  activity is associated with
-                </li>
-                <li>
-                  other activities that are also associated with the same record
-                  / buyer / seller as the one being processed
-                </li>
-              </ul>
-
-              <h4 id="important-note">Important note</h4>
-              <ul>
-                <li>
-                  The information about the associated record, buyers and
-                  sellers available to activity transform formulae are
-                  the <strong>latest known information</strong>, NOT the
-                  information that existed as of the date of the activity.
-                </li>
-                <li>
-                  Transforms don't just happen one time when we first sync the
-                  activity; these formulae are re-evaluated continuously, just
-                  like Excel formulae.
-                </li>
-              </ul>
-              <p>
-                As a result, if an activity transform formula refers to a field
-                from the associated record (say StageName), and that field is
-                updated on Salesforce, the formula will be re-evaluated and its
-                new output written to that Event or Task on Salesforce.
-              </p>
-
-              <h3 id="record-objects">Record objects</h3>
-              <p>
-                These consist of Opportunities, Accounts, Contacts and Leads.
-                Record transform rules can refer to:
-              </p>
-              <ul>
-                <li>
-                  fields of the record itself (if it already exists on
-                  Salesforce)
-                </li>
-                <li>
-                  the list of activities associated with the record, with basic
-                  information
-                </li>
-                <li>
-                  the list of buyers and sellers associated with the record,
-                  with basic information
-                </li>
-                <li>
-                  the history of edits made to the record (e.g. stage changes),
-                  as tracked by Salesforce
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <aside class="article-toc">
-            <p class="toc-title">Content</p>
-            <div class="toc-list">
-              <a href="#transformable-objects">Transformable objects</a>
-              <a href="#activity-objects" class="toc-h3">Activity objects</a>
-              <a href="#record-objects" class="toc-h3">Record objects</a>
-            </div>
-          </aside>
+        <h1>Data transform</h1>
+        <p class="hero-desc"></p>
+      </div>
+      <div class="hero-illustration">
+        <img src="assets/images/articles/data-transform.svg" alt="Data transform" />
+      </div>
+    </div>
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+          <div class="callout callout-neutral-info callout-single-line">
+  <p>This feature cannot be configured from the console yet. Contact us to set it up.</p>
+</div>
+<p>To write Nektar Graph data to Salesforce, it must be transformed to match your Salesforce data model. This is accomplished using transform rules, which use formulae to calculate the values of Salesforce fields.</p>
+<p>When you set Nektar up, a few default transform rules are configured for you. You can edit these, and also add new rules to instruct Nektar to populate additional Salesforce custom or standard fields.</p>
+<h3 id="transformable-objects">Transformable objects</h3>
+<p>All objects written by Nektar into Salesforce are transformable. The transform system classifies objects into two kinds: Activity objects and Record objects.</p>
+<h3 id="activity-objects">Activity objects</h3>
+<p>These consist of Events and Tasks. Activity transform formulae can refer to:</p>
+<ul>
+<li>fields of the Nektar Graph Activity node (e.g. date and time, subject and body etc.)</li>
+<li>the list of buyers and sellers associated with the activity, with basic information</li>
+<li>the record (account, opportunity, etc.) that the activity is associated with.</li>
+</ul>
+<p>These formulae CANNOT access:</p>
+<ul>
+<li>the <strong>history of changes</strong> to the record that the activity is associated with</li>
+<li>other activities that are also associated with the same record / buyer / seller as the one being processed</li>
+</ul>
+<h4 id="important-note">Important note</h4>
+<ul>
+<li>The information about the associated record, buyers and sellers available to activity transform formulae are the <strong>latest known information</strong>, NOT the information that existed as of the date of the activity.</li>
+<li>Transforms don't just happen one time when we first sync the activity; these formulae are re-evaluated continuously, just like Excel formulae.</li>
+</ul>
+<p>As a result, if an activity transform formula refers to a field from the associated record (say StageName), and that field is updated on Salesforce, the formula will be re-evaluated and its new output written to that Event or Task on Salesforce.</p>
+<h3 id="record-objects">Record objects</h3>
+<p>These consist of Opportunities, Accounts, Contacts and Leads. Record transform rules can refer to:</p>
+<ul>
+<li>fields of the record itself (if it already exists on Salesforce)</li>
+<li>the list of activities associated with the record, with basic information</li>
+<li>the list of buyers and sellers associated with the record, with basic information</li>
+<li>the history of edits made to the record (e.g. stage changes), as tracked by Salesforce</li>
+</ul>
         </div>
       </div>
-      <div id="footer-placeholder"></div>
+      <aside class="article-toc">
+        <p class="toc-title">Content</p>
+        <div class="toc-list">
+          <a href="#transformable-objects" class="toc-h3">Transformable objects</a>
+          <a href="#activity-objects" class="toc-h3">Activity objects</a>
+          <a href="#important-note" class="toc-h3">Important note</a>
+          <a href="#record-objects" class="toc-h3">Record objects</a>
+        </div>
+      </aside>
     </div>
-
-    <script src="../assets/js/components.js"></script>
-  </body>
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../assets/js/components.js"></script>
+</body>
 </html>

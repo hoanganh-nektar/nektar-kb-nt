@@ -3,114 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Integration User – Salesforce – Nektar</title>
+  <title>Integration user – Nektar</title>
   <link rel="stylesheet" href="../../assets/css/styles.css" />
 </head>
 <body>
 <div id="nav-placeholder"></div>
-
 <div id="main-wrapper">
   <div class="page-content">
-
     <div class="page-hero">
       <div class="hero-text">
         <div class="breadcrumb">
           <a href="../../index.html">Home</a>
           <span class="sep">›</span>
-          <a href="../index.html">Connectors</a>
+          <a href="../../connectors/index.html">Connectors</a>
           <span class="sep">›</span>
-          <a href="index.html">Salesforce</a>
+          <a href="../../connectors/salesforce/index.html">Salesforce</a>
           <span class="sep">›</span>
           <span>Integration user</span>
         </div>
         <h1>Integration user</h1>
-        <p class="hero-desc">Create and configure the dedicated Salesforce user Nektar uses to read and write engagement data to your org — with the minimum permissions required.</p>
+        <p class="hero-desc">Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
       </div>
-      <div class="hero-illustration" style="background: #004455;">
-        <img src="../../assets/images/articles/integration-user.svg" alt="Integration user" style="object-fit: contain; width: 100%; height: 100%;" />
+      <div class="hero-illustration">
+        <img src="assets/images/articles/integration-user.svg" alt="Integration user" />
       </div>
     </div>
-
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-
-          <p>Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
           <p>We recommend creating a dedicated Salesforce user account (a <em>service account</em>) to serve as the Nektar integration user, as this gives fine control over what data Nektar can access. If this is not possible, you may use a shared user account for all tools to access Salesforce, or use your own Salesforce user account as the Nektar integration user.</p>
-          <p>Your Salesforce administrator should provision an integration user on Salesforce before you can set Nektar up. It is also a good idea for the designated Nektar administrator in your organization to have the credentials for the integration user.</p>
-
-          <h2 id="permissions">Permissions</h2>
-          <p>The specific records and fields Nektar accesses may be controlled by configuring a Salesforce profile with access to only the appropriate records and assigning the Nektar integration user to that profile.</p>
-          <p>The permissions required for this profile are:</p>
-          <div class="data-table" style="grid-template-columns: 2fr 3fr">
-            <div class="data-table-row data-table-header">
-              <div class="data-table-cell">Permission</div>
-              <div class="data-table-cell">Purpose</div>
-            </div>
-            <div class="data-table-row">
-              <div class="data-table-cell">Modify All Data</div>
-              <div class="data-table-cell">create and modify all Salesforce records it can access (e.g. add and update contacts and activities)</div>
-            </div>
-            <div class="data-table-row">
-              <div class="data-table-cell">Modify Metadata Through Metadata API Functions</div>
-              <div class="data-table-cell">create and modify custom fields for storing useful Nektar data</div>
-            </div>
-            <div class="data-table-row">
-              <div class="data-table-cell">Customize Application</div>
-              <div class="data-table-cell">control field-level security for Nektar custom fields</div>
-            </div>
-            <div class="data-table-row">
-              <div class="data-table-cell">Manage Profiles and Permission Sets</div>
-              <div class="data-table-cell">grant other users visibility to the data in Nektar custom fields</div>
-            </div>
-            <div class="data-table-row">
-              <div class="data-table-cell">API access</div>
-              <div class="data-table-cell">allow programmatic access</div>
-            </div>
-          </div>
-
-          <details id="reduced-privilege" class="details-section">
-            <summary>Reduced privilege alternatives</summary>
-            <p>These allow operating Nektar with a less privileged integration user.</p>
-            <div class="callout callout-warning">
-              <p>These alternatives involve setting up and maintaining complex Salesforce configurations manually, and require considerable Salesforce administration expertise.</p>
-            </div>
-
-            <h3 id="alt-modify-all-data">Alternatives to "Modify all data"</h3>
-            <p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to <a href="sync.html#objects-synced">read, update, create and delete records under the specific objects</a> that Nektar requires. Optionally, you may also:</p>
-            <ul>
-              <li>Restrict the delete permission to ensure that Nektar only deletes records it created.<br><strong>Important:</strong> Use the <code>CreatedById</code> field and not the <code>OwnerId</code> to implement this restriction.</li>
-              <li>Restrict the update permission to the specific <a href="sync.html#standard-fields">fields updated by Nektar</a>.<br><strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
-              <li>Restrict access to the sub-set of records (e.g. Accounts, Contacts, Opportunities, Leads) relevant to the teams adopting Nektar.<br><strong>Important:</strong> Relevant records not being visible to Nektar may result in duplicate contacts, activities being associated with the wrong opportunities, or other inaccuracies.</li>
-            </ul>
-
-            <h3 id="alt-modify-metadata">Alternatives to "Modify Metadata through API Functions", "Customize Application", "Manage Profiles and Permission Sets"</h3>
-            <p>Instead of providing these permissions, you may set up the <a href="sync.html#custom-fields">relevant Nektar custom fields</a> manually. Ensure that:</p>
-            <ul>
-              <li>the field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
-              <li>read and write access to these custom fields are provided to the Nektar integration user</li>
-              <li>read access to these custom fields are provided to all normal user profiles as required</li>
-            </ul>
-          </details>
-
+<p>Your Salesforce administrator should provision an integration user on Salesforce before you can set Nektar up. It is also a good idea for the designated Nektar administrator in your organization to have the credentials for the integration user.</p>
+<h3 id="permissions">Permissions</h3>
+<p>The specific records and fields Nektar accesses may be controlled by configuring a Salesforce profile with access to only the appropriate records and assigning the Nektar integration user to that profile.</p>
+<p>The permissions required for this profile are:</p>
+<div class="data-table" style="grid-template-columns: 5fr 5fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell">Permission</div>
+<div class="data-table-cell">Purpose</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Modify All Data</div>
+<div class="data-table-cell">create and modify all Salesforce records it can access (e.g. add and update contacts and activities)</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Modify Metadata Through Metadata API Functions</div>
+<div class="data-table-cell">create and modify custom fields for storing useful Nektar data</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Customize Application</div>
+<div class="data-table-cell">control field-level security for Nektar custom fields</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Manage Profiles and Permission Sets</div>
+<div class="data-table-cell">grant other users visibility to the data in Nektar custom fields</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">API access</div>
+<div class="data-table-cell">allow programmatic access</div>
+</div>
+</div>
+<h3 id="reduced-privilege-alternatives"><strong>Reduced privilege alternatives</strong></h3>
         </div>
       </div>
-
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#permissions">Permissions</a>
-          <a href="#reduced-privilege">Reduced privilege alternatives</a>
-          <a href="#alt-modify-all-data" class="toc-h3">Alternatives to "Modify all data"</a>
-          <a href="#alt-modify-metadata" class="toc-h3">Alternatives to "Modify Metadata…"</a>
+          <a href="#permissions" class="toc-h3">Permissions</a>
+          <a href="#reduced-privilege-alternatives" class="toc-h3">Reduced privilege alternatives</a>
         </div>
       </aside>
     </div>
-
   </div>
   <div id="footer-placeholder"></div>
 </div>
-
 <script src="../../assets/js/components.js"></script>
 </body>
 </html>

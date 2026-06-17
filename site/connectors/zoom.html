@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zoom – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div id="main-wrapper">
+  <div class="page-content">
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="../connectors/index.html">Connectors</a>
+          <span class="sep">›</span>
+          <span>Zoom</span>
+        </div>
+        <h1>Zoom</h1>
+        <p class="hero-desc">Capture Zoom meeting data and sync it natively into Salesforce — contact, account, and opportunity records stay current automatically, with no action from your reps.</p>
+      </div>
+      <div class="hero-illustration">
+        <img src="../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/0.svg" alt="Zoom" />
+      </div>
+    </div>
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+          <h3 id="connection">Connection</h3>
+<p>Your Zoom administrator should sign into the Nektar app for Zoom.</p>
+<p>If you are an administrator, click &quot;Connect&quot; and follow the instructions. If not, copy the link and send it to the administrator.</p>
+<h3 id="oauth-scopes"><strong>OAuth scopes</strong></h3>
+<h3 id="sync">Sync</h3>
+<p>Nektar's Zoom sync system reads meeting details every 10–15 minutes, and the list of users in your Zoom organization every 24 hours. You must enable meeting sync for individual Zoom users in the <a href="/administration/users.html">Users section</a>. Note that only the details of meetings in the past 6 months can be synced.</p>
+<p>The sync table displays:</p>
+<ul>
+<li>the time the most recent meeting was synced</li>
+<li>a sync health icon that can be clicked for more information</li>
+<li>toggle to enable or disable sync globally</li>
+</ul>
+<p>Sync health icons may indicate the following states:</p>
+<h3 id="properties-synced">Properties synced</h3>
+<ul>
+<li>Meeting ID, title, date and time, duration</li>
+<li>Names and email addresses of meeting participants and the duration they spent in the call. Note that email addresses are only available for participants who were invitees on the original calendar event and were signed into Zoom for the call (i.e. did not join as guests).</li>
+<li>Meeting transcript</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<p>Zoom limits the information it provides through its API. In particular, information about a participant in a Zoom meeting is only available if all three of these conditions are satisfied:</p>
+<ol>
+<li>the meeting is linked to a Google or MS365 calendar event</li>
+<li>the participant is an invitee on the calendar event</li>
+<li>the participant is signed into Zoom when they join the meeting</li>
+</ol>
+<h3 id="apis-used"><strong>APIs used</strong></h3>
+        </div>
+      </div>
+      <aside class="article-toc">
+        <p class="toc-title">Content</p>
+        <div class="toc-list">
+          <a href="#connection" class="toc-h3">Connection</a>
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
+          <a href="#sync" class="toc-h3">Sync</a>
+          <a href="#properties-synced" class="toc-h3">Properties synced</a>
+          <a href="#limitations" class="toc-h3">Limitations</a>
+          <a href="#apis-used" class="toc-h3">APIs used</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

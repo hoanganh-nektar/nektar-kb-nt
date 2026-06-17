@@ -1,126 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connection – Salesforce – Nektar</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css" />
-  </head>
-  <body>
-    <div id="nav-placeholder"></div>
-
-    <div id="main-wrapper">
-      <div class="page-content">
-        <div class="page-hero">
-          <div class="hero-text">
-            <div class="breadcrumb">
-              <a href="../../index.html">Home</a>
-              <span class="sep">›</span>
-              <a href="../index.html">Connectors</a>
-              <span class="sep">›</span>
-              <a href="index.html">Salesforce</a>
-              <span class="sep">›</span>
-              <span>Connection</span>
-            </div>
-            <h1>Connection</h1>
-            <p class="hero-desc">
-              Authorize Nektar to connect to your Salesforce org via OAuth and
-              manage the integration user credentials.
-            </p>
-          </div>
-          <div class="hero-illustration" style="background: #004455">
-            <img
-              src="../../assets/images/articles/connection.svg"
-              alt="Connection"
-              style="object-fit: contain; width: 100%; height: 100%"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connection – Nektar</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div id="main-wrapper">
+  <div class="page-content">
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="../../connectors/index.html">Connectors</a>
+          <span class="sep">›</span>
+          <a href="../../connectors/salesforce/index.html">Salesforce</a>
+          <span class="sep">›</span>
+          <span>Connection</span>
         </div>
-
-        <div class="article-layout">
-          <div class="article-body">
-            <div class="article-content">
-              <p>
-                The Salesforce account you sign into while
-                <a href="../../getting-started/setup-guide.html"
-                  >creating your Nektar organization</a
-                >
-                automatically becomes your connected integration user.
-              </p>
-              <p>
-                You may connect a different integration user in the Connection
-                section of Salesforce integration settings:
-              </p>
-              <ul>
-                <li>
-                  If another integration user is already connected, click
-                  "Disconnect" and then "Confirm".
-                </li>
-                <li>
-                  If you have access to the integration user's Salesforce
-                  credentials, click "Connect" and then
-                  "Confirm". Sign into Salesforce as the
-                  integration user (if required), and allow access (if
-                  prompted). This connects the new integration user.<br /><br /><strong
-                    >Note:</strong
-                  >
-                  If you are signed in as a different Salesforce user, you
-                  should sign out of Salesforce before clicking "Connect".
-                </li>
-                <li>
-                  If you do not have the integration user's Salesforce
-                  credentials, send the link below the Connect button to the
-                  person who does. They should click this link, sign in as the
-                  integration user, and allow access. Once they complete this,
-                  you can refresh the page to verify that the new integration
-                  user has been connected.
-                </li>
-              </ul>
-
-              <details id="oauth-scopes" class="details-section">
-                <summary>OAuth scopes</summary>
-                <div
-                  class="callout callout-neutral-technical callout-single-line"
-                >
-                  <p>
-                    This is under-the-hood technical detail that's not necessary
-                    for using Nektar.
-                  </p>
-                </div>
-                <p>
-                  Scopes control what actions Nektar may take on behalf of the
-                  integration user. Nektar requires the following scopes to
-                  operate correctly.
-                </p>
-                <div class="data-table" style="grid-template-columns: 3fr 7fr">
-                  <div class="data-table-row data-table-header">
-                    <div class="data-table-cell">Scope</div>
-                    <div class="data-table-cell">Purpose</div>
-                  </div>
-                  <div class="data-table-row">
-                    <div class="data-table-cell"><span class="code-pill">full</span></div>
-                    <div class="data-table-cell">Read and write Salesforce data and metadata</div>
-                  </div>
-                  <div class="data-table-row">
-                    <div class="data-table-cell"><span class="code-pill">refresh_token</span></div>
-                    <div class="data-table-cell">Operate as a background service</div>
-                  </div>
-                </div>
-              </details>
-            </div>
-          </div>
-
-          <aside class="article-toc">
-            <p class="toc-title">Content</p>
-            <div class="toc-list">
-              <a href="#oauth-scopes">OAuth scopes</a>
-            </div>
-          </aside>
+        <h1>Connection</h1>
+        <p class="hero-desc">The Salesforce account you sign into while creating your Nektar organization automatically becomes your connected integration user.</p>
+      </div>
+      <div class="hero-illustration">
+        <img src="../../assets/images/notion/3819417ef6ba800b9da9f4f610a0a1e1/0.svg" alt="Connection" />
+      </div>
+    </div>
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+          <p>You may connect a different integration user in the Connection section of Salesforce integration settings:</p>
+<ul>
+<li>If another integration user is already connected, click &quot;Disconnect&quot; and then &quot;Confirm&quot;.</li>
+<li>If you have access to the integration user's Salesforce credentials, click &quot;Connect&quot; and then &quot;Confirm&quot;. Sign into Salesforce as the integration user (if required), and allow access (if prompted). This connects the new integration user.
+<p><strong>Note:</strong> If you are signed in as a different Salesforce user, you should sign out of Salesforce before clicking &quot;Connect&quot;.</p></li>
+<li>If you do not have the integration user's Salesforce credentials, send the link below the Connect button to the person who does. They should click this link, sign in as the integration user, and allow access. Once they complete this, you can refresh the page to verify that the new integration user has been connected.</li>
+</ul>
+<h3 id="oauth-scopes"><strong>OAuth scopes</strong></h3>
         </div>
       </div>
-      <div id="footer-placeholder"></div>
+      <aside class="article-toc">
+        <p class="toc-title">Content</p>
+        <div class="toc-list">
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
+        </div>
+      </aside>
     </div>
-
-    <script src="../../assets/js/components.js"></script>
-  </body>
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../../assets/js/components.js"></script>
+</body>
 </html>

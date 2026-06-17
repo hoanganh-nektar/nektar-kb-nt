@@ -3,455 +3,352 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sync – Salesforce – Nektar</title>
+  <title>Sync – Nektar</title>
   <link rel="stylesheet" href="../../assets/css/styles.css" />
 </head>
 <body>
 <div id="nav-placeholder"></div>
-
 <div id="main-wrapper">
   <div class="page-content">
-
     <div class="page-hero">
       <div class="hero-text">
         <div class="breadcrumb">
           <a href="../../index.html">Home</a>
           <span class="sep">›</span>
-          <a href="../index.html">Connectors</a>
+          <a href="../../connectors/index.html">Connectors</a>
           <span class="sep">›</span>
-          <a href="index.html">Salesforce</a>
+          <a href="../../connectors/salesforce/index.html">Salesforce</a>
           <span class="sep">›</span>
           <span>Sync</span>
         </div>
         <h1>Sync</h1>
-        <p class="hero-desc">Understand how Nektar writes engagement data into Salesforce — which objects are synced, what fields are updated, and how to monitor sync health.</p>
+        <p class="hero-desc">Nektar's Salesforce sync system reads and writes <em>data objects</em> such as Accounts and Contacts, and reads <em>settings objects</em> such as Users and Salesforce metadata. Each read or write operation runs independently every 10–15 minutes, except Salesforce metadata which is read every 24 hours.</p>
       </div>
-      <div class="hero-illustration" style="background: #004455;">
-        <img src="../../assets/images/articles/sync.svg" alt="Sync" style="object-fit: contain; width: 100%; height: 100%;" />
+      <div class="hero-illustration">
+        <img src="assets/images/articles/sync.svg" alt="Sync" />
       </div>
     </div>
-
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-
-          <p>Nektar's Salesforce sync system reads and writes <em>data objects</em> such as Accounts and Contacts, and reads <em>settings objects</em> such as Users and Salesforce metadata. Each read or write operation runs independently every 10–15 minutes, except Salesforce metadata which is read every 24 hours.</p>
           <p>The sync table displays:</p>
-          <ul>
-            <li>the time the most recent record was synced to or from Salesforce</li>
-            <li>a sync health icon that can be clicked for more information</li>
-            <li>toggles to enable or disable Salesforce reads or writes</li>
-          </ul>
-          <p>Sync health icons may indicate the following states:</p>
-          <div class="sync-status-table">
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/disabled.svg" width="24" height="24" alt="Disabled" />
-              </div>
-              <div class="sync-status-label">Disabled</div>
-              <div class="sync-status-desc">Can be enabled on the same screen</div>
-            </div>
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/Interface-Essential/Synchronize/synchronize-arrows-warning.svg" width="24" height="24" alt="Not started" />
-              </div>
-              <div class="sync-status-label">Not started</div>
-              <div class="sync-status-desc">Disabled globally, or pending approval</div>
-            </div>
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/in-progress.svg" width="24" height="24" alt="In progress" />
-              </div>
-              <div class="sync-status-label">In progress</div>
-              <div class="sync-status-desc">Actively syncing; some data is remaining</div>
-            </div>
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/completed.svg" width="24" height="24" alt="Completed" />
-              </div>
-              <div class="sync-status-label">Completed</div>
-              <div class="sync-status-desc">Everything synced; watching for new data</div>
-            </div>
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/delayed.svg" width="24" height="24" alt="Delayed" />
-              </div>
-              <div class="sync-status-label">Delayed</div>
-              <div class="sync-status-desc">Sync has not run in the last 30 minutes</div>
-            </div>
-            <div class="sync-status-row">
-              <div class="sync-status-icon">
-                <img src="../../assets/images/icons/stalled.svg" width="24" height="24" alt="Stalled" />
-              </div>
-              <div class="sync-status-label">Stalled</div>
-              <div class="sync-status-desc">Stopped due to error or hasn't run in 2 hours</div>
-            </div>
-          </div>
-
-          <div class="callout callout-neutral-info">
-            <p>It's normal for the read or write time to be several hours ago while the health icon remains green: this indicates that the sync job is running correctly but found nothing new to read or write recently.</p>
-          </div>
-
-          <h2 id="objects-synced">Objects synced</h2>
-          <p>Nektar reads, updates, creates and deletes records under the following Salesforce objects.</p>
-          <div class="objects-table">
-            <div class="objects-table-row objects-table-header">
-              <div class="objects-table-object">Object</div>
-              <div class="objects-table-cell">Read</div>
-              <div class="objects-table-cell">Update</div>
-              <div class="objects-table-cell">Create</div>
-              <div class="objects-table-cell">Delete</div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object">Account</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object">Contact</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object">Lead</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-            </div>
-            <div class="objects-table-row no-border">
-              <div class="objects-table-object">Opportunity</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-            </div>
-            <div class="objects-table-row no-border">
-              <div class="objects-table-object sub">Opportunity Contact Role</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object sub">Opportunity History</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-            </div>
-            <div class="objects-table-row no-border">
-              <div class="objects-table-object">Event</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object sub">Event Relation</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row no-border">
-              <div class="objects-table-object">Task</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object sub">Task Relation</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-            </div>
-            <div class="objects-table-row">
-              <div class="objects-table-object">Users</div>
-              <div class="objects-table-cell"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-              <div class="objects-table-cell"></div>
-            </div>
-          </div>
-          <p>By default, all fields and records accessible to the integration user are read. If required, we can configure it to read only a subset.</p>
-          <p>Only records that were previously created by Nektar and never updated manually are deleted.</p>
-
-          <h2 id="standard-fields">Standard fields updated</h2>
-          <p>In the default configuration, Nektar updates the following fields if they are (a) empty, or (b) contain a value previously written by Nektar.</p>
-          <div class="std-fields-table">
-            <div class="std-fields-row">
-              <div class="std-fields-label">Contact</div>
-              <div class="std-fields-values">
-                <span>First Name</span><span class="std-fields-dot">•</span>
-                <span>Last Name</span><span class="std-fields-dot">•</span>
-                <span>Title</span><span class="std-fields-dot">•</span>
-                <span>Phone</span><span class="std-fields-dot">•</span>
-                <span>Email</span><span class="std-fields-dot">•</span>
-                <span>Owner</span><span class="std-fields-dot">•</span>
-                <span>Account</span>
-              </div>
-            </div>
-            <div class="std-fields-row">
-              <div class="std-fields-label">Lead</div>
-              <div class="std-fields-values">
-                <span>First Name</span><span class="std-fields-dot">•</span>
-                <span>Last Name</span><span class="std-fields-dot">•</span>
-                <span>Title</span><span class="std-fields-dot">•</span>
-                <span>Phone</span><span class="std-fields-dot">•</span>
-                <span>Email</span>
-              </div>
-            </div>
-            <div class="std-fields-row">
-              <div class="std-fields-label">Opportunity Contact Role</div>
-              <div class="std-fields-values">
-                <span>Role</span><span class="std-fields-dot">•</span>
-                <span>Is Primary</span>
-              </div>
-            </div>
-            <div class="std-fields-row">
-              <div class="std-fields-label">Task</div>
-              <div class="std-fields-values">
-                <span>Subject</span><span class="std-fields-dot">•</span>
-                <span>Description</span><span class="std-fields-dot">•</span>
-                <span>What¹ (Related)</span><span class="std-fields-dot">•</span>
-                <span>Who² (Name)</span><span class="std-fields-dot">•</span>
-                <span>Owner</span><span class="std-fields-dot">•</span>
-                <span>Status</span><span class="std-fields-dot">•</span>
-                <span>Task Sub-type</span><span class="std-fields-dot">•</span>
-                <span>Activity Date</span><span class="std-fields-dot">•</span>
-                <span>Task Relations</span>
-              </div>
-            </div>
-            <div class="std-fields-row">
-              <div class="std-fields-label">Event</div>
-              <div class="std-fields-values">
-                <span>Subject</span><span class="std-fields-dot">•</span>
-                <span>Description</span><span class="std-fields-dot">•</span>
-                <span>What¹ (Related)</span><span class="std-fields-dot">•</span>
-                <span>Who² (Name)</span><span class="std-fields-dot">•</span>
-                <span>Owner</span><span class="std-fields-dot">•</span>
-                <span>Start Date Time</span><span class="std-fields-dot">•</span>
-                <span>End Date Time</span><span class="std-fields-dot">•</span>
-                <span>Event Relations</span><span class="std-fields-dot">•</span>
-                <span>Attendees</span>
-              </div>
-            </div>
-          </div>
-          <p><small>¹ "What" refers to the Opportunity or Account an activity is related to, and is labelled "Related"<br>² "Who" refers to the primary Contact or Lead an activity is related to, and is labelled "Name"</small></p>
-          <p>Custom data transform rules may also update these or other fields of the Account and Opportunity objects.</p>
-
-          <h2 id="owner">Owner</h2>
-          <p>The <strong>"Owner"</strong> field of Nektar-created Contacts, Events and Tasks will contain the most appropriate seller(s) responsible for that record, which is:</p>
-          <ul>
-            <li>for Contacts: the owner of the Account with which the Contact was associated</li>
-            <li>for Tasks (emails): the sender of the email, if they are a seller; otherwise, the primary among sellers in "To"; if there are none, the primary seller in "Cc".</li>
-            <li>for Events: the organizer of the calendar event, if they are a seller; otherwise, the primary seller from the invitee list.</li>
-          </ul>
-          <p>The primary seller in a list is the owner of the Opportunity or Account with which the activity was associated, if present in the list; otherwise the first one in the list.</p>
-          <p>If no appropriate sellers were found, or if the most appropriate seller is not a Salesforce user, the Nektar Salesforce integration user is assigned as the owner.</p>
-
-          <h2 id="name-field">Name ("Who")</h2>
-          <p>This <strong>"Name"</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&type=5">Shared Activities</a>, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer, which is:</p>
-          <ul>
-            <li>for Tasks (emails): the first buyer found in the email's From, To or Cc headers (in that order)</li>
-            <li>for Events: the organizer of the calendar event, if they are a buyer, or the first buyer in the invitee list</li>
-          </ul>
-
-          <h2 id="attendees">Attendees</h2>
-          <p>The <strong>"Attendees"</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&type=5">Shared Activities</a>.</p>
-
-          <h2 id="custom-fields">Nektar custom fields</h2>
-          <p>Nektar creates several custom fields in your Salesforce organization. Nektar does not automatically add them to any views, layouts, reports etc. but you may do so.</p>
-          <p>This table shows the data type and possible values the field may have in each Salesforce object:</p>
-          <div class="cft">
-            <div class="cft-header">
-              <div class="cft-field">Field</div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Object(s)</div>
-                  <div class="cft-values">Values</div>
-                  <div class="cft-api-values">API Values</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Actions -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Actions¹</span>
-                <span class="code-pill">NektarActions__c</span>
-                <span class="cft-field-type">Multi-select picklist</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Contact</div>
-                  <div class="cft-values"><ul><li>Created</li><li>Phone added</li><li>Title added</li><li>Name added</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">created</span><span class="code-pill">phoneAdded</span><span class="code-pill">titleAdded</span><span class="code-pill">nameAdded</span></div>
-                </div>
-                <div class="cft-sub-row">
-                  <div class="cft-object">Lead</div>
-                  <div class="cft-values"><ul><li>Phone added</li><li>Title added</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">phoneAdded</span><span class="code-pill">titleAdded</span></div>
-                </div>
-                <div class="cft-sub-row">
-                  <div class="cft-object">Opportunity Contact Role</div>
-                  <div class="cft-values"><ul><li>Created</li><li>Role added</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">created</span><span class="code-pill">roleAdded</span></div>
-                </div>
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event, Task</div>
-                  <div class="cft-values"><ul><li>Created</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">created</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Sender -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Sender</span>
-                <span class="code-pill">NektarSender__c</span>
-                <span class="cft-field-type">Picklist</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event, Task</div>
-                  <div class="cft-values"><ul><li>Us</li><li>Them</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">Us</span><span class="code-pill">Them</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Location -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Location</span>
-                <span class="code-pill">NektarLocation__c</span>
-                <span class="cft-field-type">Text</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event</div>
-                  <div class="cft-values">Link or physical address from calendar</div>
-                  <div class="cft-api-values"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Location Type -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Location Type</span>
-                <span class="code-pill">NektarLocationType__c</span>
-                <span class="cft-field-type">Multi-select picklist</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event</div>
-                  <div class="cft-values"><ul><li>Physical</li><li>Virtual</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">physical</span><span class="code-pill">virtual</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Status -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Status</span>
-                <span class="code-pill">NektarStatus__c</span>
-                <span class="cft-field-type">Picklist</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event</div>
-                  <div class="cft-values"><ul><li>Event scheduled</li><li>Event deleted</li><li>Event passed (no call info)</li><li>Call did not start¹</li><li>Call &lt; 10 mins¹</li><li>Completed¹</li></ul></div>
-                  <div class="cft-api-values"><span class="code-pill">scheduled</span><span class="code-pill">canceled</span><span class="code-pill">closed</span><span class="code-pill">missed</span><span class="code-pill">aborted</span><span class="code-pill">completed</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Attendees -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Attendees</span>
-                <span class="code-pill">NektarAttendees__c</span>
-                <span class="cft-field-type">Text</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Event</div>
-                  <div class="cft-values">Email addresses that joined the call, semicolon-delimited</div>
-                  <div class="cft-api-values"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nektar Job Change -->
-            <div class="cft-row">
-              <div class="cft-field">
-                <span class="cft-field-name">Nektar Job Change</span>
-                <span class="code-pill">NektarJobChange__c</span>
-                <span class="cft-field-type">Checkbox</span>
-              </div>
-              <div class="cft-sub-rows">
-                <div class="cft-sub-row">
-                  <div class="cft-object">Contact, Lead</div>
-                  <div class="cft-values">True if their work email is no longer valid</div>
-                  <div class="cft-api-values"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <details>
-            <summary>Notes</summary>
-            <ol>
-              <li>Required field</li>
-              <li>Requires Zoom or MS Teams integration</li>
-              <li>Requires Buyer Movement feature</li>
-            </ol>
-          </details>
-
-          <h2 id="output-screening">Output screening</h2>
-          <p>Nektar only creates records that can be linked to existing Salesforce records.</p>
-          <ul>
-            <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Consequently, Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
-            <li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
-            <li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
-          </ul>
-          <p>Additionally, write rules can be configured to further restrict which Activities, Contacts and Opportunity Contact Roles are created.</p>
-          <div class="callout callout-neutral-beta callout-single-line">
-            <p>Write rules are in beta; contact us to implement them.</p>
-          </div>
-
+<ul>
+<li>the time the most recent record was synced to or from Salesforce</li>
+<li>a sync health icon that can be clicked for more information</li>
+<li>toggles to enable or disable Salesforce reads or writes</li>
+</ul>
+<p>Sync health icons may indicate the following states:</p>
+<figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/0.svg" alt="" />
+</figure>
+<div class="callout callout-neutral-info callout-single-line">
+  <p>It's normal for the read or write time to be several hours ago while the health icon remains green: this indicates that the sync job is running correctly but found nothing new to read or write recently.</p>
+</div>
+<h3 id="objects-synced">Objects synced</h3>
+<p>Nektar reads, updates, creates and deletes records under the following Salesforce objects.</p>
+<div class="data-table" style="grid-template-columns: 2fr 2fr 2fr 2fr 2fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell">Object</div>
+<div class="data-table-cell">Read</div>
+<div class="data-table-cell">Update</div>
+<div class="data-table-cell">Create</div>
+<div class="data-table-cell">Delete</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Account</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Contact</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Lead</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Opportunity</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">⤷ Opportunity Contact Role</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">⤷ Opportunity History</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Event</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">⤷ Event Relation</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Task</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">⤷ Task Relation</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell">✓</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Users</div>
+<div class="data-table-cell">✓</div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+<div class="data-table-cell"></div>
+</div>
+</div>
+<p>By default, all fields and records accessible to the integration user are read. If required, we can configure it to read only a subset.</p>
+<p>Only records that were previously created by Nektar and never updated manually are deleted.</p>
+<h3 id="standard-fields-updated">Standard fields updated</h3>
+<p>In the default configuration, Nektar updates the following fields if they are (a) empty, or (b) contain a value previously written by Nektar.</p>
+<div class="data-table" style="grid-template-columns: 2fr 2fr 2fr 2fr 2fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell"><strong>Contact</strong></div>
+<div class="data-table-cell"><strong>Lead</strong></div>
+<div class="data-table-cell"><strong>Opportunity
+Contact Role</strong></div>
+<div class="data-table-cell"><strong>Event</strong></div>
+<div class="data-table-cell"><strong>Task</strong></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">First Name
+Last Name
+Title
+Phone
+Email
+Owner
+Account</div>
+<div class="data-table-cell">First Name
+Last Name
+Title
+Phone
+Email</div>
+<div class="data-table-cell">Role
+Is Primary</div>
+<div class="data-table-cell">Subject
+Description
+What¹ (Related)
+Who² (Name)
+Owner
+Start Date Time
+End Date Time
+Event Relations
+Attendees</div>
+<div class="data-table-cell">Subject
+Description
+What¹ (Related)
+Who² (Name)
+Owner
+Status
+Task Sub-type
+Activity Date
+Task Relations</div>
+</div>
+</div>
+<p>¹ “What” refers to the Opportunity or Account an activity is related to, and is labelled “Related”
+² “Who” refers to the primary Contact or Lead an activity is related to, and is labelled “Name”</p>
+<p>Custom data transform rules may also update these or other fields of the Account and Opportunity objects.</p>
+<h3 id="owner">Owner</h3>
+<p>The <strong>&quot;Owner&quot;</strong> field of Nektar-created Contacts, Events and Tasks will contain the most appropriate seller(s) responsible for that record, which is:</p>
+<ul>
+<li>for Contacts: the owner of the Account with which the Contact was associated</li>
+<li>for Tasks (emails): the sender of the email, if they are a seller; otherwise, the primary among sellers in &quot;To&quot;; if there are none, the primary seller in &quot;Cc&quot;.</li>
+<li>for Events: the organizer of the calendar event, if they are a seller; otherwise, the primary seller from the invitee list.</li>
+</ul>
+<p>The primary seller in a list is the owner of the Opportunity or Account with which the activity was associated, if present in the list; otherwise the first one in the list.</p>
+<p>If no appropriate sellers were found, or if the most appropriate seller is not a Salesforce user, the Nektar Salesforce integration user is assigned as the owner.</p>
+<h3 id="name-who">Name (&quot;Who&quot;)</h3>
+<p>This <strong>&quot;Name&quot;</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer, which is:</p>
+<ul>
+<li>for Tasks (emails): the first buyer found in the email's From, To or Cc headers (in that order)</li>
+<li>for Events: the organizer of the calendar event, if they are a buyer, or the first buyer in the invitee list</li>
+</ul>
+<h3 id="attendees">Attendees</h3>
+<p>The <strong>&quot;Attendees&quot;</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>.</p>
+<h3 id="nektar-custom-fields">Nektar custom fields</h3>
+<p>Nektar creates several custom fields in your Salesforce organization. Nektar does not automatically add them to any views, layouts, reports etc. but you may do so.</p>
+<p>This table shows the data type and possible values the field may have in each Salesforce object:</p>
+<div class="data-table" style="grid-template-columns: 3fr 3fr 3fr 3fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell"><strong>Field</strong></div>
+<div class="data-table-cell"><strong>Object(s)</strong></div>
+<div class="data-table-cell"><strong>Values</strong></div>
+<div class="data-table-cell"><strong>API Values</strong></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Actions¹
+<code>NektarActions__c</code> 
+<em>Multi-select picklist</em>
+</div>
+<div class="data-table-cell">Contact</div>
+<div class="data-table-cell">Created
+Phone added
+Title added
+Name added </div>
+<div class="data-table-cell"><code>created</code>
+<code>phoneAdded</code>
+<code>titleAdded</code>
+<code>nameAdded</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"></div>
+<div class="data-table-cell">Lead</div>
+<div class="data-table-cell">Phone added
+Title added</div>
+<div class="data-table-cell"><code>phoneAdded</code>
+<code>titleAdded</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"></div>
+<div class="data-table-cell">Opportunity Contact Role</div>
+<div class="data-table-cell">Created
+Role added</div>
+<div class="data-table-cell"><code>created</code>
+<code>roleAdded</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"></div>
+<div class="data-table-cell">Event, Task</div>
+<div class="data-table-cell">Created</div>
+<div class="data-table-cell"><code>created</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Sender
+<code>NektarSender__c</code> 
+<em>Picklist</em></div>
+<div class="data-table-cell">Event, Task</div>
+<div class="data-table-cell">Us
+Them</div>
+<div class="data-table-cell"><code>Us</code>
+<code>Them</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Location
+<code>NektarLocation__c</code> 
+<em>Text</em></div>
+<div class="data-table-cell">Event</div>
+<div class="data-table-cell">Link or physical address from calendar</div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Location Type
+<code>NektarLocationType__c</code> 
+<em>Multi-select picklist</em></div>
+<div class="data-table-cell">Event</div>
+<div class="data-table-cell">Physical
+Virtual
+</div>
+<div class="data-table-cell"><code>physical</code>
+<code>virtual</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Status
+<code>NektarStatus__c</code> 
+<em>Picklist</em></div>
+<div class="data-table-cell">Event</div>
+<div class="data-table-cell">Event scheduled
+Event deleted
+Event passed (no call info)
+Call did not start¹
+Call &lt; 10 mins¹
+Completed¹</div>
+<div class="data-table-cell"><code>scheduled</code>
+<code>canceled</code>
+<code>closed</code>
+<code>missed</code>
+<code>aborted</code>
+<code>completed</code></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Attendees
+<code>NektarAttendees__c</code> 
+<em>Text</em></div>
+<div class="data-table-cell">Event</div>
+<div class="data-table-cell">Email addresses that joined the call, semicolon-delimited</div>
+<div class="data-table-cell"></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Nektar Job Change
+<code>NektarJobChange__c</code> 
+<em>Checkbox</em></div>
+<div class="data-table-cell">Contact, Lead</div>
+<div class="data-table-cell">True if their work email is no longer valid</div>
+<div class="data-table-cell"></div>
+</div>
+</div>
+<details id="notes" class="details-section details-section--h3">
+  <summary>Notes</summary>
+  <ol>
+<li>Required field</li>
+<li>Requires Zoom or MS Teams integration</li>
+<li>Requires Buyer Movement feature</li>
+</ol>
+</details>
+<h3 id="output-screening">Output screening</h3>
+<p>Nektar only creates records that can be linked to existing Salesforce records.</p>
+<ul>
+<li>Contacts must link to an existing account or contact via a shared, non-public domain name. Consequently, Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
+<li>Activities must link to valid contacts or leads. Contacts created from participants found in the same email or event qualify.</li>
+<li>Opportunity-Contact Roles are created for all contacts that have participated in activities linked to the opportunity.</li>
+</ul>
+<p>Additionally, write rules can be configured to further restrict which Activities, Contacts and Opportunity Contact Roles are created.</p>
+<div class="callout callout-neutral-info callout-single-line">
+  <p>Write rules are in beta; contact us to implement them.</p>
+</div>
         </div>
       </div>
-
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#objects-synced">Objects synced</a>
-          <a href="#standard-fields">Standard fields updated</a>
-          <a href="#owner">Owner</a>
-          <a href="#name-field">Name ("Who")</a>
-          <a href="#attendees">Attendees</a>
-          <a href="#custom-fields">Nektar custom fields</a>
-          <a href="#output-screening">Output screening</a>
+          <a href="#objects-synced" class="toc-h3">Objects synced</a>
+          <a href="#standard-fields-updated" class="toc-h3">Standard fields updated</a>
+          <a href="#owner" class="toc-h3">Owner</a>
+          <a href="#name-who" class="toc-h3">Name (&quot;Who&quot;)</a>
+          <a href="#attendees" class="toc-h3">Attendees</a>
+          <a href="#nektar-custom-fields" class="toc-h3">Nektar custom fields</a>
+          <a href="#notes" class="toc-h3">Notes</a>
+          <a href="#output-screening" class="toc-h3">Output screening</a>
         </div>
       </aside>
     </div>
-
   </div>
   <div id="footer-placeholder"></div>
 </div>
-
 <script src="../../assets/js/components.js"></script>
 </body>
 </html>

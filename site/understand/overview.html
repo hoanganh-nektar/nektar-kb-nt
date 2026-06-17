@@ -1,118 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overview – Nektar</title>
-    <link rel="stylesheet" href="../assets/css/styles.css" />
-  </head>
-  <body>
-    <div id="nav-placeholder"></div>
-
-    <div id="main-wrapper">
-      <div class="page-content">
-        <div class="page-hero">
-          <div class="hero-text">
-            <div class="breadcrumb">
-              <a href="../index.html">Home</a>
-              <span class="sep">›</span>
-              <a href="index.html">Understand</a>
-              <span class="sep">›</span>
-              <span>Overview</span>
-            </div>
-            <h1>Overview</h1>
-            <p class="hero-desc">
-              How Nektar captures, structures, and syncs your engagement data —
-              the Nektar Graph, Readers, Builders, and Writers explained.
-            </p>
-          </div>
-          <div class="hero-illustration" style="background: #003d5c">
-            <img
-              src="../assets/images/articles/overview.svg"
-              alt="overview"
-              style="object-fit: contain; width: 100%; height: 100%"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div id="main-wrapper">
+  <div class="page-content">
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="../understand/index.html">Understand</a>
+          <span class="sep">›</span>
+          <span>Overview</span>
         </div>
-
-        <div class="article-layout">
-          <div class="article-body">
-            <div class="article-content">
-              <figure class="article-image">
-                <img
-                  src="../assets/images/mockups/overview.jpg"
-                  alt="The Nektar console showing connector sync status"
-                />
-              </figure>
-
-              <p>The Nektar data capture system contains a central database called the Nektar Graph, and three kinds of background services that operate on it: Readers, Builders and Writers.</p>
-
-              <h2 id="nektar-graph">Nektar Graph</h2>
-              <p>
-                The <strong>Nektar Graph</strong> is Nektar's representation of
-                reality, containing the activities, opportunities, companies and
-                people from all your tools, as well as the relationships between
-                these objects. Each Nektar customer has a separate, siloed
-                graph.
-              </p>
-
-              <h2 id="readers">Readers</h2>
-              <p>
-                Readers are periodic jobs that use APIs to bring in data from
-                external systems like Google Workspace (Gmail, Google Calendar),
-                Microsoft 365 (Mail and Calendar), Zoom, Salesforce, and other
-                integrations. Data that pass
-                <a href="../administration/data-controls.html"
-                  >read and write rules</a
-                >
-                are added to the graph.
-              </p>
-
-              <h2 id="builders">Builders</h2>
-              <p>
-                Builders process the Nektar Graph, performing de-duplication,
-                extracting insights from unstructured text, inferring
-                relationships and applying your business rules. Two key
-                components of builders are
-                <a href="graph-inference.html">graph inference</a> and
-                <a href="data-transform.html">data transform</a>.
-              </p>
-
-              <h2 id="writers">Writers</h2>
-              <p>
-                These are periodic jobs that push changes into Salesforce,
-                updating it to match the reality in your Nektar Graph.
-              </p>
-
-              <h2 id="self-healing">Self-healing</h2>
-              <p>
-                Whenever Nektar gets new data from any of your systems, it
-                re-runs all the above steps, keeping your Graph accurate and
-                comprehensive. Nektar does this near real-time, even when your
-                graph grows to hundreds of millions of objects.
-              </p>
-              <p>
-                This gives Nektar its
-                <a href="self-healing.html">self-healing</a> capability.
-              </p>
-            </div>
-          </div>
-
-          <aside class="article-toc">
-            <p class="toc-title">Content</p>
-            <div class="toc-list">
-              <a href="#nektar-graph">Nektar Graph</a>
-              <a href="#readers">Readers</a>
-              <a href="#builders">Builders</a>
-              <a href="#writers">Writers</a>
-              <a href="#self-healing">Self-healing</a>
-            </div>
-          </aside>
+        <h1>Overview</h1>
+        <p class="hero-desc"></p>
+      </div>
+      <div class="hero-illustration">
+        <img src="../assets/images/notion/3819417ef6ba81c283c6e85fe3d272b2/0.png" alt="Overview" />
+      </div>
+    </div>
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+          <figure class="article-image">
+  <img src="../assets/images/notion/3819417ef6ba81c283c6e85fe3d272b2/1.jpg" alt="" />
+</figure>
+<p>The Nektar data capture system contains a central database called the Nektar Graph, and three kinds of background services that operate on it: Readers, Builders and Writers.</p>
+<h3 id="nektar-graph">Nektar Graph</h3>
+<p>The <strong>Nektar Graph</strong> is Nektar's representation of reality, containing the activities, opportunities, companies and people from all your tools, as well as the relationships between these objects. Each Nektar customer has a separate, siloed graph.</p>
+<h3 id="readers">Readers</h3>
+<p>Readers are periodic jobs that use APIs to bring in data from external systems like Google Workspace (Gmail, Google Calendar), Microsoft 365 (Mail and Calendar), Zoom, Salesforce, and other integrations. Data that pass read and write rules are added to the graph.</p>
+<h3 id="builders">Builders</h3>
+<p>Builders process the Nektar Graph, performing de-duplication, extracting insights from unstructured text, inferring relationships and applying your business rules. Two key components of builders are graph inference and data transform.</p>
+<h3 id="writers">Writers</h3>
+<p>These are periodic jobs that push changes into Salesforce, updating it to match the reality in your Nektar Graph.</p>
+<h3 id="self-healing">Self-healing</h3>
+<p>Whenever Nektar gets new data from any of your systems, it re-runs all the above steps, keeping your Graph accurate and comprehensive. Nektar does this near real-time, even when your graph grows to hundreds of millions of objects.</p>
+<p>This gives Nektar its self-healing capability.</p>
         </div>
       </div>
-      <div id="footer-placeholder"></div>
+      <aside class="article-toc">
+        <p class="toc-title">Content</p>
+        <div class="toc-list">
+          <a href="#nektar-graph" class="toc-h3">Nektar Graph</a>
+          <a href="#readers" class="toc-h3">Readers</a>
+          <a href="#builders" class="toc-h3">Builders</a>
+          <a href="#writers" class="toc-h3">Writers</a>
+          <a href="#self-healing" class="toc-h3">Self-healing</a>
+        </div>
+      </aside>
     </div>
-
-    <script src="../assets/js/components.js"></script>
-  </body>
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../assets/js/components.js"></script>
+</body>
 </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Workspace – Nektar</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div id="main-wrapper">
+  <div class="page-content">
+    <div class="page-hero">
+      <div class="hero-text">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">›</span>
+          <a href="../connectors/index.html">Connectors</a>
+          <span class="sep">›</span>
+          <span>Google Workspace</span>
+        </div>
+        <h1>Google Workspace</h1>
+        <p class="hero-desc"></p>
+      </div>
+      <div class="hero-illustration">
+        <img src="../assets/images/notion/3819417ef6ba812280a5d2007237d192/0.svg" alt="Google Workspace" />
+      </div>
+    </div>
+    <div class="article-layout">
+      <div class="article-body">
+        <div class="article-content">
+          <h3 id="connection">Connection</h3>
+<p>Your Google Workspace administrator should install <a href="https://workspace.google.com/u/0/marketplace/app/nektar_for_gmail_and_google_calendar/313936287231">Nektar</a> from Google Marketplace.</p>
+<div class="callout callout-neutral-info callout-single-line">
+  <p><a href="/p/3819417ef6ba81238421d6664937f71f"><strong>Admin guide for how to install Nektar from Marketplace</strong></a></p>
+</div>
+<p>Once the installation is completed, type your Google Workspace administrator's email address and click &quot;Connect&quot; to enable the connection within Nektar.</p>
+<h3 id="oauth-scopes"><strong>OAuth scopes</strong></h3>
+<h3 id="sync">Sync</h3>
+<p>Nektar's Google Workspace sync system reads Gmail messages, Google Calendar events and Google Meet meeting information for the users for whom this has been enabled.</p>
+<ul>
+<li>Gmail messages and Google Calendar events are read every 10–15 minutes.</li>
+<li>Google Meet meeting information and transcripts are read every 10–15 minutes.
+<ul>
+<li>Please note, when first enabled, Google Meet can read data only for the last 30 days.</li>
+</ul></li>
+<li>The list of users on your workspace is read every 24 hours.</li>
+</ul>
+<p>You must enable sync for individual Google users in the <a href="/administration/users.html">Users section</a>.</p>
+<p>The sync table displays:</p>
+<ul>
+<li>the time the most recent message or event was synced</li>
+<li>a sync health icon that can be clicked for more information</li>
+<li>toggles to enable or disable sync globally</li>
+</ul>
+<p>Sync health icons may indicate the following states:</p>
+<h3 id="properties-synced">Properties synced</h3>
+<div class="data-table" style="grid-template-columns: 5fr 5fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell"><strong>Email messages</strong></div>
+<div class="data-table-cell"><strong>Calendar events</strong></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Subject lineBody (including quoted messages and signatures)From, To, CcDate and time sentAll email headers</div>
+<div class="data-table-cell">Subject lineDescription, including dial-in informationOrganizer, participantsDate and time of scheduling the meetingMeeting start and end timeVenue and meeting details</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell">Attachments are not synced</div>
+<div class="data-table-cell">Attachments are not synced</div>
+</div>
+</div>
+        </div>
+      </div>
+      <aside class="article-toc">
+        <p class="toc-title">Content</p>
+        <div class="toc-list">
+          <a href="#connection" class="toc-h3">Connection</a>
+          <a href="#oauth-scopes" class="toc-h3">OAuth scopes</a>
+          <a href="#sync" class="toc-h3">Sync</a>
+          <a href="#properties-synced" class="toc-h3">Properties synced</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../assets/js/components.js"></script>
+</body>
+</html>

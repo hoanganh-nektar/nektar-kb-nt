@@ -1,0 +1,13 @@
+{
+  "name": "nektar-kb-builder",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node builder/index.js --build",
+    "watch": "node builder/index.js --watch"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5"
+  }
+}
