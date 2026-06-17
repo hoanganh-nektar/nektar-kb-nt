@@ -10,7 +10,7 @@ import { downloadImages } from './images.js';
 import { pageMeta } from '../page-meta.js';
 
 const ROOT_PAGE_ID = '3819417ef6ba80758316ce06f2e81518';
-const SITE_DIR = path.resolve(fileURLToPath(import.meta.url), '../../../site');
+const SITE_DIR = path.resolve(fileURLToPath(import.meta.url), '../../../docs');
 
 export async function build() {
   console.log('Discovering page tree...');
