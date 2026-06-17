@@ -8,11 +8,27 @@ export function toId(text) {
     .trim();
 }
 
+const KNOWN_CALLOUT_CLASSES = new Set([
+  'callout-neutral-info',
+  'callout-neutral-technical',
+  'callout-neutral-beta',
+  'callout-neutral-link',
+  'callout-warning',
+  'callout-error',
+]);
+
 function calloutClass(icon, color) {
+  // File icon: extract class name from the filename in the URL
+  const fileUrl = icon?.file?.url || icon?.external?.url || '';
+  if (fileUrl) {
+    const match = fileUrl.match(/\/(callout-[^/?]+)\.svg/);
+    if (match && KNOWN_CALLOUT_CLASSES.has(match[1])) return match[1];
+  }
+  // Emoji fallback
   const emoji = icon?.emoji || '';
   if (['⚙️', '🔧', '🛠️', '🔩', '⚗️', '🔬'].includes(emoji)) return 'callout-neutral-technical';
   if (['⚠️', '🚨', '❗', '❌', '🔴', '🛑'].includes(emoji)) return 'callout-warning';
-  // Use Notion background color when the icon is a file (not an emoji)
+  // Notion background color fallback
   if (color) {
     if (color.includes('red') || color.includes('orange')) return 'callout-warning';
     if (color.includes('yellow')) return 'callout-warning';
