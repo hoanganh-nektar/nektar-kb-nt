@@ -4,8 +4,20 @@
   // ─── Root path detection (file:// and http://) ────────────────────────
   function getRootPath() {
     var parts = window.location.pathname.split('/').filter(Boolean);
-    var siteIdx = parts.indexOf('site');
-    var dirParts = siteIdx >= 0 ? parts.slice(siteIdx + 1) : parts.slice();
+    var baseIdx = -1;
+
+    if (window.location.hostname.indexOf('github.io') >= 0) {
+      // On GitHub Pages, first path segment is the repo name — strip it
+      baseIdx = 0;
+    } else {
+      // Local file:// — find the docs/site folder
+      ['site', 'docs'].forEach(function (marker) {
+        var idx = parts.lastIndexOf(marker);
+        if (idx >= 0) baseIdx = Math.max(baseIdx, idx);
+      });
+    }
+
+    var dirParts = baseIdx >= 0 ? parts.slice(baseIdx + 1) : parts.slice();
     dirParts.pop(); // strip filename
     return dirParts.map(function () { return '../'; }).join('');
   }
