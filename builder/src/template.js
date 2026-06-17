@@ -1,5 +1,5 @@
 import { pageMeta } from '../page-meta.js';
-import { findAncestors, findNode } from './discover.js';
+import { findAncestors, findNode, flattenTree } from './discover.js';
 import { escapeHtml } from './richtext.js';
 
 // Returns the string of ../ needed to reach site root from this output path
@@ -46,7 +46,9 @@ export function articleTemplate({ node, body, tocEntries, heroDesc, tree }) {
   const R = rootRelative(node.outputPath);
 
   // illustration and illustrationBg are set by build.js (from page-meta or node)
-  const illSrc = node.illustration || '';
+  const illSrcRaw = node.illustration || '';
+  // Local asset paths need R prefix; absolute URLs (Notion S3, etc.) do not
+  const illSrc = illSrcRaw.startsWith('http') ? illSrcRaw : (illSrcRaw ? `${R}${illSrcRaw}` : '');
   const illBg = node.illustrationBg || '';
 
   if (!illSrc) console.warn(`  No illustration for "${node.title}"`);
@@ -113,7 +115,8 @@ export function sectionIndexTemplate({ node, heroDesc, children, tree }) {
   const R = rootRelative(node.outputPath);
 
   // illustration comes from Notion (section toggle image) or page-meta override
-  const illSrc = node.illustration || '';
+  const illSrcRaw = node.illustration || '';
+  const illSrc = illSrcRaw.startsWith('http') ? illSrcRaw : (illSrcRaw ? `${R}${illSrcRaw}` : '');
   const illustrationHtml = illSrc
     ? `<div class="hero-illustration">
         <img src="${illSrc}" alt="${escapeHtml(node.title)}" />
@@ -129,7 +132,9 @@ export function sectionIndexTemplate({ node, heroDesc, children, tree }) {
   const cardsHtml = children.map(child => {
     const childMeta = pageMeta[child.id?.replace(/-/g, '')] || {};
     // icon comes from Notion (article entry toggle image) or page-meta override
-    const icon = childMeta.cardIcon || child.cardIcon || '';
+    const iconRaw = childMeta.cardIcon || child.cardIcon || '';
+    // Local asset paths need R prefix; Notion S3/absolute URLs do not
+    const icon = iconRaw.startsWith('http') ? iconRaw : (iconRaw ? `${R}${iconRaw}` : '');
     const iconBg = childMeta.cardIconBg || 'yellow-bg';
     const descFull = child.descFull || '';
     const descShort = child.descShort || autoShort(descFull);
@@ -261,13 +266,13 @@ function homeCard(pageId, tree, pathIndex) {
     return '';
   }
 
-  const node = findNode(pageId, tree);
-  const meta = pageMeta[pageId] || {};
-  const icon = meta.cardIcon || '';
+  const node = findNode(normId, tree) || flattenTree(tree).find(n => n.id?.replace(/-/g, '') === normId);
+  const meta = pageMeta[normId] || {};
+  const icon = meta.cardIcon || node?.cardIcon || '';
   const iconBg = meta.cardIconBg || 'yellow-bg';
-  const descFull = meta.descFull || '';
-  const descShort = meta.descShort || autoShort(descFull);
-  const title = node?.title || meta.title || outputPath;
+  const descFull = meta.descFull || node?.descFull || '';
+  const descShort = meta.descShort || node?.descShort || autoShort(descFull);
+  const title = node?.title || meta.title || '';
 
   const iconHtml = icon
     ? `<div class="card-icon ${iconBg}">

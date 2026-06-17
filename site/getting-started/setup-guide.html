@@ -20,18 +20,18 @@
           <span>Setup guide</span>
         </div>
         <h1>Setup guide</h1>
-        <p class="hero-desc"></p>
+        <p class="hero-desc">A step-by-step walkthrough to connect Salesforce, Google Workspace, and Microsoft 365 — and get Nektar syncing for your team.</p>
       </div>
       <div class="hero-illustration">
-        <img src="../assets/images/notion/3819417ef6ba8106bc76f276928bc061/0.svg" alt="Setup guide" />
+        <img src="../assets/images/articles/setup-guide.svg" alt="Setup guide" />
       </div>
     </div>
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-          <h3 id="before-you-start">Before you start</h3>
+          <h2 id="before-you-start">Before you start</h2>
 <p>Create an <a href="/connectors/salesforce/integration-user.html">integration user</a>, a Salesforce user account through which Nektar will access your Salesforce data.</p>
-<h3 id="connect-to-salesforce">Connect to Salesforce</h3>
+<h2 id="connect-to-salesforce">Connect to Salesforce</h2>
 <p>We will send you an invitation link to start the process. Click the link, sign into Salesforce as the integration user you created previously, and allow access.</p>
 <div class="callout callout-neutral-info callout-single-line">
   <p>After sign in, you're redirected to the Nektar console. The checklist on the bottom-right corner will guide you through the rest of the onboarding. Clicking a checklist item will take you to the part of the console where it can be completed.</p>
@@ -43,7 +43,7 @@
 <p>You may change the integration user by clicking &quot;Disconnect&quot; and connecting again.</p>
 </div>
 </details>
-<h3 id="nektar-fields-creation">Nektar fields creation</h3>
+<h2 id="nektar-fields-creation">Nektar fields creation</h2>
 <div class="callout callout-neutral-info callout-single-line">
   <p>This step is not shown if you're signing up for a read-only trial of Nektar.</p>
 </div>
@@ -55,12 +55,12 @@
 <p>Verify that the integration user belongs to a Salesforce profile that has the <a href="/connectors/salesforce/integration-user.html">required permissions</a>, and retry.</p>
 </div>
 </details>
-<h3 id="confirm-your-domains">Confirm your domain(s)</h3>
+<h2 id="confirm-your-domains">Confirm your domain(s)</h2>
 <p>Enter all email domains that your organization uses, and click &quot;Confirm&quot;. Nektar uses these email domains to identify your team members in emails and meetings.</p>
-<h3 id="mark-salesforce-as-ready-to-sync">Mark Salesforce as ready to sync</h3>
+<h2 id="mark-salesforce-as-ready-to-sync">Mark Salesforce as ready to sync</h2>
 <p>Click the &quot;Ready to sync&quot; button. Your first Salesforce sync will begin after we verify your settings. Afterwards, you may pause and resume Salesforce sync yourself.</p>
 <p>Note that your first Salesforce sync may take up to a few days, depending on the amount of data you have.</p>
-<h3 id="connect-to-google">Connect to Google</h3>
+<h2 id="connect-to-google">Connect to Google</h2>
 <div class="callout callout-neutral-info callout-single-line">
   <p>This step is only shown if your organization uses Google Workspace.</p>
 </div>
@@ -73,16 +73,16 @@
 <p>Double-check the administrator's email address, and that domain-wide delegation has been set up with the correct service account ID and scopes.</p>
 </div>
 </details>
-<h3 id="connect-to-ms365">Connect to MS365</h3>
+<h2 id="connect-to-ms365">Connect to MS365</h2>
 <div class="callout callout-neutral-info callout-single-line">
   <p>This step is only shown if your organization uses Microsoft 365.</p>
 </div>
 <p>Your Microsoft 365 administrator should install the Nektar app for your organization.</p>
 <p>If you are an administrator, click &quot;Connect&quot; and follow the instructions. If not, copy the link and send it to the administrator. <a href="/connectors/microsoft-365/index.html">Learn more</a></p>
-<h3 id="confirm-your-screening-rules">Confirm your screening rules</h3>
+<h2 id="confirm-your-screening-rules">Confirm your screening rules</h2>
 <p>Enter rules for <a href="/administration/data-controls.html">screening out emails and events</a>. An activity is screened out if <em>any</em> of its participants matches a blocking rule, or if <em>all</em> its participants match ignore rules.</p>
 <p>To screen out internal emails and events, your organization's domains are automatically added to the ignore list.</p>
-<h3 id="select-users-to-enable-googlems365-sync">Select users to enable Google/MS365 sync</h3>
+<h2 id="select-users-to-enable-googlems365-sync">Select users to enable Google/MS365 sync</h2>
 <p>Google and MS365 sync must be separately enabled for each user. Click &quot;Manage sync for individual users&quot; to go to the <a href="/administration/users.html">user management</a> screen.</p>
 <p>Click &quot;Existing users&quot; on the top left and switch to the &quot;Discovered users&quot; view. Select users using the check-boxes next to their names and click &quot;Add Nektar users&quot; on the top right.</p>
 <p>Switch back to the &quot;Existing users&quot; view, select the users for whom you'd like to enable sync, and click the relevant &quot;Enable&quot; buttons on the top right.</p>
@@ -97,27 +97,27 @@
 <p>This happens when a user's email addresses on Salesforce differs from that on Google / MS365. Click on a user to open the details view and select the Salesforce, Google and/or MS365 user accounts associated with this user, then add them.</p>
 </div>
 </details>
-<h3 id="mark-googlems365-as-ready-to-sync">Mark Google/MS365 as ready to sync</h3>
+<h2 id="mark-googlems365-as-ready-to-sync">Mark Google/MS365 as ready to sync</h2>
 <p>Click the &quot;Ready to sync&quot; button. Activity sync for your first batch of users will begin after we verify your settings. Afterwards, you may pause and resume sync yourself.</p>
         </div>
       </div>
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#before-you-start" class="toc-h3">Before you start</a>
-          <a href="#connect-to-salesforce" class="toc-h3">Connect to Salesforce</a>
+          <a href="#before-you-start">Before you start</a>
+          <a href="#connect-to-salesforce">Connect to Salesforce</a>
           <a href="#something-went-wrong" class="toc-h3">Something went wrong</a>
-          <a href="#nektar-fields-creation" class="toc-h3">Nektar fields creation</a>
+          <a href="#nektar-fields-creation">Nektar fields creation</a>
           <a href="#something-went-wrong" class="toc-h3">Something went wrong</a>
-          <a href="#confirm-your-domains" class="toc-h3">Confirm your domain(s)</a>
-          <a href="#mark-salesforce-as-ready-to-sync" class="toc-h3">Mark Salesforce as ready to sync</a>
-          <a href="#connect-to-google" class="toc-h3">Connect to Google</a>
+          <a href="#confirm-your-domains">Confirm your domain(s)</a>
+          <a href="#mark-salesforce-as-ready-to-sync">Mark Salesforce as ready to sync</a>
+          <a href="#connect-to-google">Connect to Google</a>
           <a href="#something-went-wrong" class="toc-h3">Something went wrong</a>
-          <a href="#connect-to-ms365" class="toc-h3">Connect to MS365</a>
-          <a href="#confirm-your-screening-rules" class="toc-h3">Confirm your screening rules</a>
-          <a href="#select-users-to-enable-googlems365-sync" class="toc-h3">Select users to enable Google/MS365 sync</a>
+          <a href="#connect-to-ms365">Connect to MS365</a>
+          <a href="#confirm-your-screening-rules">Confirm your screening rules</a>
+          <a href="#select-users-to-enable-googlems365-sync">Select users to enable Google/MS365 sync</a>
           <a href="#something-went-wrong" class="toc-h3">Something went wrong</a>
-          <a href="#mark-googlems365-as-ready-to-sync" class="toc-h3">Mark Google/MS365 as ready to sync</a>
+          <a href="#mark-googlems365-as-ready-to-sync">Mark Google/MS365 as ready to sync</a>
         </div>
       </aside>
     </div>

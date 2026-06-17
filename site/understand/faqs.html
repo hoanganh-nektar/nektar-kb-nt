@@ -20,16 +20,16 @@
           <span>FAQs</span>
         </div>
         <h1>FAQs</h1>
-        <p class="hero-desc"></p>
+        <p class="hero-desc">Answers to common questions about activities, contacts, admin controls, and security.</p>
       </div>
       <div class="hero-illustration">
-        <img src="assets/images/articles/faqs.svg" alt="FAQs" />
+        <img src="../assets/images/articles/faqs.svg" alt="FAQs" />
       </div>
     </div>
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-          <h3 id="activities">Activities</h3>
+          <h2 id="activities">Activities</h2>
 <details id="with-which-account-or-opportunity-would-an-activity-be-linked" class="details-section details-section--h3">
   <summary><strong>With which account or opportunity would an activity be linked?</strong></summary>
   <p>Nektar uses proprietary affinity models to determine this. See <a href="/understand/graph-inference.html">Graph inference</a> for more information.</p>
@@ -93,7 +93,7 @@
   <summary><strong>How does Nektar decide who should be the activity owner?</strong></summary>
   <p>See the <a href="/connectors/salesforce/sync.html">Sync</a> page for more information.</p>
 </details>
-<h3 id="contacts">Contacts</h3>
+<h2 id="contacts">Contacts</h2>
 <details id="with-which-account-and-opportunities-would-a-contact-be-linked" class="details-section details-section--h3">
   <summary><strong>With which account and opportunities would a contact be linked?</strong></summary>
   <p>Nektar creates contacts under the account with a domain name that matches the contact's email address. An account's domain name may come from its &quot;Website&quot; field, or be inferred from the email addresses of other contacts already in it.</p>
@@ -121,7 +121,7 @@
   <summary><strong>There are multiple internal people marked on an activity. How does Nektar decide who should be the contact owner?</strong></summary>
   <p>Contacts are associated with accounts. The owner of the Account with which the Contact was associated is assigned as the Contact owner. See the <a href="/connectors/salesforce/sync.html">Owner</a> documentation for more information.</p>
 </details>
-<h3 id="admin-controls">Admin controls</h3>
+<h2 id="admin-controls">Admin controls</h2>
 <details id="how-can-i-add-or-remove-users" class="details-section details-section--h3">
   <summary><strong>How can I add or remove users?</strong></summary>
   <p>See the <a href="/administration/users.html">Users</a> documentation.</p>
@@ -146,7 +146,7 @@
   <summary><strong>How do I switch a connector to a different integration user / admin user / service account?</strong></summary>
   <p>See the connector documentation for <a href="/connectors/salesforce/connection.html">Salesforce</a>, <a href="/connectors/google-workspace/index.html">Google Workspace</a>, <a href="/connectors/microsoft-365/index.html">Microsoft 365</a>, and <a href="/connectors/zoom/index.html">Zoom</a>.</p>
 </details>
-<h3 id="security">Security</h3>
+<h2 id="security">Security</h2>
 <details id="how-does-nektar-secure-my-data" class="details-section details-section--h3">
   <summary><strong>How does Nektar secure my data?</strong></summary>
   <p>Nektar offers the highest level of security to all customers. Nektar is compliant with SOC2 Type II, ISO 27001, and with GDPR (General Data Protection Regulation). For more details, see <a href="/understand/security.html">Security</a>.</p>
@@ -203,7 +203,7 @@
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#activities" class="toc-h3">Activities</a>
+          <a href="#activities">Activities</a>
           <a href="#with-which-account-or-opportunity-would-an-activity-be-linked" class="toc-h3">With which account or opportunity would an activity be linked?</a>
           <a href="#an-activity-is-missing-in-salesforce-why" class="toc-h3">An activity is missing in Salesforce. Why?</a>
           <a href="#do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce" class="toc-h3">Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</a>
@@ -218,20 +218,20 @@
           <a href="#why-is-an-activity-linked-to-an-account-even-when-there-are-open-opportunities-under-that-account" class="toc-h3">Why is an activity linked to an account even when there are open opportunities under that account?</a>
           <a href="#why-are-activities-assigned-to-users-whose-inboxes-and-calendars-nektar-is-not-reading" class="toc-h3">Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</a>
           <a href="#how-does-nektar-decide-who-should-be-the-activity-owner" class="toc-h3">How does Nektar decide who should be the activity owner?</a>
-          <a href="#contacts" class="toc-h3">Contacts</a>
+          <a href="#contacts">Contacts</a>
           <a href="#with-which-account-and-opportunities-would-a-contact-be-linked" class="toc-h3">With which account and opportunities would a contact be linked?</a>
           <a href="#does-nektar-create-duplicate-contacts-on-salesforce" class="toc-h3">Does Nektar create duplicate contacts on Salesforce?</a>
           <a href="#how-does-nektar-handle-contacts-whose-conversations-occurred-before-the-account-was-created-on-salesforce" class="toc-h3">How does Nektar handle contacts whose conversations occurred before the account was created on Salesforce?</a>
           <a href="#i-created-some-contacts-on-salesforce-will-nektar-update-details-like-title-phone-number-etc" class="toc-h3">I created some contacts on Salesforce. Will Nektar update details like title, phone number, etc.?</a>
           <a href="#there-are-multiple-internal-people-marked-on-an-activity-how-does-nektar-decide-who-should-be-the-contact-owner" class="toc-h3">There are multiple internal people marked on an activity. How does Nektar decide who should be the contact owner?</a>
-          <a href="#admin-controls" class="toc-h3">Admin controls</a>
+          <a href="#admin-controls">Admin controls</a>
           <a href="#how-can-i-add-or-remove-users" class="toc-h3">How can I add or remove users?</a>
           <a href="#how-can-i-stop-nektar-capturing-private-calendar-meetings" class="toc-h3">How can I stop Nektar capturing private calendar meetings?</a>
           <a href="#what-controls-are-available-to-prevent-nektar-capturing-sensitive-information" class="toc-h3">What controls are available to prevent Nektar capturing sensitive information?</a>
           <a href="#can-i-enable-read-and-write-of-specific-salesforce-objects-eg-contacts-without-activities" class="toc-h3">Can I enable read and write of specific Salesforce objects, e.g. contacts without activities?</a>
           <a href="#can-i-see-a-log-of-all-the-activities-and-persons-that-nektar-read-but-did-not-create-in-salesforce" class="toc-h3">Can I see a log of all the activities and persons that Nektar read but did not create in Salesforce?</a>
           <a href="#how-do-i-switch-a-connector-to-a-different-integration-user-admin-user-service-account" class="toc-h3">How do I switch a connector to a different integration user / admin user / service account?</a>
-          <a href="#security" class="toc-h3">Security</a>
+          <a href="#security">Security</a>
           <a href="#how-does-nektar-secure-my-data" class="toc-h3">How does Nektar secure my data?</a>
           <a href="#what-permissions-are-required-by-nektar" class="toc-h3">What permissions are required by Nektar?</a>
           <a href="#why-does-nektar-need-delete-permissions-on-salesforce" class="toc-h3">Why does Nektar need delete permissions on Salesforce?</a>

@@ -20,12 +20,11 @@ export const pageMeta = {
 
   // ── Section indexes ──────────────────────────────────────────────────────
 
-  // Getting started
-  // (page ID discovered at runtime — add it here after the first build)
-  // 'GETTING_STARTED_ID': {
-  //   illustration: 'assets/images/topics/getting-started.png',
-  //   heroDesc: 'The essentials for getting Nektar up and running across your connected tools.',
-  // },
+  // Getting started – Setup guide
+  '3819417ef6ba8106bc76f276928bc061': {
+    illustration: 'assets/images/articles/setup-guide.svg',
+    cardIcon: 'assets/images/articles/setup-guide.svg',
+  },
 
   // Understand
   // 'UNDERSTAND_ID': {
@@ -47,14 +46,13 @@ export const pageMeta = {
 
   // ── Understand ───────────────────────────────────────────────────────────
 
-  // Overview (page ID unknown — discovered at runtime)
-  // 'OVERVIEW_ID': {
-  //   illustration: 'assets/images/articles/overview.svg',
-  //   illustrationBg: '#003d5c',
-  //   cardIcon: 'assets/images/articles/overview.svg',
-  //   descFull: 'The Nektar Graph, Readers, Builders, Writers, and Self-healing — how all the pieces fit together.',
-  //   descShort: 'How the Nektar Graph, Readers, Builders, and Writers fit together.',
-  // },
+  // Overview
+  '3819417ef6ba81c283c6e85fe3d272b2': {
+    illustration: 'assets/images/articles/overview.svg',
+    cardIcon: 'assets/images/articles/overview.svg',
+    descFull: 'The Nektar Graph, Readers, Builders, Writers, and Self-healing — how all the pieces fit together.',
+    descShort: 'How the Nektar Graph, Readers, Builders, and Writers fit together.',
+  },
 
   // Graph inference
   '3819417ef6ba8194b8d2df08b8a8d229': {
@@ -96,13 +94,13 @@ export const pageMeta = {
     descShort: 'Map engagement data into Salesforce fields with transform rules.',
   },
 
-  // Use cases (page ID unknown — discovered at runtime)
-  // 'USE_CASES_ID': {
-  //   illustration: 'assets/images/articles/use-cases.svg',
-  //   cardIcon: 'assets/images/articles/use-cases.svg',
-  //   descFull: 'Ways customers use Nektar Transform to auto-populate engagement scores, multi-threading levels, dates, and more.',
-  //   descShort: 'Auto-populate scores, multi-threading levels, dates, and more.',
-  // },
+  // Use cases
+  '3819417ef6ba815e9b8de1f0abaae61b': {
+    illustration: 'assets/images/articles/use-cases.svg',
+    cardIcon: 'assets/images/articles/use-cases.svg',
+    descFull: 'Ways customers use Nektar Transform to auto-populate engagement scores, multi-threading levels, dates, and more.',
+    descShort: 'Auto-populate scores, multi-threading levels, dates, and more.',
+  },
 
   // FAQs
   '3819417ef6ba8157af9fe563b8e6b757': {
@@ -114,15 +112,14 @@ export const pageMeta = {
 
   // ── Connectors ───────────────────────────────────────────────────────────
 
-  // Salesforce (sub-section — page ID unknown, discovered at runtime)
-  // 'SALESFORCE_ID': {
-  //   illustration: 'assets/images/articles/salesforce.svg',
-  //   illustrationBg: '#ffcc00',
-  //   cardIcon: 'assets/images/articles/salesforce.svg',
-  //   descFull: 'Set up the integration user, establish a connection, configure sync, and review APIs used by Nektar in your Salesforce org.',
-  //   descShort: 'Integration user, connection, sync, and APIs for your Salesforce org.',
-  //   heroDesc: 'Everything you need to connect Nektar to your Salesforce org — from creating the integration user to configuring sync and understanding which APIs are used.',
-  // },
+  // Salesforce (sub-section index)
+  '9b1903498e1f49df960bdf977f6886d4': {
+    illustration: 'assets/images/articles/salesforce.svg',
+    cardIcon: 'assets/images/articles/salesforce.svg',
+    descFull: 'Set up the integration user, establish a connection, configure sync, and review APIs used by Nektar in your Salesforce org.',
+    descShort: 'Integration user, connection, sync, and APIs for your Salesforce org.',
+    heroDesc: 'Everything you need to connect Nektar to your Salesforce org — from creating the integration user to configuring sync and understanding which APIs are used.',
+  },
 
   // Salesforce – Integration user
   '3819417ef6ba811fbeb4e7991f6c5610': {

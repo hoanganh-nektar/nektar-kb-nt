@@ -25,7 +25,7 @@
         <p class="hero-desc">Nektar's Salesforce sync system reads and writes <em>data objects</em> such as Accounts and Contacts, and reads <em>settings objects</em> such as Users and Salesforce metadata. Each read or write operation runs independently every 10–15 minutes, except Salesforce metadata which is read every 24 hours.</p>
       </div>
       <div class="hero-illustration">
-        <img src="assets/images/articles/sync.svg" alt="Sync" />
+        <img src="../../assets/images/articles/sync.svg" alt="Sync" />
       </div>
     </div>
     <div class="article-layout">
@@ -44,7 +44,7 @@
 <div class="callout callout-neutral-info callout-single-line">
   <p>It's normal for the read or write time to be several hours ago while the health icon remains green: this indicates that the sync job is running correctly but found nothing new to read or write recently.</p>
 </div>
-<h3 id="objects-synced">Objects synced</h3>
+<h2 id="objects-synced">Objects synced</h2>
 <p>Nektar reads, updates, creates and deletes records under the following Salesforce objects.</p>
 <div class="data-table" style="grid-template-columns: 2fr 2fr 2fr 2fr 2fr">
 <div class="data-table-row data-table-header">
@@ -134,7 +134,7 @@
 </div>
 <p>By default, all fields and records accessible to the integration user are read. If required, we can configure it to read only a subset.</p>
 <p>Only records that were previously created by Nektar and never updated manually are deleted.</p>
-<h3 id="standard-fields-updated">Standard fields updated</h3>
+<h2 id="standard-fields-updated">Standard fields updated</h2>
 <p>In the default configuration, Nektar updates the following fields if they are (a) empty, or (b) contain a value previously written by Nektar.</p>
 <div class="data-table" style="grid-template-columns: 2fr 2fr 2fr 2fr 2fr">
 <div class="data-table-row data-table-header">
@@ -183,7 +183,7 @@ Task Relations</div>
 <p>¹ “What” refers to the Opportunity or Account an activity is related to, and is labelled “Related”
 ² “Who” refers to the primary Contact or Lead an activity is related to, and is labelled “Name”</p>
 <p>Custom data transform rules may also update these or other fields of the Account and Opportunity objects.</p>
-<h3 id="owner">Owner</h3>
+<h2 id="owner">Owner</h2>
 <p>The <strong>&quot;Owner&quot;</strong> field of Nektar-created Contacts, Events and Tasks will contain the most appropriate seller(s) responsible for that record, which is:</p>
 <ul>
 <li>for Contacts: the owner of the Account with which the Contact was associated</li>
@@ -192,15 +192,15 @@ Task Relations</div>
 </ul>
 <p>The primary seller in a list is the owner of the Opportunity or Account with which the activity was associated, if present in the list; otherwise the first one in the list.</p>
 <p>If no appropriate sellers were found, or if the most appropriate seller is not a Salesforce user, the Nektar Salesforce integration user is assigned as the owner.</p>
-<h3 id="name-who">Name (&quot;Who&quot;)</h3>
+<h2 id="name-who">Name (&quot;Who&quot;)</h2>
 <p>This <strong>&quot;Name&quot;</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer, which is:</p>
 <ul>
 <li>for Tasks (emails): the first buyer found in the email's From, To or Cc headers (in that order)</li>
 <li>for Events: the organizer of the calendar event, if they are a buyer, or the first buyer in the invitee list</li>
 </ul>
-<h3 id="attendees">Attendees</h3>
+<h2 id="attendees">Attendees</h2>
 <p>The <strong>&quot;Attendees&quot;</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>.</p>
-<h3 id="nektar-custom-fields">Nektar custom fields</h3>
+<h2 id="nektar-custom-fields">Nektar custom fields</h2>
 <p>Nektar creates several custom fields in your Salesforce organization. Nektar does not automatically add them to any views, layouts, reports etc. but you may do so.</p>
 <p>This table shows the data type and possible values the field may have in each Salesforce object:</p>
 <div class="data-table" style="grid-template-columns: 3fr 3fr 3fr 3fr">
@@ -319,7 +319,7 @@ Completed¹</div>
 <li>Requires Buyer Movement feature</li>
 </ol>
 </details>
-<h3 id="output-screening">Output screening</h3>
+<h2 id="output-screening">Output screening</h2>
 <p>Nektar only creates records that can be linked to existing Salesforce records.</p>
 <ul>
 <li>Contacts must link to an existing account or contact via a shared, non-public domain name. Consequently, Nektar will never create contacts with public domains (such as <code>@gmail.com</code>).</li>
@@ -335,14 +335,14 @@ Completed¹</div>
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#objects-synced" class="toc-h3">Objects synced</a>
-          <a href="#standard-fields-updated" class="toc-h3">Standard fields updated</a>
-          <a href="#owner" class="toc-h3">Owner</a>
-          <a href="#name-who" class="toc-h3">Name (&quot;Who&quot;)</a>
-          <a href="#attendees" class="toc-h3">Attendees</a>
-          <a href="#nektar-custom-fields" class="toc-h3">Nektar custom fields</a>
+          <a href="#objects-synced">Objects synced</a>
+          <a href="#standard-fields-updated">Standard fields updated</a>
+          <a href="#owner">Owner</a>
+          <a href="#name-who">Name (&quot;Who&quot;)</a>
+          <a href="#attendees">Attendees</a>
+          <a href="#nektar-custom-fields">Nektar custom fields</a>
           <a href="#notes" class="toc-h3">Notes</a>
-          <a href="#output-screening" class="toc-h3">Output screening</a>
+          <a href="#output-screening">Output screening</a>
         </div>
       </aside>
     </div>

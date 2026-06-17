@@ -37,9 +37,14 @@ async function buildNode(node, tree, pathIndex) {
   if (node.type === 'root') {
     html = homeTemplate({ rootNode: node, tree, pathIndex });
   } else if (node.type === 'section') {
+    const sectionMeta = pageMeta[node.blockId?.replace(/-/g, '') || node.id?.replace(/-/g, '')] || {};
+    const effectiveSection = {
+      ...node,
+      illustration: sectionMeta.illustration || node.illustration,
+    };
     html = sectionIndexTemplate({
-      node,
-      heroDesc: node.heroDesc || '',
+      node: effectiveSection,
+      heroDesc: sectionMeta.heroDesc || node.heroDesc || '',
       children: node.children,
       tree,
     });
@@ -61,13 +66,14 @@ async function buildArticlePage(node, tree, pathIndex) {
   const blocks = await fetchBlockTree(node.id);
   const meta = pageMeta[node.id?.replace(/-/g, '')] || {};
 
-  // First paragraph → hero description
+  // First paragraph → hero description; fall back to Long description from discovery
   let heroDesc = meta.heroDesc || '';
   let bodyStart = 0;
   if (!heroDesc && blocks[0]?.type === 'paragraph') {
     heroDesc = renderRichText(blocks[0].paragraph.rich_text, pathIndex);
     bodyStart = 1;
   }
+  if (!heroDesc) heroDesc = node.descFull || '';
 
   const bodyBlocks = blocks.slice(bodyStart).filter(b => b.type !== 'child_page');
   const tocEntries = [];

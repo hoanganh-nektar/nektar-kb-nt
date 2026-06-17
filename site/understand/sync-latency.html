@@ -23,13 +23,13 @@
         <p class="hero-desc">Nektar's design strikes a balance between efficiency and accuracy. Nektar is tuned to meet the real-world latency requirements for CRM data, without being wasteful of API quotas or compute resources.</p>
       </div>
       <div class="hero-illustration">
-        <img src="assets/images/articles/sync-latency.svg" alt="Sync latency" />
+        <img src="../assets/images/articles/sync-latency.svg" alt="Sync latency" />
       </div>
     </div>
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-          <h3 id="typical-end-to-end-latency">Typical end-to-end latency</h3>
+          <h2 id="typical-end-to-end-latency">Typical end-to-end latency</h2>
 <p>This table shows the typical end-to-end latency for reading and processing new data and writing it to Salesforce.</p>
 <div class="data-table" style="grid-template-columns: 3fr 3fr 3fr">
 <div class="data-table-row data-table-header">
@@ -78,7 +78,7 @@
 </ul></li>
 <li>We stop the clock when Nektar makes the corresponding change on Salesforce.</li>
 </ul>
-<h3 id="something-appears-to-have-taken-longer">Something appears to have taken longer</h3>
+<h2 id="something-appears-to-have-taken-longer">Something appears to have taken longer</h2>
 <p>This could happen because:</p>
 <ul>
 <li>Nektar sync might have been disabled or stopped due to error for the particular user or object at the time of the start-clock event mentioned above.</li>
@@ -91,7 +91,7 @@
 <li>Salesforce API errors might prevent Nektar writing data for prolonged periods of time. These often occur due to poorly performing Apex triggers or other tools that perform too many API calls to your Salesforce instance.</li>
 <li>In rare circumstances, Nektar, the communication tool's API service, or Salesforce might have encountered a technical incident at time of the activity. <a href="https://statuspage.freshping.io/62564-Nektar">Nektar's uptime status</a> for the past 30 days is available, as are similar pages for other tools.</li>
 </ul>
-<h3 id="sources-of-latency">Sources of latency</h3>
+<h2 id="sources-of-latency">Sources of latency</h2>
 <p>There are three main sources of latency in Nektar:</p>
 <ol>
 <li>Nektar is not the tool used by your sellers to send emails, so it must fetch these emails periodically from each inbox and calendar. Fetching too frequently will exhaust Google / Microsoft API quotas, so Nektar strikes a balance at 10–15 minutes.</li>
@@ -115,10 +115,10 @@
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#typical-end-to-end-latency" class="toc-h3">Typical end-to-end latency</a>
+          <a href="#typical-end-to-end-latency">Typical end-to-end latency</a>
           <a href="#what-does-end-to-end-latency-mean" class="toc-h3">What does &quot;end-to-end latency&quot; mean?</a>
-          <a href="#something-appears-to-have-taken-longer" class="toc-h3">Something appears to have taken longer</a>
-          <a href="#sources-of-latency" class="toc-h3">Sources of latency</a>
+          <a href="#something-appears-to-have-taken-longer">Something appears to have taken longer</a>
+          <a href="#sources-of-latency">Sources of latency</a>
           <a href="#step-by-step-breakdown" class="toc-h3">Step-by-step breakdown</a>
         </div>
       </aside>

@@ -66,8 +66,8 @@ function renderBlock(block, pathIndex, tocEntries) {
 
     case 'heading_2': {
       const id = toId(plain);
-      tocEntries?.push({ id, text: plain, level: 3 });
-      return `<h3 id="${id}">${text}</h3>`;
+      tocEntries?.push({ id, text: plain, level: 2 });
+      return `<h2 id="${id}">${text}</h2>`;
     }
 
     case 'heading_3': {

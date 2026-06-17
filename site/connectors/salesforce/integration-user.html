@@ -25,7 +25,7 @@
         <p class="hero-desc">Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
       </div>
       <div class="hero-illustration">
-        <img src="assets/images/articles/integration-user.svg" alt="Integration user" />
+        <img src="../../assets/images/articles/integration-user.svg" alt="Integration user" />
       </div>
     </div>
     <div class="article-layout">
@@ -33,7 +33,7 @@
         <div class="article-content">
           <p>We recommend creating a dedicated Salesforce user account (a <em>service account</em>) to serve as the Nektar integration user, as this gives fine control over what data Nektar can access. If this is not possible, you may use a shared user account for all tools to access Salesforce, or use your own Salesforce user account as the Nektar integration user.</p>
 <p>Your Salesforce administrator should provision an integration user on Salesforce before you can set Nektar up. It is also a good idea for the designated Nektar administrator in your organization to have the credentials for the integration user.</p>
-<h3 id="permissions">Permissions</h3>
+<h2 id="permissions">Permissions</h2>
 <p>The specific records and fields Nektar accesses may be controlled by configuring a Salesforce profile with access to only the appropriate records and assigning the Nektar integration user to that profile.</p>
 <p>The permissions required for this profile are:</p>
 <div class="data-table" style="grid-template-columns: 5fr 5fr">
@@ -62,14 +62,14 @@
 <div class="data-table-cell">allow programmatic access</div>
 </div>
 </div>
-<h3 id="reduced-privilege-alternatives"><strong>Reduced privilege alternatives</strong></h3>
+<h2 id="reduced-privilege-alternatives"><strong>Reduced privilege alternatives</strong></h2>
         </div>
       </div>
       <aside class="article-toc">
         <p class="toc-title">Content</p>
         <div class="toc-list">
-          <a href="#permissions" class="toc-h3">Permissions</a>
-          <a href="#reduced-privilege-alternatives" class="toc-h3">Reduced privilege alternatives</a>
+          <a href="#permissions">Permissions</a>
+          <a href="#reduced-privilege-alternatives">Reduced privilege alternatives</a>
         </div>
       </aside>
     </div>
