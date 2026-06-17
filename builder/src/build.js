@@ -73,7 +73,7 @@ async function buildArticlePage(node, tree, pathIndex) {
     heroDesc = renderRichText(blocks[0].paragraph.rich_text, pathIndex);
     bodyStart = 1;
   }
-  if (!heroDesc) heroDesc = node.descFull || '';
+  if (!heroDesc) heroDesc = node.descShort || node.descFull || '';
 
   const bodyBlocks = blocks.slice(bodyStart).filter(b => b.type !== 'child_page');
   const tocEntries = [];
