@@ -40,8 +40,9 @@
 <li>Activities matching read screening rules are not stored or processed by Nektar, and any that match write screening rules are not written to Salesforce. Verify that no <a href="/administration/data-controls.html">screening rules</a> match the missing activity.</li>
 <li>Nektar only captures activities where at least one participant is an existing Salesforce lead or contact, or whose email address has the same domain as an existing contact or account. Verify that the missing activity links to an existing Salesforce record.</li>
 <li>Calendar events more than 3 months into the future are not processed by Nektar until they come within the 3-month window.</li>
-<li>The activity might be in the processing pipeline. See <a href="/understand/sync-latency.html">Sync latency</a> for expected time durations. To look up what happened to a specific activity, use the <a href="/administration/tracker.html">Tracker</a>.</li>
+<li>The activity might be in the processing pipeline. See <a href="/understand/sync-latency.html">Sync latency</a> for expected time durations. </li>
 </ol>
+<p>To look up what happened to a specific activity, use the <a href="/administration/tracker.html">Tracker</a>.</p>
 </details>
 <details id="do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce" class="details-section details-section--h3">
   <summary><strong>Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</strong></summary>
@@ -140,7 +141,8 @@
 </details>
 <details id="can-i-see-a-log-of-all-the-activities-and-persons-that-nektar-read-but-did-not-create-in-salesforce" class="details-section details-section--h3">
   <summary><strong>Can I see a log of all the activities and persons that Nektar read but did not create in Salesforce?</strong></summary>
-  <p>No. The majority of activity in your sellers' inboxes and calendars is not external sales-related communications. As the volume of such activities tends to be excessive and may contain sensitive or personal conversations, we do not provide an interface to review them manually. If you have a specific activity to track down, use the <a href="/administration/tracker.html">Tracker</a>.</p>
+  <p>No. The majority of activity in your sellers' inboxes and calendars is not external sales-related communications. As the volume of such activities tends to be excessive and may contain sensitive or personal conversations, we do not provide an interface to review them manually.</p>
+<p>If you have a specific activity to track down, use the <a href="/administration/tracker.html">Tracker</a>.</p>
 </details>
 <details id="how-do-i-switch-a-connector-to-a-different-integration-user-admin-user-service-account" class="details-section details-section--h3">
   <summary><strong>How do I switch a connector to a different integration user / admin user / service account?</strong></summary>

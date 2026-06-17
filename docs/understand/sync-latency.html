@@ -31,6 +31,7 @@
         <div class="article-content">
           <h2 id="typical-end-to-end-latency">Typical end-to-end latency</h2>
 <p>This table shows the typical end-to-end latency for reading and processing new data and writing it to Salesforce.</p>
+<p>[Vertical table - 4:1:1]</p>
 <div class="data-table" style="grid-template-columns: 3fr 3fr 3fr">
 <div class="data-table-row data-table-header">
 <div class="data-table-cell"></div>
@@ -100,9 +101,12 @@
 </ol>
 <h3 id="step-by-step-breakdown">Step-by-step breakdown</h3>
 <ul>
-<li>Nektar reads each user's communication data, and your organization's Salesforce data, once every 10–15 minutes. Each type of data and each user's communication data is read independently. <em>(Average delay: 7 minutes; Maximum delay: 15 minutes)</em></li>
-<li>Nektar processes the data in our pipeline: constructing, de-duplicating and linking the new activities, contacts and contact roles, as well as re-evaluating all related past activities, contacts, contact roles and opportunities. <em>(Average delay: 15 minutes, Maximum delay: 4 hours in congested conditions)</em></li>
-<li>Intentional wait to ensure that all related records have been independently fetched and unified before writing to Salesforce. This includes manual Salesforce updates made around the time of the activity. <em>(Wait time: 30 minutes before creates and updates, 24 hours before contact merges)</em></li>
+<li>Nektar reads each user's communication data, and your organization's Salesforce data, once every 10–15 minutes. Each type of data and each user's communication data is read independently. </li>
+<li><em>(Average delay: 7 minutes; Maximum delay: 15 minutes)</em></li>
+<li>Nektar processes the data in our pipeline: constructing, de-duplicating and linking the new activities, contacts and contact roles, as well as re-evaluating all related past activities, contacts, contact roles and opportunities. </li>
+<li><em>(Average delay: 15 minutes, Maximum delay: 4 hours in congested conditions)</em></li>
+<li>Intentional wait to ensure that all related records have been independently fetched and unified before writing to Salesforce. This includes manual Salesforce updates made around the time of the activity. 
+<p><em>(Wait time: 30 minutes before creates and updates, 24 hours before contact merges)</em></p></li>
 <li>Nektar writes new data into Salesforce every 10–15 minutes. Each object type is written independently. Note:
 <ul>
 <li>Activities and Opportunity-Contact Roles can only be created after their Contacts have already been created, and the Salesforce Contact records have been processed by Nektar.</li>
