@@ -1554,6 +1554,16 @@ figure.article-image img,
   border-color: rgba(255, 153, 0, 0.15);
 }
 
+.callout-error {
+  background: rgba(220, 38, 38, 0.05);
+  border-color: rgba(220, 38, 38, 0.15);
+}
+
+.callout-neutral-link {
+  background: rgba(0, 102, 255, 0.05);
+  border-color: rgba(0, 102, 255, 0.15);
+}
+
 /* ─── Step layout (text + screenshot side by side) ──────────────── */
 
 .step-layout {
@@ -1623,6 +1633,14 @@ figure.article-image img,
 
 .callout-warning::before {
   background-image: url('../images/icons/callout-warning.svg');
+}
+
+.callout-error::before {
+  background-image: url('../images/icons/callout-error.svg');
+}
+
+.callout-neutral-link::before {
+  background-image: url('../images/icons/callout-neutral-link.svg');
 }
 
 /* Collapsible sections */
