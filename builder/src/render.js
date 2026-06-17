@@ -89,7 +89,10 @@ function renderBlock(block, pathIndex, tocEntries) {
     }
 
     case 'callout': {
-      const cls = calloutClass(data.icon);
+      let cls = calloutClass(data.icon);
+      if (cls === 'callout-neutral-info' && plain.toLowerCase().startsWith('error')) {
+        cls = 'callout-warning';
+      }
       const singleLine = !block.has_children ? ' callout-single-line' : '';
       const extra = block._children
         ? '\n' + renderBlocks(block._children, pathIndex)
