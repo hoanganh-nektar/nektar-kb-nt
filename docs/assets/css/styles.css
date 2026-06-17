@@ -1524,6 +1524,15 @@ figure.article-image img,
   background-position: center;
 }
 
+.callout-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.callout-body p + p {
+  margin-top: 8px;
+}
+
 .callout p {
   font-family: "Lora", serif;
   font-size: 16px;

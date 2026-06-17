@@ -78,7 +78,7 @@ function renderBlock(block, pathIndex, tocEntries) {
 
     case 'toggle': {
       const id = toId(plain);
-      tocEntries?.push({ id, text: plain, level: 3 });
+      // Toggles are collapsible sections, not headings — omit from TOC
       const body = block._children
         ? renderBlocks(block._children, pathIndex)
         : '';
@@ -95,7 +95,7 @@ function renderBlock(block, pathIndex, tocEntries) {
         ? '\n' + renderBlocks(block._children, pathIndex)
         : '';
       return `<div class="callout ${cls}${singleLine}">
-  <p>${text}</p>${extra}
+  <div class="callout-body"><p>${text}</p>${extra}</div>
 </div>`;
     }
 
