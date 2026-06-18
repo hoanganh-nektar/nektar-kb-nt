@@ -352,6 +352,18 @@ function renderTable(tableBlock, pathIndex, opts = null) {
 
   const noBorder = opts?.noBorder || new Set();
 
+  // Detect symbol-only columns: every data cell is empty or contains a single
+  // token with no whitespace (e.g. ✓). These get centered header + cell content.
+  const dataRows = hasRowHeader ? rows.slice(1) : rows;
+  const centeredCols = new Set();
+  for (let j = hasColHeader ? 1 : 0; j < cols; j++) {
+    const isSymbolCol = dataRows.every(row => {
+      const text = plainText(row.table_row?.cells?.[j] || []).trim();
+      return !text || !/\s/.test(text);
+    });
+    if (isSymbolCol) centeredCols.add(j);
+  }
+
   const rowHtmls = rows.map((row, i) => {
     const cells = row.table_row?.cells || [];
     const isRowHeader = hasRowHeader && i === 0;
@@ -366,6 +378,7 @@ function renderTable(tableBlock, pathIndex, opts = null) {
         'data-table-cell',
         (isRowHeader || isColHeader) ? 'data-table-header-cell' : '',
         noBottom ? 'data-table-cell--no-bottom' : '',
+        centeredCols.has(j) ? 'data-table-cell--centered' : '',
       ].filter(Boolean).join(' ');
       return `<div class="${cls}">${text}</div>`;
     });

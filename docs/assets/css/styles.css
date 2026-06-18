@@ -961,6 +961,11 @@ figure.article-image figcaption {
   border-bottom: none;
 }
 
+.data-table-cell--centered {
+  align-items: center;
+  text-align: center;
+}
+
 .data-table-header .data-table-cell,
 .data-table-header-cell,
 .data-table-cell--label {
