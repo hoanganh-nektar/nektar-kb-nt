@@ -236,6 +236,15 @@ function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
   return `<${tag}>\n${lis.join('\n')}\n</${tag}>`;
 }
 
+// Render a table cell's rich text. For body cells in a horizontal table,
+// split on newlines and join items with a bullet separator.
+function renderTableCell(cell, pathIndex, isBulletCell) {
+  if (!isBulletCell) return renderRichText(cell, pathIndex);
+  const parts = plainText(cell).split('\n').map(s => s.trim()).filter(Boolean);
+  if (parts.length <= 1) return renderRichText(cell, pathIndex);
+  return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
+}
+
 function renderTable(tableBlock, pathIndex, opts = null) {
   const rows = tableBlock._children;
   const cols = rows[0]?.table_row?.cells?.length || 2;
@@ -245,16 +254,20 @@ function renderTable(tableBlock, pathIndex, opts = null) {
     ? opts.ratio.map(n => `${n}fr`).join(' ')
     : Array(cols).fill(`${Math.round(10 / cols)}fr`).join(' ');
 
-  // Header detection: directive overrides Notion table settings
+  // Header detection: directive overrides Notion table settings.
+  // hasColHeader (bullet separators) only activates via explicit [Horizontal table] directive.
   const hasRowHeader = opts?.headerRow ?? tableBlock.table?.has_column_header ?? false;
-  const hasColHeader = opts?.headerCol ?? tableBlock.table?.has_row_header ?? false;
+  const hasColHeader = opts?.headerCol ?? false;
 
   const rowHtmls = rows.map((row, i) => {
     const cells = row.table_row?.cells || [];
     const isRowHeader = hasRowHeader && i === 0;
     const cellHtmls = cells.map((cell, j) => {
-      const text = renderRichText(cell, pathIndex);
       const isColHeader = hasColHeader && j === 0;
+      // Bullet-separate newline-delimited items in body cells of horizontal tables.
+      // Exclude both the header column (j=0) and header row (i=0) from splitting.
+      const isBulletCell = hasColHeader && !isColHeader && !isRowHeader;
+      const text = renderTableCell(cell, pathIndex, isBulletCell);
       const cls = (isRowHeader || isColHeader) ? ' data-table-header-cell' : '';
       return `<div class="data-table-cell${cls}">${text}</div>`;
     });

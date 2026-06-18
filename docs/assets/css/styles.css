@@ -976,6 +976,11 @@ figure.article-image figcaption {
   border-right: none;
 }
 
+.field-sep {
+  color: #aaa;
+  user-select: none;
+}
+
 /* ─── Table clip container ───────────────────────────────────────── */
 
 .table-clip {
