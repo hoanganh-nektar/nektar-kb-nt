@@ -60,6 +60,7 @@ export const pageMeta = {
     cardIcon: 'assets/images/articles/graph-inference.svg',
     descFull: 'How Nektar\'s ML models identify missing relationships, de-duplicate records, and connect activities to the right opportunities.',
     descShort: 'How Nektar identifies missing relationships and maps activities to opportunities.',
+    heroDesc: 'How Nektar identifies missing relationships and maps activities to opportunities.',
   },
 
   // Self-healing
@@ -68,6 +69,7 @@ export const pageMeta = {
     cardIcon: 'assets/images/articles/self-healing.svg',
     descFull: 'How Nektar automatically corrects past decisions as new data arrives — no manual intervention required.',
     descShort: 'How Nektar auto-corrects past decisions as new data arrives.',
+    heroDesc: 'How Nektar auto-corrects past decisions as new data arrives.',
   },
 
   // Security
@@ -84,6 +86,7 @@ export const pageMeta = {
     cardIcon: 'assets/images/articles/sync-latency.svg',
     descFull: 'Typical end-to-end sync times for contacts, activities, and opportunity-contact roles, and what affects them.',
     descShort: 'Typical sync times and what affects them.',
+    heroDesc: 'Typical sync times and what affects them.',
   },
 
   // Data transform
@@ -100,6 +103,7 @@ export const pageMeta = {
     cardIcon: 'assets/images/articles/use-cases.svg',
     descFull: 'Ways customers use Nektar Transform to auto-populate engagement scores, multi-threading levels, dates, and more.',
     descShort: 'Auto-populate scores, multi-threading levels, dates, and more.',
+    heroDesc: 'Auto-populate scores, multi-threading levels, dates, and more.',
   },
 
   // FAQs
