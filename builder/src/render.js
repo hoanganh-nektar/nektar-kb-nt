@@ -267,6 +267,21 @@ function styleBullets(html) {
   return html.replace(/•/g, '<span class="field-sep">•</span>');
 }
 
+// Split a rich-text array on newline characters, returning an array of sub-arrays.
+// Each sub-array is a "line" with properly scoped annotations — splitting the
+// rendered HTML string instead would break tags that span a newline (e.g. <strong>text\n</strong>).
+function splitRichTextLines(richTexts) {
+  const lines = [[]];
+  for (const rt of richTexts) {
+    const parts = rt.plain_text.split('\n');
+    for (let i = 0; i < parts.length; i++) {
+      if (i > 0) lines.push([]);
+      if (parts[i] !== '') lines[lines.length - 1].push({ ...rt, plain_text: parts[i] });
+    }
+  }
+  return lines.filter(line => line.length > 0);
+}
+
 // Render a table cell's rich text.
 // - Horizontal table body cells: split newlines into bullet-separated items.
 // - All other cells: preserve newlines via cell-line spans so content stacks.
@@ -286,11 +301,14 @@ function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   // span so content stacks. (cells use display:flex which ignores <br>)
   // Skip for header cells: splitting mid-tag breaks inline HTML like <strong>.
   if (isHeader) return renderRichText(cell, pathIndex);
-  const rendered = styleBullets(renderRichText(cell, pathIndex));
-  // Always wrap in cell-line spans — even single-line cells. Without this,
-  // a <span> (e.g. field-sep bullet) followed by a text node become separate
-  // flex items in the column flex container, splitting "• Created" onto two lines.
-  return rendered.split('\n').filter(line => line.trim()).map(line => `<span class="cell-line">${line}</span>`).join('');
+  // Split on newlines at the rich-text level (not on the rendered HTML string) so
+  // tags that span a newline (e.g. <strong>text\n</strong>) don't get split mid-tag.
+  const lines = splitRichTextLines(cell);
+  return lines
+    .map(line => styleBullets(renderRichText(line, pathIndex)))
+    .filter(s => s.trim())
+    .map(s => `<span class="cell-line">${s}</span>`)
+    .join('');
 }
 
 function transposeRows(rows) {
