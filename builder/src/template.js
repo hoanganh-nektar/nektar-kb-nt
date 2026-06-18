@@ -198,13 +198,15 @@ export function homeTemplate({ rootNode, tree, pathIndex }) {
 
   const topicCards = rootNode.children.map(section => {
     const illSrc = section.illustration || '';
+    const descFull = section.descFull || '';
+    const descShort = section.descShort || autoShort(descFull);
     return `<a href="${section.outputPath}" class="topic-card">
   <div class="topic-card-img">
     ${illSrc ? `<img src="${illSrc}" alt="${escapeHtml(section.title)}" />` : ''}
   </div>
   <div class="topic-card-text">
     <h3>${escapeHtml(section.title)}</h3>
-    <p>${section.heroDesc || ''}</p>
+    <p><span class="desc-full">${descFull}</span><span class="desc-short">${descShort}</span></p>
   </div>
 </a>`;
   }).join('\n\n');
