@@ -91,8 +91,8 @@ export const pageMeta = {
 
   // Salesforce – Connection
   '3819417ef6ba800b9da9f4f610a0a1e1': {
-    illustration: 'assets/images/articles/salesforce.svg',
-    cardIcon: 'assets/images/articles/salesforce.svg',
+    illustration: 'assets/images/articles/connection.svg',
+    cardIcon: 'assets/images/articles/connection.svg',
     cardIconBg: 'teal-bg',
   },
 
@@ -105,8 +105,8 @@ export const pageMeta = {
 
   // Salesforce – APIs used
   '3819417ef6ba8032b605f2561f3a023b': {
-    illustration: 'assets/images/articles/salesforce.svg',
-    cardIcon: 'assets/images/articles/salesforce.svg',
+    illustration: 'assets/images/articles/apis-used.svg',
+    cardIcon: 'assets/images/articles/apis-used.svg',
     cardIconBg: 'teal-bg',
   },
 
