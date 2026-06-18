@@ -20,29 +20,34 @@ export const pageMeta = {
 
   // ── Section indexes ──────────────────────────────────────────────────────
 
+  // Getting started (section)
+  '3819417ef6ba80108d17ddc5edf8c297': {
+    heroDesc: 'The essentials for getting Nektar up and running across your connected tools.',
+  },
+
   // Getting started – Setup guide
   '3819417ef6ba8106bc76f276928bc061': {
     illustration: 'assets/images/articles/setup-guide.svg',
     cardIcon: 'assets/images/articles/setup-guide.svg',
+    descFull: 'A step-by-step walkthrough to connect Salesforce, Google Workspace, and Microsoft 365 — and get Nektar syncing for your team.',
+    descShort: 'Step-by-step setup for Salesforce, Google Workspace, and Microsoft 365.',
+    heroDesc: 'Step-by-step setup for Salesforce, Google Workspace, and Microsoft 365.',
   },
 
-  // Understand
-  // 'UNDERSTAND_ID': {
-  //   illustration: 'assets/images/topics/understand.png',
-  //   heroDesc: 'How Nektar works — from sync behavior and security to key concepts and use cases.',
-  // },
+  // Understand (section)
+  '3819417ef6ba80719384c9104996f2d1': {
+    heroDesc: 'How Nektar works, from sync behavior and security to key concepts and use cases.',
+  },
 
-  // Connectors
-  // 'CONNECTORS_ID': {
-  //   illustration: 'assets/images/topics/connectors.png',
-  //   heroDesc: 'How to set up and manage Nektar\'s integrations with your connected tools.',
-  // },
+  // Connectors (section)
+  'ad8141960ba6403d9bf9aec28c9ea345': {
+    heroDesc: 'How to set up and manage Nektar\'s integrations with your connected tools.',
+  },
 
-  // Administration
-  // 'ADMINISTRATION_ID': {
-  //   illustration: 'assets/images/topics/administration.png',
-  //   heroDesc: 'Manage Nektar settings, users, data controls, activity tracking, and revenue signal configuration.',
-  // },
+  // Administration (section)
+  'f581d3994cbf46b79eeab753989a7dbb': {
+    heroDesc: 'How to manage Nektar settings, users, data controls, tracking, and revenue config.',
+  },
 
   // ── Understand ───────────────────────────────────────────────────────────
 
@@ -122,7 +127,7 @@ export const pageMeta = {
     cardIcon: 'assets/images/articles/salesforce.svg',
     descFull: 'Set up the integration user, establish a connection, configure sync, and review APIs used by Nektar in your Salesforce org.',
     descShort: 'Integration user, connection, sync, and APIs for your Salesforce org.',
-    heroDesc: 'Everything you need to connect Nektar to your Salesforce org — from creating the integration user to configuring sync and understanding which APIs are used.',
+    heroDesc: 'Integration user, connection, sync, and APIs for your Salesforce org.',
   },
 
   // Salesforce – Integration user
@@ -134,13 +139,31 @@ export const pageMeta = {
     descShort: 'Set up the dedicated Salesforce user for Nektar.',
   },
 
+  // Salesforce – Connection
+  '3819417ef6ba800b9da9f4f610a0a1e1': {
+    illustration: 'assets/images/articles/salesforce.svg',
+    cardIcon: 'assets/images/articles/salesforce.svg',
+    cardIconBg: 'teal-bg',
+    descFull: 'Authorize Nektar to connect to your Salesforce org and verify the connection is working correctly.',
+    descShort: 'Authorize and verify Nektar\'s Salesforce connection.',
+  },
+
   // Salesforce – Sync
   '3819417ef6ba80528e61d50bb2216724': {
     illustration: 'assets/images/articles/sync.svg',
     cardIcon: 'assets/images/articles/sync.svg',
     cardIconBg: 'teal-bg',
-    descFull: 'Understand how Nektar syncs engagement data into Salesforce objects, and how to control sync frequency and scope.',
+    descFull: 'Understand how Nektar writes engagement data into Salesforce — which objects are synced, what fields are updated, and how to monitor sync health.',
     descShort: 'How Nektar syncs engagement data into Salesforce objects.',
+  },
+
+  // Salesforce – APIs used
+  '3819417ef6ba8032b605f2561f3a023b': {
+    illustration: 'assets/images/articles/salesforce.svg',
+    cardIcon: 'assets/images/articles/salesforce.svg',
+    cardIconBg: 'teal-bg',
+    descFull: 'A full reference of the Salesforce APIs and OAuth scopes Nektar requires — useful for security reviews and IT approval.',
+    descShort: 'Salesforce APIs and OAuth scopes Nektar requires.',
   },
 
   // Google Workspace — path override: directory with marketplace-install child
@@ -161,6 +184,7 @@ export const pageMeta = {
     cardIconBg: 'yellow-bg',
     descFull: 'Step-by-step instructions for a Google Workspace administrator to install Nektar from the Google Marketplace.',
     descShort: 'Install Nektar from the Google Marketplace.',
+    heroDesc: 'Step-by-step instructions for Google Workspace administrators to install Nektar for Gmail, Google Calendar and Google Meet.',
   },
 
   // Microsoft 365 — path override: expected at connectors/microsoft-365/index.html
