@@ -265,7 +265,7 @@ function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   // Always wrap in cell-line spans — even single-line cells. Without this,
   // a <span> (e.g. field-sep bullet) followed by a text node become separate
   // flex items in the column flex container, splitting "• Created" onto two lines.
-  return rendered.split('\n').map(line => `<span class="cell-line">${line}</span>`).join('');
+  return rendered.split('\n').filter(line => line.trim()).map(line => `<span class="cell-line">${line}</span>`).join('');
 }
 
 function transposeRows(rows) {
