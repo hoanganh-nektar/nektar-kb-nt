@@ -6,7 +6,7 @@ export function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-export function renderRichText(richTexts, pathIndex = {}) {
+export function renderRichText(richTexts, pathIndex = {}, fromPath = '') {
   if (!richTexts?.length) return '';
   return richTexts.map(rt => {
     let text = escapeHtml(rt.plain_text);
@@ -17,21 +17,30 @@ export function renderRichText(richTexts, pathIndex = {}) {
     if (ann.italic) text = `<em>${text}</em>`;
     if (ann.strikethrough) text = `<s>${text}</s>`;
     if (rt.href) {
-      const href = resolveHref(rt.href, pathIndex);
+      const href = resolveHref(rt.href, pathIndex, fromPath);
       text = `<a href="${escapeHtml(href)}">${text}</a>`;
     }
     return text;
   }).join('');
 }
 
-function resolveHref(href, pathIndex) {
+function resolveHref(href, pathIndex, fromPath) {
   // Notion internal links end with a 32-char hex page ID
   const m = href.match(/([a-f0-9]{32})(?:[?#].*)?$/);
   if (m) {
-    const path = pathIndex[m[1]];
-    if (path) return `/${path}`;
+    const toPath = pathIndex[m[1]];
+    if (toPath) return fromPath ? relPath(fromPath, toPath) : toPath;
   }
   return href;
+}
+
+function relPath(fromHtml, toHtml) {
+  const fromParts = fromHtml.split('/');
+  fromParts.pop();
+  const toParts = toHtml.split('/');
+  let shared = 0;
+  while (shared < fromParts.length && fromParts[shared] === toParts[shared]) shared++;
+  return '../'.repeat(fromParts.length - shared) + toParts.slice(shared).join('/');
 }
 
 export function plainText(richTexts) {

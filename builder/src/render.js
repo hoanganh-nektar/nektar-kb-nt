@@ -37,7 +37,7 @@ function calloutClass(icon, color) {
   return 'callout-neutral-info';
 }
 
-export function renderBlocks(blocks, pathIndex, tocEntries) {
+export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
   const out = [];
   let i = 0;
 
@@ -49,7 +49,7 @@ export function renderBlocks(blocks, pathIndex, tocEntries) {
       while (i < blocks.length && blocks[i].type === 'bulleted_list_item') {
         items.push(blocks[i++]);
       }
-      out.push(renderList('ul', items, pathIndex, tocEntries));
+      out.push(renderList('ul', items, pathIndex, tocEntries, fromPath));
       continue;
     }
 
@@ -58,11 +58,11 @@ export function renderBlocks(blocks, pathIndex, tocEntries) {
       while (i < blocks.length && blocks[i].type === 'numbered_list_item') {
         items.push(blocks[i++]);
       }
-      out.push(renderList('ol', items, pathIndex, tocEntries));
+      out.push(renderList('ol', items, pathIndex, tocEntries, fromPath));
       continue;
     }
 
-    const html = renderBlock(block, pathIndex, tocEntries);
+    const html = renderBlock(block, pathIndex, tocEntries, fromPath);
     if (html) out.push(html);
     i++;
   }
@@ -70,10 +70,10 @@ export function renderBlocks(blocks, pathIndex, tocEntries) {
   return out.join('\n');
 }
 
-function renderBlock(block, pathIndex, tocEntries) {
+function renderBlock(block, pathIndex, tocEntries, fromPath = '') {
   const data = block[block.type];
   const rt = data?.rich_text;
-  const text = rt ? renderRichText(rt, pathIndex) : '';
+  const text = rt ? renderRichText(rt, pathIndex, fromPath) : '';
   const plain = rt ? plainText(rt) : '';
 
   switch (block.type) {
@@ -102,7 +102,7 @@ function renderBlock(block, pathIndex, tocEntries) {
       const id = toId(plain);
       // Toggles are collapsible sections, not headings — omit from TOC
       const body = block._children
-        ? renderBlocks(block._children, pathIndex)
+        ? renderBlocks(block._children, pathIndex, null, fromPath)
         : '';
       return `<details id="${id}" class="details-section details-section--h3">
   <summary>${text}</summary>
@@ -114,7 +114,7 @@ function renderBlock(block, pathIndex, tocEntries) {
       const cls = calloutClass(data.icon, data.color);
       const singleLine = !block.has_children ? ' callout-single-line' : '';
       const extra = block._children
-        ? '\n' + renderBlocks(block._children, pathIndex)
+        ? '\n' + renderBlocks(block._children, pathIndex, null, fromPath)
         : '';
       return `<div class="callout ${cls}${singleLine}">
   <div class="callout-body"><p>${text}</p>${extra}</div>
@@ -147,7 +147,7 @@ function renderBlock(block, pathIndex, tocEntries) {
 
     case 'quote': {
       const body = block._children
-        ? renderBlocks(block._children, pathIndex)
+        ? renderBlocks(block._children, pathIndex, null, fromPath)
         : '';
       return `<blockquote><p>${text}</p>${body}</blockquote>`;
     }
@@ -161,7 +161,7 @@ function renderBlock(block, pathIndex, tocEntries) {
     case 'synced_block':
       // Render the synced content if available
       return block._children
-        ? renderBlocks(block._children, pathIndex, tocEntries)
+        ? renderBlocks(block._children, pathIndex, tocEntries, fromPath)
         : '';
 
     // Handled at a higher level or ignored
@@ -177,12 +177,12 @@ function renderBlock(block, pathIndex, tocEntries) {
   }
 }
 
-function renderList(tag, items, pathIndex, tocEntries) {
+function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
   const lis = items.map(item => {
     const data = item[item.type];
-    const text = renderRichText(data.rich_text, pathIndex);
+    const text = renderRichText(data.rich_text, pathIndex, fromPath);
     const nested = item._children
-      ? '\n' + renderBlocks(item._children, pathIndex, tocEntries)
+      ? '\n' + renderBlocks(item._children, pathIndex, tocEntries, fromPath)
       : '';
     return `<li>${text}${nested}</li>`;
   });

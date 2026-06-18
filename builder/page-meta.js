@@ -120,6 +120,7 @@ export const pageMeta = {
 
   // Google Workspace – Marketplace install
   '3819417ef6ba81238421d6664937f71f': {
+    outputPath: 'connectors/google-workspace/installing-nektar-from-marketplace.html',
     illustration: 'assets/images/articles/google-workspace.svg',
     illustrationBg: 'rgba(255,204,0,0.3)',
     cardIcon: 'assets/images/articles/google-workspace.svg',
@@ -174,6 +175,13 @@ export const pageMeta = {
     illustration: 'assets/images/articles/revenue-signals.svg',
     cardIcon: 'assets/images/articles/revenue-signals.svg',
   },
+
+  // ── Standalone pages ─────────────────────────────────────────────────────
+  // Pages not in the root Notion structure but linked from article content.
+  // The builder fetches and builds these explicitly.
+  standalonePages: [
+    '3819417ef6ba81238421d6664937f71f', // Google Workspace – Marketplace install
+  ],
 
   // ── Home page featured sections ──────────────────────────────────────────
 
