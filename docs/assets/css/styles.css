@@ -972,6 +972,10 @@ figure.article-image figcaption {
   border-right: 2px solid #d9d9d9;
 }
 
+.data-table-header .data-table-header-cell {
+  border-right: none;
+}
+
 /* ─── Table clip container ───────────────────────────────────────── */
 
 .table-clip {
