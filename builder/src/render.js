@@ -237,20 +237,31 @@ function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
   return `<${tag}>\n${lis.join('\n')}\n</${tag}>`;
 }
 
+// Wrap literal bullet characters in a field-sep span so they render at 50% opacity.
+function styleBullets(html) {
+  return html.replace(/•/g, '<span class="field-sep">•</span>');
+}
+
 // Render a table cell's rich text.
 // - Horizontal table body cells: split newlines into bullet-separated items.
-// - All other cells: preserve newlines as <br> so stacked content renders correctly.
+// - All other cells: preserve newlines via cell-line spans so content stacks.
 function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   if (isBulletCell) {
-    const parts = plainText(cell).split('\n').map(s => s.trim()).filter(Boolean);
-    if (parts.length > 1) return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
-    return renderRichText(cell, pathIndex);
+    // Strip any leading bullet the user typed — the field-sep separator between
+    // items provides the visual bullet, so leading ones are redundant.
+    const parts = plainText(cell).split('\n')
+      .map(s => s.trim().replace(/^•\s*/, '').trim())
+      .filter(Boolean);
+    const bull = '<span class="field-sep">•</span>';
+    if (parts.length > 1) return parts.map(p => escapeHtml(p)).join(` ${bull} `);
+    // Single-item cell: render rich text, strip any leading bullet.
+    return renderRichText(cell, pathIndex).replace(/^•\s*/, '');
   }
   // For non-header data cells, split on newlines and wrap each line in a block
   // span so content stacks. (cells use display:flex which ignores <br>)
   // Skip for header cells: splitting mid-tag breaks inline HTML like <strong>.
   if (isHeader) return renderRichText(cell, pathIndex);
-  const rendered = renderRichText(cell, pathIndex);
+  const rendered = styleBullets(renderRichText(cell, pathIndex));
   if (!rendered.includes('\n')) return rendered;
   return rendered.split('\n').map(line => `<span class="cell-line">${line}</span>`).join('');
 }
