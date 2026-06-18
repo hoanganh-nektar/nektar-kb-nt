@@ -352,6 +352,15 @@ function renderTable(tableBlock, pathIndex, opts = null) {
 
   const noBorder = opts?.noBorder || new Set();
 
+  // Columns that get a right divider:
+  // - Row-level merges (rN keys) → col 0 is the hierarchy column, gets a right border.
+  // - Cell-specific merges (rNcM keys) → that column gets a right border.
+  const hasRowMerges = [...noBorder].some(k => /^r\d+$/.test(k));
+  const dividerCols = new Set(
+    [...noBorder].filter(k => /^r\d+c\d+$/.test(k)).map(k => parseInt(k.split('c')[1]))
+  );
+  if (hasRowMerges) dividerCols.add(0);
+
   // Detect symbol-only columns: every data cell is empty or contains a single
   // token with no whitespace (e.g. ✓). These get centered header + cell content.
   const dataRows = hasRowHeader ? rows.slice(1) : rows;
@@ -379,6 +388,7 @@ function renderTable(tableBlock, pathIndex, opts = null) {
         (isRowHeader || isColHeader) ? 'data-table-header-cell' : '',
         noBottom ? 'data-table-cell--no-bottom' : '',
         centeredCols.has(j) ? 'data-table-cell--centered' : '',
+        dividerCols.has(j) ? 'data-table-cell--divider-right' : '',
       ].filter(Boolean).join(' ');
       return `<div class="${cls}">${text}</div>`;
     });

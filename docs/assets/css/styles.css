@@ -966,6 +966,10 @@ figure.article-image figcaption {
   text-align: center;
 }
 
+.data-table-cell--divider-right {
+  border-right: 2px solid #d9d9d9;
+}
+
 .data-table-header .data-table-cell,
 .data-table-header-cell,
 .data-table-cell--label {
