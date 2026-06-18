@@ -44,7 +44,7 @@ async function buildNode(node, tree, pathIndex) {
     };
     html = sectionIndexTemplate({
       node: effectiveSection,
-      heroDesc: node.heroDesc || '',
+      heroDesc: node.heroDesc || node.descShort || node.descFull || '',
       children: node.children,
       tree,
     });
