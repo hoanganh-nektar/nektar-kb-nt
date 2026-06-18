@@ -103,15 +103,15 @@ function parseArticleBlock(block, parentDir, depth) {
 
   const innerBlocks = block._children || [];
   let pageId = null;
-  let cardIcon = null;
+  const imageUrls = [];
   let descFull = '';
   let descShort = '';
 
   for (const child of innerBlocks) {
     if (child.type === 'child_page' && !pageId) {
       pageId = child.id;
-    } else if (child.type === 'image' && !cardIcon) {
-      cardIcon = getImageUrl(child);
+    } else if (child.type === 'image') {
+      imageUrls.push(getImageUrl(child));
     } else if (child.type === 'paragraph') {
       const text = getBlockText(child).trim();
       if (text.startsWith('Long description:')) descFull = text.replace(/^Long description:\s*/, '');
@@ -120,6 +120,9 @@ function parseArticleBlock(block, parentDir, depth) {
   }
 
   if (!pageId) return null;
+
+  // Use the second image as the card icon (yellow-bg version); fall back to first
+  const cardIcon = imageUrls[1] || imageUrls[0] || null;
 
   const slug = toSlug(title);
   const normId = pageId.replace(/-/g, '');
