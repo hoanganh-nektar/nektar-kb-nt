@@ -994,6 +994,15 @@ figure.article-image figcaption {
   display: block;
 }
 
+.cell-line--bullet {
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+}
+
+.cell-line--bullet::before {
+  content: '• ';
+}
+
 /* ─── Table clip container ───────────────────────────────────────── */
 
 .table-clip {

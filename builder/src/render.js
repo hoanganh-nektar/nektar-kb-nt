@@ -305,9 +305,21 @@ function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   // tags that span a newline (e.g. <strong>text\n</strong>) don't get split mid-tag.
   const lines = splitRichTextLines(cell);
   return lines
-    .map(line => styleBullets(renderRichText(line, pathIndex)))
-    .filter(s => s.trim())
-    .map(s => `<span class="cell-line">${s}</span>`)
+    .map(line => {
+      // Lines starting with • are treated as list items with a hanging indent.
+      // Strip the leading bullet from the rich-text tokens and use ::before CSS.
+      const firstPlain = line[0]?.plain_text || '';
+      if (firstPlain.trimStart().startsWith('•')) {
+        const stripped = [
+          { ...line[0], plain_text: firstPlain.replace(/^\s*•\s*/, '') },
+          ...line.slice(1),
+        ].filter(rt => rt.plain_text);
+        const content = renderRichText(stripped, pathIndex);
+        return `<span class="cell-line cell-line--bullet">${content}</span>`;
+      }
+      return `<span class="cell-line">${styleBullets(renderRichText(line, pathIndex))}</span>`;
+    })
+    .filter(s => s.replace(/<[^>]+>/g, '').trim())
     .join('');
 }
 
