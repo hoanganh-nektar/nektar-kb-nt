@@ -49,7 +49,7 @@ function parseSectionBlock(block, parentDir, depth) {
   const outputPath = `${outDir}index.html`;
   const innerBlocks = block._children || [];
 
-  let illustration = null;
+  const sectionImageUrls = [];
   let descFull = '';
   let descShort = '';
   const children = [];
@@ -59,7 +59,7 @@ function parseSectionBlock(block, parentDir, depth) {
 
   for (const child of innerBlocks) {
     if (child.type === 'image') {
-      if (!illustration) illustration = getImageUrl(child);
+      sectionImageUrls.push(getImageUrl(child));
     } else if (child.type === 'paragraph') {
       const text = getBlockText(child).trim();
       if (text.startsWith('Long description:')) descFull = text.replace(/^Long description:\s*/, '');
@@ -78,6 +78,9 @@ function parseSectionBlock(block, parentDir, depth) {
       }
     }
   }
+
+  // Use second image for illustration (colored/bg version); fall back to first
+  const illustration = sectionImageUrls[1] || sectionImageUrls[0] || null;
 
   return {
     type: 'section',
