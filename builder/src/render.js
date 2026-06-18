@@ -361,16 +361,24 @@ function renderTable(tableBlock, pathIndex, opts = null) {
   );
   if (hasRowMerges) dividerCols.add(0);
 
-  // Detect symbol-only columns: every data cell is empty or contains a single
-  // token with no whitespace (e.g. ✓). These get centered header + cell content.
-  const dataRows = hasRowHeader ? rows.slice(1) : rows;
-  const centeredCols = new Set();
-  for (let j = hasColHeader ? 1 : 0; j < cols; j++) {
-    const isSymbolCol = dataRows.every(row => {
-      const text = plainText(row.table_row?.cells?.[j] || []).trim();
-      return !text || !/\s/.test(text);
+  // Column alignment from [C] / [R] markers in header cells.
+  // The marker is stripped from the rendered header text.
+  const colAlignment = {}; // j → 'center' | 'right'
+  if (hasRowHeader && rows.length > 0) {
+    (rows[0].table_row?.cells || []).forEach((cell, j) => {
+      const m = plainText(cell).match(/\[([CcRr])\]\s*$/);
+      if (m) colAlignment[j] = m[1].toUpperCase() === 'C' ? 'center' : 'right';
     });
-    if (isSymbolCol) centeredCols.add(j);
+  }
+
+  // Strip the [C]/[R] marker from the last token of a header cell's rich text.
+  function stripAlignmentMarker(richTexts) {
+    if (!richTexts?.length || !Object.keys(colAlignment).length) return richTexts;
+    const last = richTexts[richTexts.length - 1];
+    const stripped = last.plain_text.replace(/\s*\[[CcRr]\]\s*$/, '');
+    if (stripped === last.plain_text) return richTexts;
+    const updated = { ...last, plain_text: stripped };
+    return [...richTexts.slice(0, -1), ...(stripped ? [updated] : [])];
   }
 
   const rowHtmls = rows.map((row, i) => {
@@ -381,13 +389,16 @@ function renderTable(tableBlock, pathIndex, opts = null) {
       const isColHeader = hasColHeader && j === 0;
       const isBulletCell = hasColHeader && !isColHeader && !isRowHeader;
       const isHeader = isRowHeader || isColHeader;
-      const text = renderTableCell(cell, pathIndex, isBulletCell, isHeader);
+      const cellData = isRowHeader ? stripAlignmentMarker(cell) : cell;
+      const text = renderTableCell(cellData, pathIndex, isBulletCell, isHeader);
       const noBottom = rowNoBorder || noBorder.has(`r${i}c${j}`);
+      const align = colAlignment[j];
       const cls = [
         'data-table-cell',
         (isRowHeader || isColHeader) ? 'data-table-header-cell' : '',
         noBottom ? 'data-table-cell--no-bottom' : '',
-        centeredCols.has(j) ? 'data-table-cell--centered' : '',
+        align === 'center' ? 'data-table-cell--centered' : '',
+        align === 'right' ? 'data-table-cell--right' : '',
         dividerCols.has(j) ? 'data-table-cell--divider-right' : '',
       ].filter(Boolean).join(' ');
       return `<div class="${cls}">${text}</div>`;
