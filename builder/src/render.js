@@ -352,6 +352,12 @@ function renderTable(tableBlock, pathIndex, opts = null) {
 
   const noBorder = opts?.noBorder || new Set();
 
+  // Columns with cell-specific merges (rNcM) get a right divider.
+  // Row-level merges (rN) do not trigger a divider.
+  const dividerCols = new Set(
+    [...noBorder].filter(k => /^r\d+c\d+$/.test(k)).map(k => parseInt(k.split('c')[1]))
+  );
+
   // Column alignment from [C] / [R] markers in header cells.
   // The marker is stripped from the rendered header text.
   const colAlignment = {}; // j → 'center' | 'right'
@@ -390,6 +396,7 @@ function renderTable(tableBlock, pathIndex, opts = null) {
         noBottom ? 'data-table-cell--no-bottom' : '',
         align === 'center' ? 'data-table-cell--centered' : '',
         align === 'right' ? 'data-table-cell--right' : '',
+        dividerCols.has(j) ? 'data-table-cell--divider-right' : '',
       ].filter(Boolean).join(' ');
       return `<div class="${cls}">${text}</div>`;
     });
