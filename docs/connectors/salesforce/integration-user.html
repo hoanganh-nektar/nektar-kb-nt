@@ -22,7 +22,7 @@
           <span>Integration user</span>
         </div>
         <h1>Integration user</h1>
-        <p class="hero-desc">Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
+        <p class="hero-desc">Set up the dedicated Salesforce user for Nektar.</p>
       </div>
       <div class="hero-illustration">
         <img src="../../assets/images/articles/integration-user.svg" alt="Integration user" />
@@ -31,7 +31,8 @@
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-          <p>We recommend creating a dedicated Salesforce user account (a <em>service account</em>) to serve as the Nektar integration user, as this gives fine control over what data Nektar can access. If this is not possible, you may use a shared user account for all tools to access Salesforce, or use your own Salesforce user account as the Nektar integration user.</p>
+          <p>Nektar accesses your Salesforce organization through a designated Salesforce user, which we call the Integration User.</p>
+<p>We recommend creating a dedicated Salesforce user account (a <em>service account</em>) to serve as the Nektar integration user, as this gives fine control over what data Nektar can access. If this is not possible, you may use a shared user account for all tools to access Salesforce, or use your own Salesforce user account as the Nektar integration user.</p>
 <p>Your Salesforce administrator should provision an integration user on Salesforce before you can set Nektar up. It is also a good idea for the designated Nektar administrator in your organization to have the credentials for the integration user.</p>
 <h2 id="permissions">Permissions</h2>
 <p>The specific records and fields Nektar accesses may be controlled by configuring a Salesforce profile with access to only the appropriate records and assigning the Nektar integration user to that profile.</p>

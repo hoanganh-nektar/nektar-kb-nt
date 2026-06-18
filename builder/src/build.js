@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { discoverTree, flattenTree, flattenArticles, buildPathIndex } from './discover.js';
 import { fetchBlockTree } from './api.js';
 import { renderBlocks } from './render.js';
-import { renderRichText } from './richtext.js';
+import { plainText } from './richtext.js';
 import { articleTemplate, sectionIndexTemplate, homeTemplate } from './template.js';
 import { downloadImages } from './images.js';
 import { pageMeta } from '../page-meta.js';
@@ -44,7 +44,7 @@ async function buildNode(node, tree, pathIndex) {
     };
     html = sectionIndexTemplate({
       node: effectiveSection,
-      heroDesc: sectionMeta.heroDesc || node.heroDesc || '',
+      heroDesc: node.heroDesc || '',
       children: node.children,
       tree,
     });
@@ -66,16 +66,22 @@ async function buildArticlePage(node, tree, pathIndex) {
   const blocks = await fetchBlockTree(node.id);
   const meta = pageMeta[node.id?.replace(/-/g, '')] || {};
 
-  // First paragraph → hero description; fall back to Long description from discovery
-  let heroDesc = meta.heroDesc || '';
-  let bodyStart = 0;
-  if (!heroDesc && blocks[0]?.type === 'paragraph') {
-    heroDesc = renderRichText(blocks[0].paragraph.rich_text, pathIndex);
-    bodyStart = 1;
+  // Extract description fields from Notion content (paragraphs prefixed with field name)
+  let heroDesc = '';
+  const bodyBlocks = [];
+  for (const block of blocks) {
+    if (block.type === 'paragraph') {
+      const plain = plainText(block.paragraph.rich_text);
+      if (!heroDesc && (plain.startsWith('Description:') || plain.startsWith('Short description:'))) {
+        heroDesc = plain.replace(/^(?:Short )?[Dd]escription:\s*/, '');
+        continue;
+      }
+    }
+    if (block.type !== 'child_page') bodyBlocks.push(block);
   }
-  if (!heroDesc) heroDesc = node.descShort || node.descFull || '';
 
-  const bodyBlocks = blocks.slice(bodyStart).filter(b => b.type !== 'child_page');
+  // Fall back to values discovered from root page structure, then page-meta
+  if (!heroDesc) heroDesc = node.descShort || node.descFull || meta.heroDesc || '';
   const tocEntries = [];
   const body = renderBlocks(bodyBlocks, pathIndex, tocEntries);
 
