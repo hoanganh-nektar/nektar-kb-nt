@@ -39,7 +39,7 @@ function calloutClass(icon, color) {
 
 // Parse a [Directive] paragraph that precedes a table.
 // Supports: "Vertical table" (first-row header), "Horizontal table" (first-col header),
-// and a column ratio like "4:1:1".
+// "transpose" (swap rows/columns), and a column ratio like "4:1:1".
 function parseTableDirective(plain) {
   const m = plain.match(/^\[(.+)\]$/);
   if (!m) return null;
@@ -47,6 +47,7 @@ function parseTableDirective(plain) {
   const opts = {};
   if (/vertical table/i.test(text)) opts.headerRow = true;
   if (/horizontal table/i.test(text)) opts.headerCol = true;
+  if (/transpose/i.test(text)) opts.transpose = true;
   const ratio = text.match(/(\d+(?::\d+)+)/);
   if (ratio) opts.ratio = ratio[1].split(':').map(Number);
   return opts;
@@ -245,8 +246,21 @@ function renderTableCell(cell, pathIndex, isBulletCell) {
   return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
 }
 
+function transposeRows(rows) {
+  const numCols = rows[0]?.table_row?.cells?.length || 0;
+  const transposed = [];
+  for (let c = 0; c < numCols; c++) {
+    const cells = rows.map(row => (row.table_row?.cells || [])[c] || []);
+    transposed.push({ table_row: { cells } });
+  }
+  return transposed;
+}
+
 function renderTable(tableBlock, pathIndex, opts = null) {
-  const rows = tableBlock._children;
+  let rows = tableBlock._children;
+
+  // Transpose: swap rows and columns (e.g. object-as-column → object-as-row)
+  if (opts?.transpose) rows = transposeRows(rows);
   const cols = rows[0]?.table_row?.cells?.length || 2;
 
   // Column widths: use ratio from directive, else equal fractions
