@@ -289,7 +289,8 @@ function renderTable(tableBlock, pathIndex, opts = null) {
     return `<div class="data-table-row${rowCls}">\n${cellHtmls.join('\n')}\n</div>`;
   });
 
-  return `<div class="data-table" style="grid-template-columns: ${gridCols}">
+  const tableClass = hasColHeader ? 'data-table data-table--horizontal' : 'data-table';
+  return `<div class="${tableClass}" style="grid-template-columns: ${gridCols}">
 ${rowHtmls.join('\n')}
 </div>`;
 }

@@ -977,8 +977,13 @@ figure.article-image figcaption {
 }
 
 .field-sep {
-  color: #aaa;
+  opacity: 0.5;
   user-select: none;
+}
+
+.data-table--horizontal .data-table-cell,
+.data-table--horizontal .data-table-header-cell {
+  border-right: none;
 }
 
 /* ─── Table clip container ───────────────────────────────────────── */
