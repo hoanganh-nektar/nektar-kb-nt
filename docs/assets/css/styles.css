@@ -1004,12 +1004,13 @@ figure.article-image figcaption {
 }
 
 .cell-line--bullet {
-  padding-left: 1.4em;
-  text-indent: -1.4em;
+  display: flex;
+  gap: 0.4em;
 }
 
 .cell-line--bullet::before {
-  content: '• ';
+  content: '•';
+  flex-shrink: 0;
 }
 
 /* ─── Table clip container ───────────────────────────────────────── */
