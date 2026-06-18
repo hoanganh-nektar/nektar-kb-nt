@@ -352,15 +352,6 @@ function renderTable(tableBlock, pathIndex, opts = null) {
 
   const noBorder = opts?.noBorder || new Set();
 
-  // Columns that get a right divider:
-  // - Row-level merges (rN keys) → col 0 is the hierarchy column, gets a right border.
-  // - Cell-specific merges (rNcM keys) → that column gets a right border.
-  const hasRowMerges = [...noBorder].some(k => /^r\d+$/.test(k));
-  const dividerCols = new Set(
-    [...noBorder].filter(k => /^r\d+c\d+$/.test(k)).map(k => parseInt(k.split('c')[1]))
-  );
-  if (hasRowMerges) dividerCols.add(0);
-
   // Column alignment from [C] / [R] markers in header cells.
   // The marker is stripped from the rendered header text.
   const colAlignment = {}; // j → 'center' | 'right'
@@ -399,7 +390,6 @@ function renderTable(tableBlock, pathIndex, opts = null) {
         noBottom ? 'data-table-cell--no-bottom' : '',
         align === 'center' ? 'data-table-cell--centered' : '',
         align === 'right' ? 'data-table-cell--right' : '',
-        dividerCols.has(j) ? 'data-table-cell--divider-right' : '',
       ].filter(Boolean).join(' ');
       return `<div class="${cls}">${text}</div>`;
     });
