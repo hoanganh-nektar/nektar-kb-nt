@@ -950,7 +950,8 @@ figure.article-image figcaption {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 5px;
   white-space: pre-wrap;
   border-bottom: 1px solid #d9d9d9;
 }
@@ -980,7 +981,6 @@ figure.article-image figcaption {
 }
 
 .field-sep {
-  opacity: 0.5;
   user-select: none;
 }
 
