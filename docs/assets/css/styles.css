@@ -952,6 +952,7 @@ figure.article-image figcaption {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 8px;
+  white-space: pre-wrap;
   border-bottom: 1px solid #d9d9d9;
 }
 
