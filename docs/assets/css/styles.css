@@ -957,6 +957,7 @@ figure.article-image figcaption {
 }
 
 .data-table-header .data-table-cell,
+.data-table-header-cell,
 .data-table-cell--label {
   font-family: "Sora", sans-serif;
   font-weight: 700;
@@ -965,6 +966,10 @@ figure.article-image figcaption {
 
 .data-table-header .data-table-cell {
   border-bottom: 2px solid #d9d9d9;
+}
+
+.data-table-header-cell {
+  border-right: 2px solid #d9d9d9;
 }
 
 /* ─── Table clip container ───────────────────────────────────────── */

@@ -37,6 +37,21 @@ function calloutClass(icon, color) {
   return 'callout-neutral-info';
 }
 
+// Parse a [Directive] paragraph that precedes a table.
+// Supports: "Vertical table" (first-row header), "Horizontal table" (first-col header),
+// and a column ratio like "4:1:1".
+function parseTableDirective(plain) {
+  const m = plain.match(/^\[(.+)\]$/);
+  if (!m) return null;
+  const text = m[1];
+  const opts = {};
+  if (/vertical table/i.test(text)) opts.headerRow = true;
+  if (/horizontal table/i.test(text)) opts.headerCol = true;
+  const ratio = text.match(/(\d+(?::\d+)+)/);
+  if (ratio) opts.ratio = ratio[1].split(':').map(Number);
+  return opts;
+}
+
 export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
   const out = [];
   let i = 0;
@@ -62,6 +77,19 @@ export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
       continue;
     }
 
+    // Directive paragraph immediately before a table: consume it as table options
+    if (block.type === 'paragraph' && blocks[i + 1]?.type === 'table') {
+      const plain = plainText(block.paragraph?.rich_text || []).trim();
+      const tableOpts = parseTableDirective(plain);
+      if (tableOpts) {
+        i++; // skip the directive paragraph
+        const html = renderBlock(blocks[i], pathIndex, tocEntries, fromPath, tableOpts);
+        if (html) out.push(html);
+        i++;
+        continue;
+      }
+    }
+
     const html = renderBlock(block, pathIndex, tocEntries, fromPath);
     if (html) out.push(html);
     i++;
@@ -70,7 +98,7 @@ export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
   return out.join('\n');
 }
 
-function renderBlock(block, pathIndex, tocEntries, fromPath = '') {
+function renderBlock(block, pathIndex, tocEntries, fromPath = '', tableOpts = null) {
   const data = block[block.type];
   const rt = data?.rich_text;
   const text = rt ? renderRichText(rt, pathIndex, fromPath) : '';
@@ -139,7 +167,7 @@ function renderBlock(block, pathIndex, tocEntries, fromPath = '') {
 
     case 'table': {
       if (!block._children?.length) return '';
-      return renderTable(block, pathIndex);
+      return renderTable(block, pathIndex, tableOpts);
     }
 
     case 'divider':
@@ -189,22 +217,30 @@ function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
   return `<${tag}>\n${lis.join('\n')}\n</${tag}>`;
 }
 
-function renderTable(tableBlock, pathIndex) {
+function renderTable(tableBlock, pathIndex, opts = null) {
   const rows = tableBlock._children;
-  const hasHeader = tableBlock.table?.has_column_header;
   const cols = rows[0]?.table_row?.cells?.length || 2;
-  const fraction = Math.round(10 / cols);
-  const gridCols = Array(cols).fill(`${fraction}fr`).join(' ');
+
+  // Column widths: use ratio from directive, else equal fractions
+  const gridCols = opts?.ratio
+    ? opts.ratio.map(n => `${n}fr`).join(' ')
+    : Array(cols).fill(`${Math.round(10 / cols)}fr`).join(' ');
+
+  // Header detection: directive overrides Notion table settings
+  const hasRowHeader = opts?.headerRow ?? tableBlock.table?.has_column_header ?? false;
+  const hasColHeader = opts?.headerCol ?? tableBlock.table?.has_row_header ?? false;
 
   const rowHtmls = rows.map((row, i) => {
     const cells = row.table_row?.cells || [];
-    const isHeader = hasHeader && i === 0;
-    const cellHtmls = cells.map(cell => {
+    const isRowHeader = hasRowHeader && i === 0;
+    const cellHtmls = cells.map((cell, j) => {
       const text = renderRichText(cell, pathIndex);
-      return `<div class="data-table-cell">${text}</div>`;
+      const isColHeader = hasColHeader && j === 0;
+      const cls = (isRowHeader || isColHeader) ? ' data-table-header-cell' : '';
+      return `<div class="data-table-cell${cls}">${text}</div>`;
     });
-    const headerClass = isHeader ? ' data-table-header' : '';
-    return `<div class="data-table-row${headerClass}">\n${cellHtmls.join('\n')}\n</div>`;
+    const rowCls = isRowHeader ? ' data-table-header' : '';
+    return `<div class="data-table-row${rowCls}">\n${cellHtmls.join('\n')}\n</div>`;
   });
 
   return `<div class="data-table" style="grid-template-columns: ${gridCols}">
