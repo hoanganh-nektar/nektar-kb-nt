@@ -237,13 +237,17 @@ function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
   return `<${tag}>\n${lis.join('\n')}\n</${tag}>`;
 }
 
-// Render a table cell's rich text. For body cells in a horizontal table,
-// split on newlines and join items with a bullet separator.
+// Render a table cell's rich text.
+// - Horizontal table body cells: split newlines into bullet-separated items.
+// - All other cells: preserve newlines as <br> so stacked content renders correctly.
 function renderTableCell(cell, pathIndex, isBulletCell) {
-  if (!isBulletCell) return renderRichText(cell, pathIndex);
-  const parts = plainText(cell).split('\n').map(s => s.trim()).filter(Boolean);
-  if (parts.length <= 1) return renderRichText(cell, pathIndex);
-  return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
+  if (isBulletCell) {
+    const parts = plainText(cell).split('\n').map(s => s.trim()).filter(Boolean);
+    if (parts.length > 1) return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
+    return renderRichText(cell, pathIndex);
+  }
+  // Replace newlines with <br> so multi-line cell content stacks vertically
+  return renderRichText(cell, pathIndex).replace(/\n/g, '<br>');
 }
 
 function transposeRows(rows) {
