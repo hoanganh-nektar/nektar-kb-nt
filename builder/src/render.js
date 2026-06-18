@@ -59,10 +59,10 @@ function parseMerge(mergeStr) {
   return noBorder;
 }
 
-// Parse a [Directive] paragraph that precedes a table.
-// Supports: "Vertical table" (first-row header), "Horizontal table" (first-col header),
-// "transpose" (swap rows/columns), a column ratio like "4:1:1", and
-// "Merge RN + RN, ..." / "Merge RNCM + RNCM" to suppress dividers between rows/cells.
+// Parse a [Directive] paragraph that precedes a table or column_list run.
+// Supports: "Vertical table", "Horizontal table", "transpose", ratio like "4:1:1"
+// or "fit:1:2" (fit-content for that column), "CN" to set header column index
+// (1-based), and "Merge RN + RN, ..." / "Merge RNCM + RNCM".
 function parseTableDirective(plain) {
   const m = plain.match(/^\[(.+)\]$/);
   if (!m) return null;
@@ -71,11 +71,21 @@ function parseTableDirective(plain) {
   if (/vertical table/i.test(text)) opts.headerRow = true;
   if (/horizontal table/i.test(text)) opts.headerCol = true;
   if (/transpose/i.test(text)) opts.transpose = true;
-  const ratio = text.match(/(\d+(?::\d+)+)/);
-  if (ratio) opts.ratio = ratio[1].split(':').map(Number);
+  // CN: explicit header column index (1-based); also implies headerCol
+  const colN = text.match(/\bC(\d+)\b/);
+  if (colN) { opts.headerColIndex = parseInt(colN[1]) - 1; opts.headerCol = true; }
+  // Ratio: supports 'fit' alongside numbers, e.g. fit:1:2
+  const ratioStr = text.match(/((?:fit|\d+)(?::(?:fit|\d+))+)/i)?.[1];
+  if (ratioStr) opts.ratio = ratioStr.split(':').map(p => /^fit$/i.test(p) ? 'fit' : Number(p));
   const mergeMatch = text.match(/Merge\s+(.+)/i);
   if (mergeMatch) opts.noBorder = parseMerge(mergeMatch[1]);
   return opts;
+}
+
+// Build a CSS grid-template-columns string from a ratio array (numbers → fr, 'fit' → fit-content).
+function makeGridCols(ratio, cols) {
+  if (ratio) return ratio.map(n => n === 'fit' ? 'fit-content(100%)' : `${n}fr`).join(' ');
+  return Array(cols).fill(`${Math.round(10 / cols)}fr`).join(' ');
 }
 
 export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
@@ -112,10 +122,19 @@ export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
         let j = i + 1;
         while (j < blocks.length && blocks[j].type === 'paragraph' && !plainText(blocks[j].paragraph?.rich_text || []).trim()) j++;
         if (blocks[j]?.type === 'table') {
-          i = j; // skip directive + any blank paragraphs
+          i = j;
           const html = renderBlock(blocks[i], pathIndex, tocEntries, fromPath, tableOpts);
           if (html) out.push(html);
           i++;
+          continue;
+        }
+        if (blocks[j]?.type === 'column_list') {
+          // Collect consecutive column_list blocks as rows of the grid
+          const colLists = [];
+          while (j < blocks.length && blocks[j].type === 'column_list') colLists.push(blocks[j++]);
+          i = j;
+          const html = renderColumnListsAsTable(colLists, pathIndex, fromPath, tableOpts);
+          if (html) out.push(html);
           continue;
         }
       }
@@ -333,6 +352,32 @@ function transposeRows(rows) {
   return transposed;
 }
 
+// Render a run of column_list blocks as a data-table grid.
+// Each column_list is a row; its _children (column blocks) are the cells.
+// Cell content is rendered with renderBlocks so images, paragraphs, etc. all work.
+function renderColumnListsAsTable(columnLists, pathIndex, fromPath, opts) {
+  if (!columnLists.length) return '';
+  const cols = columnLists[0]._children?.length || 0;
+  const headerColJ = opts?.headerCol ? (opts?.headerColIndex ?? 0) : -1;
+  const gridCols = makeGridCols(opts?.ratio, cols);
+  const tableClass = headerColJ >= 0 ? 'data-table data-table--horizontal' : 'data-table';
+
+  const rowHtmls = columnLists.map(colList => {
+    const columns = colList._children || [];
+    const cellHtmls = columns.map((col, j) => {
+      const isHeader = j === headerColJ;
+      const content = renderBlocks(col._children || [], pathIndex, null, fromPath);
+      const cls = ['data-table-cell', isHeader ? 'data-table-header-cell' : ''].filter(Boolean).join(' ');
+      return `<div class="${cls}">${content}</div>`;
+    });
+    return `<div class="data-table-row">\n${cellHtmls.join('\n')}\n</div>`;
+  });
+
+  return `<div class="${tableClass}" style="grid-template-columns: ${gridCols}">
+${rowHtmls.join('\n')}
+</div>`;
+}
+
 function renderTable(tableBlock, pathIndex, opts = null) {
   let rows = tableBlock._children;
 
@@ -340,15 +385,14 @@ function renderTable(tableBlock, pathIndex, opts = null) {
   if (opts?.transpose) rows = transposeRows(rows);
   const cols = rows[0]?.table_row?.cells?.length || 2;
 
-  // Column widths: use ratio from directive, else equal fractions
-  const gridCols = opts?.ratio
-    ? opts.ratio.map(n => `${n}fr`).join(' ')
-    : Array(cols).fill(`${Math.round(10 / cols)}fr`).join(' ');
+  const gridCols = makeGridCols(opts?.ratio, cols);
 
   // Header detection: directive overrides Notion table settings.
   // hasColHeader (bullet separators) only activates via explicit [Horizontal table] directive.
   const hasRowHeader = opts?.headerRow ?? tableBlock.table?.has_column_header ?? false;
   const hasColHeader = opts?.headerCol ?? false;
+  // Which column index is the header (0-based); CN directive overrides default of 0.
+  const headerColJ = hasColHeader ? (opts?.headerColIndex ?? 0) : -1;
 
   const noBorder = opts?.noBorder || new Set();
 
@@ -383,7 +427,7 @@ function renderTable(tableBlock, pathIndex, opts = null) {
     const isRowHeader = hasRowHeader && i === 0;
     const rowNoBorder = noBorder.has(`r${i}`);
     const cellHtmls = cells.map((cell, j) => {
-      const isColHeader = hasColHeader && j === 0;
+      const isColHeader = j === headerColJ;
       const isBulletCell = hasColHeader && !isColHeader && !isRowHeader;
       const isHeader = isRowHeader || isColHeader;
       const cellData = isRowHeader ? stripAlignmentMarker(cell) : cell;

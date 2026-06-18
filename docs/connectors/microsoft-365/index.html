@@ -49,6 +49,7 @@
 <li>Add an access policy restricting the Nektar app to the group you created.
 <pre><code class="language-powershell">New-ApplicationAccessPolicy -AppId 5ec97ac5-1665-4dff-8357-43d284a0b3a5 -PolicyScopeGroupId &lt;group-email-address&gt; -AccessRight RestrictAccess -Description "Nektar access policy"</code></pre></li>
 </ol>
+</details>
 <details id="access-to-teams" class="details-section details-section--h3" open>
   <summary><strong>Access to Teams</strong></summary>
   <ol>
@@ -61,6 +62,7 @@
 <pre><code class="language-powershell">New-CsApplicationAccessPolicy -Identity Policy-To-Access-Meetings-Application-Access -AppIds "5ec97ac5-1665-4dff-8357-43d284a0b3a5" -Description "Access meeting on behalf of user"
 Grant-CsApplicationAccessPolicy -PolicyName Policy-To-Access-Meetings-Application-Access -Global</code></pre></li>
 </ol>
+</details>
 <details id="oauth-scopes" class="details-section details-section--h3" open>
   <summary><strong>OAuth scopes</strong></summary>
   <div class="callout callout-neutral-technical callout-single-line">
@@ -129,8 +131,6 @@ Grant-CsApplicationAccessPolicy -PolicyName Policy-To-Access-Meetings-Applicatio
 <div class="data-table-cell"><span class="cell-line">&lt;/details&gt;</span></div>
 </div>
 </div>
-</details>
-</details>
 </details>
 <h2 id="sync">Sync</h2>
 <p>Nektar's Microsoft 365 sync system reads email messages and calendar events every 10–15 minutes, and the list of users on your workspace every 24 hours. You must enable sync for individual MS365 users in the <a href="../../administration/users.html" target="_blank" rel="noopener noreferrer">Users section</a>.</p>
