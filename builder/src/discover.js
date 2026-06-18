@@ -50,7 +50,6 @@ function parseSectionBlock(block, parentDir, depth) {
   const innerBlocks = block._children || [];
 
   let illustration = null;
-  let heroDesc = '';
   let descFull = '';
   let descShort = '';
   const children = [];
@@ -63,8 +62,7 @@ function parseSectionBlock(block, parentDir, depth) {
       if (!illustration) illustration = getImageUrl(child);
     } else if (child.type === 'paragraph') {
       const text = getBlockText(child).trim();
-      if (text.startsWith('Description:')) heroDesc = text.replace(/^Description:\s*/, '');
-      else if (text.startsWith('Long description:')) descFull = text.replace(/^Long description:\s*/, '');
+      if (text.startsWith('Long description:')) descFull = text.replace(/^Long description:\s*/, '');
       else if (text.startsWith('Short description:')) descShort = text.replace(/^Short description:\s*/, '');
     } else if (child.type === articleHeadingType && child.has_children) {
       const innerChildren = child._children || [];
@@ -91,7 +89,6 @@ function parseSectionBlock(block, parentDir, depth) {
     childDir: outDir,
     depth,
     illustration,
-    heroDesc,
     descFull,
     descShort,
     cardIcon: illustration,
