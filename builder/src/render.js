@@ -240,14 +240,19 @@ function renderList(tag, items, pathIndex, tocEntries, fromPath = '') {
 // Render a table cell's rich text.
 // - Horizontal table body cells: split newlines into bullet-separated items.
 // - All other cells: preserve newlines as <br> so stacked content renders correctly.
-function renderTableCell(cell, pathIndex, isBulletCell) {
+function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   if (isBulletCell) {
     const parts = plainText(cell).split('\n').map(s => s.trim()).filter(Boolean);
     if (parts.length > 1) return parts.map(p => escapeHtml(p)).join('<span class="field-sep"> • </span>');
     return renderRichText(cell, pathIndex);
   }
-  // Replace newlines with <br> so multi-line cell content stacks vertically
-  return renderRichText(cell, pathIndex).replace(/\n/g, '<br>');
+  // For non-header data cells, split on newlines and wrap each line in a block
+  // span so content stacks. (cells use display:flex which ignores <br>)
+  // Skip for header cells: splitting mid-tag breaks inline HTML like <strong>.
+  if (isHeader) return renderRichText(cell, pathIndex);
+  const rendered = renderRichText(cell, pathIndex);
+  if (!rendered.includes('\n')) return rendered;
+  return rendered.split('\n').map(line => `<span class="cell-line">${line}</span>`).join('');
 }
 
 function transposeRows(rows) {
@@ -285,7 +290,8 @@ function renderTable(tableBlock, pathIndex, opts = null) {
       // Bullet-separate newline-delimited items in body cells of horizontal tables.
       // Exclude both the header column (j=0) and header row (i=0) from splitting.
       const isBulletCell = hasColHeader && !isColHeader && !isRowHeader;
-      const text = renderTableCell(cell, pathIndex, isBulletCell);
+      const isHeader = isRowHeader || isColHeader;
+      const text = renderTableCell(cell, pathIndex, isBulletCell, isHeader);
       const cls = (isRowHeader || isColHeader) ? ' data-table-header-cell' : '';
       return `<div class="data-table-cell${cls}">${text}</div>`;
     });

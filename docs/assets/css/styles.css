@@ -986,6 +986,10 @@ figure.article-image figcaption {
   border-right: none;
 }
 
+.cell-line {
+  display: block;
+}
+
 /* ─── Table clip container ───────────────────────────────────────── */
 
 .table-clip {
