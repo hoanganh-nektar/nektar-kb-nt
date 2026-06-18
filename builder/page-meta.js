@@ -20,11 +20,8 @@ export const pageMeta = {
   },
 
   // Google Workspace – Marketplace install (standalone, linked from article)
-  // No Notion entry toggle — illustration must be set explicitly here
   '3819417ef6ba81238421d6664937f71f': {
-    outputPath: 'connectors/google-workspace/installing-nektar-from-marketplace.html',
-    illustration: 'assets/images/articles/google-workspace.svg',
-    cardIcon: 'assets/images/articles/google-workspace.svg',
+    outputPath: 'connectors/google-workspace/marketplace-install.html',
     illustrationBg: 'rgba(255,204,0,0.3)',
   },
 

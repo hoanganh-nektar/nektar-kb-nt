@@ -118,8 +118,9 @@ async function buildArticlePage(node, tree, pathIndex) {
   const blocks = await fetchBlockTree(node.id);
   const meta = pageMeta[node.id?.replace(/-/g, '')] || {};
 
-  // Extract description fields from Notion content (paragraphs prefixed with field name)
+  // Extract description fields and first image from Notion content
   let heroDesc = '';
+  let firstImageUrl = null;
   const bodyBlocks = [];
   const childPages = [];
   for (const block of blocks) {
@@ -129,6 +130,11 @@ async function buildArticlePage(node, tree, pathIndex) {
         heroDesc = plain.replace(/^(?:Short )?[Dd]escription:\s*/, '');
         continue;
       }
+    }
+    if (block.type === 'image' && !firstImageUrl) {
+      firstImageUrl = block.image?.type === 'external'
+        ? block.image.external?.url
+        : block.image?.file?.url;
     }
     if (block.type === 'child_page') {
       childPages.push(block);
@@ -142,10 +148,10 @@ async function buildArticlePage(node, tree, pathIndex) {
   const tocEntries = [];
   const body = renderBlocks(bodyBlocks, pathIndex, tocEntries, node.outputPath);
 
-  // Illustration comes from page-meta; fall back to the card icon from discovery
+  // Illustration: page-meta override → Notion discovery (cardIcon/illustration) → first image in page
   const effectiveNode = {
     ...node,
-    illustration: meta.illustration || node.illustration || node.cardIcon,
+    illustration: meta.illustration || node.illustration || node.cardIcon || firstImageUrl,
     illustrationBg: meta.illustrationBg,
   };
 
