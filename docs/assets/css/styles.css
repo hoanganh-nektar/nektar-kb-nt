@@ -956,7 +956,8 @@ figure.article-image figcaption {
   border-bottom: 1px solid #d9d9d9;
 }
 
-.data-table-row:last-child .data-table-cell {
+.data-table-row:last-child .data-table-cell,
+.data-table-cell--no-bottom {
   border-bottom: none;
 }
 

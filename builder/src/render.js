@@ -37,9 +37,32 @@ function calloutClass(icon, color) {
   return 'callout-neutral-info';
 }
 
+// Parse merge groups from a Merge directive string.
+// "R5 + R6 + R7, R8 + R9" → [[[5,null],[6,null],[7,null]], [[8,null],[9,null]]]
+// "R2C1 + R3C1"            → [[[2,1],[3,1]]]
+// Returns a Set of "ri,cj" keys (0-based) whose bottom border should be suppressed.
+function parseMerge(mergeStr) {
+  const noBorder = new Set();
+  const groups = mergeStr.split(',');
+  for (const group of groups) {
+    const items = group.split('+').map(s => {
+      const m = s.trim().match(/^R(\d+)(?:C(\d+))?$/i);
+      if (!m) return null;
+      return { r: parseInt(m[1]) - 1, c: m[2] != null ? parseInt(m[2]) - 1 : null };
+    }).filter(Boolean);
+    // Remove bottom border of every item except the last in the group
+    for (let k = 0; k < items.length - 1; k++) {
+      const { r, c } = items[k];
+      noBorder.add(c === null ? `r${r}` : `r${r}c${c}`);
+    }
+  }
+  return noBorder;
+}
+
 // Parse a [Directive] paragraph that precedes a table.
 // Supports: "Vertical table" (first-row header), "Horizontal table" (first-col header),
-// "transpose" (swap rows/columns), and a column ratio like "4:1:1".
+// "transpose" (swap rows/columns), a column ratio like "4:1:1", and
+// "Merge RN + RN, ..." / "Merge RNCM + RNCM" to suppress dividers between rows/cells.
 function parseTableDirective(plain) {
   const m = plain.match(/^\[(.+)\]$/);
   if (!m) return null;
@@ -50,6 +73,8 @@ function parseTableDirective(plain) {
   if (/transpose/i.test(text)) opts.transpose = true;
   const ratio = text.match(/(\d+(?::\d+)+)/);
   if (ratio) opts.ratio = ratio[1].split(':').map(Number);
+  const mergeMatch = text.match(/Merge\s+(.+)/i);
+  if (mergeMatch) opts.noBorder = parseMerge(mergeMatch[1]);
   return opts;
 }
 
@@ -295,18 +320,24 @@ function renderTable(tableBlock, pathIndex, opts = null) {
   const hasRowHeader = opts?.headerRow ?? tableBlock.table?.has_column_header ?? false;
   const hasColHeader = opts?.headerCol ?? false;
 
+  const noBorder = opts?.noBorder || new Set();
+
   const rowHtmls = rows.map((row, i) => {
     const cells = row.table_row?.cells || [];
     const isRowHeader = hasRowHeader && i === 0;
+    const rowNoBorder = noBorder.has(`r${i}`);
     const cellHtmls = cells.map((cell, j) => {
       const isColHeader = hasColHeader && j === 0;
-      // Bullet-separate newline-delimited items in body cells of horizontal tables.
-      // Exclude both the header column (j=0) and header row (i=0) from splitting.
       const isBulletCell = hasColHeader && !isColHeader && !isRowHeader;
       const isHeader = isRowHeader || isColHeader;
       const text = renderTableCell(cell, pathIndex, isBulletCell, isHeader);
-      const cls = (isRowHeader || isColHeader) ? ' data-table-header-cell' : '';
-      return `<div class="data-table-cell${cls}">${text}</div>`;
+      const noBottom = rowNoBorder || noBorder.has(`r${i}c${j}`);
+      const cls = [
+        'data-table-cell',
+        (isRowHeader || isColHeader) ? 'data-table-header-cell' : '',
+        noBottom ? 'data-table-cell--no-bottom' : '',
+      ].filter(Boolean).join(' ');
+      return `<div class="${cls}">${text}</div>`;
     });
     const rowCls = isRowHeader ? ' data-table-header' : '';
     return `<div class="data-table-row${rowCls}">\n${cellHtmls.join('\n')}\n</div>`;
