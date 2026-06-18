@@ -262,7 +262,9 @@ function renderTableCell(cell, pathIndex, isBulletCell, isHeader) {
   // Skip for header cells: splitting mid-tag breaks inline HTML like <strong>.
   if (isHeader) return renderRichText(cell, pathIndex);
   const rendered = styleBullets(renderRichText(cell, pathIndex));
-  if (!rendered.includes('\n')) return rendered;
+  // Always wrap in cell-line spans — even single-line cells. Without this,
+  // a <span> (e.g. field-sep bullet) followed by a text node become separate
+  // flex items in the column flex container, splitting "• Created" onto two lines.
   return rendered.split('\n').map(line => `<span class="cell-line">${line}</span>`).join('');
 }
 
