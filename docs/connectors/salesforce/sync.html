@@ -39,8 +39,52 @@
 <li>toggles to enable or disable Salesforce reads or writes</li>
 </ul>
 <p>Sync health icons may indicate the following states:</p>
-<figure class="article-image">
+<div class="data-table data-table--horizontal" style="grid-template-columns: fit-content(100%) 1fr 2fr">
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
   <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/1.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Disabled</strong></p></div>
+<div class="data-table-cell"><p>Can be enabled on the same screen.</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/2.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Not started</strong></p></div>
+<div class="data-table-cell"><p>Disabled globally, or pending approval</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/3.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>In progress</strong></p></div>
+<div class="data-table-cell"><p>Actively syncing; some data is remaining</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/4.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Completed</strong></p></div>
+<div class="data-table-cell"><p>Everything synced; watching for new data</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/5.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Delayed</strong></p></div>
+<div class="data-table-cell"><p>Sync has not run in the last 30 minutes</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/6.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Stalled</strong></p></div>
+<div class="data-table-cell"><p>Stopped due to error or hasn’t run in 2 hours</p></div>
+</div>
+</div>
+<figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba80528e61d50bb2216724/7.svg" alt="" />
 </figure>
 <div class="callout callout-neutral-info callout-single-line">
   <div class="callout-body"><p>It's normal for the read or write time to be several hours ago while the health icon remains green: this indicates that the sync job is running correctly but found nothing new to read or write recently.</p></div>
