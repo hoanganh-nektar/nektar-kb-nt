@@ -18,7 +18,7 @@ export function renderRichText(richTexts, pathIndex = {}, fromPath = '') {
     if (ann.strikethrough) text = `<s>${text}</s>`;
     if (rt.href) {
       const href = resolveHref(rt.href, pathIndex, fromPath);
-      text = `<a href="${escapeHtml(href)}">${text}</a>`;
+      text = `<a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     }
     return text;
   }).join('');
@@ -30,6 +30,8 @@ function resolveHref(href, pathIndex, fromPath) {
   if (m) {
     const toPath = pathIndex[m[1]];
     if (toPath) return fromPath ? relPath(fromPath, toPath) : toPath;
+    // Unresolved internal link — fall back to notion.so so it doesn't 404
+    return `https://www.notion.so/${m[1]}`;
   }
   return href;
 }

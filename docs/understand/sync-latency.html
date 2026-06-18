@@ -91,7 +91,7 @@
 <li>Auto-recall. For example if there was no matching account at the time of an email but the account was created later, the account creation is the start-clock event, not the email itself.</li>
 <li>An event was originally filtered out due to a screening rule, but a subsequent edit made it pass. The edit is the appropriate start-clock event, not the creation.</li>
 <li>Salesforce API errors might prevent Nektar writing data for prolonged periods of time. These often occur due to poorly performing Apex triggers or other tools that perform too many API calls to your Salesforce instance.</li>
-<li>In rare circumstances, Nektar, the communication tool's API service, or Salesforce might have encountered a technical incident at time of the activity. <a href="https://statuspage.freshping.io/62564-Nektar">Nektar's uptime status</a> for the past 30 days is available, as are similar pages for other tools.</li>
+<li>In rare circumstances, Nektar, the communication tool's API service, or Salesforce might have encountered a technical incident at time of the activity. <a href="https://statuspage.freshping.io/62564-Nektar" target="_blank" rel="noopener noreferrer">Nektar's uptime status</a> for the past 30 days is available, as are similar pages for other tools.</li>
 </ul>
 <h2 id="sources-of-latency">Sources of latency</h2>
 <p>There are three main sources of latency in Nektar:</p>
@@ -102,10 +102,10 @@
 </ol>
 <h3 id="step-by-step-breakdown">Step-by-step breakdown</h3>
 <ul>
-<li>Nektar reads each user's communication data, and your organization's Salesforce data, once every 10–15 minutes. Each type of data and each user's communication data is read independently. </li>
-<li><em>(Average delay: 7 minutes; Maximum delay: 15 minutes)</em></li>
-<li>Nektar processes the data in our pipeline: constructing, de-duplicating and linking the new activities, contacts and contact roles, as well as re-evaluating all related past activities, contacts, contact roles and opportunities. </li>
-<li><em>(Average delay: 15 minutes, Maximum delay: 4 hours in congested conditions)</em></li>
+<li>Nektar reads each user's communication data, and your organization's Salesforce data, once every 10–15 minutes. Each type of data and each user's communication data is read independently. 
+<p><em>(Average delay: 7 minutes; Maximum delay: 15 minutes)</em></p></li>
+<li>Nektar processes the data in our pipeline: constructing, de-duplicating and linking the new activities, contacts and contact roles, as well as re-evaluating all related past activities, contacts, contact roles and opportunities. 
+<p><em>(Average delay: 15 minutes, Maximum delay: 4 hours in congested conditions)</em></p></li>
 <li>Intentional wait to ensure that all related records have been independently fetched and unified before writing to Salesforce. This includes manual Salesforce updates made around the time of the activity. 
 <p><em>(Wait time: 30 minutes before creates and updates, 24 hours before contact merges)</em></p></li>
 <li>Nektar writes new data into Salesforce every 10–15 minutes. Each object type is written independently. Note:

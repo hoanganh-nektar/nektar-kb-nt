@@ -194,13 +194,13 @@ Task Relations</div>
 <p>The primary seller in a list is the owner of the Opportunity or Account with which the activity was associated, if present in the list; otherwise the first one in the list.</p>
 <p>If no appropriate sellers were found, or if the most appropriate seller is not a Salesforce user, the Nektar Salesforce integration user is assigned as the owner.</p>
 <h2 id="name-who">Name (&quot;Who&quot;)</h2>
-<p>This <strong>&quot;Name&quot;</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer, which is:</p>
+<p>This <strong>&quot;Name&quot;</strong> field of Events and Tasks contains the buyer(s) that participated in that activity. If your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5" target="_blank" rel="noopener noreferrer">Shared Activities</a>, <em>all</em> buyers will be included in this field; if not, it will contain only the <em>primary</em> buyer, which is:</p>
 <ul>
 <li>for Tasks (emails): the first buyer found in the email's From, To or Cc headers (in that order)</li>
 <li>for Events: the organizer of the calendar event, if they are a buyer, or the first buyer in the invitee list</li>
 </ul>
 <h2 id="attendees">Attendees</h2>
-<p>The <strong>&quot;Attendees&quot;</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5">Shared Activities</a>.</p>
+<p>The <strong>&quot;Attendees&quot;</strong> field on Events will contain all the sellers and buyers invited to the event, whether or not your Salesforce organization has enabled <a href="https://help.salesforce.com/s/articleView?id=sales.activities_enable_shared_activities.htm&amp;type=5" target="_blank" rel="noopener noreferrer">Shared Activities</a>.</p>
 <h2 id="nektar-custom-fields">Nektar custom fields</h2>
 <p>Nektar creates several custom fields in your Salesforce organization. Nektar does not automatically add them to any views, layouts, reports etc. but you may do so.</p>
 <p>This table shows the data type and possible values the field may have in each Salesforce object:</p>

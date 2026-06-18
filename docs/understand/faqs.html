@@ -32,34 +32,34 @@
           <h2 id="activities">Activities</h2>
 <details id="with-which-account-or-opportunity-would-an-activity-be-linked" class="details-section details-section--h3">
   <summary><strong>With which account or opportunity would an activity be linked?</strong></summary>
-  <p>Nektar uses proprietary affinity models to determine this. See <a href="graph-inference.html">Graph inference</a> for more information.</p>
+  <p>Nektar uses proprietary affinity models to determine this. See <a href="graph-inference.html" target="_blank" rel="noopener noreferrer">Graph inference</a> for more information.</p>
 </details>
 <details id="an-activity-is-missing-in-salesforce-why" class="details-section details-section--h3">
   <summary><strong>An activity is missing in Salesforce. Why?</strong></summary>
   <ol>
-<li>Activities matching read screening rules are not stored or processed by Nektar, and any that match write screening rules are not written to Salesforce. Verify that no <a href="../administration/data-controls.html">screening rules</a> match the missing activity.</li>
+<li>Activities matching read screening rules are not stored or processed by Nektar, and any that match write screening rules are not written to Salesforce. Verify that no <a href="../administration/data-controls.html" target="_blank" rel="noopener noreferrer">screening rules</a> match the missing activity.</li>
 <li>Nektar only captures activities where at least one participant is an existing Salesforce lead or contact, or whose email address has the same domain as an existing contact or account. Verify that the missing activity links to an existing Salesforce record.</li>
 <li>Calendar events more than 3 months into the future are not processed by Nektar until they come within the 3-month window.</li>
-<li>The activity might be in the processing pipeline. See <a href="sync-latency.html">Sync latency</a> for expected time durations. </li>
+<li>The activity might be in the processing pipeline. See <a href="sync-latency.html" target="_blank" rel="noopener noreferrer">Sync latency</a> for expected time durations. </li>
 </ol>
-<p>To look up what happened to a specific activity, use the <a href="../administration/tracker.html">Tracker</a>.</p>
+<p>To look up what happened to a specific activity, use the <a href="../administration/tracker.html" target="_blank" rel="noopener noreferrer">Tracker</a>.</p>
 </details>
 <details id="do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce" class="details-section details-section--h3">
   <summary><strong>Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</strong></summary>
-  <p>Yes, Nektar treats Google/MS365 calendars as the main source of truth. Any changes to the meeting title, date, time, participants, or description will sync back to Salesforce. However, if an internal user has made updates to the event in Salesforce, Nektar will not override those changes, respecting the user's decisions. See <a href="self-healing.html">Self healing</a> for more details.</p>
+  <p>Yes, Nektar treats Google/MS365 calendars as the main source of truth. Any changes to the meeting title, date, time, participants, or description will sync back to Salesforce. However, if an internal user has made updates to the event in Salesforce, Nektar will not override those changes, respecting the user's decisions. See <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a> for more details.</p>
 </details>
 <details id="how-does-nektar-handle-activities-that-occurred-before-the-account-was-created-in-salesforce" class="details-section details-section--h3">
   <summary><strong>How does Nektar handle activities that occurred before the account was created in Salesforce?</strong></summary>
-  <p>When the account is created and gets a domain name (from the &quot;website&quot; field or a contact), all the people with matching email addresses and their conversations will be created on Salesforce. This is part of Nektar's <a href="self-healing.html">self-healing</a> feature.</p>
+  <p>When the account is created and gets a domain name (from the &quot;website&quot; field or a contact), all the people with matching email addresses and their conversations will be created on Salesforce. This is part of Nektar's <a href="self-healing.html" target="_blank" rel="noopener noreferrer">self-healing</a> feature.</p>
 </details>
 <details id="the-activity-creation-date-has-changed-since-it-was-originally-created-why" class="details-section details-section--h3">
   <summary><strong>The activity creation date has changed since it was originally created. Why?</strong></summary>
-  <p>Salesforce does not reliably handle certain updates to activities, such as re-associating it from a contact to a lead. In rare situations, Nektar has to delete and recreate the activity because of new information it becomes aware of. See <a href="self-healing.html">Self healing</a> for more details.</p>
+  <p>Salesforce does not reliably handle certain updates to activities, such as re-associating it from a contact to a lead. In rare situations, Nektar has to delete and recreate the activity because of new information it becomes aware of. See <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a> for more details.</p>
 </details>
 <details id="why-is-nektar-creating-old-activities-now" class="details-section details-section--h3">
   <summary><strong>Why is Nektar creating old activities now?</strong></summary>
   <p>Nektar can be configured with a start date, and only activities that occurred after that date will be captured.</p>
-<p>However, note that Nektar captures activities when it becomes convinced of its relevance to your sales process, which may not be when the activities actually happen. For example, an old activity may be skipped initially, and captured later when a Salesforce account is created with the same domain name as one of its participants' email addresses. For more details, see <a href="self-healing.html">Self healing</a>.</p>
+<p>However, note that Nektar captures activities when it becomes convinced of its relevance to your sales process, which may not be when the activities actually happen. For example, an old activity may be skipped initially, and captured later when a Salesforce account is created with the same domain name as one of its participants' email addresses. For more details, see <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a>.</p>
 </details>
 <details id="does-nektar-create-duplicate-activities-in-salesforce" class="details-section details-section--h3">
   <summary><strong>Does Nektar create duplicate activities in Salesforce?</strong></summary>
@@ -71,11 +71,11 @@
 </details>
 <details id="an-activity-has-participants-from-multiple-domains-where-will-nektar-create-this-activity" class="details-section details-section--h3">
   <summary><strong>An activity has participants from multiple domains. Where will Nektar create this activity?</strong></summary>
-  <p>Nektar creates this activity with the best-suited Account or Opportunity, using proprietary affinity models. See <a href="graph-inference.html">Graph inference</a> for more information.</p>
+  <p>Nektar creates this activity with the best-suited Account or Opportunity, using proprietary affinity models. See <a href="graph-inference.html" target="_blank" rel="noopener noreferrer">Graph inference</a> for more information.</p>
 </details>
 <details id="how-long-does-it-take-for-nektar-to-write-activities-in-salesforce" class="details-section details-section--h3">
   <summary><strong>How long does it take for Nektar to write activities in Salesforce?</strong></summary>
-  <p>Nektar checks Google or MS365 every 10 minutes and connects with Salesforce APIs every 20 minutes, writing up to 200 records per API call. However, there may be occasional delays in fetching and writing activities. See <a href="sync-latency.html">Sync latency</a> for more information.</p>
+  <p>Nektar checks Google or MS365 every 10 minutes and connects with Salesforce APIs every 20 minutes, writing up to 200 records per API call. However, there may be occasional delays in fetching and writing activities. See <a href="sync-latency.html" target="_blank" rel="noopener noreferrer">Sync latency</a> for more information.</p>
 </details>
 <details id="why-do-i-see-duplicate-records-when-i-pull-activity-reports-on-salesforce" class="details-section details-section--h3">
   <summary><strong>Why do I see duplicate records when I pull activity reports on Salesforce?</strong></summary>
@@ -88,17 +88,17 @@
 </details>
 <details id="why-are-activities-assigned-to-users-whose-inboxes-and-calendars-nektar-is-not-reading" class="details-section details-section--h3">
   <summary><strong>Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</strong></summary>
-  <p>Nektar can only access the inboxes and calendars of Nektar users. However, it may assign emails or events to other Salesforce users if the algorithm determines they are a more appropriate owner. See the <a href="../connectors/salesforce/sync.html">Sync</a> page for more information.</p>
+  <p>Nektar can only access the inboxes and calendars of Nektar users. However, it may assign emails or events to other Salesforce users if the algorithm determines they are a more appropriate owner. See the <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Sync</a> page for more information.</p>
 </details>
 <details id="how-does-nektar-decide-who-should-be-the-activity-owner" class="details-section details-section--h3">
   <summary><strong>How does Nektar decide who should be the activity owner?</strong></summary>
-  <p>See the <a href="../connectors/salesforce/sync.html">Sync</a> page for more information.</p>
+  <p>See the <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Sync</a> page for more information.</p>
 </details>
 <h2 id="contacts">Contacts</h2>
 <details id="with-which-account-and-opportunities-would-a-contact-be-linked" class="details-section details-section--h3">
   <summary><strong>With which account and opportunities would a contact be linked?</strong></summary>
   <p>Nektar creates contacts under the account with a domain name that matches the contact's email address. An account's domain name may come from its &quot;Website&quot; field, or be inferred from the email addresses of other contacts already in it.</p>
-<p>Nektar considers a person related to an opportunity if he/she has participated in an activity related to that opportunity. By default, all buyers related to an opportunity are linked to that opportunity using OCRs, but this can be overridden using <a href="../administration/data-controls.html">write rules</a>.</p>
+<p>Nektar considers a person related to an opportunity if he/she has participated in an activity related to that opportunity. By default, all buyers related to an opportunity are linked to that opportunity using OCRs, but this can be overridden using <a href="../administration/data-controls.html" target="_blank" rel="noopener noreferrer">write rules</a>.</p>
 </details>
 <details id="does-nektar-create-duplicate-contacts-on-salesforce" class="details-section details-section--h3">
   <summary><strong>Does Nektar create duplicate contacts on Salesforce?</strong></summary>
@@ -108,7 +108,7 @@
 <li>The integration user's permissions prevent Nektar from seeing the existing contact or lead.</li>
 <li>A duplicate lead or contact was created manually after Nektar created a contact.</li>
 </ol>
-<p>In all these situations, as soon as Nektar becomes aware of the existence of a duplicate, it will resolve it by deleting the contact it created, and transferring all the activities and fields to the surviving contact or lead. See <a href="self-healing.html">Self-healing</a> for more information.</p>
+<p>In all these situations, as soon as Nektar becomes aware of the existence of a duplicate, it will resolve it by deleting the contact it created, and transferring all the activities and fields to the surviving contact or lead. See <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self-healing</a> for more information.</p>
 </details>
 <details id="how-does-nektar-handle-contacts-whose-conversations-occurred-before-the-account-was-created-on-salesforce" class="details-section details-section--h3">
   <summary><strong>How does Nektar handle contacts whose conversations occurred before the account was created on Salesforce?</strong></summary>
@@ -120,20 +120,20 @@
 </details>
 <details id="there-are-multiple-internal-people-marked-on-an-activity-how-does-nektar-decide-who-should-be-the-contact-owner" class="details-section details-section--h3">
   <summary><strong>There are multiple internal people marked on an activity. How does Nektar decide who should be the contact owner?</strong></summary>
-  <p>Contacts are associated with accounts. The owner of the Account with which the Contact was associated is assigned as the Contact owner. See the <a href="../connectors/salesforce/sync.html">Owner</a> documentation for more information.</p>
+  <p>Contacts are associated with accounts. The owner of the Account with which the Contact was associated is assigned as the Contact owner. See the <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Owner</a> documentation for more information.</p>
 </details>
 <h2 id="admin-controls">Admin controls</h2>
 <details id="how-can-i-add-or-remove-users" class="details-section details-section--h3">
   <summary><strong>How can I add or remove users?</strong></summary>
-  <p>See the <a href="../administration/users.html">Users</a> documentation.</p>
+  <p>See the <a href="../administration/users.html" target="_blank" rel="noopener noreferrer">Users</a> documentation.</p>
 </details>
 <details id="how-can-i-stop-nektar-capturing-private-calendar-meetings" class="details-section details-section--h3">
   <summary><strong>How can I stop Nektar capturing private calendar meetings?</strong></summary>
-  <p>You can turn off private calendar meetings sync from the blocking section under <a href="../administration/data-controls.html">read rules</a>.</p>
+  <p>You can turn off private calendar meetings sync from the blocking section under <a href="../administration/data-controls.html" target="_blank" rel="noopener noreferrer">read rules</a>.</p>
 </details>
 <details id="what-controls-are-available-to-prevent-nektar-capturing-sensitive-information" class="details-section details-section--h3">
   <summary><strong>What controls are available to prevent Nektar capturing sensitive information?</strong></summary>
-  <p>Nektar has a robust set of read rules that you can use to define what Nektar should not read. See <a href="../administration/data-controls.html">Data controls</a> for details.</p>
+  <p>Nektar has a robust set of read rules that you can use to define what Nektar should not read. See <a href="../administration/data-controls.html" target="_blank" rel="noopener noreferrer">Data controls</a> for details.</p>
 </details>
 <details id="can-i-enable-read-and-write-of-specific-salesforce-objects-eg-contacts-without-activities" class="details-section details-section--h3">
   <summary><strong>Can I enable read and write of specific Salesforce objects, e.g. contacts without activities?</strong></summary>
@@ -142,24 +142,24 @@
 <details id="can-i-see-a-log-of-all-the-activities-and-persons-that-nektar-read-but-did-not-create-in-salesforce" class="details-section details-section--h3">
   <summary><strong>Can I see a log of all the activities and persons that Nektar read but did not create in Salesforce?</strong></summary>
   <p>No. The majority of activity in your sellers' inboxes and calendars is not external sales-related communications. As the volume of such activities tends to be excessive and may contain sensitive or personal conversations, we do not provide an interface to review them manually.</p>
-<p>If you have a specific activity to track down, use the <a href="../administration/tracker.html">Tracker</a>.</p>
+<p>If you have a specific activity to track down, use the <a href="../administration/tracker.html" target="_blank" rel="noopener noreferrer">Tracker</a>.</p>
 </details>
 <details id="how-do-i-switch-a-connector-to-a-different-integration-user-admin-user-service-account" class="details-section details-section--h3">
   <summary><strong>How do I switch a connector to a different integration user / admin user / service account?</strong></summary>
-  <p>See the connector documentation for <a href="../connectors/salesforce/connection.html">Salesforce</a>, <a href="../connectors/google-workspace/index.html">Google Workspace</a>, <a href="../connectors/microsoft-365/index.html">Microsoft 365</a>, and <a href="../connectors/zoom/index.html">Zoom</a>.</p>
+  <p>See the connector documentation for <a href="../connectors/salesforce/connection.html" target="_blank" rel="noopener noreferrer">Salesforce</a>, <a href="../connectors/google-workspace/index.html" target="_blank" rel="noopener noreferrer">Google Workspace</a>, <a href="../connectors/microsoft-365/index.html" target="_blank" rel="noopener noreferrer">Microsoft 365</a>, and <a href="../connectors/zoom/index.html" target="_blank" rel="noopener noreferrer">Zoom</a>.</p>
 </details>
 <h2 id="security">Security</h2>
 <details id="how-does-nektar-secure-my-data" class="details-section details-section--h3">
   <summary><strong>How does Nektar secure my data?</strong></summary>
-  <p>Nektar offers the highest level of security to all customers. Nektar is compliant with SOC2 Type II, ISO 27001, and with GDPR (General Data Protection Regulation). For more details, see <a href="security.html">Security</a>.</p>
+  <p>Nektar offers the highest level of security to all customers. Nektar is compliant with SOC2 Type II, ISO 27001, and with GDPR (General Data Protection Regulation). For more details, see <a href="security.html" target="_blank" rel="noopener noreferrer">Security</a>.</p>
 </details>
 <details id="what-permissions-are-required-by-nektar" class="details-section details-section--h3">
   <summary><strong>What permissions are required by Nektar?</strong></summary>
-  <p>See the connector documentation for <a href="../connectors/salesforce/integration-user.html">Salesforce</a>, <a href="../connectors/google-workspace/index.html">Google Workspace</a>, <a href="../connectors/microsoft-365/index.html">Microsoft 365</a>, and <a href="../connectors/zoom/index.html">Zoom</a>.</p>
+  <p>See the connector documentation for <a href="../connectors/salesforce/integration-user.html" target="_blank" rel="noopener noreferrer">Salesforce</a>, <a href="../connectors/google-workspace/index.html" target="_blank" rel="noopener noreferrer">Google Workspace</a>, <a href="../connectors/microsoft-365/index.html" target="_blank" rel="noopener noreferrer">Microsoft 365</a>, and <a href="../connectors/zoom/index.html" target="_blank" rel="noopener noreferrer">Zoom</a>.</p>
 </details>
 <details id="why-does-nektar-need-delete-permissions-on-salesforce" class="details-section details-section--h3">
   <summary><strong>Why does Nektar need delete permissions on Salesforce?</strong></summary>
-  <p>Nektar's <a href="self-healing.html">self-healing</a> system re-evaluates past data capture decisions in light of new information, and where necessary reverts changes made by Nektar. Here are a couple of examples:</p>
+  <p>Nektar's <a href="self-healing.html" target="_blank" rel="noopener noreferrer">self-healing</a> system re-evaluates past data capture decisions in light of new information, and where necessary reverts changes made by Nektar. Here are a couple of examples:</p>
 <ol>
 <li>Nektar might add a contact to a certain opportunity, but in light of later activities it may turn out that a different opportunity was a better fit for this person. In this case, Nektar will delete the first opportunity-contact role record and create a new one.</li>
 <li>Nektar might create a contact, but a user or tool might manually create a lead with the same email address. In this case, Nektar will delete the contact it created and re-associate all its data and activities to the manually created lead.</li>
@@ -168,11 +168,11 @@
 </details>
 <details id="what-custom-fields-are-created-by-nektar-in-salesforce" class="details-section details-section--h3">
   <summary><strong>What custom fields are created by Nektar in Salesforce?</strong></summary>
-  <p>See <a href="../connectors/salesforce/sync.html">Nektar custom fields</a>.</p>
+  <p>See <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Nektar custom fields</a>.</p>
 </details>
 <details id="how-do-i-know-what-data-nektar-has-created-in-salesforce" class="details-section details-section--h3">
   <summary><strong>How do I know what data Nektar has created in Salesforce?</strong></summary>
-  <p>Review the <a href="../administration/dashboard.html">Dashboard</a> for overall statistics. To review specific contacts, activities and opportunity-contact roles, create a Salesforce report filtering on the <code>NektarActions__c</code> field.</p>
+  <p>Review the <a href="../administration/dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard</a> for overall statistics. To review specific contacts, activities and opportunity-contact roles, create a Salesforce report filtering on the <code>NektarActions__c</code> field.</p>
 </details>
 <details id="which-ip-addresses-does-nektar-make-api-calls-from" class="details-section details-section--h3">
   <summary><strong>Which IP addresses does Nektar make API calls from?</strong></summary>
@@ -180,23 +180,23 @@
 </details>
 <details id="what-is-nektars-read-googlems365-and-write-salesforce-frequency" class="details-section details-section--h3">
   <summary><strong>What is Nektar's read (Google/MS365) and write (Salesforce) frequency?</strong></summary>
-  <p>See <a href="sync-latency.html">Sync latency</a>.</p>
+  <p>See <a href="sync-latency.html" target="_blank" rel="noopener noreferrer">Sync latency</a>.</p>
 </details>
 <details id="how-many-salesforce-apis-does-nektar-consume-every-day" class="details-section details-section--h3">
   <summary><strong>How many Salesforce APIs does Nektar consume every day?</strong></summary>
-  <p>Nektar is very efficient in its Salesforce API consumption, and on an ongoing basis it consumes under 2,000 API calls (total) per day. For comparison, the Salesforce's API quota is 100,000 + (number of licenses × calls per license type) + purchased API Call Add-Ons. For details, see <a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm">Salesforce API limits</a>.</p>
+  <p>Nektar is very efficient in its Salesforce API consumption, and on an ongoing basis it consumes under 2,000 API calls (total) per day. For comparison, the Salesforce's API quota is 100,000 + (number of licenses × calls per license type) + purchased API Call Add-Ons. For details, see <a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm" target="_blank" rel="noopener noreferrer">Salesforce API limits</a>.</p>
 </details>
 <details id="how-many-objects-does-nektar-write-per-api-call" class="details-section details-section--h3">
   <summary><strong>How many objects does Nektar write per API call?</strong></summary>
   <p>Nektar writes data to Salesforce in batches of 200 objects at a time and continues writing until all the objects have been processed. On average, writing 200 objects takes about 10–30 seconds.</p>
-<p>Salesforce provides generous API limits, which vary depending on the customer's Salesforce edition. You can review Salesforce API rate limits <a href="https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/implementation_considerations.htm">here</a>.</p>
+<p>Salesforce provides generous API limits, which vary depending on the customer's Salesforce edition. You can review Salesforce API rate limits <a href="https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/implementation_considerations.htm" target="_blank" rel="noopener noreferrer">here</a>.</p>
 </details>
 <details id="how-does-nektars-ai-agent-daisy-use-and-store-customer-data" class="details-section details-section--h3">
   <summary><strong>How does Nektar's AI agent, Daisy, use and store customer data?</strong></summary>
   <p>Nektar's AI agent follows enterprise-grade security standards to ensure your data remains protected.</p>
 <ul>
 <li>Your data is processed through OpenAI, Google Gemini and AWS Bedrock APIs. All of these are SOC2 compliant.</li>
-<li>We have enterprise agreements in place that explicitly prohibit data storage or use for model training. For more details, you can review their terms of service here: <a href="https://platform.openai.com/docs/guides/your-data">OpenAI</a>, <a href="https://ai.google.dev/gemini-api/terms">Google</a>, <a href="https://aws.amazon.com/service-terms/">AWS</a>.</li>
+<li>We have enterprise agreements in place that explicitly prohibit data storage or use for model training. For more details, you can review their terms of service here: <a href="https://platform.openai.com/docs/guides/your-data" target="_blank" rel="noopener noreferrer">OpenAI</a>, <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer">Google</a>, <a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener noreferrer">AWS</a>.</li>
 </ul>
 <p>Nektar prioritizes data security and compliance, ensuring that your information is handled with the highest level of protection.</p>
 </details>
