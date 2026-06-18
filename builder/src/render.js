@@ -77,16 +77,21 @@ export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
       continue;
     }
 
-    // Directive paragraph immediately before a table: consume it as table options
-    if (block.type === 'paragraph' && blocks[i + 1]?.type === 'table') {
+    // Directive paragraph immediately before a table: consume it as table options.
+    // Scan past any empty paragraphs that may sit between the directive and the table.
+    if (block.type === 'paragraph') {
       const plain = plainText(block.paragraph?.rich_text || []).trim();
       const tableOpts = parseTableDirective(plain);
       if (tableOpts) {
-        i++; // skip the directive paragraph
-        const html = renderBlock(blocks[i], pathIndex, tocEntries, fromPath, tableOpts);
-        if (html) out.push(html);
-        i++;
-        continue;
+        let j = i + 1;
+        while (j < blocks.length && blocks[j].type === 'paragraph' && !plainText(blocks[j].paragraph?.rich_text || []).trim()) j++;
+        if (blocks[j]?.type === 'table') {
+          i = j; // skip directive + any blank paragraphs
+          const html = renderBlock(blocks[i], pathIndex, tocEntries, fromPath, tableOpts);
+          if (html) out.push(html);
+          i++;
+          continue;
+        }
       }
     }
 
