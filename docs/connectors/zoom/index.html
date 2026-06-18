@@ -33,7 +33,31 @@
 <h2 id="connection">Connection</h2>
 <p>Your Zoom administrator should sign into the Nektar app for Zoom.</p>
 <p>If you are an administrator, click &quot;Connect&quot; and follow the instructions. If not, copy the link and send it to the administrator.</p>
-<h3 id="oauth-scopes"><strong>OAuth scopes</strong></h3>
+<details id="oauth-scopes" class="details-section details-section--h3" open>
+  <summary><strong>OAuth scopes</strong></summary>
+  <div class="callout callout-neutral-technical callout-single-line">
+  <div class="callout-body"><p>This is under-the-hood technical detail that's not necessary for using Nektar.</p></div>
+</div>
+<p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
+<div class="data-table" style="grid-template-columns: 5fr 5fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell data-table-header-cell">Scopes</div>
+<div class="data-table-cell data-table-header-cell">Purpose</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><code>meeting:read:admin</code></div>
+<div class="data-table-cell">To get past meetings' participants</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><code>report:read:admin</code></div>
+<div class="data-table-cell">To list past meetings details</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><code>user:read:admin</code></div>
+<div class="data-table-cell">To know the user's id, email, and name</div>
+</div>
+</div>
+</details>
 <h2 id="sync">Sync</h2>
 <p>Nektar's Zoom sync system reads meeting details every 10–15 minutes, and the list of users in your Zoom organization every 24 hours. You must enable meeting sync for individual Zoom users in the <a href="../../administration/users.html" target="_blank" rel="noopener noreferrer">Users section</a>. Note that only the details of meetings in the past 6 months can be synced.</p>
 <p>The sync table displays:</p>
@@ -56,7 +80,13 @@
 <li>the participant is an invitee on the calendar event</li>
 <li>the participant is signed into Zoom when they join the meeting</li>
 </ol>
-<h2 id="apis-used"><strong>APIs used</strong></h2>
+<details id="apis-used" class="details-section" open>
+  <summary><strong>APIs used</strong></summary>
+  <div class="callout callout-neutral-technical callout-single-line">
+  <div class="callout-body"><p>This is under-the-hood technical detail that's not necessary for using Nektar.</p></div>
+</div>
+<p>Nektar uses the Zoom Reports and Meeting APIs.&lt;/details&gt;</p>
+</details>
         </div>
       </div>
       <aside class="article-toc">

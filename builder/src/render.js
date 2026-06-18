@@ -122,12 +122,26 @@ function renderBlock(block, pathIndex, tocEntries, fromPath = '', tableOpts = nu
     case 'heading_2': {
       const id = toId(plain);
       tocEntries?.push({ id, text: plain, level: 2 });
+      if (block._children) {
+        const body = renderBlocks(block._children, pathIndex, tocEntries, fromPath);
+        return `<details id="${id}" class="details-section" open>
+  <summary>${text}</summary>
+  ${body}
+</details>`;
+      }
       return `<h2 id="${id}">${text}</h2>`;
     }
 
     case 'heading_3': {
       const id = toId(plain);
       tocEntries?.push({ id, text: plain, level: 3 });
+      if (block._children) {
+        const body = renderBlocks(block._children, pathIndex, tocEntries, fromPath);
+        return `<details id="${id}" class="details-section details-section--h3" open>
+  <summary>${text}</summary>
+  ${body}
+</details>`;
+      }
       return `<h3 id="${id}">${text}</h3>`;
     }
 

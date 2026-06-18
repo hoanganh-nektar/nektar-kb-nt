@@ -39,7 +39,27 @@
 <p><strong>Note:</strong> If you are signed in as a different Salesforce user, you should sign out of Salesforce before clicking &quot;Connect&quot;.</p></li>
 <li>If you do not have the integration user's Salesforce credentials, send the link below the Connect button to the person who does. They should click this link, sign in as the integration user, and allow access. Once they complete this, you can refresh the page to verify that the new integration user has been connected.</li>
 </ul>
-<h2 id="oauth-scopes"><strong>OAuth scopes</strong></h2>
+<details id="oauth-scopes" class="details-section" open>
+  <summary><strong>OAuth scopes</strong></summary>
+  <div class="callout callout-neutral-technical callout-single-line">
+  <div class="callout-body"><p>This is under-the-hood technical detail that's not necessary for using Nektar.</p></div>
+</div>
+<p>Scopes control what actions Nektar may take on behalf of the integration user. Nektar requires the following scopes to operate correctly.</p>
+<div class="data-table" style="grid-template-columns: 5fr 5fr">
+<div class="data-table-row data-table-header">
+<div class="data-table-cell data-table-header-cell">Scope</div>
+<div class="data-table-cell data-table-header-cell">Purpose</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><code>full</code></div>
+<div class="data-table-cell">Read and write Salesforce data and metadata</div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><code>refresh_token</code></div>
+<div class="data-table-cell">Operate as a background service</div>
+</div>
+</div>
+</details>
         </div>
       </div>
       <aside class="article-toc">

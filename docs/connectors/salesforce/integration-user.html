@@ -63,7 +63,29 @@
 <div class="data-table-cell">allow programmatic access</div>
 </div>
 </div>
-<h2 id="reduced-privilege-alternatives"><strong>Reduced privilege alternatives</strong></h2>
+<details id="reduced-privilege-alternatives" class="details-section" open>
+  <summary><strong>Reduced privilege alternatives</strong></summary>
+  <p>These allow operating Nektar with a less privileged integration user.</p>
+<div class="callout callout-warning callout-single-line">
+  <div class="callout-body"><p>These alternatives involve setting up and maintaining complex Salesforce configurations manually, and require considerable Salesforce administration expertise.</p></div>
+</div>
+<h3 id="alternatives-to-modify-all-data">Alternatives to &quot;Modify all data&quot;</h3>
+<p>Instead of providing this permission, you may use profiles or permission sets to permit the integration user to <a href="https://www.notion.so/6fcb105b30f047069c435efd1341b42e" target="_blank" rel="noopener noreferrer">read, update, create and delete records under the specific objects</a> that Nektar requires. Optionally, you may also:</p>
+<ul>
+<li>Restrict the delete permission to ensure that Nektar only deletes records it created.
+<p><strong>Important:</strong> Use the <code>CreatedById</code> field and not the <code>OwnerId</code> to implement this restriction.</p></li>
+<li>Restrict the update permission to the specific <a href="sync.html" target="_blank" rel="noopener noreferrer">fields updated by Nektar</a>. <strong>Note:</strong> This list may change from time-to-time based on your business requirements.</li>
+<li>Restrict access to the sub-set of records (e.g. Accounts, Contacts, Opportunities, Leads) relevant to the teams adopting Nektar. 
+<p><strong>Important:</strong> Relevant records not being visible to Nektar may result in duplicate contacts, activities being associated with the wrong opportunities, or other inaccuracies.</p></li>
+</ul>
+<h3 id="alternatives-to-modify-metadata-through-api-functions-customize-application-manage-profiles-and-permission-sets">Alternatives to &quot;Modify Metadata through API Functions&quot;, &quot;Customize Application&quot;, &quot;Manage Profiles and Permission Sets&quot;</h3>
+<p>Instead of providing these permissions, you may set up the <a href="https://www.notion.so/6fcb105b30f047069c435efd1341b42e" target="_blank" rel="noopener noreferrer">relevant Nektar custom fields</a> manually. Ensure that:</p>
+<ul>
+<li>the field API names and picklist values are spelled accurately, with the correct case and punctuation</li>
+<li>read and write access to these custom fields are provided to the Nektar integration user</li>
+<li>read access to these custom fields are provided to all normal user profiles as required</li>
+</ul>
+</details>
         </div>
       </div>
       <aside class="article-toc">
@@ -71,6 +93,8 @@
         <div class="toc-list">
           <a href="#permissions">Permissions</a>
           <a href="#reduced-privilege-alternatives">Reduced privilege alternatives</a>
+          <a href="#alternatives-to-modify-all-data" class="toc-h3">Alternatives to &quot;Modify all data&quot;</a>
+          <a href="#alternatives-to-modify-metadata-through-api-functions-customize-application-manage-profiles-and-permission-sets" class="toc-h3">Alternatives to &quot;Modify Metadata through API Functions&quot;, &quot;Customize Application&quot;, &quot;Manage Profiles and Permission Sets&quot;</a>
         </div>
       </aside>
     </div>
