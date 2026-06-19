@@ -9,7 +9,7 @@ export function escapeHtml(str) {
 export function renderRichText(richTexts, pathIndex = {}, fromPath = '') {
   if (!richTexts?.length) return '';
   return richTexts.map(rt => {
-    let text = escapeHtml(rt.plain_text);
+    let text = escapeHtml(rt.plain_text.replace(/<\/details>/gi, ''));
     if (!text) return '';
     const ann = rt.annotations;
     if (ann.code) text = `<code>${text}</code>`;
