@@ -1004,6 +1004,22 @@ figure.article-image figcaption {
   border-right: none;
 }
 
+/* Overrides for block-level content rendered inside table cells */
+.data-table-cell p {
+  margin-bottom: 0;
+}
+.article-content .data-table-header-cell p {
+  font-family: "Sora", sans-serif;
+}
+.data-table-cell figure.article-image {
+  border: none;
+  border-radius: 0;
+  padding-bottom: 0;
+  margin: 0;
+  gap: 0;
+  align-items: flex-start;
+}
+
 .cell-line {
   display: block;
 }
