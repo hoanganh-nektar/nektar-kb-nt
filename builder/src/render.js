@@ -196,7 +196,7 @@ function renderBlock(block, pathIndex, tocEntries, fromPath = '', tableOpts = nu
       const body = block._children
         ? renderBlocks(block._children, pathIndex, null, fromPath)
         : '';
-      return `<details id="${id}" class="details-section details-section--h3">
+      return `<details id="${id}" class="details-section details-section--toggle">
   <summary>${text}</summary>
   ${body}
 </details>`;
