@@ -140,6 +140,26 @@ export function renderBlocks(blocks, pathIndex, tocEntries, fromPath = '') {
       }
     }
 
+    // Auto-detect image-only column_list (no annotation needed): render as photo grid.
+    if (block.type === 'column_list') {
+      const cols = block._children || [];
+      const allImages = cols.length > 0 && cols.every(col => {
+        const children = col._children || [];
+        return children.length === 1 && children[0].type === 'image';
+      });
+      if (allImages) {
+        const imgs = cols.map(col => {
+          const img = col._children[0];
+          const url = img.image.type === 'external' ? img.image.external.url : img.image.file.url;
+          const caption = img.image.caption?.length ? plainText(img.image.caption) : '';
+          return `<img src="${url}" alt="${escapeHtml(caption)}" />`;
+        });
+        out.push(`<div class="photo-grid photo-grid--${cols.length}">${imgs.join('')}</div>`);
+        i++;
+        continue;
+      }
+    }
+
     const html = renderBlock(block, pathIndex, tocEntries, fromPath);
     if (html) out.push(html);
     i++;
