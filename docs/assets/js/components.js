@@ -35,7 +35,7 @@
       '    <a class="home-nav-link" href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n' +
       '  </div>\n' +
       '  <div class="sidebar-search">\n' +
-      '    <input type="text" id="sidebar-search-input" placeholder="Search docs…" aria-label="Search" />\n' +
+      '    <input type="text" id="sidebar-search-input" placeholder="🔍  Search" aria-label="Search" />\n' +
       '    <img class="search-icon-img" src="' + R + 'assets/images/icons/search.svg" alt="" />\n' +
       '  </div>\n' +
       '  <nav class="sidebar-nav">\n' +
