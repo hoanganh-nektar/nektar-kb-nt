@@ -1586,6 +1586,10 @@ figure.article-image img,
   min-width: 0;
 }
 
+.callout-body a {
+  text-decoration: none;
+}
+
 .callout-body p + p {
   margin-top: 8px;
 }
@@ -1720,6 +1724,12 @@ details:not(.callout-error) > summary {
   letter-spacing: 0;
   color: #000;
   padding: 4px 0;
+}
+
+details:not(.callout-error) > summary * {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 details:not(.callout-error) > summary:hover {
