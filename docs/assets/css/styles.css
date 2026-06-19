@@ -1005,7 +1005,7 @@ figure.article-image figcaption {
 }
 
 /* Overrides for block-level content rendered inside table cells */
-.data-table-cell p {
+.article-content .data-table-cell p {
   margin-bottom: 0;
 }
 .article-content .data-table-header-cell p {
