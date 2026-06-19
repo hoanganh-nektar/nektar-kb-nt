@@ -1514,10 +1514,11 @@ figure.article-image img,
 
 .article-content li p {
   margin-bottom: 0;
+  margin-top: 10px;
 }
 
 .article-content li p + p {
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .article-content ol {
