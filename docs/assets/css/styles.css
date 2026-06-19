@@ -10,12 +10,12 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 code {
   font-family: "Roboto Mono", monospace;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   background: #eee;
   color: #000;
@@ -41,13 +41,13 @@ pre code {
   border-radius: 0;
   padding: 0;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 pre code[class*="language-"],
 code[class*="language-"] {
   font-family: "Roboto Mono", monospace;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 pre[class*="language-"],
@@ -58,7 +58,7 @@ pre code[class*="language-"] {
 
 body {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
   color: #000;
@@ -146,7 +146,7 @@ h6 {
   padding: 12px 44px 12px 16px;
   border: 1px solid #d9d9d9;
   border-radius: 9999px;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "Lora", serif;
   color: #000;
   background: #fff;
@@ -190,7 +190,7 @@ h6 {
   padding: 12px 16px;
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
   cursor: pointer;
   user-select: none;
@@ -246,7 +246,7 @@ h6 {
   min-height: 48px;
   padding: 12px 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #000;
   cursor: pointer;
@@ -277,7 +277,7 @@ h6 {
   min-height: 48px;
   padding: 12px 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #000;
   cursor: pointer;
@@ -330,7 +330,7 @@ h6 {
   min-height: 48px;
   padding: 12px 16px 12px 44px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #000;
   border-radius: 8px;
@@ -414,7 +414,7 @@ h6 {
 
 .hero-tagline {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
   white-space: nowrap;
 }
@@ -438,7 +438,7 @@ h6 {
   padding: 12px 18px;
   font-family: "Lora", serif;
   font-weight: 700;
-  font-size: clamp(14px, calc(8px + 0.7vw), 18px);
+  font-size: clamp(16px, calc(10px + 0.7vw), 20px);
   white-space: nowrap;
   transition: box-shadow 0.15s;
 }
@@ -524,7 +524,7 @@ h6 {
 .topic-card h3 {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: clamp(16px, calc(10px + 0.97vw), 24px);
+  font-size: clamp(18px, calc(12px + 0.97vw), 26px);
   letter-spacing: -0.48px;
   color: #000;
   white-space: nowrap;
@@ -534,7 +534,7 @@ h6 {
 
 .topic-card p {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -555,7 +555,7 @@ h6 {
 
 .hero-text .breadcrumb {
   font-family: "Lora", serif;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 12px;
 }
 
@@ -575,7 +575,7 @@ h6 {
 
 .hero-text .hero-desc {
   font-family: "Lora", serif;
-  font-size: clamp(16px, calc(10px + 0.97vw), 24px);
+  font-size: clamp(18px, calc(12px + 0.97vw), 26px);
   line-height: 1.5;
   letter-spacing: 0.48px;
   color: #000;
@@ -599,7 +599,7 @@ h6 {
 /* ─── Breadcrumb (standalone) ───────────────────────────────────── */
 .breadcrumb {
   font-family: "Lora", serif;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -639,7 +639,7 @@ h6 {
 
 .article-hero p {
   font-family: "Lora", serif;
-  font-size: clamp(16px, calc(10px + 0.97vw), 24px);
+  font-size: clamp(18px, calc(12px + 0.97vw), 26px);
   line-height: 1.5;
   letter-spacing: 0.48px;
   color: #000;
@@ -735,7 +735,7 @@ h6 {
 .card-body h3 {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: clamp(16px, calc(10px + 0.97vw), 24px);
+  font-size: clamp(18px, calc(12px + 0.97vw), 26px);
   letter-spacing: -0.48px;
   color: #000;
   white-space: nowrap;
@@ -745,7 +745,7 @@ h6 {
 
 .card-body p {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -795,7 +795,7 @@ h6 {
 .toc-title {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #000;
@@ -805,7 +805,7 @@ h6 {
 .toc-list a {
   display: block;
   font-family: "Lora", serif;
-  font-size: 14px;
+  font-size: 18px;
   color: #000;
   padding: 12px 16px;
   border-radius: 24px;
@@ -864,7 +864,7 @@ figure.article-image:has(figcaption) img {
 figure.article-image figcaption {
   font-family: "Lora", serif;
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -907,7 +907,7 @@ figure.article-image figcaption {
   flex-shrink: 0;
   padding: 16px;
   font-family: "Sora", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
   color: #000;
@@ -917,7 +917,7 @@ figure.article-image figcaption {
   flex: 1;
   padding: 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -943,7 +943,7 @@ figure.article-image figcaption {
   min-width: 0;
   padding: 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1079,7 +1079,7 @@ figure.article-image figcaption {
   min-width: 0;
   padding: 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1114,7 +1114,7 @@ figure.article-image figcaption {
 .objects-table-header .objects-table-cell {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   padding: 16px;
 }
@@ -1146,7 +1146,7 @@ figure.article-image figcaption {
 .cft-header .cft-api-values {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0;
   font-style: normal;
 }
@@ -1178,7 +1178,7 @@ figure.article-image figcaption {
 .cft-field-name {
   font-family: "Lora", serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1187,7 +1187,7 @@ figure.article-image figcaption {
 .cft-field-type {
   font-family: "Lora", serif;
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1200,7 +1200,7 @@ figure.article-image figcaption {
   border-radius: 12px;
   padding: 4px 8px;
   font-family: "Roboto Mono", monospace;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.3;
   color: #000;
   white-space: nowrap;
@@ -1229,7 +1229,7 @@ figure.article-image figcaption {
   flex: 2;
   padding: 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1240,7 +1240,7 @@ figure.article-image figcaption {
   min-width: 0;
   padding: 16px;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   color: #000;
 }
@@ -1298,7 +1298,7 @@ figure.article-image figcaption {
   padding: 16px;
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   color: #000;
   display: flex;
@@ -1314,7 +1314,7 @@ figure.article-image figcaption {
   gap: 12px;
   align-items: center;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1346,7 +1346,7 @@ figure.article-image figcaption {
   border-right: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   letter-spacing: 0.32px;
   color: #000;
@@ -1454,7 +1454,7 @@ figure.article-image img,
 
 .article-content h3 {
   font-family: "Sora", sans-serif;
-  font-size: clamp(18px, calc(9px + 0.77vw), 20px);
+  font-size: clamp(20px, calc(11px + 0.77vw), 24px);
   font-weight: 700;
   margin-top: 32px;
   margin-bottom: 16px;
@@ -1463,7 +1463,7 @@ figure.article-image img,
 
 .article-content h4 {
   font-family: "Sora", sans-serif;
-  font-size: clamp(16px, calc(8px + 0.57vw), 17px);
+  font-size: clamp(18px, calc(10px + 0.57vw), 20px);
   font-weight: 700;
   margin-top: 24px;
   margin-bottom: 16px;
@@ -1560,7 +1560,7 @@ figure.article-image img,
   border-radius: 50%;
   text-align: center;
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
   letter-spacing: 0.32px;
   color: rgba(0, 0, 0, 0.5);
@@ -1602,7 +1602,7 @@ figure.article-image img,
 
 .callout p {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -1680,7 +1680,7 @@ figure.article-image img,
 
 .callout-link-text {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.32px;
@@ -1724,7 +1724,7 @@ details:not(.callout-error) > summary {
   list-style: none;
   font-family: "Lora", serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -1785,7 +1785,7 @@ details.details-section:not(.callout-error)[open] > summary {
 
 details.details-section.details-section--h3:not(.callout-error) > summary {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -1855,7 +1855,7 @@ details.callout-error > summary {
   list-style: none;
   font-family: "Lora", serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -1868,7 +1868,7 @@ details.callout-error > summary strong { font-weight: 600; }
 
 details.callout-error > *:not(summary) {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -1955,7 +1955,7 @@ footer {
 .footer-col h4 {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
   margin-bottom: 16px;
 }
@@ -1963,7 +1963,7 @@ footer {
 .footer-col h4 a {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
 }
 
@@ -1973,7 +1973,7 @@ footer {
 
 .footer-col ul li a {
   font-family: "Lora", serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.32px;
   color: #000;
@@ -1988,7 +1988,7 @@ footer {
   padding-top: 20px;
   margin-top: 20px;
   font-family: "Lora", serif;
-  font-size: 14px;
+  font-size: 18px;
   color: rgba(0, 0, 0, 0.5);
 }
 
