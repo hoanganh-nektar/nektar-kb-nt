@@ -1674,6 +1674,7 @@ figure.article-image img,
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.32px;
+  text-decoration: none;
 }
 
 .callout-neutral-technical::before {
@@ -1712,11 +1713,11 @@ details:not(.callout-error) > summary {
   cursor: pointer;
   transition: opacity 0.15s;
   list-style: none;
-  font-family: "Lora", serif;
-  font-weight: 600;
-  font-size: 18px;
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, calc(11px + 0.77vw), 24px);
   line-height: 1.5;
-  letter-spacing: 0.32px;
+  letter-spacing: 0;
   color: #000;
   padding: 4px 0;
 }
