@@ -951,7 +951,7 @@ figure.article-image figcaption {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 10px;
   white-space: pre-wrap;
   border-bottom: 1px solid #d9d9d9;
 }
@@ -1267,7 +1267,7 @@ figure.article-image figcaption {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   align-items: flex-start;
 }
 
