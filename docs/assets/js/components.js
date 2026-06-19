@@ -36,7 +36,6 @@
       '  </div>\n' +
       '  <div class="sidebar-search">\n' +
       '    <input type="text" id="sidebar-search-input" placeholder="🔍  Search" aria-label="Search" />\n' +
-      '    <img class="search-icon-img" src="' + R + 'assets/images/icons/search.svg" alt="" />\n' +
       '  </div>\n' +
       '  <nav class="sidebar-nav">\n' +
 
