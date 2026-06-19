@@ -30,20 +30,70 @@
       <div class="article-body">
         <div class="article-content">
           <h2 id="activities">Activities</h2>
-<h4 id="with-which-account-or-opportunity-would-an-activity-be-linked"><strong>With which account or opportunity would an activity be linked?</strong></h4>
-<h4 id="an-activity-is-missing-in-salesforce-why"><strong>An activity is missing in Salesforce. Why?</strong></h4>
-<h4 id="do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce"><strong>Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</strong></h4>
-<h4 id="how-does-nektar-handle-activities-that-occurred-before-the-account-was-created-in-salesforce"><strong>How does Nektar handle activities that occurred before the account was created in Salesforce?</strong></h4>
-<h4 id="the-activity-creation-date-has-changed-since-it-was-originally-created-why"><strong>The activity creation date has changed since it was originally created. Why?</strong></h4>
-<h4 id="why-is-nektar-creating-old-activities-now"><strong>Why is Nektar creating old activities now?</strong></h4>
-<h4 id="does-nektar-create-duplicate-activities-in-salesforce"><strong>Does Nektar create duplicate activities in Salesforce?</strong></h4>
-<h4 id="an-activity-has-both-leads-and-contacts-as-participants-who-will-nektar-create-this-activity-with"><strong>An activity has both leads and contacts as participants. Who will Nektar create this activity with?</strong></h4>
-<h4 id="an-activity-has-participants-from-multiple-domains-where-will-nektar-create-this-activity"><strong>An activity has participants from multiple domains. Where will Nektar create this activity?</strong></h4>
-<h4 id="how-long-does-it-take-for-nektar-to-write-activities-in-salesforce"><strong>How long does it take for Nektar to write activities in Salesforce?</strong></h4>
-<h4 id="why-do-i-see-duplicate-records-when-i-pull-activity-reports-on-salesforce"><strong>Why do I see duplicate records when I pull activity reports on Salesforce?</strong></h4>
-<h4 id="why-is-an-activity-linked-to-an-account-even-when-there-are-open-opportunities-under-that-account"><strong>Why is an activity linked to an account even when there are open opportunities under that account?</strong></h4>
-<h4 id="why-are-activities-assigned-to-users-whose-inboxes-and-calendars-nektar-is-not-reading"><strong>Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</strong></h4>
-<h4 id="how-does-nektar-decide-who-should-be-the-activity-owner"><strong>How does Nektar decide who should be the activity owner?</strong></h4>
+<details id="with-which-account-or-opportunity-would-an-activity-be-linked" class="details-section details-section--toggle">
+  <summary><strong>With which account or opportunity would an activity be linked?</strong></summary>
+  <p>Nektar uses proprietary affinity models to determine this. See <a href="graph-inference.html" target="_blank" rel="noopener noreferrer">Graph inference</a> for more information.</p>
+</details>
+<details id="an-activity-is-missing-in-salesforce-why" class="details-section details-section--toggle">
+  <summary><strong>An activity is missing in Salesforce. Why?</strong></summary>
+  <ol>
+<li>Activities matching read screening rules are not stored or processed by Nektar, and any that match write screening rules are not written to Salesforce. Verify that no <a href="../administration/data-controls.html" target="_blank" rel="noopener noreferrer">screening rules</a> match the missing activity.</li>
+<li>Nektar only captures activities where at least one participant is an existing Salesforce lead or contact, or whose email address has the same domain as an existing contact or account. Verify that the missing activity links to an existing Salesforce record.</li>
+<li>Calendar events more than 3 months into the future are not processed by Nektar until they come within the 3-month window.</li>
+<li>The activity might be in the processing pipeline. See <a href="sync-latency.html" target="_blank" rel="noopener noreferrer">Sync latency</a> for expected time durations. </li>
+</ol>
+<p>To look up what happened to a specific activity, use the <a href="../administration/tracker.html" target="_blank" rel="noopener noreferrer">Tracker</a>.</p>
+</details>
+<details id="do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce" class="details-section details-section--toggle">
+  <summary><strong>Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</strong></summary>
+  <p>Yes, Nektar treats Google/MS365 calendars as the main source of truth. Any changes to the meeting title, date, time, participants, or description will sync back to Salesforce. However, if an internal user has made updates to the event in Salesforce, Nektar will not override those changes, respecting the user's decisions. See <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a> for more details.</p>
+</details>
+<details id="how-does-nektar-handle-activities-that-occurred-before-the-account-was-created-in-salesforce" class="details-section details-section--toggle">
+  <summary><strong>How does Nektar handle activities that occurred before the account was created in Salesforce?</strong></summary>
+  <p>When the account is created and gets a domain name (from the &quot;website&quot; field or a contact), all the people with matching email addresses and their conversations will be created on Salesforce. This is part of Nektar's <a href="self-healing.html" target="_blank" rel="noopener noreferrer">self-healing</a> feature.</p>
+</details>
+<details id="the-activity-creation-date-has-changed-since-it-was-originally-created-why" class="details-section details-section--toggle">
+  <summary><strong>The activity creation date has changed since it was originally created. Why?</strong></summary>
+  <p>Salesforce does not reliably handle certain updates to activities, such as re-associating it from a contact to a lead. In rare situations, Nektar has to delete and recreate the activity because of new information it becomes aware of. See <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a> for more details.</p>
+</details>
+<details id="why-is-nektar-creating-old-activities-now" class="details-section details-section--toggle">
+  <summary><strong>Why is Nektar creating old activities now?</strong></summary>
+  <p>Nektar can be configured with a start date, and only activities that occurred after that date will be captured.</p>
+<p>However, note that Nektar captures activities when it becomes convinced of its relevance to your sales process, which may not be when the activities actually happen. For example, an old activity may be skipped initially, and captured later when a Salesforce account is created with the same domain name as one of its participants' email addresses. For more details, see <a href="self-healing.html" target="_blank" rel="noopener noreferrer">Self healing</a>.</p>
+</details>
+<details id="does-nektar-create-duplicate-activities-in-salesforce" class="details-section details-section--toggle">
+  <summary><strong>Does Nektar create duplicate activities in Salesforce?</strong></summary>
+  <p>Nektar does not create duplicate activities. However, Nektar does not de-duplicate against other activity capture systems running on the same users. To ensure no activities are duplicated, disable other activity capture tools for Nektar users.</p>
+</details>
+<details id="an-activity-has-both-leads-and-contacts-as-participants-who-will-nektar-create-this-activity-with" class="details-section details-section--toggle">
+  <summary><strong>An activity has both leads and contacts as participants. Who will Nektar create this activity with?</strong></summary>
+  <p>Nektar prioritizes contacts over leads. Nektar will link an activity with a lead only if there are neither existing contacts nor activity participants that can be created as contacts.</p>
+</details>
+<details id="an-activity-has-participants-from-multiple-domains-where-will-nektar-create-this-activity" class="details-section details-section--toggle">
+  <summary><strong>An activity has participants from multiple domains. Where will Nektar create this activity?</strong></summary>
+  <p>Nektar creates this activity with the best-suited Account or Opportunity, using proprietary affinity models. See <a href="graph-inference.html" target="_blank" rel="noopener noreferrer">Graph inference</a> for more information.</p>
+</details>
+<details id="how-long-does-it-take-for-nektar-to-write-activities-in-salesforce" class="details-section details-section--toggle">
+  <summary><strong>How long does it take for Nektar to write activities in Salesforce?</strong></summary>
+  <p>Nektar checks Google or MS365 every 10 minutes and connects with Salesforce APIs every 20 minutes, writing up to 200 records per API call. However, there may be occasional delays in fetching and writing activities. See <a href="sync-latency.html" target="_blank" rel="noopener noreferrer">Sync latency</a> for more information.</p>
+</details>
+<details id="why-do-i-see-duplicate-records-when-i-pull-activity-reports-on-salesforce" class="details-section details-section--toggle">
+  <summary><strong>Why do I see duplicate records when I pull activity reports on Salesforce?</strong></summary>
+  <p>This is because shared activities has been turned on in your Salesforce. In shared activities, when internal Salesforce users are added as participants, Salesforce creates a copy of the event for each internal user. On the account or opportunity, you will see only the parent event. However, when pulling reports, all copies of the event will be visible. To avoid inflated counts, all past and future reports using activities should set <em><strong>&quot;Event invitations&quot;</strong></em> to <strong>false</strong>, ensuring activities are not counted multiple times.</p>
+</details>
+<details id="why-is-an-activity-linked-to-an-account-even-when-there-are-open-opportunities-under-that-account" class="details-section details-section--toggle">
+  <summary><strong>Why is an activity linked to an account even when there are open opportunities under that account?</strong></summary>
+  <p>Nektar's affinity models find the best opportunity or account for each activity. When there are multiple opportunities and there is ambiguity about which one the activity relates to, Nektar adds it to the account instead.</p>
+<p>If this is happening frequently, you may wish to review your policies around opportunity and opportunity-contact role creation policies to ensure that there is an unambiguous opportunity where each conversation belongs.</p>
+</details>
+<details id="why-are-activities-assigned-to-users-whose-inboxes-and-calendars-nektar-is-not-reading" class="details-section details-section--toggle">
+  <summary><strong>Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</strong></summary>
+  <p>Nektar can only access the inboxes and calendars of Nektar users. However, it may assign emails or events to other Salesforce users if the algorithm determines they are a more appropriate owner. See the <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Sync</a> page for more information.</p>
+</details>
+<details id="how-does-nektar-decide-who-should-be-the-activity-owner" class="details-section details-section--toggle">
+  <summary><strong>How does Nektar decide who should be the activity owner?</strong></summary>
+  <p>See the <a href="../connectors/salesforce/sync.html" target="_blank" rel="noopener noreferrer">Sync</a> page for more information.</p>
+</details>
 <h2 id="contacts">Contacts</h2>
 <details id="with-which-account-and-opportunities-would-a-contact-be-linked" class="details-section details-section--toggle">
   <summary><strong>With which account and opportunities would a contact be linked?</strong></summary>
@@ -156,20 +206,6 @@
         <p class="toc-title">Content</p>
         <div class="toc-list">
           <a href="#activities">Activities</a>
-          <a href="#with-which-account-or-opportunity-would-an-activity-be-linked" class="toc-h3">With which account or opportunity would an activity be linked?</a>
-          <a href="#an-activity-is-missing-in-salesforce-why" class="toc-h3">An activity is missing in Salesforce. Why?</a>
-          <a href="#do-google-calendar-and-ms365-calendar-event-updates-sync-to-salesforce" class="toc-h3">Do Google Calendar and MS365 Calendar event updates sync to Salesforce?</a>
-          <a href="#how-does-nektar-handle-activities-that-occurred-before-the-account-was-created-in-salesforce" class="toc-h3">How does Nektar handle activities that occurred before the account was created in Salesforce?</a>
-          <a href="#the-activity-creation-date-has-changed-since-it-was-originally-created-why" class="toc-h3">The activity creation date has changed since it was originally created. Why?</a>
-          <a href="#why-is-nektar-creating-old-activities-now" class="toc-h3">Why is Nektar creating old activities now?</a>
-          <a href="#does-nektar-create-duplicate-activities-in-salesforce" class="toc-h3">Does Nektar create duplicate activities in Salesforce?</a>
-          <a href="#an-activity-has-both-leads-and-contacts-as-participants-who-will-nektar-create-this-activity-with" class="toc-h3">An activity has both leads and contacts as participants. Who will Nektar create this activity with?</a>
-          <a href="#an-activity-has-participants-from-multiple-domains-where-will-nektar-create-this-activity" class="toc-h3">An activity has participants from multiple domains. Where will Nektar create this activity?</a>
-          <a href="#how-long-does-it-take-for-nektar-to-write-activities-in-salesforce" class="toc-h3">How long does it take for Nektar to write activities in Salesforce?</a>
-          <a href="#why-do-i-see-duplicate-records-when-i-pull-activity-reports-on-salesforce" class="toc-h3">Why do I see duplicate records when I pull activity reports on Salesforce?</a>
-          <a href="#why-is-an-activity-linked-to-an-account-even-when-there-are-open-opportunities-under-that-account" class="toc-h3">Why is an activity linked to an account even when there are open opportunities under that account?</a>
-          <a href="#why-are-activities-assigned-to-users-whose-inboxes-and-calendars-nektar-is-not-reading" class="toc-h3">Why are activities assigned to users whose inboxes and calendars Nektar is not reading?</a>
-          <a href="#how-does-nektar-decide-who-should-be-the-activity-owner" class="toc-h3">How does Nektar decide who should be the activity owner?</a>
           <a href="#contacts">Contacts</a>
           <a href="#admin-controls">Admin controls</a>
           <a href="#security">Security</a>
