@@ -420,7 +420,7 @@
   }
 
   function initLightbox() {
-    var imgs = Array.from(document.querySelectorAll('figure.article-image img, .step-layout-image img'));
+    var imgs = Array.from(document.querySelectorAll('figure.article-image img, .step-layout-image img, .photo-grid img'));
     if (!imgs.length) return;
     var current = 0;
 
