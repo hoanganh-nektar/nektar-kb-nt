@@ -29,8 +29,7 @@
     <div class="article-layout">
       <div class="article-body">
         <div class="article-content">
-          <p>Capture Zoom meeting data and sync it natively into Salesforce — contact, account, and opportunity records stay current automatically, with no action from your reps.</p>
-<h2 id="connection">Connection</h2>
+          <h2 id="connection">Connection</h2>
 <p>Your Zoom administrator should sign into the Nektar app for Zoom.</p>
 <p>If you are an administrator, click &quot;Connect&quot; and follow the instructions. If not, copy the link and send it to the administrator.</p>
 <details id="oauth-scopes" class="details-section details-section--h3" open>
@@ -39,7 +38,7 @@
   <div class="callout-body"><p>This is under-the-hood technical detail that's not necessary for using Nektar.</p></div>
 </div>
 <p>Scopes control what actions Nektar may take. Nektar requires the following OAuth scopes to operate correctly.</p>
-<div class="data-table" style="grid-template-columns: 5fr 5fr">
+<div class="data-table" style="grid-template-columns: 1fr 3fr">
 <div class="data-table-row data-table-header">
 <div class="data-table-cell data-table-header-cell">Scopes</div>
 <div class="data-table-cell data-table-header-cell">Purpose</div>
@@ -67,6 +66,50 @@
 <li>toggle to enable or disable sync globally</li>
 </ul>
 <p>Sync health icons may indicate the following states:</p>
+<div class="data-table data-table--horizontal" style="grid-template-columns: fit-content(100%) fit-content(100%) 1fr">
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/1.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Disabled</strong></p></div>
+<div class="data-table-cell"><p>Can be enabled on the same screen.</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/2.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Not started</strong></p></div>
+<div class="data-table-cell"><p>Disabled globally, or pending approval</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/3.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>In progress</strong></p></div>
+<div class="data-table-cell"><p>Actively syncing; some data is remaining</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/4.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Completed</strong></p></div>
+<div class="data-table-cell"><p>Everything synced; watching for new data</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/5.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Delayed</strong></p></div>
+<div class="data-table-cell"><p>Sync has not run in the last 30 minutes</p></div>
+</div>
+<div class="data-table-row">
+<div class="data-table-cell"><figure class="article-image">
+  <img src="../../assets/images/notion/3819417ef6ba8131bf91c1f437ee69b7/6.svg" alt="" />
+</figure></div>
+<div class="data-table-cell data-table-header-cell"><p><strong>Stalled</strong></p></div>
+<div class="data-table-cell"><p>Stopped due to error or hasn’t run in 2 hours</p></div>
+</div>
+</div>
 <h3 id="properties-synced">Properties synced</h3>
 <ul>
 <li>Meeting ID, title, date and time, duration</li>
