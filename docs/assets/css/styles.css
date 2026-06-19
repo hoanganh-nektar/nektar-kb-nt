@@ -143,13 +143,13 @@ h6 {
 .sidebar-search input {
   width: 100%;
   height: 48px;
-  padding: 12px 44px 12px 16px;
+  padding: 12px 16px 12px 42px;
   border: 1px solid #d9d9d9;
   border-radius: 9999px;
   font-size: 18px;
   font-family: "Lora", serif;
   color: #000;
-  background: #fff;
+  background: #fff url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 17L14.1 14.1M15.6667 10.3333C15.6667 13.2789 13.2789 15.6667 10.3333 15.6667C7.38781 15.6667 5 13.2789 5 10.3333C5 7.38781 7.38781 5 10.3333 5C13.2789 5 15.6667 7.38781 15.6667 10.3333Z' stroke='black' stroke-opacity='0.5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat 14px center;
   outline: none;
   transition: border-color 0.15s;
 }
@@ -163,16 +163,6 @@ h6 {
   border-color: rgba(11, 184, 218);
 }
 
-.sidebar-search .search-icon-img {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
-  opacity: 0.5;
-}
 
 /* Nav */
 .sidebar-nav {
