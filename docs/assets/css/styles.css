@@ -1785,8 +1785,8 @@ details.details-section:not(.callout-error)[open] > summary {
 }
 
 details.details-section.details-section--h3:not(.callout-error) > summary {
-  font-family: "Lora", serif;
-  font-size: 18px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(20px, calc(11px + 0.77vw), 24px);
   font-weight: 700;
   letter-spacing: 0;
 }
