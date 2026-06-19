@@ -819,7 +819,7 @@ h6 {
 /* ─── Article Image with Caption ───────────────────────────────── */
 .photo-grid {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   margin: 32px 0;
 }
 
