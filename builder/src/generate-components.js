@@ -1,4 +1,38 @@
-(function () {
+// Builds docs/assets/js/components.js from the discovered page tree.
+// Nav icons (cardIcon) are downloaded to docs/assets/images/nav-icons/ by build.js
+// before this function is called.
+
+export function buildNavTree(tree, navIconPaths) {
+  return tree.children
+    .filter(s => s.type === 'section')
+    .map(section => ({
+      slug: section.slug,
+      title: section.title,
+      path: section.outputPath,
+      children: section.children.map(child => buildNavChild(child, navIconPaths)),
+    }));
+}
+
+function buildNavChild(node, navIconPaths) {
+  const icon = navIconPaths[node.slug] || null;
+  if (node.type === 'section') {
+    return {
+      slug: node.slug,
+      title: node.title,
+      path: node.outputPath,
+      icon,
+      type: 'section',
+      children: node.children.map(c => ({ title: c.title, path: c.outputPath })),
+    };
+  }
+  return { title: node.title, path: node.outputPath, icon };
+}
+
+export function generateComponentsJs(tree, navIconPaths) {
+  const navTree = buildNavTree(tree, navIconPaths);
+  const navTreeJson = JSON.stringify(navTree, null, 2);
+
+  return `(function () {
   'use strict';
 
   // ─── Root path detection (file:// and http://) ────────────────────────
@@ -25,209 +59,65 @@
   var R = getRootPath(); // e.g. '' / '../' / '../../'
 
   // ─── Generated nav tree ───────────────────────────────────────────────
-  var NAV_TREE = [
-  {
-    "slug": "getting-started",
-    "title": "Getting started",
-    "path": "getting-started/index.html",
-    "children": [
-      {
-        "title": "Setup guide",
-        "path": "getting-started/setup-guide.html",
-        "icon": "assets/images/nav-icons/setup-guide.svg"
-      }
-    ]
-  },
-  {
-    "slug": "understand",
-    "title": "Understand",
-    "path": "understand/index.html",
-    "children": [
-      {
-        "title": "Overview",
-        "path": "understand/overview.html",
-        "icon": "assets/images/nav-icons/overview.png"
-      },
-      {
-        "title": "Graph inference",
-        "path": "understand/graph-inference.html",
-        "icon": "assets/images/nav-icons/graph-inference.svg"
-      },
-      {
-        "title": "Self healing",
-        "path": "understand/self-healing.html",
-        "icon": "assets/images/nav-icons/self-healing.svg"
-      },
-      {
-        "title": "Security",
-        "path": "understand/security.html",
-        "icon": "assets/images/nav-icons/security.svg"
-      },
-      {
-        "title": "Sync latency",
-        "path": "understand/sync-latency.html",
-        "icon": "assets/images/nav-icons/sync-latency.svg"
-      },
-      {
-        "title": "Data transform",
-        "path": "understand/data-transform.html",
-        "icon": "assets/images/nav-icons/data-transform.svg"
-      },
-      {
-        "title": "Use cases",
-        "path": "understand/use-cases.html",
-        "icon": "assets/images/nav-icons/use-cases.svg"
-      },
-      {
-        "title": "FAQs",
-        "path": "understand/faqs.html",
-        "icon": "assets/images/nav-icons/faqs.svg"
-      }
-    ]
-  },
-  {
-    "slug": "connectors",
-    "title": "Connectors",
-    "path": "connectors/index.html",
-    "children": [
-      {
-        "slug": "salesforce",
-        "title": "Salesforce",
-        "path": "connectors/salesforce/index.html",
-        "icon": "assets/images/nav-icons/salesforce.svg",
-        "type": "section",
-        "children": [
-          {
-            "title": "Integration user",
-            "path": "connectors/salesforce/integration-user.html"
-          },
-          {
-            "title": "Connection",
-            "path": "connectors/salesforce/connection.html"
-          },
-          {
-            "title": "Sync",
-            "path": "connectors/salesforce/sync.html"
-          },
-          {
-            "title": "APIs used",
-            "path": "connectors/salesforce/apis-used.html"
-          }
-        ]
-      },
-      {
-        "title": "Google Workspace",
-        "path": "connectors/google-workspace/index.html",
-        "icon": "assets/images/nav-icons/google-workspace.svg"
-      },
-      {
-        "title": "Microsoft 365",
-        "path": "connectors/microsoft-365/index.html",
-        "icon": "assets/images/nav-icons/microsoft-365.svg"
-      },
-      {
-        "title": "Zoom",
-        "path": "connectors/zoom/index.html",
-        "icon": "assets/images/nav-icons/zoom.svg"
-      },
-      {
-        "title": "Gong",
-        "path": "connectors/gong.html",
-        "icon": "assets/images/nav-icons/gong.svg"
-      }
-    ]
-  },
-  {
-    "slug": "administration",
-    "title": "Administration",
-    "path": "administration/index.html",
-    "children": [
-      {
-        "title": "Dashboard",
-        "path": "administration/dashboard.html",
-        "icon": "assets/images/nav-icons/dashboard.svg"
-      },
-      {
-        "title": "Users",
-        "path": "administration/users.html",
-        "icon": "assets/images/nav-icons/users.svg"
-      },
-      {
-        "title": "Data controls",
-        "path": "administration/data-controls.html",
-        "icon": "assets/images/nav-icons/data-controls.svg"
-      },
-      {
-        "title": "Tracker",
-        "path": "administration/tracker.html",
-        "icon": "assets/images/nav-icons/tracker.svg"
-      },
-      {
-        "title": "Revenue signals",
-        "path": "administration/revenue-signals.html",
-        "icon": "assets/images/nav-icons/revenue-signals.svg"
-      }
-    ]
-  }
-];
+  var NAV_TREE = ${navTreeJson};
 
   // ─── Nav HTML ─────────────────────────────────────────────────────────
   function navHTML() {
     var c = R + 'assets/images/icons/chevron.svg';
     var html = '';
-    html += '<button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>\n';
-    html += '<div class="sidebar-overlay" id="sidebar-overlay"></div>\n';
-    html += '<aside id="sidebar">\n';
-    html += '  <div class="sidebar-logo">\n';
-    html += '    <a class="home-nav-link" href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n';
-    html += '  </div>\n';
-    html += '  <div class="sidebar-search">\n';
-    html += '    <input type="text" id="sidebar-search-input" placeholder="Search" aria-label="Search" />\n';
-    html += '  </div>\n';
-    html += '  <nav class="sidebar-nav">\n';
+    html += '<button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>\\n';
+    html += '<div class="sidebar-overlay" id="sidebar-overlay"></div>\\n';
+    html += '<aside id="sidebar">\\n';
+    html += '  <div class="sidebar-logo">\\n';
+    html += '    <a class="home-nav-link" href="' + R + 'index.html"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\\n';
+    html += '  </div>\\n';
+    html += '  <div class="sidebar-search">\\n';
+    html += '    <input type="text" id="sidebar-search-input" placeholder="Search" aria-label="Search" />\\n';
+    html += '  </div>\\n';
+    html += '  <nav class="sidebar-nav">\\n';
 
     NAV_TREE.forEach(function (section) {
       var grouped = section.children.some(function (ch) { return ch.type === 'section'; });
-      html += '    <div class="nav-section" data-section="' + section.slug + '">\n';
+      html += '    <div class="nav-section" data-section="' + section.slug + '">\\n';
       html += '      <div class="nav-section-toggle">';
       html += '<a class="nav-section-label" href="' + R + section.path + '" data-path="/' + section.path + '">' + esc(section.title) + '</a>';
       html += '<img class="chevron-img" src="' + c + '" alt="" />';
-      html += '</div>\n';
-      html += '      <div class="nav-section-items">\n';
+      html += '</div>\\n';
+      html += '      <div class="nav-section-items">\\n';
 
       section.children.forEach(function (child) {
         if (child.type === 'section' || grouped) {
           var iconHtml = child.icon ? '<img class="nav-icon" src="' + R + child.icon + '" alt="" />' : '';
           var hasChildren = child.children && child.children.length > 0;
           var chevronHtml = hasChildren ? '<img class="chevron-sub-img" src="' + c + '" alt="" />' : '';
-          html += '        <div class="nav-subgroup"' + (child.slug ? ' data-section="' + child.slug + '"' : '') + '>\n';
+          html += '        <div class="nav-subgroup"' + (child.slug ? ' data-section="' + child.slug + '"' : '') + '>\\n';
           html += '          <div class="nav-subgroup-toggle">';
           html += iconHtml;
           html += '<a class="subgroup-label" href="' + R + child.path + '" data-path="/' + child.path + '">' + esc(child.title) + '</a>';
           html += chevronHtml;
-          html += '</div>\n';
+          html += '</div>\\n';
           if (hasChildren) {
-            html += '          <div class="nav-subgroup-items">\n';
+            html += '          <div class="nav-subgroup-items">\\n';
             child.children.forEach(function (sub) {
-              html += '            <a class="nav-subitem" href="' + R + sub.path + '" data-path="/' + sub.path + '">' + esc(sub.title) + '</a>\n';
+              html += '            <a class="nav-subitem" href="' + R + sub.path + '" data-path="/' + sub.path + '">' + esc(sub.title) + '</a>\\n';
             });
-            html += '          </div>\n';
+            html += '          </div>\\n';
           }
-          html += '        </div>\n';
+          html += '        </div>\\n';
         } else {
           var iconHtml = child.icon ? '<img class="nav-icon" src="' + R + child.icon + '" alt="" />' : '';
-          html += '        <a class="nav-item" href="' + R + child.path + '" data-path="/' + child.path + '">' + iconHtml + esc(child.title) + '</a>\n';
+          html += '        <a class="nav-item" href="' + R + child.path + '" data-path="/' + child.path + '">' + iconHtml + esc(child.title) + '</a>\\n';
         }
       });
 
-      html += '      </div>\n';
-      html += '    </div>\n';
+      html += '      </div>\\n';
+      html += '    </div>\\n';
     });
 
-    html += '  </nav>\n';
-    html += '  <div class="sidebar-cta">\n';
-    html += '    <a href="https://nektar.ai/" target="_blank" rel="noopener" class="btn-dark">Get Nektar for your team</a>\n';
-    html += '  </div>\n';
+    html += '  </nav>\\n';
+    html += '  <div class="sidebar-cta">\\n';
+    html += '    <a href="https://nektar.ai/" target="_blank" rel="noopener" class="btn-dark">Get Nektar for your team</a>\\n';
+    html += '  </div>\\n';
     html += '</aside>';
     return html;
   }
@@ -235,29 +125,29 @@
   // ─── Footer HTML ──────────────────────────────────────────────────────
   function footerHTML() {
     var html = '';
-    html += '<footer>\n';
-    html += '  <div class="footer-inner">\n';
-    html += '    <div class="footer-brand">\n';
-    html += '      <div class="footer-logo">\n';
-    html += '        <a href="https://nektar.ai/" target="_blank" rel="noopener"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\n';
-    html += '      </div>\n';
-    html += '      <div class="footer-social">\n';
-    html += '        <a href="#" aria-label="X / Twitter"><img src="' + R + 'assets/images/icons/x.svg" width="24" height="24" alt="X" /></a>\n';
-    html += '        <a href="#" aria-label="YouTube"><img src="' + R + 'assets/images/icons/youtube.svg" width="24" height="24" alt="YouTube" /></a>\n';
-    html += '        <a href="#" aria-label="LinkedIn"><img src="' + R + 'assets/images/icons/linkedin.svg" width="24" height="24" alt="LinkedIn" /></a>\n';
-    html += '      </div>\n';
-    html += '    </div>\n';
+    html += '<footer>\\n';
+    html += '  <div class="footer-inner">\\n';
+    html += '    <div class="footer-brand">\\n';
+    html += '      <div class="footer-logo">\\n';
+    html += '        <a href="https://nektar.ai/" target="_blank" rel="noopener"><img src="' + R + 'assets/images/logo.svg" alt="Nektar" /></a>\\n';
+    html += '      </div>\\n';
+    html += '      <div class="footer-social">\\n';
+    html += '        <a href="#" aria-label="X / Twitter"><img src="' + R + 'assets/images/icons/x.svg" width="24" height="24" alt="X" /></a>\\n';
+    html += '        <a href="#" aria-label="YouTube"><img src="' + R + 'assets/images/icons/youtube.svg" width="24" height="24" alt="YouTube" /></a>\\n';
+    html += '        <a href="#" aria-label="LinkedIn"><img src="' + R + 'assets/images/icons/linkedin.svg" width="24" height="24" alt="LinkedIn" /></a>\\n';
+    html += '      </div>\\n';
+    html += '    </div>\\n';
 
     NAV_TREE.forEach(function (section) {
-      html += '    <div class="footer-col"><h4><a href="' + R + section.path + '">' + esc(section.title) + '</a></h4><ul>\n';
+      html += '    <div class="footer-col"><h4><a href="' + R + section.path + '">' + esc(section.title) + '</a></h4><ul>\\n';
       section.children.forEach(function (child) {
-        html += '      <li><a href="' + R + child.path + '">' + esc(child.title) + '</a></li>\n';
+        html += '      <li><a href="' + R + child.path + '">' + esc(child.title) + '</a></li>\\n';
       });
-      html += '    </ul></div>\n';
+      html += '    </ul></div>\\n';
     });
 
-    html += '  </div>\n';
-    html += '  <div class="footer-bottom">&copy; 2025 Nektar.ai &mdash; All rights reserved.</div>\n';
+    html += '  </div>\\n';
+    html += '  <div class="footer-bottom">&copy; 2025 Nektar.ai &mdash; All rights reserved.</div>\\n';
     html += '</footer>';
     return html;
   }
@@ -281,7 +171,7 @@
 
   // ─── Nav helpers ──────────────────────────────────────────────────────
   function normPath(p) {
-    return p.replace(/\/index\.html$/, '/').replace(/\/$/, '').toLowerCase().split('?')[0];
+    return p.replace(/\\/index\\.html$/, '/').replace(/\\/$/, '').toLowerCase().split('?')[0];
   }
 
   function getCurrentPath() {
@@ -615,3 +505,5 @@
   });
 
 })();
+`;
+}

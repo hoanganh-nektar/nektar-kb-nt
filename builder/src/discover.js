@@ -79,8 +79,9 @@ function parseSectionBlock(block, parentDir, depth) {
     }
   }
 
-  // Use second image for illustration (colored/bg version); fall back to first
-  const illustration = sectionImageUrls[1] || sectionImageUrls[0] || null;
+  // 1st image = section illustration; 2nd image = nav icon
+  const illustration = sectionImageUrls[0] || null;
+  const cardIcon = sectionImageUrls.length >= 2 ? sectionImageUrls[1] : null;
 
   return {
     type: 'section',
@@ -92,9 +93,9 @@ function parseSectionBlock(block, parentDir, depth) {
     childDir: outDir,
     depth,
     illustration,
+    cardIcon,
     descFull,
     descShort,
-    cardIcon: illustration,
     children,
   };
 }

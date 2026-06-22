@@ -6,7 +6,8 @@ import { fetchBlockTree } from './api.js';
 import { renderBlocks } from './render.js';
 import { plainText } from './richtext.js';
 import { articleTemplate, sectionIndexTemplate, homeTemplate } from './template.js';
-import { downloadImages } from './images.js';
+import { downloadImages, downloadNavIcon } from './images.js';
+import { generateComponentsJs } from './generate-components.js';
 import { pageMeta } from '../page-meta.js';
 
 const ROOT_PAGE_ID = '3819417ef6ba80758316ce06f2e81518';
@@ -54,6 +55,18 @@ export async function build() {
     };
     await buildNode(standaloneNode, tree, pathIndex);
   }
+
+  // Download nav icons and generate components.js
+  console.log('\nGenerating components.js...');
+  const navIconPaths = {};
+  for (const node of flattenTree(tree)) {
+    if (node.cardIcon && node.slug) {
+      const localPath = await downloadNavIcon(node.cardIcon, node.slug, SITE_DIR);
+      if (localPath) navIconPaths[node.slug] = localPath;
+    }
+  }
+  const componentsJs = generateComponentsJs(tree, navIconPaths);
+  await fsp.writeFile(path.join(SITE_DIR, 'assets', 'js', 'components.js'), componentsJs, 'utf8');
 
   console.log('\nBuild complete.');
   return { tree, pathIndex, pages: flattenArticles(tree) };

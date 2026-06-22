@@ -8,6 +8,22 @@ import { URL } from 'url';
 // Matches Notion S3 image URLs and Google-hosted images embedded by Notion
 const NOTION_IMG_RE = /src="(https:\/\/(?:prod-files-secure\.s3[^"]*|s3\.[a-z0-9-]+\.amazonaws\.com[^"]*|lh[0-9]+\.googleusercontent\.com[^"]*))"/g;
 
+export async function downloadNavIcon(url, slug, siteDir) {
+  if (!url || !url.startsWith('http')) return null;
+  const ext = guessExt(url);
+  const filename = `${slug}${ext}`;
+  const dir = path.join(siteDir, 'assets', 'images', 'nav-icons');
+  await fsp.mkdir(dir, { recursive: true });
+  const absPath = path.join(dir, filename);
+  try {
+    await downloadFile(url, absPath);
+    return `assets/images/nav-icons/${filename}`;
+  } catch (err) {
+    console.warn(`  Could not download nav icon for ${slug}: ${err.message}`);
+    return null;
+  }
+}
+
 export async function downloadImages(html, pageId, outputPath, siteDir) {
   const matches = [...html.matchAll(NOTION_IMG_RE)];
   if (!matches.length) return html;
