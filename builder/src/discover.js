@@ -124,9 +124,9 @@ function parseArticleBlock(block, parentDir, depth) {
 
   if (!pageId) return null;
 
-  // 1st image = nav icon (only when 2 images present); 2nd image = article illustration
-  const cardIcon = imageUrls.length >= 2 ? imageUrls[0] : null;
-  const illustration = imageUrls[1] || imageUrls[0] || null;
+  // 1st image = article illustration; 2nd image = nav icon (only when 2 images present)
+  const illustration = imageUrls[0] || null;
+  const cardIcon = imageUrls.length >= 2 ? imageUrls[1] : null;
 
   const slug = toSlug(title);
   const normId = pageId.replace(/-/g, '');
