@@ -129,11 +129,6 @@
         "title": "Zoom",
         "path": "connectors/zoom/index.html",
         "icon": "assets/images/nav-icons/zoom.svg"
-      },
-      {
-        "title": "Gong",
-        "path": "connectors/gong.html",
-        "icon": "assets/images/nav-icons/gong.svg"
       }
     ]
   },
