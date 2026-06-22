@@ -148,10 +148,10 @@ async function buildArticlePage(node, tree, pathIndex) {
   const tocEntries = [];
   const body = renderBlocks(bodyBlocks, pathIndex, tocEntries, node.outputPath);
 
-  // Illustration: page-meta override → Notion discovery (cardIcon/illustration) → first image in page
+  // Illustration: page-meta override → Notion discovery (illustration) → first image in page
   const effectiveNode = {
     ...node,
-    illustration: meta.illustration || node.illustration || node.cardIcon || firstImageUrl,
+    illustration: meta.illustration || node.illustration || firstImageUrl,
     illustrationBg: meta.illustrationBg,
   };
 

@@ -98,6 +98,12 @@
       '            <a class="subgroup-label" href="' + R + 'connectors/zoom/index.html" data-path="/connectors/zoom/">Zoom</a>\n' +
       '          </div>\n' +
       '        </div>\n' +
+      '        <div class="nav-subgroup">\n' +
+      '          <div class="nav-subgroup-toggle">\n' +
+      '            <img class="nav-icon" src="' + R + 'assets/images/nav-icons/gong.svg" alt="" />\n' +
+      '            <a class="subgroup-label" href="' + R + 'connectors/gong/index.html" data-path="/connectors/gong/">Gong</a>\n' +
+      '          </div>\n' +
+      '        </div>\n' +
       '      </div>\n' +
       '    </div>\n' +
 
@@ -150,6 +156,7 @@
       '      <li><a href="' + R + 'connectors/google-workspace/index.html">Google Workspace</a></li>\n' +
       '      <li><a href="' + R + 'connectors/microsoft-365/index.html">Microsoft 365</a></li>\n' +
       '      <li><a href="' + R + 'connectors/zoom/index.html">Zoom</a></li>\n' +
+      '      <li><a href="' + R + 'connectors/gong/index.html">Gong</a></li>\n' +
       '    </ul></div>\n' +
       '    <div class="footer-col"><h4><a href="' + R + 'administration/index.html">Administration</a></h4><ul>\n' +
       '      <li><a href="' + R + 'administration/dashboard.html">Dashboard</a></li>\n' +

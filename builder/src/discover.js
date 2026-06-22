@@ -124,8 +124,9 @@ function parseArticleBlock(block, parentDir, depth) {
 
   if (!pageId) return null;
 
-  // Use the second image as the card icon (yellow-bg version); fall back to first
-  const cardIcon = imageUrls[1] || imageUrls[0] || null;
+  // 1st image = nav icon (only when 2 images present); 2nd image = article illustration
+  const cardIcon = imageUrls.length >= 2 ? imageUrls[0] : null;
+  const illustration = imageUrls[1] || imageUrls[0] || null;
 
   const slug = toSlug(title);
   const normId = pageId.replace(/-/g, '');
@@ -141,6 +142,7 @@ function parseArticleBlock(block, parentDir, depth) {
     outputPath,
     depth,
     cardIcon,
+    illustration,
     descFull,
     descShort,
     children: [],
