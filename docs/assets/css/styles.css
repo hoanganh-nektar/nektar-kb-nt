@@ -1573,14 +1573,17 @@ figure.article-image img,
   align-items: center;
 }
 
-.callout::before {
-  content: '';
+.callout-icon {
   width: 32px;
   height: 32px;
   flex-shrink: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+
+img.callout-icon {
+  object-fit: contain;
 }
 
 .callout-body {
@@ -1605,27 +1608,6 @@ figure.article-image img,
   margin: 0;
 }
 
-.callout-neutral-technical,
-.callout-neutral-info,
-.callout-neutral-beta {
-  background: rgba(0, 102, 255, 0.05);
-  border-color: rgba(0, 102, 255, 0.15);
-}
-
-.callout-warning {
-  background: rgba(255, 153, 0, 0.05);
-  border-color: rgba(255, 153, 0, 0.15);
-}
-
-.callout-error {
-  background: rgba(220, 38, 38, 0.05);
-  border-color: rgba(220, 38, 38, 0.15);
-}
-
-.callout-neutral-link {
-  background: rgba(0, 102, 255, 0.05);
-  border-color: rgba(0, 102, 255, 0.15);
-}
 
 /* ─── Step layout (text + screenshot side by side) ──────────────── */
 
@@ -1683,29 +1665,6 @@ figure.article-image img,
   text-decoration: none;
 }
 
-.callout-neutral-technical::before {
-  background-image: url('../images/icons/callout-neutral-technical.svg');
-}
-
-.callout-neutral-info::before {
-  background-image: url('../images/icons/callout-neutral-info.svg');
-}
-
-.callout-neutral-beta::before {
-  background-image: url('../images/icons/callout-neutral-beta.svg');
-}
-
-.callout-warning::before {
-  background-image: url('../images/icons/callout-warning.svg');
-}
-
-.callout-error::before {
-  background-image: url('../images/icons/callout-error.svg');
-}
-
-.callout-neutral-link::before {
-  background-image: url('../images/icons/callout-neutral-link.svg');
-}
 
 /* Collapsible sections */
 details:not(.callout-error) {

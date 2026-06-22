@@ -8,33 +8,33 @@ export function toId(text) {
     .trim();
 }
 
-const KNOWN_CALLOUT_CLASSES = new Set([
-  'callout-neutral-info',
-  'callout-neutral-technical',
-  'callout-neutral-beta',
-  'callout-neutral-link',
-  'callout-warning',
-  'callout-error',
-]);
+// Maps Notion callout background color names to CSS background + border values
+const CALLOUT_COLOR_MAP = {
+  'default':           { bg: 'rgba(0, 102, 255, 0.05)',   border: 'rgba(0, 102, 255, 0.15)' },
+  'blue_background':   { bg: 'rgba(0, 102, 255, 0.05)',   border: 'rgba(0, 102, 255, 0.15)' },
+  'gray_background':   { bg: 'rgba(120, 120, 120, 0.05)', border: 'rgba(120, 120, 120, 0.15)' },
+  'brown_background':  { bg: 'rgba(139, 90, 43, 0.05)',   border: 'rgba(139, 90, 43, 0.15)' },
+  'orange_background': { bg: 'rgba(255, 153, 0, 0.05)',   border: 'rgba(255, 153, 0, 0.15)' },
+  'yellow_background': { bg: 'rgba(255, 196, 0, 0.05)',   border: 'rgba(255, 196, 0, 0.15)' },
+  'green_background':  { bg: 'rgba(52, 168, 83, 0.05)',   border: 'rgba(52, 168, 83, 0.15)' },
+  'purple_background': { bg: 'rgba(103, 58, 183, 0.05)',  border: 'rgba(103, 58, 183, 0.15)' },
+  'pink_background':   { bg: 'rgba(233, 83, 149, 0.05)',  border: 'rgba(233, 83, 149, 0.15)' },
+  'red_background':    { bg: 'rgba(220, 38, 38, 0.05)',   border: 'rgba(220, 38, 38, 0.15)' },
+};
 
-function calloutClass(icon, color) {
-  // File icon: extract class name from the filename in the URL
-  const fileUrl = icon?.file?.url || icon?.external?.url || '';
-  if (fileUrl) {
-    const match = fileUrl.match(/\/(callout-[^/?]+)\.svg/);
-    if (match && KNOWN_CALLOUT_CLASSES.has(match[1])) return match[1];
+function calloutStyle(color) {
+  const c = CALLOUT_COLOR_MAP[color] || CALLOUT_COLOR_MAP['default'];
+  return `background: ${c.bg}; border-color: ${c.border};`;
+}
+
+function calloutIconHtml(icon) {
+  if (!icon) return '';
+  if (icon.type === 'emoji' && icon.emoji) {
+    return `<span class="callout-icon">${escapeHtml(icon.emoji)}</span>`;
   }
-  // Emoji fallback
-  const emoji = icon?.emoji || '';
-  if (['⚙️', '🔧', '🛠️', '🔩', '⚗️', '🔬'].includes(emoji)) return 'callout-neutral-technical';
-  if (['⚠️', '🚨', '❗', '❌', '🔴', '🛑'].includes(emoji)) return 'callout-warning';
-  // Notion background color fallback
-  if (color) {
-    if (color.includes('red') || color.includes('orange')) return 'callout-warning';
-    if (color.includes('yellow')) return 'callout-warning';
-    if (color.includes('gray') || color.includes('grey')) return 'callout-neutral-technical';
-  }
-  return 'callout-neutral-info';
+  const url = icon.file?.url || icon.external?.url || '';
+  if (url) return `<img class="callout-icon" src="${url}" alt="" />`;
+  return '';
 }
 
 // Parse merge groups from a Merge directive string.
@@ -223,13 +223,14 @@ function renderBlock(block, pathIndex, tocEntries, fromPath = '', tableOpts = nu
     }
 
     case 'callout': {
-      const cls = calloutClass(data.icon, data.color);
       const singleLine = !block.has_children ? ' callout-single-line' : '';
       const extra = block._children
         ? '\n' + renderBlocks(block._children, pathIndex, null, fromPath)
         : '';
-      return `<div class="callout ${cls}${singleLine}">
-  <div class="callout-body"><p>${text}</p>${extra}</div>
+      const style = calloutStyle(data.color);
+      const iconHtml = calloutIconHtml(data.icon);
+      return `<div class="callout${singleLine}" style="${style}">
+  ${iconHtml}<div class="callout-body"><p>${text}</p>${extra}</div>
 </div>`;
     }
 
