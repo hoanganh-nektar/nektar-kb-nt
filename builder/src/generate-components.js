@@ -115,9 +115,6 @@ export function generateComponentsJs(tree, navIconPaths) {
     });
 
     html += '  </nav>\\n';
-    html += '  <div class="sidebar-cta">\\n';
-    html += '    <a href="https://nektar.ai/" target="_blank" rel="noopener" class="btn-dark">Get Nektar for your team</a>\\n';
-    html += '  </div>\\n';
     html += '</aside>';
     return html;
   }
