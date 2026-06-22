@@ -45,19 +45,14 @@ function autoShort(full) {
 export function articleTemplate({ node, body, tocEntries, heroDesc, tree }) {
   const R = rootRelative(node.outputPath);
 
-  // illustration and illustrationBg are set by build.js (from page-meta or node)
   const illSrcRaw = node.illustration || '';
-  // Local asset paths need R prefix; absolute URLs (Notion S3, etc.) do not
   const illSrc = illSrcRaw.startsWith('http') ? illSrcRaw : (illSrcRaw ? `${R}${illSrcRaw}` : '');
-  const illBg = node.illustrationBg || '';
 
   if (!illSrc) console.warn(`  No illustration for "${node.title}"`);
 
-  const illustrationStyle = illBg ? ` style="background: ${illBg};"` : '';
-  const imgStyle = illBg ? ` style="object-fit: contain; width: 100%; height: 100%;"` : '';
   const illustrationHtml = illSrc
-    ? `<div class="hero-illustration"${illustrationStyle}>
-        <img src="${illSrc}" alt="${escapeHtml(node.title)}"${imgStyle} />
+    ? `<div class="hero-illustration">
+        <img src="${illSrc}" alt="${escapeHtml(node.title)}" />
       </div>`
     : '';
 
@@ -136,7 +131,7 @@ export function sectionIndexTemplate({ node, heroDesc, children, tree }) {
     const iconRaw = childMeta.cardIcon || child.illustration || '';
     // Local asset paths need R prefix; Notion S3/absolute URLs do not
     const icon = iconRaw.startsWith('http') ? iconRaw : (iconRaw ? `${R}${iconRaw}` : '');
-    const iconBg = childMeta.cardIconBg || 'yellow-bg';
+    const iconBg = 'yellow-bg';
     const descFull = child.descFull || '';
     const descShort = child.descShort || autoShort(descFull);
 
@@ -271,7 +266,7 @@ function homeCard(pageId, tree, pathIndex) {
   const node = findNode(normId, tree) || flattenTree(tree).find(n => n.id?.replace(/-/g, '') === normId);
   const meta = pageMeta[normId] || {};
   const icon = meta.illustration || node?.illustration || '';
-  const iconBg = meta.cardIconBg || 'yellow-bg';
+  const iconBg = 'yellow-bg';
   const descFull = meta.descFull || node?.descFull || '';
   const descShort = meta.descShort || node?.descShort || autoShort(descFull);
   const title = node?.title || meta.title || '';

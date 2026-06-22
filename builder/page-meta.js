@@ -4,10 +4,7 @@
 // are all pulled automatically from Notion. Only add entries here for things
 // that cannot come from Notion:
 //
-//   outputPath      – override the auto-generated output path
-//   illustrationBg  – CSS background value behind the hero illustration
-//   cardIconBg      – CSS class for card icon background ('yellow-bg' | 'teal-bg')
-//                     default is 'yellow-bg'; only set when 'teal-bg' is needed
+//   outputPath  – override the auto-generated output path
 
 export const pageMeta = {
 
@@ -16,40 +13,22 @@ export const pageMeta = {
   // Google Workspace — lives in its own directory (has a child article)
   '3819417ef6ba812280a5d2007237d192': {
     outputPath: 'connectors/google-workspace/index.html',
-    illustrationBg: 'rgba(255,204,0,0.3)',
   },
 
   // Google Workspace – Marketplace install (standalone, linked from article)
   '3819417ef6ba81238421d6664937f71f': {
     outputPath: 'connectors/google-workspace/marketplace-install.html',
-    illustrationBg: 'rgba(255,204,0,0.3)',
   },
 
   // Microsoft 365
   '3819417ef6ba816394d8ce003719323c': {
     outputPath: 'connectors/microsoft-365/index.html',
-    illustrationBg: 'rgba(255,204,0,0.3)',
   },
 
   // Zoom
   '3819417ef6ba8131bf91c1f437ee69b7': {
     outputPath: 'connectors/zoom/index.html',
-    illustrationBg: 'rgba(255,204,0,0.3)',
   },
-
-  // ── Illustration background overrides ────────────────────────────────────
-
-  // Tracker — dark background suits the illustration
-  '3819417ef6ba8190a22df3172ef18ec4': {
-    illustrationBg: '#1f3a5f',
-  },
-
-  // ── Card icon background overrides (teal for Salesforce sub-articles) ────
-
-  '3819417ef6ba811fbeb4e7991f6c5610': { cardIconBg: 'teal-bg' }, // Integration user
-  '3819417ef6ba800b9da9f4f610a0a1e1': { cardIconBg: 'teal-bg' }, // Connection
-  '3819417ef6ba80528e61d50bb2216724': { cardIconBg: 'teal-bg' }, // Sync
-  '3819417ef6ba8032b605f2561f3a023b': { cardIconBg: 'teal-bg' }, // APIs used
 
   // ── Standalone pages ─────────────────────────────────────────────────────
   // Pages not in the root Notion structure but linked from article content.

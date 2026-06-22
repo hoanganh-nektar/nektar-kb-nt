@@ -48,7 +48,6 @@ export async function build() {
       depth: 2,
       cardIcon: meta.cardIcon || null,
       illustration: meta.illustration || null,
-      illustrationBg: meta.illustrationBg || null,
       descFull: '',
       descShort: '',
       children: [],
@@ -109,7 +108,6 @@ async function buildNode(node, tree, pathIndex) {
         depth: node.depth + 1,
         cardIcon: cpMeta.cardIcon || null,
         illustration: cpMeta.illustration || null,
-        illustrationBg: cpMeta.illustrationBg || null,
         descFull: '',
         descShort: '',
         children: [],
@@ -165,7 +163,6 @@ async function buildArticlePage(node, tree, pathIndex) {
   const effectiveNode = {
     ...node,
     illustration: meta.illustration || node.illustration || firstImageUrl,
-    illustrationBg: meta.illustrationBg,
   };
 
   return { html: articleTemplate({ node: effectiveNode, body, tocEntries, heroDesc, tree }), childPages };
