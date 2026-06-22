@@ -30,29 +30,38 @@ export async function build() {
   allNodes.forEach(n => console.log(`  ${n.outputPath}`));
   console.log('');
 
+  // subArticleMap: parent outputPath → [{ title, path }]
+  // Populated by buildNode when child_page sub-articles are built.
+  const subArticleMap = {};
+
   for (const node of allNodes) {
-    await buildNode(node, tree, pathIndex);
+    await buildNode(node, tree, pathIndex, subArticleMap);
   }
 
-  // Build standalone pages (linked from content but not in root structure)
-  for (const id of pageMeta.standalonePages || []) {
-    const normId = id.replace(/-/g, '');
-    const meta = pageMeta[normId] || {};
-    if (!meta.outputPath) { console.warn(`  Standalone page ${id} has no outputPath in page-meta — skipping.`); continue; }
-    pathIndex[normId] = meta.outputPath;
-    const standaloneNode = {
+  // Build pages declared as sub-articles in page-meta (subArticleOf: parentPageId)
+  // These are pages linked from article content but not in the Notion root structure.
+  for (const [id, meta] of Object.entries(pageMeta)) {
+    if (typeof meta !== 'object' || !meta.subArticleOf || !meta.outputPath) continue;
+    const normParentId = meta.subArticleOf.replace(/-/g, '');
+    // Find parent node to get its outputPath for the subArticleMap key
+    const parentNode = flattenTree(tree).find(n => n.id?.replace(/-/g, '') === normParentId);
+    if (!parentNode) { console.warn(`  subArticleOf parent not found for ${id} — skipping.`); continue; }
+    pathIndex[id] = meta.outputPath;
+    const subNode = {
       type: 'article',
       id,
       title: meta.title || id,
       outputPath: meta.outputPath,
-      depth: 2,
+      depth: parentNode.depth + 1,
       cardIcon: meta.cardIcon || null,
       illustration: meta.illustration || null,
       descFull: '',
       descShort: '',
       children: [],
     };
-    await buildNode(standaloneNode, tree, pathIndex);
+    await buildNode(subNode, tree, pathIndex, subArticleMap);
+    const existing = subArticleMap[parentNode.outputPath] || [];
+    subArticleMap[parentNode.outputPath] = [...existing, { title: subNode.title, path: meta.outputPath }];
   }
 
   // Download nav icons and generate components.js
@@ -64,14 +73,14 @@ export async function build() {
       if (localPath) navIconPaths[node.slug] = localPath;
     }
   }
-  const componentsJs = generateComponentsJs(tree, navIconPaths);
+  const componentsJs = generateComponentsJs(tree, navIconPaths, subArticleMap);
   await fsp.writeFile(path.join(SITE_DIR, 'assets', 'js', 'components.js'), componentsJs, 'utf8');
 
   console.log('\nBuild complete.');
   return { tree, pathIndex, pages: flattenArticles(tree) };
 }
 
-async function buildNode(node, tree, pathIndex) {
+async function buildNode(node, tree, pathIndex, subArticleMap = {}) {
   console.log(`Building ${node.outputPath}...`);
   let html;
 
@@ -94,6 +103,7 @@ async function buildNode(node, tree, pathIndex) {
     const { html: articleHtml, childPages } = await buildArticlePage(node, tree, pathIndex);
     html = articleHtml;
     // Build any child_page sub-articles embedded in this article
+    const builtSubArticles = [];
     for (const cp of childPages) {
       const normId = cp.id.replace(/-/g, '');
       const cpMeta = pageMeta[normId] || {};
@@ -112,8 +122,10 @@ async function buildNode(node, tree, pathIndex) {
         descShort: '',
         children: [],
       };
-      await buildNode(cpNode, tree, pathIndex);
+      await buildNode(cpNode, tree, pathIndex, subArticleMap);
+      builtSubArticles.push({ title: cp.child_page.title, path: cpOutputPath });
     }
+    if (builtSubArticles.length) subArticleMap[node.outputPath] = builtSubArticles;
   }
 
   // Download Notion-hosted images and rewrite URLs to local paths

@@ -2,18 +2,18 @@
 // Nav icons (cardIcon) are downloaded to docs/assets/images/nav-icons/ by build.js
 // before this function is called.
 
-export function buildNavTree(tree, navIconPaths) {
+export function buildNavTree(tree, navIconPaths, subArticleMap = {}) {
   return tree.children
     .filter(s => s.type === 'section')
     .map(section => ({
       slug: section.slug,
       title: section.title,
       path: section.outputPath,
-      children: section.children.map(child => buildNavChild(child, navIconPaths)),
+      children: section.children.map(child => buildNavChild(child, navIconPaths, subArticleMap)),
     }));
 }
 
-function buildNavChild(node, navIconPaths) {
+function buildNavChild(node, navIconPaths, subArticleMap) {
   const icon = navIconPaths[node.slug] || null;
   if (node.type === 'section') {
     return {
@@ -25,11 +25,14 @@ function buildNavChild(node, navIconPaths) {
       children: node.children.map(c => ({ title: c.title, path: c.outputPath })),
     };
   }
-  return { title: node.title, path: node.outputPath, icon };
+  const entry = { title: node.title, path: node.outputPath, icon };
+  const subArticles = subArticleMap[node.outputPath];
+  if (subArticles?.length) entry.subArticles = subArticles;
+  return entry;
 }
 
-export function generateComponentsJs(tree, navIconPaths) {
-  const navTree = buildNavTree(tree, navIconPaths);
+export function generateComponentsJs(tree, navIconPaths, subArticleMap = {}) {
+  const navTree = buildNavTree(tree, navIconPaths, subArticleMap);
   const navTreeJson = JSON.stringify(navTree, null, 2);
 
   return `(function () {
@@ -107,6 +110,11 @@ export function generateComponentsJs(tree, navIconPaths) {
         } else {
           var iconHtml = child.icon ? '<img class="nav-icon" src="' + R + child.icon + '" alt="" />' : '';
           html += '        <a class="nav-item" href="' + R + child.path + '" data-path="/' + child.path + '">' + iconHtml + esc(child.title) + '</a>\\n';
+          if (child.subArticles && child.subArticles.length) {
+            child.subArticles.forEach(function (sub) {
+              html += '        <a class="nav-subitem nav-subitem--hidden" href="' + R + sub.path + '" data-path="/' + sub.path + '">' + esc(sub.title) + '</a>\\n';
+            });
+          }
         }
       });
 

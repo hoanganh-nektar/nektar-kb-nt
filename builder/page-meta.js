@@ -15,9 +15,12 @@ export const pageMeta = {
     outputPath: 'connectors/google-workspace/index.html',
   },
 
-  // Google Workspace – Marketplace install (standalone, linked from article)
+  // Google Workspace – Marketplace install
+  // subArticleOf: show as a hidden nav item under the parent page when active
   '3819417ef6ba81238421d6664937f71f': {
+    title: 'Marketplace Install',
     outputPath: 'connectors/google-workspace/marketplace-install.html',
+    subArticleOf: '3819417ef6ba812280a5d2007237d192', // Google Workspace
   },
 
   // Microsoft 365
@@ -29,12 +32,6 @@ export const pageMeta = {
   '3819417ef6ba8131bf91c1f437ee69b7': {
     outputPath: 'connectors/zoom/index.html',
   },
-
-  // ── Standalone pages ─────────────────────────────────────────────────────
-  // Pages not in the root Notion structure but linked from article content.
-  standalonePages: [
-    '3819417ef6ba81238421d6664937f71f', // Google Workspace – Marketplace install
-  ],
 
   // ── Home page featured sections ──────────────────────────────────────────
   homeFeatured: {

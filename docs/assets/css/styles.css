@@ -336,6 +336,14 @@ h6 {
   background: rgba(11, 184, 218, 0.15);
 }
 
+.nav-subitem--hidden {
+  display: none;
+}
+
+.nav-subitem--hidden.active {
+  display: block;
+}
+
 .nav-subgroup-toggle.active,
 .nav-subgroup.open .nav-subgroup-toggle.active {
   border-radius: 24px;

@@ -118,7 +118,13 @@
       {
         "title": "Google Workspace",
         "path": "connectors/google-workspace/index.html",
-        "icon": "assets/images/nav-icons/google-workspace.svg"
+        "icon": "assets/images/nav-icons/google-workspace.svg",
+        "subArticles": [
+          {
+            "title": "Marketplace Install",
+            "path": "connectors/google-workspace/marketplace-install.html"
+          }
+        ]
       },
       {
         "title": "Microsoft 365",
@@ -212,6 +218,11 @@
         } else {
           var iconHtml = child.icon ? '<img class="nav-icon" src="' + R + child.icon + '" alt="" />' : '';
           html += '        <a class="nav-item" href="' + R + child.path + '" data-path="/' + child.path + '">' + iconHtml + esc(child.title) + '</a>\n';
+          if (child.subArticles && child.subArticles.length) {
+            child.subArticles.forEach(function (sub) {
+              html += '        <a class="nav-subitem nav-subitem--hidden" href="' + R + sub.path + '" data-path="/' + sub.path + '">' + esc(sub.title) + '</a>\n';
+            });
+          }
         }
       });
 
