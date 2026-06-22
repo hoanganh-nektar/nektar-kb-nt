@@ -46,7 +46,7 @@
       {
         "title": "Overview",
         "path": "understand/overview.html",
-        "icon": "assets/images/nav-icons/overview.png"
+        "icon": "assets/images/nav-icons/overview.svg"
       },
       {
         "title": "Graph inference",
@@ -134,6 +134,11 @@
         "title": "Gong",
         "path": "connectors/gong.html",
         "icon": "assets/images/nav-icons/gong.svg"
+      },
+      {
+        "title": "Gong 2",
+        "path": "connectors/gong-2.html",
+        "icon": "assets/images/nav-icons/gong-2.svg"
       }
     ]
   },
