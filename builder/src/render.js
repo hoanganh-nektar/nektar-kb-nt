@@ -74,17 +74,17 @@ function parseTableDirective(plain) {
   // CN: explicit header column index (1-based); also implies headerCol
   const colN = text.match(/\bC(\d+)\b/);
   if (colN) { opts.headerColIndex = parseInt(colN[1]) - 1; opts.headerCol = true; }
-  // Ratio: supports 'fit' alongside numbers, e.g. fit:1:2
-  const ratioStr = text.match(/((?:fit|\d+)(?::(?:fit|\d+))+)/i)?.[1];
-  if (ratioStr) opts.ratio = ratioStr.split(':').map(p => /^fit$/i.test(p) ? 'fit' : Number(p));
+  // Ratio: supports 'fit', plain numbers (fr), and pixel values e.g. fit:300px:1
+  const ratioStr = text.match(/((?:fit|\d+(?:px)?)(?::(?:fit|\d+(?:px)?))+)/i)?.[1];
+  if (ratioStr) opts.ratio = ratioStr.split(':').map(p => /^fit$/i.test(p) ? 'fit' : /px$/i.test(p) ? p.toLowerCase() : Number(p));
   const mergeMatch = text.match(/Merge\s+(.+)/i);
   if (mergeMatch) opts.noBorder = parseMerge(mergeMatch[1]);
   return opts;
 }
 
-// Build a CSS grid-template-columns string from a ratio array (numbers → fr, 'fit' → fit-content).
+// Build a CSS grid-template-columns string from a ratio array (numbers → fr, 'fit' → fit-content, '300px' → 300px).
 function makeGridCols(ratio, cols) {
-  if (ratio) return ratio.map(n => n === 'fit' ? 'fit-content(100%)' : `${n}fr`).join(' ');
+  if (ratio) return ratio.map(n => n === 'fit' ? 'fit-content(100%)' : typeof n === 'string' ? n : `${n}fr`).join(' ');
   return Array(cols).fill(`${Math.round(10 / cols)}fr`).join(' ');
 }
 
