@@ -270,7 +270,7 @@ function homeCard(pageId, tree, pathIndex) {
 
   const node = findNode(normId, tree) || flattenTree(tree).find(n => n.id?.replace(/-/g, '') === normId);
   const meta = pageMeta[normId] || {};
-  const icon = meta.cardIcon || node?.cardIcon || '';
+  const icon = meta.illustration || node?.illustration || '';
   const iconBg = meta.cardIconBg || 'yellow-bg';
   const descFull = meta.descFull || node?.descFull || '';
   const descShort = meta.descShort || node?.descShort || autoShort(descFull);
