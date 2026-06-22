@@ -841,6 +841,7 @@ figure.article-image {
   align-items: center;
   gap: 16px;
   margin: 32px 0;
+  width: fit-content;
 }
 
 .article-content li figure.article-image {
