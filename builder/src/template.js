@@ -132,8 +132,8 @@ export function sectionIndexTemplate({ node, heroDesc, children, tree }) {
   const cardsHtml = children.map(child => {
     const childKey = (child.id || child.blockId || '').replace(/-/g, '');
     const childMeta = pageMeta[childKey] || {};
-    // icon comes from Notion (article entry toggle image) or page-meta override
-    const iconRaw = childMeta.cardIcon || child.cardIcon || '';
+    // icon comes from Notion article illustration (1st image) or page-meta override
+    const iconRaw = childMeta.cardIcon || child.illustration || '';
     // Local asset paths need R prefix; Notion S3/absolute URLs do not
     const icon = iconRaw.startsWith('http') ? iconRaw : (iconRaw ? `${R}${iconRaw}` : '');
     const iconBg = childMeta.cardIconBg || 'yellow-bg';
